@@ -1,0 +1,296 @@
+import React, { useEffect, useRef } from 'react';
+import { Calendar, Activity, DollarSign, Globe, TrendingUp, BarChart3, Calculator, Clock } from 'lucide-react';
+import PipCalculator from '../components/calculators/PipCalculator';
+import PositionCalculator from '../components/calculators/PositionCalculator';
+import RiskRewardCalculator from '../components/calculators/RiskRewardCalculator';
+import SessionTimer from '../components/widgets/SessionTimer';
+import MarketOverview from '../components/widgets/MarketOverview';
+
+const Tools: React.FC = () => {
+  const chartContainerRef = useRef<HTMLDivElement>(null);
+  const calendarContainerRef = useRef<HTMLDivElement>(null);
+  const heatmapContainerRef = useRef<HTMLDivElement>(null);
+  const sentimentContainerRef = useRef<HTMLDivElement>(null);
+  const goldContainerRef = useRef<HTMLDivElement>(null);
+  const dxyContainerRef = useRef<HTMLDivElement>(null);
+  const cotContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+      // Advanced Chart Widget
+      if (chartContainerRef.current) {
+          chartContainerRef.current.innerHTML = '';
+          const script = document.createElement('script');
+          script.src = "https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js";
+          script.async = true;
+          script.innerHTML = JSON.stringify({
+              "autosize": true,
+              "symbol": "OANDA:XAUUSD",
+              "interval": "D",
+              "timezone": "Asia/Jakarta",
+              "theme": "dark",
+              "style": "1",
+              "locale": "en",
+              "enable_publishing": false,
+              "allow_symbol_change": true,
+              "calendar": false,
+              "support_host": "https://www.tradingview.com"
+          });
+          chartContainerRef.current.appendChild(script);
+      }
+
+      // Economic Calendar Widget
+      if (calendarContainerRef.current) {
+          calendarContainerRef.current.innerHTML = '';
+          const script = document.createElement('script');
+          script.src = "https://s3.tradingview.com/external-embedding/embed-widget-events.js";
+          script.async = true;
+          script.innerHTML = JSON.stringify({
+            "colorTheme": "dark",
+            "isTransparent": false,
+            "width": "100%",
+            "height": "400",
+            "locale": "en",
+            "importanceFilter": "0,1",
+            "currencyFilter": "USD,EUR,GBP,JPY,AUD,NZD,CAD,CHF",
+            "countryFilter": "us,eu,gb,jp,au,nz,ca,ch"
+          });
+          calendarContainerRef.current.appendChild(script);
+      }
+
+      // Forex Heat Map Widget
+      if (heatmapContainerRef.current) {
+          heatmapContainerRef.current.innerHTML = '';
+          const script = document.createElement('script');
+          script.src = "https://s3.tradingview.com/external-embedding/embed-widget-forex-heat-map.js";
+          script.async = true;
+          script.innerHTML = JSON.stringify({
+            "width": "100%",
+            "height": "400",
+            "currencies": [
+              "EUR",
+              "USD",
+              "JPY",
+              "GBP",
+              "CHF",
+              "AUD",
+              "CAD",
+              "NZD"
+            ],
+            "isTransparent": false,
+            "colorTheme": "dark",
+            "locale": "en"
+          });
+          heatmapContainerRef.current.appendChild(script);
+      }
+
+      // Technical Analysis (Sentiment) Widget
+      if (sentimentContainerRef.current) {
+          sentimentContainerRef.current.innerHTML = '';
+          const script = document.createElement('script');
+          script.src = "https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js";
+          script.async = true;
+          script.innerHTML = JSON.stringify({
+            "interval": "1m",
+            "width": "100%",
+            "isTransparent": false,
+            "height": "400",
+            "symbol": "FX_IDC:EURUSD",
+            "showIntervalTabs": true,
+            "displayMode": "single",
+            "locale": "en",
+            "colorTheme": "dark"
+          });
+          sentimentContainerRef.current.appendChild(script);
+      }
+
+      // Gold Price Widget (XAUUSD)
+      if (goldContainerRef.current) {
+          goldContainerRef.current.innerHTML = '';
+          const script = document.createElement('script');
+          script.src = "https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js";
+          script.async = true;
+          script.innerHTML = JSON.stringify({
+            "symbol": "OANDA:XAUUSD",
+            "width": "100%",
+            "colorTheme": "dark",
+            "isTransparent": false,
+            "locale": "en"
+          });
+          goldContainerRef.current.appendChild(script);
+      }
+
+      // DXY Index Widget
+      if (dxyContainerRef.current) {
+          dxyContainerRef.current.innerHTML = '';
+          const script = document.createElement('script');
+          script.src = "https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js";
+          script.async = true;
+          script.innerHTML = JSON.stringify({
+            "symbol": "TVC:DXY",
+            "width": "100%",
+            "colorTheme": "dark",
+            "isTransparent": false,
+            "locale": "en"
+          });
+          dxyContainerRef.current.appendChild(script);
+      }
+
+      // COT Data Widget (using Symbol Info for now as placeholder)
+      if (cotContainerRef.current) {
+          cotContainerRef.current.innerHTML = '';
+          const script = document.createElement('script');
+          script.src = "https://s3.tradingview.com/external-embedding/embed-widget-symbol-info.js";
+          script.async = true;
+          script.innerHTML = JSON.stringify({
+            "symbol": "CFTC:EUR_NET",
+            "width": "100%",
+            "locale": "en",
+            "colorTheme": "dark"
+          });
+          cotContainerRef.current.appendChild(script);
+      }
+
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mb-12">
+            <h1 className="text-4xl font-bold text-white mb-2">Trading Tools</h1>
+            <p className="text-slate-400">Alat bantu analisis teknikal, fundamental, dan kalkulator trading.</p>
+        </div>
+
+        {/* Market Overview & Session Timer */}
+        <div className="grid lg:grid-cols-2 gap-6 mb-8">
+          <MarketOverview />
+          <SessionTimer />
+        </div>
+
+        {/* Calculators Section */}
+        <div className="mb-12">
+          <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+            <Calculator className="text-emerald-400" /> Trading Calculators
+          </h2>
+          <div className="grid lg:grid-cols-3 gap-6">
+            <PipCalculator />
+            <PositionCalculator />
+            <RiskRewardCalculator />
+          </div>
+        </div>
+
+        {/* Trading Widgets Grid */}
+        <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+          <BarChart3 className="text-emerald-400" /> Market Widgets
+        </h2>
+        
+        <div className="grid lg:grid-cols-2 gap-6">
+            {/* Economic Calendar */}
+            <div className="glass-card p-6 overflow-hidden">
+                <div className="flex items-center justify-between mb-6">
+                    <h3 className="text-lg font-bold flex items-center gap-2 text-white">
+                        <Calendar className="text-emerald-400" /> Economic Calendar
+                    </h3>
+                </div>
+                <div className="tradingview-widget-container" ref={calendarContainerRef}>
+                    <div className="tradingview-widget-container__widget"></div>
+                </div>
+            </div>
+
+            {/* Currency Strength / Heat Map */}
+            <div className="glass-card p-6 overflow-hidden">
+                <div className="flex items-center justify-between mb-6">
+                    <h3 className="text-lg font-bold flex items-center gap-2 text-white">
+                        <Activity className="text-emerald-400" /> Forex Heat Map
+                    </h3>
+                </div>
+                <div className="tradingview-widget-container" ref={heatmapContainerRef}>
+                    <div className="tradingview-widget-container__widget"></div>
+                </div>
+            </div>
+            
+            {/* Gold Price (XAUUSD) */}
+            <div className="glass-card p-6">
+                <div className="flex items-center justify-between mb-6">
+                    <h3 className="text-lg font-bold flex items-center gap-2 text-white">
+                        <TrendingUp className="text-yellow-400" /> Gold Price (XAUUSD)
+                    </h3>
+                </div>
+                <div className="tradingview-widget-container" ref={goldContainerRef}>
+                    <div className="tradingview-widget-container__widget"></div>
+                </div>
+            </div>
+
+            {/* DXY Index */}
+            <div className="glass-card p-6">
+                <div className="flex items-center justify-between mb-6">
+                    <h3 className="text-lg font-bold flex items-center gap-2 text-white">
+                        <DollarSign className="text-green-400" /> DXY Index
+                    </h3>
+                </div>
+                <div className="tradingview-widget-container" ref={dxyContainerRef}>
+                    <div className="tradingview-widget-container__widget"></div>
+                </div>
+            </div>
+            
+            {/* Market Sentiment */}
+            <div className="glass-card p-6 overflow-hidden">
+                <div className="flex items-center justify-between mb-6">
+                    <h3 className="text-lg font-bold flex items-center gap-2 text-white">
+                        <Globe className="text-blue-400" /> Market Sentiment (EURUSD)
+                    </h3>
+                </div>
+                <div className="tradingview-widget-container" ref={sentimentContainerRef}>
+                    <div className="tradingview-widget-container__widget"></div>
+                </div>
+            </div>
+
+            {/* COT Data (Commitment of Traders) */}
+            <div className="glass-card p-6">
+                <div className="flex items-center justify-between mb-6">
+                    <h3 className="text-lg font-bold flex items-center gap-2 text-white">
+                        <BarChart3 className="text-purple-400" /> COT Data (EUR)
+                    </h3>
+                </div>
+                <div className="tradingview-widget-container" ref={cotContainerRef}>
+                    <div className="tradingview-widget-container__widget"></div>
+                </div>
+                <p className="text-xs text-slate-400 mt-4">
+                    *Commitment of Traders data shows net positions of institutional traders. Updated weekly (Friday).
+                </p>
+            </div>
+
+            {/* TradingView Advanced Chart - Full Width */}
+            <div className="glass-card p-6 lg:col-span-2">
+                <div className="flex items-center justify-between mb-4">
+                     <h3 className="text-lg font-bold flex items-center gap-2 text-white">
+                        <DollarSign className="text-emerald-400" /> Advanced Chart
+                    </h3>
+                </div>
+                <div className="aspect-video bg-slate-800/50 rounded-lg overflow-hidden border border-slate-700">
+                    <div className="tradingview-widget-container h-full w-full" ref={chartContainerRef}>
+                        <div className="tradingview-widget-container__widget h-full w-full"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {/* Quick Tip */}
+        <div className="mt-12 p-6 glass-card border-l-4 border-emerald-500">
+          <h3 className="text-lg font-bold text-white mb-2 flex items-center gap-2">
+            <Clock className="text-emerald-400" />
+            Trading Tips
+          </h3>
+          <ul className="space-y-2 text-slate-300 text-sm">
+            <li>• Use the Position Calculator before every trade to ensure proper risk management</li>
+            <li>• Check Market Sessions to trade during high volatility periods</li>
+            <li>• Monitor Economic Calendar for high-impact news events</li>
+            <li>• Always maintain minimum 1:1.5 Risk:Reward ratio</li>
+            <li>• Never risk more than 2% of your account per trade</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Tools;

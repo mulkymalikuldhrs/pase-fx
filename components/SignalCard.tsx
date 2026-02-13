@@ -1,0 +1,96 @@
+import React from 'react';
+import { Signal } from '../types';
+import { TrendingUp, TrendingDown, Target, ShieldAlert, Clock, BarChart } from 'lucide-react';
+
+interface SignalCardProps {
+  signal: Signal;
+}
+
+const SignalCard: React.FC<SignalCardProps> = ({ signal }) => {
+  const isBuy = signal.direction === 'BUY';
+  const isActive = signal.status === 'ACTIVE';
+  
+  const statusColors = {
+    'ACTIVE': 'bg-blue-100 text-blue-800 border-blue-200',
+    'CLOSED': 'bg-slate-100 text-slate-800 border-slate-200',
+    'HIT_TP': 'bg-emerald-100 text-emerald-800 border-emerald-200',
+    'HIT_SL': 'bg-red-100 text-red-800 border-red-200',
+  };
+
+  const statusLabels = {
+    'ACTIVE': 'Active',
+    'CLOSED': 'Closed',
+    'HIT_TP': 'Profit Hit',
+    'HIT_SL': 'Stop Loss Hit',
+  };
+
+  return (
+    <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-md transition-shadow">
+      <div className="p-5">
+        {/* Header */}
+        <div className="flex justify-between items-start mb-4">
+          <div className="flex items-center gap-3">
+            <div className={`p-2 rounded-lg ${isBuy ? 'bg-emerald-100' : 'bg-red-100'}`}>
+              {isBuy ? (
+                <TrendingUp className={`w-6 h-6 ${isBuy ? 'text-emerald-600' : 'text-red-600'}`} />
+              ) : (
+                <TrendingDown className={`w-6 h-6 ${isBuy ? 'text-emerald-600' : 'text-red-600'}`} />
+              )}
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-slate-900">{signal.pair}</h3>
+              <p className={`text-sm font-bold ${isBuy ? 'text-emerald-600' : 'text-red-600'}`}>
+                {signal.direction} @ {signal.entry}
+              </p>
+            </div>
+          </div>
+          <span className={`px-2.5 py-1 rounded-full text-xs font-semibold border ${statusColors[signal.status]}`}>
+            {statusLabels[signal.status]}
+          </span>
+        </div>
+
+        {/* Details Grid */}
+        <div className="grid grid-cols-2 gap-4 mb-4 text-sm">
+          <div className="bg-slate-50 p-2 rounded border border-slate-100">
+            <div className="flex items-center gap-1.5 text-slate-500 mb-1">
+              <ShieldAlert size={14} />
+              <span className="text-xs">Stop Loss</span>
+            </div>
+            <span className="font-mono font-semibold text-red-600">{signal.sl}</span>
+          </div>
+          <div className="bg-slate-50 p-2 rounded border border-slate-100">
+             <div className="flex items-center gap-1.5 text-slate-500 mb-1">
+              <Target size={14} />
+              <span className="text-xs">Take Profit 1</span>
+            </div>
+            <span className="font-mono font-semibold text-emerald-600">{signal.tp1}</span>
+          </div>
+        </div>
+
+        {/* Meta Info */}
+        <div className="flex items-center gap-4 text-xs text-slate-500 border-t border-slate-100 pt-3">
+          <div className="flex items-center gap-1">
+            <Clock size={12} />
+            <span>{signal.date}</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <BarChart size={12} />
+            <span>{signal.timeframe}</span>
+          </div>
+          <div className="ml-auto font-medium text-slate-700">
+            By {signal.analyst}
+          </div>
+        </div>
+        
+        {/* Analysis Teaser */}
+        {isActive && (
+             <div className="mt-3 text-xs text-slate-600 italic bg-slate-50 p-2 rounded">
+                 "{signal.analysis}"
+             </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default SignalCard;

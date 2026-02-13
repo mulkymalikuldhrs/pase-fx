@@ -1,0 +1,7 @@
+{
+  "name": "Pase FX Trader Hub",
+  "description": "Website komunitas trading profesional dengan sinyal gratis, edukasi lengkap, dan manajemen risiko yang ketat. Pase FX: Trader Waras, Sistematis, Profesional.",
+  "logo": "/logo.png",
+  "favicon": "/logo.png",
+  "requestFramePermissions": []
+}
