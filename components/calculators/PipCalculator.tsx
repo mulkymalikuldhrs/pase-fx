@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calculator, ArrowRightLeft } from 'lucide-react';
+import { Calculator, ArrowRightLeft, Info } from 'lucide-react';
 
 interface PipResult {
   pipValue: number;
@@ -12,24 +12,24 @@ const PipCalculator: React.FC = () => {
   const [pair, setPair] = useState<string>('EURUSD');
   const [result, setResult] = useState<PipResult | null>(null);
 
-  const pairs: Record<string, number> = {
-    'EURUSD': 10,
-    'GBPUSD': 10,
-    'USDJPY': 9.09,
-    'USDCHF': 11.11,
-    'AUDUSD': 10,
-    'NZDUSD': 10,
-    'USDCAD': 7.69,
-    'XAUUSD': 10,
-    'XAGUSD': 50,
+  const pairs: Record<string, { value: number; description: string }> = {
+    'EURUSD': { value: 10, description: '$10 per pip untuk 1 lot' },
+    'GBPUSD': { value: 10, description: '$10 per pip untuk 1 lot' },
+    'USDJPY': { value: 9.09, description: '~$9.09 per pip untuk 1 lot' },
+    'USDCHF': { value: 11.11, description: '~$11.11 per pip untuk 1 lot' },
+    'AUDUSD': { value: 10, description: '$10 per pip untuk 1 lot' },
+    'NZDUSD': { value: 10, description: '$10 per pip untuk 1 lot' },
+    'USDCAD': { value: 7.69, description: '~$7.69 per pip untuk 1 lot' },
+    'XAUUSD': { value: 10, description: '$10 per pip untuk 1 lot' },
+    'XAGUSD': { value: 50, description: '$50 per pip untuk 1 lot' },
   };
 
   const calculatePip = () => {
     const lots = parseFloat(lotSize) || 0;
     const pips = parseFloat(pipCount) || 0;
-    const valuePerPip = pairs[pair] || 10;
+    const valuePerPip = pairs[pair].value * lots;
     
-    const pipValue = valuePerPip * lots;
+    const pipValue = valuePerPip;
     const totalValue = pipValue * pips;
     
     setResult({
@@ -39,47 +39,51 @@ const PipCalculator: React.FC = () => {
   };
 
   return (
-    <div className="glass-card p-6">
+    <div className="glass-card p-6 bg-white/70 border border-gray-200 rounded-xl">
       <div className="flex items-center gap-3 mb-6">
-        <div className="p-2 bg-emerald-500/20 rounded-lg">
-          <Calculator className="w-6 h-6 text-emerald-400" />
+        <div className="p-2 bg-emerald-500/10 rounded-lg">
+          <Calculator className="w-6 h-6 text-emerald-600" />
         </div>
-        <h3 className="text-xl font-bold text-white">Pip Calculator</h3>
+        <h3 className="text-xl font-bold text-gray-900">Pip Calculator</h3>
       </div>
 
       <div className="space-y-4">
         <div>
-          <label className="block text-sm text-slate-400 mb-2">Currency Pair</label>
+          <label className="block text-sm text-gray-600 mb-2 font-medium">Currency Pair</label>
           <select 
             value={pair}
             onChange={(e) => setPair(e.target.value)}
-            className="glass-input"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white text-gray-900"
           >
             {Object.keys(pairs).map((p) => (
               <option key={p} value={p}>{p}</option>
             ))}
           </select>
+          <p className="text-xs text-gray-500 mt-1 flex items-center gap-1">
+            <Info size={12} />
+            {pairs[pair].description}
+          </p>
         </div>
 
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm text-slate-400 mb-2">Lot Size</label>
+            <label className="block text-sm text-gray-600 mb-2 font-medium">Lot Size</label>
             <input
               type="number"
               step="0.01"
               value={lotSize}
               onChange={(e) => setLotSize(e.target.value)}
-              className="glass-input"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white text-gray-900"
               placeholder="1.0"
             />
           </div>
           <div>
-            <label className="block text-sm text-slate-400 mb-2">Pip Count</label>
+            <label className="block text-sm text-gray-600 mb-2 font-medium">Pip Count</label>
             <input
               type="number"
               value={pipCount}
               onChange={(e) => setPipCount(e.target.value)}
-              className="glass-input"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white text-gray-900"
               placeholder="50"
             />
           </div>
@@ -87,22 +91,22 @@ const PipCalculator: React.FC = () => {
 
         <button
           onClick={calculatePip}
-          className="w-full glass-button mt-4"
+          className="w-full py-2.5 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition font-medium flex items-center justify-center gap-2"
         >
-          <ArrowRightLeft className="w-4 h-4 inline mr-2" />
+          <ArrowRightLeft className="w-4 h-4" />
           Calculate
         </button>
 
         {result && (
-          <div className="mt-6 p-4 bg-slate-800/50 rounded-lg border border-slate-700">
+          <div className="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <p className="text-xs text-slate-400">Value per Pip</p>
-                <p className="text-lg font-bold text-emerald-400">${result.pipValue}</p>
+                <p className="text-xs text-gray-500 mb-1">Value per Pip</p>
+                <p className="text-lg font-bold text-emerald-600">${result.pipValue}</p>
               </div>
               <div>
-                <p className="text-xs text-slate-400">Total Value</p>
-                <p className="text-lg font-bold text-emerald-400">${result.totalValue}</p>
+                <p className="text-xs text-gray-500 mb-1">Total Value</p>
+                <p className="text-lg font-bold text-emerald-600">${result.totalValue}</p>
               </div>
             </div>
           </div>

@@ -7,23 +7,23 @@ export const TAGLINE_ACEH = "Ta doeng saban-saban sabe keudroe-droe, beu koeng l
 export const TAGLINE_ID = "Disiplin bertahap, sabar, jangan rakus";
 
 // =============================================================================
-// ⚠️ PENTING: WEBSITE DALAM TAHAP PENGEMBANGAN AWAL
+// ⚠️ PENTING: WEBSITE DALAM TAHAP PENGEMBANGAN
 // =============================================================================
-// Status: ALPHA/BETA - Banyak fitur belum tersedia
-// Update: Februari 2026
+// Status: ALPHA - Dalam pengembangan aktif
+// Update: 15 Februari 2026
 // 
-// APA YANG SEBENARNYA TERSEDIA:
-// ✅ Founders terverifikasi (Mulky & Azil)
-// ✅ Link komunitas Telegram & WhatsApp (REAL)
-// ✅ Kalkulator trading (fungsional untuk estimasi)
-// ✅ TradingView widgets (real-time dari TradingView)
+// APA YANG SUDAH TERSEDIA:
+// ✅ 3 Founders terverifikasi (Mulky, Azil, Hadi)
+// ✅ Komunitas Telegram & WhatsApp (REAL - langsung connect)
+// ✅ 3 Kalkulator trading (Pip, Position Size, Risk/Reward)
+// ✅ 5 Artikel edukasi lengkap (bukan hanya daftar)
+// ✅ TradingView widgets (real-time)
 // 
-// APA YANG BELUM TERSEDIA:
-// ❌ Sinyal trading real-time (masih demo)
-// ❌ Artikel edukasi lengkap (hanya daftar topik)
-// ❌ Ebook (dalam penulisan)
-// ❌ Database anggota (belum integrasi)
-// ❌ Notifikasi (belum implementasi)
+// APA YANG SEDANG DIKEMBANGKAN:
+// 🚧 Sinyal Trading (estimasi)
+// 🚧 Ebook (dalam penulisan)
+// 🚧 Notifikasi Market
+// 🚧 PWA Mobile App
 // =============================================================================
 
 // WhatsApp Contacts - TERVERIFIKASI
@@ -410,10 +410,10 @@ export const ANALYTICS_CONFIG = {
 // PESAN STATUS WEBSITE
 // =============================================================================
 export const WEBSITE_STATUS = {
-  version: "0.1.0-alpha",
+  version: "0.1.1-alpha",
   status: "DEVELOPMENT",
-  lastUpdated: "2026-02-14",
-  message: "Website dalam tahap pengembangan awal. Banyak fitur belum tersedia.",
+  lastUpdated: "2026-02-15",
+  message: "Website dalam tahap pengembangan aktif. Beberapa fitur sudah tersedia.",
   whatsappFounder: WHATSAPP_CONTACTS.mulky.phone,
   telegramGroup: SOCIAL_LINKS.telegram
 };

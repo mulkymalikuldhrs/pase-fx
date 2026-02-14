@@ -98,22 +98,36 @@ Artinya: "Satu per satu pelan-pelan sabar dulu, jangan tamak ingin cepat"
 
 ---
 
-## CATATAN IMPLEMENTASI
+## CATATAN IMPLEMENTASI - UPDATE v0.1.4
 
-**Status Aktual** (Februari 2026):
+**Status Aktual** (Februari 15, 2026):
 - ✅ Website telah dibuat dengan React + TypeScript + Vite
 - ✅ 5 Artikel Edukasi REAL dengan konten lengkap telah ditulis
 - ✅ 12 Metode Trading library lengkap
 - ✅ 8 Broker dengan affiliate links
-- ✅ 3 Trading Calculators (fungsional)
+- ✅ **4 Trading Calculators** (Pip, Position, R:R, **Fibonacci**)
 - ✅ 8 TradingView Widgets (real-time)
+- ✅ **Trading Signals System** - Full CRUD dengan localStorage
+- ✅ **Enhanced Trade Journal** - Export/Import CSV, method tracking
+- ✅ **Ebook Download Simulation** - Progress tracking, chapter preview
 - ✅ 3 Verified Team Members
 - ✅ Status: DEVELOPMENT ALPHA (jujur & transparan)
 
+**Fitur Baru v0.1.4**:
+- 🆕 **Sinyal Trading System** - Bisa tambah sinyal, filter, search, statistics real-time
+- 🆕 **Fibonacci Calculator** - Retracement & extension levels lengkap
+- 🆕 **Trade Journal Enhanced** - Export CSV, import CSV, performance by method
+- 🆕 **Ebook Interactive** - Download simulation dengan progress bar
+- 🆕 **White Theme Consistency** - Semua kalkulator menggunakan white theme
+
 **Yang Belum Tersedia**:
-- Sinyal Trading Real-time (belum ada backend)
-- Ebook (dalam penulisan)
+- Sinyal Trading Real-time backend (masih demo/localStorage)
+- Ebook konten lengkap (masih dalam penulisan)
 - Notifikasi Browser (belum implementasi)
 - PWA (belum setup)
 
-Lihat `README.md` dan `CHANGELOG.md` untuk detail lengkap.
+**Version**: 0.1.4-alpha  
+**Build**: ✅ SUCCESS  
+**Bundle Size**: ~400KB
+
+Lihat `README.md`, `CHANGELOG.md`, dan `AUDIT_REPORT_V2.md` untuk detail lengkap.

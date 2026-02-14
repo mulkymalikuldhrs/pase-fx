@@ -9,6 +9,8 @@ interface SignalCardProps {
 const SignalCard: React.FC<SignalCardProps> = ({ signal }) => {
   const isBuy = signal.direction === 'BUY';
   const isActive = signal.status === 'ACTIVE';
+  const isProfit = signal.status === 'HIT_TP';
+  const isLoss = signal.status === 'HIT_SL';
   
   const statusColors = {
     'ACTIVE': 'bg-blue-100 text-blue-800 border-blue-200',
@@ -32,9 +34,9 @@ const SignalCard: React.FC<SignalCardProps> = ({ signal }) => {
           <div className="flex items-center gap-3">
             <div className={`p-2 rounded-lg ${isBuy ? 'bg-emerald-100' : 'bg-red-100'}`}>
               {isBuy ? (
-                <TrendingUp className={`w-6 h-6 ${isBuy ? 'text-emerald-600' : 'text-red-600'}`} />
+                <TrendingUp className="w-6 h-6 text-emerald-600" />
               ) : (
-                <TrendingDown className={`w-6 h-6 ${isBuy ? 'text-emerald-600' : 'text-red-600'}`} />
+                <TrendingDown className="w-6 h-6 text-red-600" />
               )}
             </div>
             <div>
@@ -44,9 +46,32 @@ const SignalCard: React.FC<SignalCardProps> = ({ signal }) => {
               </p>
             </div>
           </div>
-          <span className={`px-2.5 py-1 rounded-full text-xs font-semibold border ${statusColors[signal.status]}`}>
-            {statusLabels[signal.status]}
-          </span>
+          <div className="flex flex-col items-end gap-1">
+            <span className={`px-2.5 py-1 rounded-full text-xs font-semibold border ${statusColors[signal.status]}`}>
+              {statusLabels[signal.status]}
+            </span>
+            {signal.resultPips !== undefined && (
+              <span className={`text-xs font-bold ${signal.resultPips >= 0 ? 'text-emerald-600' : 'text-red-600'}`}>
+                {signal.resultPips > 0 ? '+' : ''}{signal.resultPips} pips
+              </span>
+            )}
+          </div>
+        </div>
+
+        {/* TP Levels */}
+        <div className="grid grid-cols-3 gap-2 mb-3">
+          <div className="bg-emerald-50 p-2 rounded border border-emerald-100">
+            <div className="text-xs text-emerald-600 mb-1">TP1</div>
+            <span className="font-mono text-sm font-semibold text-emerald-700">{signal.tp1}</span>
+          </div>
+          <div className="bg-emerald-50 p-2 rounded border border-emerald-100">
+            <div className="text-xs text-emerald-600 mb-1">TP2</div>
+            <span className="font-mono text-sm font-semibold text-emerald-700">{signal.tp2}</span>
+          </div>
+          <div className="bg-emerald-50 p-2 rounded border border-emerald-100">
+            <div className="text-xs text-emerald-600 mb-1">TP3</div>
+            <span className="font-mono text-sm font-semibold text-emerald-700">{signal.tp3}</span>
+          </div>
         </div>
 
         {/* Details Grid */}
@@ -59,11 +84,13 @@ const SignalCard: React.FC<SignalCardProps> = ({ signal }) => {
             <span className="font-mono font-semibold text-red-600">{signal.sl}</span>
           </div>
           <div className="bg-slate-50 p-2 rounded border border-slate-100">
-             <div className="flex items-center gap-1.5 text-slate-500 mb-1">
+            <div className="flex items-center gap-1.5 text-slate-500 mb-1">
               <Target size={14} />
-              <span className="text-xs">Take Profit 1</span>
+              <span className="text-xs">Risk:Reward</span>
             </div>
-            <span className="font-mono font-semibold text-emerald-600">{signal.tp1}</span>
+            <span className="font-mono font-semibold text-slate-700">
+              1:{Math.abs((signal.tp1 - signal.entry) / (signal.sl - signal.entry)).toFixed(1)}
+            </span>
           </div>
         </div>
 
@@ -83,10 +110,10 @@ const SignalCard: React.FC<SignalCardProps> = ({ signal }) => {
         </div>
         
         {/* Analysis Teaser */}
-        {isActive && (
-             <div className="mt-3 text-xs text-slate-600 italic bg-slate-50 p-2 rounded">
-                 "{signal.analysis}"
-             </div>
+        {signal.analysis && (
+          <div className="mt-3 text-xs text-slate-600 italic bg-slate-50 p-2 rounded border-l-2 border-slate-300">
+            "{signal.analysis}"
+          </div>
         )}
       </div>
     </div>

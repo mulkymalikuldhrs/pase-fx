@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from 'react';
-import { Calendar, Activity, DollarSign, Globe, TrendingUp, BarChart3, Calculator, Clock } from 'lucide-react';
+import { Calendar, Activity, DollarSign, Globe, TrendingUp, BarChart3, Calculator, Clock, Sparkles } from 'lucide-react';
 import PipCalculator from '../components/calculators/PipCalculator';
 import PositionCalculator from '../components/calculators/PositionCalculator';
 import RiskRewardCalculator from '../components/calculators/RiskRewardCalculator';
+import FibonacciCalculator from '../components/calculators/FibonacciCalculator';
 import SessionTimer from '../components/widgets/SessionTimer';
 import MarketOverview from '../components/widgets/MarketOverview';
 
@@ -158,8 +159,9 @@ const Tools: React.FC = () => {
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Tools Trading</h1>
-          <p className="text-gray-500 max-w-2xl mx-auto">
-            Kalkulator dan widget untuk membantu analisis dan manajemen trading Anda.
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Berbagai alat trading untuk membantu analisis dan pengelolaan risiko Anda. 
+            Semua tools ini gratis dan bisa langsung digunakan.
           </p>
           <div className="mt-4 inline-flex items-center gap-2 text-xs text-blue-600 bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
             <span>ℹ️</span>
@@ -178,10 +180,11 @@ const Tools: React.FC = () => {
           <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
             <Calculator className="text-emerald-500" /> Trading Calculators
           </h2>
-          <div className="grid lg:grid-cols-3 gap-6">
+          <div className="grid lg:grid-cols-2 xl:grid-cols-4 gap-6">
             <PipCalculator />
             <PositionCalculator />
             <RiskRewardCalculator />
+            <FibonacciCalculator />
           </div>
         </div>
 
@@ -285,14 +288,14 @@ const Tools: React.FC = () => {
         <div className="mt-12 p-6 glass-card bg-white/80 border-l-4 border-emerald-500">
           <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
             <Clock className="text-emerald-500" />
-            Trading Tips
+            Tips Trading
           </h3>
           <ul className="space-y-2 text-gray-600 text-sm">
-            <li>• Use the Position Calculator before every trade to ensure proper risk management</li>
-            <li>• Check Market Sessions to trade during high volatility periods</li>
-            <li>• Monitor Economic Calendar for high-impact news events</li>
-            <li>• Always maintain minimum 1:1.5 Risk:Reward ratio</li>
-            <li>• Never risk more than 2% of your account per trade</li>
+            <li>• Selalu gunakan Position Calculator sebelum trading untuk manajemen risiko yang tepat</li>
+            <li>• Periksa Market Sessions untuk trading di saat volatilitas tinggi</li>
+            <li>• Pantau Economic Calendar untuk berita berdampak tinggi</li>
+            <li>• Selalu pertahankan minimal 1:1.5 Risk:Reward ratio</li>
+            <li>• Jangan pernah risiko lebih dari 2% modal per trade</li>
           </ul>
         </div>
       </div>

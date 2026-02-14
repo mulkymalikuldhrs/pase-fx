@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import FloatingButtons from './components/FloatingButtons';
+import CookieConsent from './components/CookieConsent';
 import Home from './pages/Home';
 import Signals from './pages/Signals';
 import Ebook from './pages/Ebook';
@@ -21,7 +22,7 @@ const CURRENT_YEAR = new Date().getFullYear();
 
 // Disclaimer Page with Liquid Glass Design
 const Disclaimer = () => (
-  <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50 py-20">
+  <div className="min-h-screen bg-white py-20">
     <div className="max-w-4xl mx-auto px-4">
       <div className="glass-card p-8">
         <div className="flex items-center gap-3 mb-8">
@@ -79,10 +80,10 @@ const PremiumRedirect = () => {
         window.location.href = AFFILIATE_LINKS.traderFamilyPremium;
     }, []);
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin w-12 h-12 border-4 border-emerald-500 border-t-transparent rounded-full mx-auto mb-4"></div>
-          <p className="text-gray-900">Redirecting to Trader Family Premium...</p>
+          <p className="text-black">Redirecting to Trader Family Premium...</p>
         </div>
       </div>
     );
@@ -124,13 +125,14 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
+    <div className="flex flex-col min-h-screen bg-white">
       <Navbar />
       <main className="flex-grow">
         {renderPage()}
       </main>
       <Footer />
       <FloatingButtons />
+      <CookieConsent />
     </div>
   );
 };

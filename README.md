@@ -3,7 +3,7 @@
 <div align="center">
 
 [![Status](https://img.shields.io/badge/status-DEVELOPMENT%20ALPHA-orange?style=for-the-badge)]()
-[![Version](https://img.shields.io/badge/version-0.1.0--alpha-blue?style=for-the-badge)]()
+[![Version](https://img.shields.io/badge/version-0.1.4--alpha-blue?style=for-the-badge)]()
 [![License](https://img.shields.io/badge/license-Proprietary-red?style=for-the-badge)]()
 
 **Komunitas Trading Forex dari Aceh**
@@ -18,7 +18,7 @@
 
 ## 📋 STATUS PENGEMBANGAN
 
-### 🎯 VERSI SAAT INI: 0.1.0-alpha
+### 🎯 VERSI SAAT INI: 0.1.4-alpha
 
 Website ini adalah **PROTOTYPE/BETA** yang masih dalam pengembangan aktif. **Bukan produk final.**
 
@@ -36,12 +36,16 @@ Website ini adalah **PROTOTYPE/BETA** yang masih dalam pengembangan aktif. **Buk
    - Pip Calculator - kalkulasi nilai pip
    - Position Size Calculator - kalkulasi lot size berdasarkan risk
    - Risk/Reward Calculator - analisis risk:reward ratio
+   - Fibonacci Calculator - retracement & extension levels
    - **Semua kalkulasi real dan akurat untuk estimasi**
+   - **Export/Import CSV untuk Trade Journal**
 
-3. **Trade Journal** ✅ (Local Only)
-   - Catatan trading pribadi
+3. **Trade Journal** ✅ (Enhanced)
+   - Catatan trading pribadi dengan method tracking
    - Tersimpan di browser (localStorage) - data tidak keluar dari device Anda
-   - Hanya untuk tracking pribadi
+   - Export/Import CSV untuk backup dan analisis
+   - Statistik advanced (win rate, avg profit/loss, performance by method)
+   - Filter dan search functionality
 
 4. **Daftar Broker** ✅ (Lengkap dengan affiliate disclosure)
    - 8 broker rekomendasi dengan link afiliasi
@@ -69,19 +73,22 @@ Website ini adalah **PROTOTYPE/BETA** yang masih dalam pengembangan aktif. **Buk
 
 ### 🚧 FITUR YANG BELUM TERSEDIA (Dalam Pengembangan):
 
-1. **Sinyal Trading** ❌ 
-   - Status: BELUM ADA - akan datang setelah sistem analis siap
-   - ETA: TBD (To Be Determined)
-   - Sementara: Join komunitas Telegram/WhatsApp untuk diskusi
+1. **Sinyal Trading** ✅ 
+   - Status: **TERSEDIA** - Sistem sinyal dengan localStorage sudah berfungsi
+   - Features: CRUD operations, statistics, filter & search, demo data
+   - Admin mode untuk management sinyal
+   - Sementara: Demo mode (bisa tambah sinyal sendiri via admin mode)
 
 2. **Artikel Edukasi Tambahan** 🚧
    - Status: 5 artikel tersedia, lebih banyak dalam penulisan
    - ETA: Bertahap setelah launch
    - Sementara: Baca 5 artikel yang tersedia atau join komunitas
 
-3. **Ebook "Day Trading Untuk Orang Waras"** ❌
-   - Status: DALAM PENULISAN - belum tersedia
-   - Target: 2026
+3. **Ebook "Day Trading Untuk Orang Waras"** 🚧
+   - Status: SIMULASI DOWNLOAD tersedia dengan chapter preview
+   - Download progress animation dengan localStorage tracking
+   - Interactive chapter preview (6 bab)
+   - Target: 2026 (masih dalam penulisan)
    - Halaman: ~500 halaman (planned)
    - Penulis: Azil & Mulky Malikul Dhaher
 
@@ -214,6 +221,6 @@ Proprietary - All rights reserved.
 
 ---
 
-**Last Updated**: 14 February 2026  
-**Version**: 0.1.0-alpha  
-**Status**: Development (Honest Edition)
+**Last Updated**: 15 February 2026  
+**Version**: 0.1.5-alpha
+**Status**: Development (Feature Upgrade Edition)
