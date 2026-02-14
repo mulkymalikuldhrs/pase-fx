@@ -26,7 +26,6 @@ const Footer: React.FC = () => {
                 />
                 <div className="logo-fallback-footer hidden absolute inset-0 flex items-center justify-center">
                   <div className="h-8 w-8 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow-sm">
-                    <span className="text-white font-bold text-sm">Pè</span>
                   </div>
                 </div>
               </div>
