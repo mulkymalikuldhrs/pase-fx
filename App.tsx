@@ -22,49 +22,68 @@ const CURRENT_YEAR = new Date().getFullYear();
 
 // Disclaimer Page with Liquid Glass Design
 const Disclaimer = () => (
-  <div className="min-h-screen bg-white py-20">
+  <div className="min-h-screen bg-gray-50 py-20">
     <div className="max-w-4xl mx-auto px-4">
-      <div className="glass-card p-8">
-        <div className="flex items-center gap-3 mb-8">
-          <div className="p-3 bg-yellow-500/20 rounded-lg">
-            <ShieldAlert className="text-yellow-400 w-10 h-10" />
+      <div className="glass-card bg-white p-8 rounded-2xl border border-gray-200 shadow-sm">
+        <div className="flex items-center gap-4 mb-8 border-b border-gray-100 pb-6">
+          <div className="p-3 bg-yellow-50 rounded-xl">
+            <ShieldAlert className="text-yellow-500 w-10 h-10" />
           </div>
-          <h1 className="text-3xl font-bold text-gray-900">Disclaimer & Risk Warning</h1>
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">Disclaimer & Risk Warning</h1>
+            <p className="text-gray-500 mt-1">Harap baca dengan seksama sebelum menggunakan layanan kami.</p>
+          </div>
         </div>
         
-        <div className="space-y-6 text-gray-700">
-          <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-            <p className="text-red-700 font-semibold mb-2">⚠️ Peringatan Risiko Tinggi</p>
-            <p className="text-gray-700">Perdagangan mata uang (Forex) dan komoditas memiliki tingkat risiko yang tinggi dan mungkin tidak cocok untuk semua investor.</p>
+        <div className="space-y-8 text-gray-700">
+          <div className="p-5 bg-red-50 border border-red-100 rounded-xl flex gap-4">
+            <div className="text-2xl">⚠️</div>
+            <div>
+              <h3 className="text-red-800 font-bold mb-1">Peringatan Risiko Tinggi</h3>
+              <p className="text-red-700 text-sm leading-relaxed">
+                Perdagangan mata uang (Forex) dan komoditas memiliki tingkat risiko yang tinggi dan mungkin tidak cocok untuk semua investor.
+                Leverage yang tinggi dapat bekerja melawan Anda maupun untuk Anda.
+              </p>
+            </div>
           </div>
 
-          <div>
-            <h3 className="text-xl font-bold text-gray-900 mb-3">1. Bukan Nasihat Keuangan</h3>
-            <p className="text-gray-700">Semua konten di website Pasè FX, termasuk sinyal, artikel, dan ebook, hanya untuk tujuan edukasi dan informasi. Tidak ada jaminan profit. Keputusan trading sepenuhnya tanggung jawab masing-masing trader.</p>
+          <div className="space-y-4">
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
+                <span className="w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-xs">1</span>
+                Bukan Nasihat Keuangan
+              </h3>
+              <p className="text-gray-600 text-sm leading-relaxed pl-8">
+                Semua konten di website Pasè FX, termasuk sinyal, artikel, dan ebook, hanya untuk tujuan edukasi dan informasi. 
+                Tidak ada jaminan profit. Keputusan trading sepenuhnya tanggung jawab masing-masing trader.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
+                <span className="w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-xs">2</span>
+                Risiko Modal
+              </h3>
+              <p className="text-gray-600 text-sm leading-relaxed pl-8">
+                Sebelum memutuskan untuk berinvestasi, pertimbangkan tujuan investasi, tingkat pengalaman, dan selera risiko Anda. 
+                <strong className="text-gray-900 font-semibold"> Jangan pernah trading dengan uang yang Anda tidak mampu kehilangannya.</strong>
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
+                <span className="w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-xs">3</span>
+                Afiliasi (IB)
+              </h3>
+              <p className="text-gray-600 text-sm leading-relaxed pl-8">
+                Pasè FX beroperasi sebagai Introducing Broker (IB). Kami menerima komisi dari broker mitra kami ketika Anda mendaftar melalui link referral kami. 
+                Hal ini tidak membebankan biaya tambahan kepada Anda dan tidak mempengaruhi rekomendasi kami.
+              </p>
+            </div>
           </div>
 
-          <div>
-            <h3 className="text-xl font-bold text-gray-900 mb-3">2. Risiko Modal</h3>
-            <p className="text-gray-700">Leverage yang tinggi dapat bekerja melawan Anda maupun untuk Anda. Sebelum memutuskan untuk berinvestasi dalam valuta asing, Anda harus mempertimbangkan tujuan investasi, tingkat pengalaman, dan selera risiko Anda dengan hati-hati. <strong className="text-gray-900">Jangan pernah trading dengan uang yang Anda tidak mampu kehilangannya.</strong></p>
-          </div>
-
-          <div>
-            <h3 className="text-xl font-bold text-gray-900 mb-3">3. Afiliasi (IB)</h3>
-            <p className="text-gray-700">Pasè FX beroperasi sebagai Introducing Broker (IB). Kami menerima komisi dari broker mitra kami ketika Anda mendaftar melalui link referral kami. Hal ini tidak membebankan biaya tambahan kepada Anda dan tidak mempengaruhi rekomendasi kami.</p>
-          </div>
-
-          <div>
-            <h3 className="text-xl font-bold text-gray-900 mb-3">4. Hasil Masa Lalu</h3>
-            <p className="text-gray-700">Hasil trading masa lalu tidak menjamin hasil di masa depan. Trading melibatkan risiko kerugian yang signifikan. Statistik win rate dan performa yang ditampilkan adalah historis dan tidak merepresentasikan jaminan performa di masa depan.</p>
-          </div>
-
-          <div>
-            <h3 className="text-xl font-bold text-gray-900 mb-3">5. Data Real-time</h3>
-            <p className="text-gray-700">Data market yang ditampilkan di website ini bersumber dari third-party providers (TradingView, dll) dan mungkin memiliki delay. Selalu verifikasi data dengan platform trading Anda sebelum mengambil keputusan.</p>
-          </div>
-
-          <div className="mt-8 pt-6 border-t border-gray-200">
-            <p className="text-sm text-gray-500">
+          <div className="mt-8 pt-6 border-t border-gray-100 text-center">
+            <p className="text-sm text-gray-400">
               © {CURRENT_YEAR} Pasè FX Trader Hub. All rights reserved.
             </p>
           </div>
@@ -83,7 +102,7 @@ const PremiumRedirect = () => {
       <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin w-12 h-12 border-4 border-emerald-500 border-t-transparent rounded-full mx-auto mb-4"></div>
-          <p className="text-black">Redirecting to Trader Family Premium...</p>
+          <p className="text-gray-900 font-medium">Redirecting to Trader Family Premium...</p>
         </div>
       </div>
     );
@@ -125,9 +144,9 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-white">
+    <div className="flex flex-col min-h-screen bg-gray-50 font-sans text-gray-900">
       <Navbar />
-      <main className="flex-grow">
+      <main className="flex-grow pt-16">
         {renderPage()}
       </main>
       <Footer />

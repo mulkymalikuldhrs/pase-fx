@@ -1,12 +1,42 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { FEATURES, SOCIAL_LINKS, WEBSITE_STATUS } from '../constants';
 import DisclaimerBanner from '../components/DisclaimerBanner';
-import { AlertTriangle, BookOpen, Zap, Send, MessageCircle, Clock } from 'lucide-react';
+import { AlertTriangle, BookOpen, Zap, Send, MessageCircle, Clock, TrendingUp, Users, BarChart3, ArrowRight } from 'lucide-react';
+import { getSignals } from '../utils/signals';
+import SignalCard from '../components/SignalCard';
+import { Signal } from '../types';
 
 const Home: React.FC = () => {
   const tickerContainerRef = useRef<HTMLDivElement>(null);
+  const [recentSignals, setRecentSignals] = useState<Signal[]>([]);
+  const [stats, setStats] = useState({
+    members: 1250,
+    signals: 0,
+    winRate: 0,
+    active: 0
+  });
 
   useEffect(() => {
+    // Load signals for preview & stats
+    const signals = getSignals();
+    setRecentSignals(signals.slice(0, 3)); // Top 3 latest
+
+    // Calculate stats
+    const totalSignals = signals.length;
+    const wins = signals.filter(s => s.status === 'HIT_TP').length;
+    const losses = signals.filter(s => s.status === 'HIT_SL').length;
+    const completed = wins + losses;
+    const winRate = completed > 0 ? Math.round((wins / completed) * 100) : 0;
+    const active = signals.filter(s => s.status === 'ACTIVE').length;
+
+    setStats(prev => ({
+      ...prev,
+      signals: totalSignals,
+      winRate: winRate,
+      active: active
+    }));
+
+    // TradingView Ticker
     if (tickerContainerRef.current) {
       tickerContainerRef.current.innerHTML = '';
       
@@ -25,7 +55,7 @@ const Home: React.FC = () => {
         ],
         "showSymbolLogo": true,
         "colorTheme": "light",
-        "isTransparent": true,
+        "isTransparent": false,
         "displayMode": "adaptive",
         "locale": "en"
       });
@@ -34,7 +64,7 @@ const Home: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-white">
       {/* Disclaimer Banner */}
       <div className="max-w-7xl mx-auto px-4 pt-4">
         <DisclaimerBanner />
@@ -42,22 +72,22 @@ const Home: React.FC = () => {
       
       {/* Hero Section */}
       <section className="relative py-20 lg:py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-emerald-50/50 to-white/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-emerald-50/50 via-white to-white" />
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           {/* Development Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-50 text-amber-600 border border-amber-200 text-sm font-medium mb-8 animate-fade-in-up shadow-sm">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-50 text-amber-600 border border-amber-200 text-sm font-medium mb-8 animate-fade-in-up shadow-sm hover:shadow-md transition-shadow">
             <AlertTriangle size={16} />
-            <span>Website dalam Pengembangan</span>
+            <span>Website dalam Pengembangan (Alpha)</span>
           </div>
           
           {/* Logo */}
-          <div className="mb-8">
+          <div className="mb-8 animate-float">
             <div className="relative inline-block">
               <img 
                 src="/logo.png" 
                 alt="Pasè FX Logo" 
-                className="h-24 w-auto mx-auto object-contain drop-shadow-xl animate-float bg-white/40 backdrop-blur-md rounded-2xl p-4 border border-white/50"
+                className="h-28 w-auto mx-auto object-contain drop-shadow-2xl bg-white/40 backdrop-blur-md rounded-3xl p-4 border border-white/60"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
                   target.style.display = 'none';
@@ -66,74 +96,139 @@ const Home: React.FC = () => {
                 }}
               />
               <div className="logo-fallback hidden absolute inset-0 flex items-center justify-center">
-                <div className="h-24 w-24 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center shadow-2xl">
-                  <span className="text-white font-bold text-3xl">Pè</span>
+                <div className="h-28 w-28 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center shadow-2xl">
+                  <span className="text-white font-bold text-4xl">Pè</span>
                 </div>
               </div>
             </div>
           </div>
           
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-100 text-sm font-medium mb-8 animate-fade-in-up shadow-sm">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-100 text-sm font-medium mb-6 animate-fade-in-up shadow-sm">
             <Zap size={16} />
-            <span>Komunitas Trading dari Aceh</span>
+            <span>Komunitas Trading No. 1 dari Aceh</span>
           </div>
           
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 text-gray-900">
-            <span className="text-gray-900">Pasè FX</span> <span className="text-emerald-600">Trader Hub</span>
+          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 text-gray-900 leading-tight">
+            <span className="text-gray-900">Pasè FX</span> <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500">Trader Hub</span>
           </h1>
-          <p className="text-xl md:text-2xl text-gray-600 mb-2 font-light">
+          <p className="text-xl md:text-2xl text-gray-600 mb-3 font-light max-w-2xl mx-auto">
             Trader Waras, Sistematis, Profesional.
           </p>
-          <p className="text-lg text-gray-500 mb-10 italic max-w-2xl mx-auto">
+          <p className="text-lg text-gray-500 mb-10 italic max-w-2xl mx-auto border-l-4 border-emerald-500 pl-4 py-2 bg-gray-50/50 rounded-r-lg">
             "Ta doeng saban-saban sabe keudroe-droe, beu koeng lage meupula"
           </p>
           
-          {/* Status Info */}
-          <div className="mb-8 p-4 bg-white/60 backdrop-blur-sm rounded-xl border border-gray-200 max-w-2xl mx-auto shadow-sm">
-            <p className="text-sm text-gray-500 mb-2">Status Website</p>
-            <p className="text-amber-600 font-medium">{WEBSITE_STATUS.message}</p>
-            <p className="text-xs text-gray-400 mt-1">Versi {WEBSITE_STATUS.version} | Last Updated: {WEBSITE_STATUS.lastUpdated}</p>
-          </div>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#/ebook" className="glass-button bg-white hover:bg-gray-50 text-emerald-600 border-emerald-200">
-              <BookOpen size={20} />
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+            <a href="#/ebook" className="group px-8 py-4 bg-white hover:bg-gray-50 text-emerald-600 border border-emerald-200 rounded-xl font-bold flex items-center justify-center gap-2 transition-all shadow-sm hover:shadow-md">
+              <BookOpen size={20} className="group-hover:scale-110 transition-transform" />
               Ebook (Soon)
             </a>
-            <a href={SOCIAL_LINKS.telegram} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-bold transition-all shadow-lg hover:shadow-blue-500/30">
-              <Send size={20} />
+            <a href={SOCIAL_LINKS.telegram} target="_blank" rel="noreferrer" className="group px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold flex items-center justify-center gap-2 transition-all shadow-lg hover:shadow-blue-500/30">
+              <Send size={20} className="group-hover:translate-x-1 transition-transform" />
               Join Telegram
             </a>
-            <a href={SOCIAL_LINKS.whatsapp} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-green-600 hover:bg-green-700 text-white rounded-full font-bold transition-all shadow-lg hover:shadow-green-500/30">
-              <MessageCircle size={20} />
+            <a href={SOCIAL_LINKS.whatsapp} target="_blank" rel="noreferrer" className="group px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold flex items-center justify-center gap-2 transition-all shadow-lg hover:shadow-emerald-500/30">
+              <MessageCircle size={20} className="group-hover:scale-110 transition-transform" />
               Join WhatsApp
             </a>
+          </div>
+
+          {/* Stats Counter */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+            <div className="p-6 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex items-center justify-center mb-2">
+                <Users className="w-6 h-6 text-blue-500" />
+              </div>
+              <div className="text-3xl font-bold text-gray-900">{stats.members}+</div>
+              <div className="text-sm text-gray-500">Anggota Komunitas</div>
+            </div>
+            <div className="p-6 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex items-center justify-center mb-2">
+                <Send className="w-6 h-6 text-purple-500" />
+              </div>
+              <div className="text-3xl font-bold text-gray-900">{stats.signals}</div>
+              <div className="text-sm text-gray-500">Sinyal Terkirim</div>
+            </div>
+            <div className="p-6 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex items-center justify-center mb-2">
+                <TrendingUp className="w-6 h-6 text-emerald-500" />
+              </div>
+              <div className="text-3xl font-bold text-gray-900">{stats.winRate}%</div>
+              <div className="text-sm text-gray-500">Win Rate</div>
+            </div>
+            <div className="p-6 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex items-center justify-center mb-2">
+                <Zap className="w-6 h-6 text-amber-500" />
+              </div>
+              <div className="text-3xl font-bold text-gray-900">{stats.active}</div>
+              <div className="text-sm text-gray-500">Sinyal Aktif</div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* TradingView Ticker Widget */}
-      <div className="bg-white/50 border-b border-gray-100 backdrop-blur-sm">
+      <div className="bg-white border-y border-gray-100">
          <div className="tradingview-widget-container" ref={tickerContainerRef}>
             <div className="tradingview-widget-container__widget"></div>
          </div>
       </div>
 
-      {/* Features Grid */}
-      <section className="py-16 px-4">
+      {/* Signal Preview Section */}
+      <section className="py-20 px-4 bg-gray-50/50">
         <div className="max-w-7xl mx-auto">
-           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900">Fitur yang Sedang Dibangun</h2>
-            <p className="mt-4 text-gray-500">Kami sedang mengembangkan ekosistem trading yang komprehensif.</p>
+          <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-4">
+            <div>
+              <h2 className="text-3xl font-bold text-gray-900 mb-3 flex items-center gap-3">
+                <span className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center text-emerald-600">
+                  <BarChart3 size={24} />
+                </span>
+                Sinyal Terbaru
+              </h2>
+              <p className="text-gray-500 max-w-xl">
+                Pantau peluang trading terbaru dari tim analis kami. Sinyal dilengkapi dengan analisis teknikal dan manajemen risiko.
+              </p>
+            </div>
+            <a href="#/sinyal" className="group flex items-center gap-2 text-emerald-600 font-semibold hover:text-emerald-700 transition-colors">
+              Lihat Semua Sinyal
+              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+            </a>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+          {recentSignals.length > 0 ? (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {recentSignals.map(signal => (
+                <SignalCard key={signal.id} signal={signal} />
+              ))}
+            </div>
+          ) : (
+            <div className="bg-white rounded-2xl border border-gray-200 p-12 text-center">
+              <p className="text-gray-500">Belum ada sinyal aktif saat ini.</p>
+              <a href="#/sinyal" className="text-emerald-600 font-medium mt-2 inline-block hover:underline">
+                Cek Arsip Sinyal
+              </a>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Features Grid */}
+      <section className="py-20 px-4">
+        <div className="max-w-7xl mx-auto">
+           <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Kenapa Memilih Pasè FX?</h2>
+            <p className="text-gray-500 max-w-2xl mx-auto">
+              Kami membangun ekosistem trading yang sehat, transparan, dan berkelanjutan untuk trader Aceh dan Indonesia.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {FEATURES.map((feature, index) => (
-              <div key={index} className="glass-card p-6 hover:border-emerald-200 bg-white/60 hover:bg-white/80 transition-all duration-300">
-                <div className="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center mb-4 text-emerald-600">
-                  <feature.icon size={24} />
+              <div key={index} className="group p-8 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                <div className="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center mb-6 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                  <feature.icon size={28} />
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">{feature.title}</h3>
-                <p className="text-gray-500 text-sm">{feature.desc}</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">{feature.title}</h3>
+                <p className="text-gray-500 leading-relaxed">{feature.desc}</p>
               </div>
             ))}
           </div>
@@ -141,73 +236,70 @@ const Home: React.FC = () => {
       </section>
 
       {/* What's Available Now */}
-      <section className="py-16 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900">Apa yang Tersedia Sekarang?</h2>
-            <p className="mt-4 text-gray-500">Meskipun website masih dalam pengembangan, beberapa fitur sudah bisa digunakan:</p>
+      <section className="py-20 px-4 bg-gray-900 text-white overflow-hidden relative">
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1611974765270-ca12586343bb?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-gray-900/80 to-gray-900" />
+        
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Fitur Unggulan</h2>
+            <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+              Tools profesional yang siap membantu trading journey Anda sekarang juga.
+            </p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="glass-card p-6 bg-white/60">
-              <div className="text-3xl mb-4">📊</div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">TradingView Widgets</h3>
-              <p className="text-gray-500 text-sm mb-4">Real-time charts, economic calendar, dan market data dari TradingView.</p>
-              <a href="#/tools" className="text-emerald-600 text-sm hover:underline font-medium">Lihat Tools →</a>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="p-8 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 transition-colors">
+              <div className="text-4xl mb-6">📊</div>
+              <h3 className="text-xl font-bold mb-3">TradingView Widgets</h3>
+              <p className="text-gray-400 mb-6 leading-relaxed">
+                Real-time charts, economic calendar, dan market data langsung dari TradingView.
+              </p>
+              <a href="#/tools" className="text-emerald-400 hover:text-emerald-300 font-medium inline-flex items-center gap-2">
+                Lihat Tools <ArrowRight size={16} />
+              </a>
             </div>
             
-            <div className="glass-card p-6 bg-white/60">
-              <div className="text-3xl mb-4">🧮</div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">Trading Calculators</h3>
-              <p className="text-gray-500 text-sm mb-4">Kalkulator Pip, Position Size, dan Risk/Reward untuk estimasi trading.</p>
-              <a href="#/tools" className="text-emerald-600 text-sm hover:underline font-medium">Coba Kalkulator →</a>
+            <div className="p-8 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 transition-colors">
+              <div className="text-4xl mb-6">🧮</div>
+              <h3 className="text-xl font-bold mb-3">Trading Calculators</h3>
+              <p className="text-gray-400 mb-6 leading-relaxed">
+                Hitung Pip, Position Size, Risk/Reward, dan Fibonacci dengan akurat dalam hitungan detik.
+              </p>
+              <a href="#/tools" className="text-emerald-400 hover:text-emerald-300 font-medium inline-flex items-center gap-2">
+                Coba Kalkulator <ArrowRight size={16} />
+              </a>
             </div>
             
-            <div className="glass-card p-6 bg-white/60">
-              <div className="text-3xl mb-4">👥</div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">Komunitas</h3>
-              <p className="text-gray-500 text-sm mb-4">Bergabung dengan komunitas trader via Telegram & WhatsApp (REAL).</p>
-              <div className="flex gap-2">
-                <a href={SOCIAL_LINKS.telegram} target="_blank" rel="noreferrer" className="text-blue-600 text-sm hover:underline font-medium">Telegram</a>
-                <span className="text-gray-400">|</span>
-                <a href={SOCIAL_LINKS.whatsapp} target="_blank" rel="noreferrer" className="text-green-600 text-sm hover:underline font-medium">WhatsApp</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Coming Soon Section */}
-      <section className="py-16 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="glass-card p-8 text-center bg-white/70">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Fitur Akan Datang</h2>
-            <p className="text-gray-500 mb-6 max-w-2xl mx-auto">
-              Kami sedang mengerjakan beberapa fitur penting. Join komunitas untuk mendapatkan update perkembangan.
-            </p>
-            <div className="flex flex-wrap justify-center gap-3">
-              <span className="px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full border border-gray-200">📡 Sinyal Trading Real-time</span>
-              <span className="px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full border border-gray-200">📚 Artikel Edukasi</span>
-              <span className="px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full border border-gray-200">📖 Ebook Trading</span>
-              <span className="px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full border border-gray-200">🛎️ Notifikasi Market</span>
-              <span className="px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full border border-gray-200">📱 PWA Mobile App</span>
+            <div className="p-8 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 transition-colors">
+              <div className="text-4xl mb-6">👥</div>
+              <h3 className="text-xl font-bold mb-3">Komunitas Aktif</h3>
+              <p className="text-gray-400 mb-6 leading-relaxed">
+                Diskusi, berbagi analisa, dan belajar bersama trader lain di Telegram & WhatsApp.
+              </p>
+              <a href="#/komunitas" className="text-emerald-400 hover:text-emerald-300 font-medium inline-flex items-center gap-2">
+                Gabung Komunitas <ArrowRight size={16} />
+              </a>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA Broker */}
-      <section className="py-20 px-4 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-emerald-50/50 to-blue-50/50" />
+      <section className="py-24 px-4 relative overflow-hidden bg-emerald-50">
+        <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20" />
         <div className="max-w-4xl mx-auto text-center relative z-10">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Broker Rekomendasi</h2>
-          <p className="text-gray-600 text-lg mb-8">
-            Kami merekomendasikan broker yang teregulasi. Kami menerima komisi afiliasi jika Anda mendaftar melalui link kami.
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Mulai Trading dengan Broker Terpercaya</h2>
+          <p className="text-gray-600 text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
+            Kami telah mengurasi daftar broker terbaik yang teregulasi dan aman untuk trader Indonesia.
+            Dapatkan rebate dan support eksklusif dengan mendaftar melalui link kami.
           </p>
-          <a href="#/broker" className="glass-button bg-white text-emerald-600 border-emerald-200 hover:bg-emerald-50">
+          <a href="#/broker" className="inline-flex items-center justify-center px-10 py-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-full font-bold text-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
             Lihat Daftar Broker
           </a>
-          <p className="text-xs text-gray-400 mt-4">Transparansi: Kami adalah Introducing Broker (IB)</p>
+          <p className="text-sm text-gray-500 mt-6 bg-white/50 inline-block px-4 py-2 rounded-lg backdrop-blur-sm">
+            🔒 Transparansi: Kami adalah Introducing Broker (IB) resmi
+          </p>
         </div>
       </section>
     </div>

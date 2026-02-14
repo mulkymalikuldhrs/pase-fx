@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Calendar, Activity, DollarSign, Globe, TrendingUp, BarChart3, Calculator, Clock, Sparkles } from 'lucide-react';
+import { Calendar, Activity, DollarSign, Globe, TrendingUp, BarChart3, Calculator, Clock, ExternalLink } from 'lucide-react';
 import PipCalculator from '../components/calculators/PipCalculator';
 import PositionCalculator from '../components/calculators/PositionCalculator';
 import RiskRewardCalculator from '../components/calculators/RiskRewardCalculator';
@@ -14,7 +14,6 @@ const Tools: React.FC = () => {
   const sentimentContainerRef = useRef<HTMLDivElement>(null);
   const goldContainerRef = useRef<HTMLDivElement>(null);
   const dxyContainerRef = useRef<HTMLDivElement>(null);
-  const cotContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
       // Advanced Chart Widget
@@ -136,25 +135,54 @@ const Tools: React.FC = () => {
           dxyContainerRef.current.appendChild(script);
       }
 
-      // COT Data Widget (using Symbol Info for now as placeholder)
-      if (cotContainerRef.current) {
-          cotContainerRef.current.innerHTML = '';
-          const script = document.createElement('script');
-          script.src = "https://s3.tradingview.com/external-embedding/embed-widget-symbol-info.js";
-          script.async = true;
-          script.innerHTML = JSON.stringify({
-            "symbol": "CFTC:EUR_NET",
-            "width": "100%",
-            "locale": "en",
-            "colorTheme": "light"
-          });
-          cotContainerRef.current.appendChild(script);
-      }
-
   }, []);
 
+  // Resources for COT analysis
+  const cotResources = [
+    {
+      name: "Tradingster COT Report",
+      url: "https://www.tradingster.com/cot",
+      desc: "Visualisasi laporan COT yang mudah dibaca dengan chart interaktif.",
+      icon: BarChart3,
+      color: "text-blue-500",
+      bgColor: "bg-blue-50"
+    },
+    {
+      name: "Market Bulls COT Report",
+      url: "https://market-bulls.com/cot-report/",
+      desc: "Analisis mendalam laporan COT untuk berbagai pasangan mata uang.",
+      icon: TrendingUp,
+      color: "text-emerald-500",
+      bgColor: "bg-emerald-50"
+    },
+    {
+      name: "Market Bulls Gold COT",
+      url: "https://market-bulls.com/cot-report-gold/",
+      desc: "Spesifik untuk analisis Commitment of Traders pada Gold (XAUUSD).",
+      icon: DollarSign,
+      color: "text-yellow-500",
+      bgColor: "bg-yellow-50"
+    },
+    {
+      name: "CME Group QuikStrike",
+      url: "https://www.cmegroup.com/tools-information/quikstrike/commitment-of-traders.html",
+      desc: "Data resmi dari CME Group dengan tools analisis profesional.",
+      icon: Activity,
+      color: "text-purple-500",
+      bgColor: "bg-purple-50"
+    },
+    {
+      name: "CFTC Official Reports",
+      url: "https://www.cftc.gov/MarketReports/CommitmentsofTraders/index.htm",
+      desc: "Sumber data primer dari Commodity Futures Trading Commission (CFTC).",
+      icon: Globe,
+      color: "text-gray-600",
+      bgColor: "bg-gray-50"
+    }
+  ];
+
   return (
-    <div className="min-h-screen py-12 px-4">
+    <div className="min-h-screen py-12 px-4 bg-gray-50">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
@@ -195,7 +223,7 @@ const Tools: React.FC = () => {
         
         <div className="grid lg:grid-cols-2 gap-6">
             {/* Economic Calendar */}
-            <div className="glass-card bg-white/60 p-6 overflow-hidden border-gray-200">
+            <div className="glass-card bg-white p-6 overflow-hidden border border-gray-200 shadow-sm rounded-xl">
                 <div className="flex items-center justify-between mb-6">
                     <h3 className="text-lg font-bold flex items-center gap-2 text-gray-900">
                         <Calendar className="text-emerald-500" /> Economic Calendar
@@ -207,7 +235,7 @@ const Tools: React.FC = () => {
             </div>
 
             {/* Currency Strength / Heat Map */}
-            <div className="glass-card bg-white/60 p-6 overflow-hidden border-gray-200">
+            <div className="glass-card bg-white p-6 overflow-hidden border border-gray-200 shadow-sm rounded-xl">
                 <div className="flex items-center justify-between mb-6">
                     <h3 className="text-lg font-bold flex items-center gap-2 text-gray-900">
                         <Activity className="text-emerald-500" /> Forex Heat Map
@@ -219,7 +247,7 @@ const Tools: React.FC = () => {
             </div>
             
             {/* Gold Price (XAUUSD) */}
-            <div className="glass-card bg-white/60 p-6 border-gray-200">
+            <div className="glass-card bg-white p-6 border border-gray-200 shadow-sm rounded-xl">
                 <div className="flex items-center justify-between mb-6">
                     <h3 className="text-lg font-bold flex items-center gap-2 text-gray-900">
                         <TrendingUp className="text-yellow-500" /> Gold Price (XAUUSD)
@@ -231,7 +259,7 @@ const Tools: React.FC = () => {
             </div>
 
             {/* DXY Index */}
-            <div className="glass-card bg-white/60 p-6 border-gray-200">
+            <div className="glass-card bg-white p-6 border border-gray-200 shadow-sm rounded-xl">
                 <div className="flex items-center justify-between mb-6">
                     <h3 className="text-lg font-bold flex items-center gap-2 text-gray-900">
                         <DollarSign className="text-green-600" /> DXY Index
@@ -243,7 +271,7 @@ const Tools: React.FC = () => {
             </div>
             
             {/* Market Sentiment */}
-            <div className="glass-card bg-white/60 p-6 overflow-hidden border-gray-200">
+            <div className="glass-card bg-white p-6 overflow-hidden border border-gray-200 shadow-sm rounded-xl">
                 <div className="flex items-center justify-between mb-6">
                     <h3 className="text-lg font-bold flex items-center gap-2 text-gray-900">
                         <Globe className="text-blue-500" /> Market Sentiment (EURUSD)
@@ -254,23 +282,44 @@ const Tools: React.FC = () => {
                 </div>
             </div>
 
-            {/* COT Data (Commitment of Traders) */}
-            <div className="glass-card bg-white/60 p-6 border-gray-200">
-                <div className="flex items-center justify-between mb-6">
+            {/* COT Analysis Tools */}
+            <div className="glass-card bg-white p-6 border border-gray-200 shadow-sm rounded-xl">
+                <div className="flex items-center justify-between mb-4">
                     <h3 className="text-lg font-bold flex items-center gap-2 text-gray-900">
-                        <BarChart3 className="text-purple-500" /> COT Data (EUR)
+                        <BarChart3 className="text-purple-500" /> COT Analysis Tools
                     </h3>
                 </div>
-                <div className="tradingview-widget-container" ref={cotContainerRef}>
-                    <div className="tradingview-widget-container__widget"></div>
-                </div>
-                <p className="text-xs text-gray-400 mt-4">
-                    *Commitment of Traders data shows net positions of institutional traders. Updated weekly (Friday).
+                <p className="text-gray-600 text-sm mb-4">
+                  Analisis sentimen institusi (Smart Money) menggunakan data Commitment of Traders (COT).
+                  Gunakan link sumber berikut untuk data lengkap:
                 </p>
+                
+                <div className="space-y-3">
+                  {cotResources.map((resource, idx) => (
+                    <a 
+                      key={idx}
+                      href={resource.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="group flex items-start gap-3 p-3 rounded-lg hover:bg-gray-50 transition border border-transparent hover:border-gray-200"
+                    >
+                      <div className={`p-2 rounded-lg ${resource.bgColor} ${resource.color} shrink-0`}>
+                        <resource.icon size={20} />
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="text-sm font-semibold text-gray-900 flex items-center gap-1 group-hover:text-emerald-600 transition-colors">
+                          {resource.name}
+                          <ExternalLink size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                        </h4>
+                        <p className="text-xs text-gray-500 mt-0.5">{resource.desc}</p>
+                      </div>
+                    </a>
+                  ))}
+                </div>
             </div>
 
             {/* TradingView Advanced Chart - Full Width */}
-            <div className="glass-card bg-white/60 p-6 lg:col-span-2 border-gray-200">
+            <div className="glass-card bg-white p-6 lg:col-span-2 border border-gray-200 shadow-sm rounded-xl">
                 <div className="flex items-center justify-between mb-4">
                      <h3 className="text-lg font-bold flex items-center gap-2 text-gray-900">
                         <DollarSign className="text-emerald-500" /> Advanced Chart
@@ -285,7 +334,7 @@ const Tools: React.FC = () => {
         </div>
 
         {/* Quick Tip */}
-        <div className="mt-12 p-6 glass-card bg-white/80 border-l-4 border-emerald-500">
+        <div className="mt-12 p-6 glass-card bg-white/80 border-l-4 border-emerald-500 rounded-r-xl shadow-sm">
           <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
             <Clock className="text-emerald-500" />
             Tips Trading
