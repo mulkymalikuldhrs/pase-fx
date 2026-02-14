@@ -8,15 +8,16 @@ const Ebook: React.FC = () => {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <span className="inline-block py-1 px-3 rounded-full bg-emerald-500/20 text-emerald-400 text-sm font-bold mb-6">
-            NEW RELEASE 2026
+          <span className="inline-block py-1 px-3 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold mb-6">
+            🚧 COMING SOON
           </span>
           <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-6">
             Day Trading Untuk <span className="text-gradient">Orang Waras</span>
           </h1>
           <p className="text-xl text-slate-400 max-w-3xl mx-auto">
-            Panduan komprehensif 500 halaman tentang teknikal, fundamental, dan psikologi trading tanpa sensasi.
-            Dari komunitas Pasè FX untuk trader Indonesia.
+            Ebook dalam tahap penulisan. Target rilis: 2026.
+            <br/>
+            <span className="text-sm text-amber-400 mt-2 inline-block">⚠️ Buku belum tersedia - Join komunitas untuk update perkembangan</span>
           </p>
         </div>
 
@@ -119,31 +120,30 @@ const Ebook: React.FC = () => {
                 </a>
               </div>
 
-              <div className="mt-6 p-4 bg-emerald-500/10 border border-emerald-500/30 rounded-lg">
-                <p className="text-sm text-emerald-300 text-center">
-                  <strong>Gratis!</strong> Ebook ini kami bagikan secara gratis untuk member komunitas. 
-                  Cukup klik salah satu kontak di atas.
+              <div className="mt-6 p-4 bg-amber-500/10 border border-amber-500/30 rounded-lg">
+                <p className="text-sm text-amber-300 text-center">
+                  <strong>📚 Coming Soon!</strong> Ebook masih dalam tahap penulisan. 
+                  Hubungi kami untuk join komunitas dan dapatkan update perkembangan buku.
                 </p>
               </div>
             </div>
 
-            {/* Testimonials */}
+            {/* Info */}
             <div className="glass-card">
               <h3 className="font-bold text-white mb-4 flex items-center gap-2">
-                <Users className="text-emerald-400" size={18} />
-                Testimoni Pembaca
+                <BookOpen className="text-emerald-400" size={18} />
+                Tentang Buku
               </h3>
-              <div className="space-y-4">
-                {[
-                  { name: "Rizky P.", text: "Ebook yang sangat komprehensif. Mindset trading saya berubah total." },
-                  { name: "Dewi S.", text: "SMC method dijelaskan dengan sangat jelas. Recommended!" },
-                  { name: "Ahmad R.", text: "Akhirnya paham cara manage risk dengan benar." }
-                ].map((testi, idx) => (
-                  <div key={idx} className="bg-slate-800/50 p-3 rounded-lg">
-                    <p className="text-sm text-slate-300 italic">"{testi.text}"</p>
-                    <p className="text-xs text-slate-500 mt-1">— {testi.name}</p>
-                  </div>
-                ))}
+              <div className="space-y-3 text-slate-300 text-sm">
+                <p>Ebook "Day Trading Untuk Orang Waras" sedang dalam proses penulisan oleh tim Pasè FX.</p>
+                <p className="text-amber-400">📌 Target selesai: 2026</p>
+                <p>Buku akan mencakup:</p>
+                <ul className="list-disc pl-5 space-y-1 text-slate-400">
+                  <li>Filosofi trading tanpa sensasi</li>
+                  <li>Manajemen risiko praktis</li>
+                  <li>Strategi teknikal & fundamental</li>
+                  <li>Psikologi trading</li>
+                </ul>
               </div>
             </div>
           </div>

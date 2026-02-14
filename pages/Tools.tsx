@@ -153,11 +153,18 @@ const Tools: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-12">
-            <h1 className="text-4xl font-bold text-white mb-2">Trading Tools</h1>
-            <p className="text-slate-400">Alat bantu analisis teknikal, fundamental, dan kalkulator trading.</p>
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-12 px-4">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Tools Trading</h1>
+          <p className="text-slate-400 max-w-2xl mx-auto">
+            Kalkulator dan widget untuk membantu analisis dan manajemen trading Anda.
+          </p>
+          <div className="mt-4 inline-flex items-center gap-2 text-xs text-blue-400 bg-blue-400/10 px-3 py-1 rounded-full">
+            <span>ℹ️</span>
+            <span>Kalkulator untuk estimasi. Selalu verifikasi dengan platform trading Anda.</span>
+          </div>
         </div>
 
         {/* Market Overview & Session Timer */}

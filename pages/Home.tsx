@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { FEATURES, SIGNALS_DATA, EDUCATION_ARTICLES, SOCIAL_LINKS } from '../constants';
 import SignalCard from '../components/SignalCard';
+import DisclaimerBanner from '../components/DisclaimerBanner';
 import { ArrowRight, BookOpen, Zap, Clock } from 'lucide-react';
 
 const Home: React.FC = () => {
@@ -35,6 +36,11 @@ const Home: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      {/* Disclaimer Banner */}
+      <div className="max-w-7xl mx-auto px-4 pt-4">
+        <DisclaimerBanner />
+      </div>
+      
       {/* Hero Section */}
       <section className="relative py-20 lg:py-32 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-emerald-900/20 to-slate-900/80" />
@@ -49,9 +55,9 @@ const Home: React.FC = () => {
             />
           </div>
           
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-sm font-medium mb-8 animate-fade-in-up">
+           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-sm font-medium mb-8 animate-fade-in-up">
             <Zap size={16} />
-            <span>Komunitas Trading No. 1 di Aceh</span>
+            <span>Komunitas Trading dari Aceh</span>
           </div>
           
           <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6">
@@ -132,25 +138,28 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-       {/* Stats Section */}
+        {/* Stats Section - DEMO DATA DISCLAIMER */}
        <section className="py-16 px-4">
          <div className="max-w-7xl mx-auto">
            <div className="glass-card p-8">
+            <div className="mb-4 text-center">
+              <span className="text-xs text-amber-400 bg-amber-400/10 px-2 py-1 rounded">⚠️ DATA SIMULASI - BELUM TERHUBUNG KE DATABASE</span>
+            </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                 <div>
-                    <div className="text-4xl font-bold text-emerald-400 mb-1">1,250+</div>
+                    <div className="text-4xl font-bold text-emerald-400 mb-1">--</div>
                     <div className="text-sm text-slate-400">Total Members</div>
                 </div>
                 <div>
-                    <div className="text-4xl font-bold text-emerald-400 mb-1">850+</div>
+                    <div className="text-4xl font-bold text-emerald-400 mb-1">--</div>
                     <div className="text-sm text-slate-400">Signals Sent</div>
                 </div>
                  <div>
-                    <div className="text-4xl font-bold text-emerald-400 mb-1">68%</div>
+                    <div className="text-4xl font-bold text-emerald-400 mb-1">--%</div>
                     <div className="text-sm text-slate-400">Win Rate (Avg)</div>
                 </div>
                  <div>
-                    <div className="text-4xl font-bold text-emerald-400 mb-1">300+</div>
+                    <div className="text-4xl font-bold text-emerald-400 mb-1">--</div>
                     <div className="text-sm text-slate-400">Active Traders</div>
                 </div>
             </div>

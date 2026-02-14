@@ -50,7 +50,8 @@ export const AFFILIATE_LINKS = {
 // TF Logo for MRG
 export const MRG_LOGO_URL = "https://account.tradersfamily.id/images/logo-tf-rebrand.png";
 
-// COMMUNITY MEMBERS - Core team and active members
+// COMMUNITY MEMBERS - TERVERIFIKASI
+// NOTE: Hanya anggota yang telah dikonfirmasi keberadaannya
 export const COMMUNITY_MEMBERS = [
   {
     id: 1,
@@ -61,7 +62,8 @@ export const COMMUNITY_MEMBERS = [
     methods: ["ICT", "Alchemist x MSNR", "SMC", "Custom Fibo"],
     expertise: "technical",
     joinDate: "2020-01-15",
-    whatsapp: WHATSAPP_CONTACTS.mulky.phone
+    whatsapp: WHATSAPP_CONTACTS.mulky.phone,
+    verified: true
   },
   {
     id: 2,
@@ -72,7 +74,8 @@ export const COMMUNITY_MEMBERS = [
     methods: ["SNR", "Reversal", "Chart Pattern", "Trendline"],
     expertise: "technical",
     joinDate: "2020-01-15",
-    whatsapp: WHATSAPP_CONTACTS.azil.phone
+    whatsapp: WHATSAPP_CONTACTS.azil.phone,
+    verified: true
   },
   {
     id: 3,
@@ -82,58 +85,10 @@ export const COMMUNITY_MEMBERS = [
     status: "online",
     methods: ["SNR", "Breakout", "Chart Pattern", "SMC", "Fundamental"],
     expertise: "hybrid",
-    joinDate: "2020-06-20"
-  },
-  {
-    id: 4,
-    name: "Rizky Pratama",
-    role: "SMC Specialist",
-    avatar: "R",
-    status: "offline",
-    methods: ["Smart Money Concepts", "Order Block", "Fair Value Gap"],
-    expertise: "technical",
-    joinDate: "2021-03-10"
-  },
-  {
-    id: 5,
-    name: "Putri Amanda",
-    role: "Price Action Trader",
-    avatar: "P",
-    status: "online",
-    methods: ["Price Action", "Candlestick Pattern", "Support Resistance"],
-    expertise: "technical",
-    joinDate: "2021-08-15"
-  },
-  {
-    id: 6,
-    name: "Fajar Maulana",
-    role: "Supply Demand Expert",
-    avatar: "F",
-    status: "offline",
-    methods: ["Supply & Demand", "Zone to Zone", "Liquidity Sweep"],
-    expertise: "technical",
-    joinDate: "2021-11-05"
-  },
-  {
-    id: 7,
-    name: "Dewi Sartika",
-    role: "Fundamental Analyst",
-    avatar: "D",
-    status: "online",
-    methods: ["Fundamental Analysis", "News Trading", "Economic Calendar"],
-    expertise: "fundamental",
-    joinDate: "2022-01-20"
-  },
-  {
-    id: 8,
-    name: "Ahmad Ridwan",
-    role: "ICT Practitioner",
-    avatar: "AR",
-    status: "offline",
-    methods: ["ICT", "Market Structure", "Killzones", "MSS"],
-    expertise: "technical",
-    joinDate: "2022-04-12"
+    joinDate: "2020-06-20",
+    verified: true
   }
+  // NOTE: Anggota lain akan ditambahkan setelah verifikasi
 ];
 
 // TRADING METHODS - Comprehensive library
@@ -272,7 +227,10 @@ export const TRADING_METHODS = [
   }
 ];
 
-// AUTHENTIC SIGNALS - Real community signals
+// SIGNALS DATA - DEMO/SAMPLE ONLY
+// ⚠️ PERINGATAN: Data berikut adalah CONTOH/SIMULASI untuk keperluan demo
+// Sinyal real-time akan tersedia setelah integrasi dengan sistem backend
+// Semua data hanya untuk pengembangan dan testing UI
 export const SIGNALS_DATA: Signal[] = [
   {
     id: "SIG-001",
@@ -440,7 +398,10 @@ export const BROKERS_DATA: Broker[] = [
   }
 ];
 
-// EDUCATION ARTICLES
+// EDUCATION ARTICLES - PLANNED TOPICS
+// ⚠️ PERINGATAN: Berikut adalah daftar topik artikel yang direncanakan
+// Artikel lengkap akan ditulis dan ditambahkan secara bertahap
+// Saat ini hanya tersedia judul dan ringkasan, konten lengkap belum tersedia
 export const EDUCATION_ARTICLES: EducationArticle[] = [
   {
     id: "edu-1",

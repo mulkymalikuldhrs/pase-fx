@@ -32,15 +32,21 @@
 
 ## ✨ Tentang Pasè FX
 
-**Pasè FX** (dibaca: "Pasè" - dari bahasa Aceh "Pasai") adalah komunitas trading forex profesional yang berdiri sejak 2020. Kami menyediakan ekosistem trading yang sehat dan terstruktur.
+**Pasè FX** (dibaca: "Pasè" - dari bahasa Aceh "Pasai") adalah komunitas trading forex dari Aceh. Website ini dalam tahap pengembangan aktif.
 
-### Apa yang Kami Tawarkan?
+### Status Pengembangan
 
-- 📊 **Sinyal Trading** - Analisis teknikal dengan entry, SL, TP lengkap
-- 📚 **Edukasi Lengkap** - 20+ artikel trading dari basic hingga advanced
-- 🧮 **Tools Trading** - 3 kalkulator + 4 widget real-time
-- 👥 **Komunitas Supportif** - 1,250+ member, no toxic
-- 📖 **Ebook Gratis** - "Day Trading Untuk Orang Waras" (500+ halaman)
+⚠️ **Website dalam tahap BETA/Pengembangan**
+
+- 📊 **Sinyal Trading** - Demo/data simulasi (belum real-time)
+- 📚 **Edukasi** - Daftar topik direncanakan (konten lengkap dalam pengembangan)
+- 🧮 **Tools Trading** - Kalkulator fungsional + TradingView widgets
+- 👥 **Komunitas** - Terbuka untuk umum via Telegram & WhatsApp
+- 📖 **Ebook** - Dalam penulisan (Coming Soon 2026)
+
+### ⚠️ Peringatan Penting
+
+Sebagian besar fitur masih menggunakan data simulasi untuk keperluan pengembangan UI. Data real-time dan konten lengkap akan tersedia setelah integrasi backend selesai.
 
 ### Tagline
 

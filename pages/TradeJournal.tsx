@@ -109,14 +109,16 @@ const TradeJournal: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-20 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-12 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-white mb-2">
-            Jurnal <span className="text-gradient">Trading</span>
-          </h1>
-          <p className="text-slate-400">Catat dan evaluasi setiap trade Anda. Data tersimpan di browser (local).</p>
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-white mb-2">Trading Journal</h1>
+          <p className="text-slate-400">Catat dan evaluasi setiap trade Anda untuk improvement berkelanjutan.</p>
+          <div className="mt-2 inline-flex items-center gap-2 text-xs text-blue-400 bg-blue-400/10 px-3 py-1 rounded-full">
+            <span>💾</span>
+            <span>Data tersimpan secara lokal di browser Anda (localStorage)</span>
+          </div>
         </div>
 
         {/* Stats Cards */}

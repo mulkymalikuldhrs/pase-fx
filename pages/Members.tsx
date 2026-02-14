@@ -5,17 +5,10 @@ import { COMMUNITY_MEMBERS, SOCIAL_LINKS } from '../constants';
 const Members: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterExpertise, setFilterExpertise] = useState('all');
-  const [memberCount, setMemberCount] = useState(1250);
+  // Real member count from actual registered members only
+  const memberCount = COMMUNITY_MEMBERS.length;
 
-  // Simulate real-time member count updates
-  useEffect(() => {
-    const interval = setInterval(() => {
-      // Random fluctuation between 1248-1255
-      setMemberCount(Math.floor(Math.random() * 8) + 1248);
-    }, 30000); // Update every 30 seconds
-
-    return () => clearInterval(interval);
-  }, []);
+  // Note: Online status is simulated - not connected to real-time database
 
   const filteredMembers = COMMUNITY_MEMBERS.filter(member => {
     const matchesSearch = member.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -49,31 +42,35 @@ const Members: React.FC = () => {
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
             Anggota <span className="text-gradient">Komunitas</span>
           </h1>
-          <p className="text-slate-400 max-w-2xl mx-auto">
-            Bergabung dengan {memberCount.toLocaleString()}+ trader dari seluruh Indonesia. 
-            Setiap anggota memiliki spesialisasi dan metode trading yang berbeda.
+          <p className="text-slate-400 max-w-2xl mx-auto mb-4">
+            Trader dengan berbagai spesialisasi dan metode trading.
           </p>
+          <div className="inline-flex items-center gap-2 text-xs text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full">
+            <span>⚠️</span>
+            <span>Daftar anggota terdaftar (belum terhubung ke Telegram/WhatsApp API)</span>
+          </div>
         </div>
 
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           <div className="glass-card p-4 text-center">
-            <div className="text-3xl font-bold text-emerald-400">{memberCount.toLocaleString()}+</div>
-            <div className="text-sm text-slate-400">Total Anggota</div>
+            <div className="text-3xl font-bold text-emerald-400">{memberCount}</div>
+            <div className="text-sm text-slate-400">Anggota Terdaftar</div>
           </div>
           <div className="glass-card p-4 text-center">
             <div className="text-3xl font-bold text-blue-400">{COMMUNITY_MEMBERS.filter(m => m.status === 'online').length}</div>
-            <div className="text-sm text-slate-400">Online Sekarang</div>
+            <div className="text-sm text-slate-400">Status Online*</div>
           </div>
           <div className="glass-card p-4 text-center">
             <div className="text-3xl font-bold text-purple-400">{TRADING_METHODS.length}</div>
             <div className="text-sm text-slate-400">Metode Trading</div>
           </div>
           <div className="glass-card p-4 text-center">
-            <div className="text-3xl font-bold text-yellow-400">24/7</div>
-            <div className="text-sm text-slate-400">Support Komunitas</div>
+            <div className="text-3xl font-bold text-yellow-400">2</div>
+            <div className="text-sm text-slate-400">Founder</div>
           </div>
         </div>
+        <p className="text-xs text-slate-500 text-center mb-6">*Status online adalah simulasi, tidak real-time</p>
 
         {/* Search & Filter */}
         <div className="glass-card p-4 mb-8">

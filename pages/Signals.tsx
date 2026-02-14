@@ -41,7 +41,11 @@ const Signals: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-slate-900 mb-2">Sinyal Trading</h1>
-          <p className="text-slate-600">Arsip lengkap sinyal trading harian Pasè FX untuk member komunitas.</p>
+          <p className="text-slate-600">Arsip sinyal trading (DEMO - Data simulasi untuk pengembangan)</p>
+          <div className="mt-2 inline-flex items-center gap-2 text-xs text-amber-600 bg-amber-50 px-3 py-1 rounded-full">
+            <span>⚠️</span>
+            <span>DATA SIMULASI - Bukan sinyal real-time</span>
+          </div>
         </div>
 
         {/* Stats Cards */}
