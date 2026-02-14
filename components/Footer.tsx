@@ -12,11 +12,11 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1 md:col-span-1">
             <div className="flex items-center gap-2 mb-4">
-              <div className="relative">
+              <div className="relative h-10 w-10 bg-emerald-50 rounded-lg flex items-center justify-center overflow-hidden border border-emerald-100">
                 <img 
                   src="/logo.png" 
                   alt="Pasè FX Logo" 
-                  className="h-8 w-auto object-contain bg-emerald-50/50 rounded-lg p-1"
+                  className="w-full h-full object-contain p-1"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     target.style.display = 'none';
@@ -24,9 +24,8 @@ const Footer: React.FC = () => {
                     if (fallback) fallback.classList.remove('hidden');
                   }}
                 />
-                <div className="logo-fallback-footer hidden absolute inset-0 flex items-center justify-center">
-                  <div className="h-8 w-8 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow-sm">
-                  </div>
+                <div className="logo-fallback-footer hidden absolute inset-0 flex items-center justify-center bg-gradient-to-br from-emerald-500 to-emerald-600 text-white font-bold text-sm">
+                  Pè
                 </div>
               </div>
               <h3 className="text-gray-900 text-lg font-bold">{APP_NAME}</h3>

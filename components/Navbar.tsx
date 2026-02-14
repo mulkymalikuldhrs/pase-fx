@@ -84,8 +84,21 @@ const Navbar: React.FC = () => {
           {/* Logo - Dynamic Island Style */}
           <div className="flex items-center">
             <a href="#/" className="flex-shrink-0 flex items-center gap-2 group" aria-label="Pasè FX Home">
-              <div className={`transition-all duration-300 ${scrolled ? 'h-8 w-8' : 'h-9 w-9'} rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow-lg group-hover:shadow-emerald-500/30 text-white`}>
-                <span className="font-bold text-sm">Pè</span>
+              <div className={`relative transition-all duration-300 ${scrolled ? 'h-8 w-8' : 'h-10 w-10'} rounded-lg bg-white/50 backdrop-blur-sm flex items-center justify-center border border-white/50 shadow-sm overflow-hidden`}>
+                <img 
+                  src="/logo.png" 
+                  alt="Logo" 
+                  className="w-full h-full object-contain p-1"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    const fallback = target.parentElement?.querySelector('.logo-fallback-nav');
+                    if (fallback) fallback.classList.remove('hidden');
+                  }}
+                />
+                <div className="logo-fallback-nav hidden absolute inset-0 bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center text-white font-bold text-xs">
+                  Pè
+                </div>
               </div>
               <span className={`font-bold tracking-tight text-gray-900 dark:text-white transition-all duration-300 ${scrolled ? 'text-lg' : 'text-xl'}`}>
                 {APP_NAME}
