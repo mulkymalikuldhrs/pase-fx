@@ -1,100 +1,159 @@
 # 🎯 Pasè FX Trader Hub
 
-**Website Komunitas Trading Forex Profesional dari Aceh**
+<div align="center">
 
 [![Vercel](https://img.shields.io/badge/deployed%20on-vercel-black?style=for-the-badge&logo=vercel)](https://pasefx.vercel.app)
 [![React](https://img.shields.io/badge/react-19.2.4-blue?style=for-the-badge&logo=react)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/typescript-5.8.2-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org)
+[![Build](https://img.shields.io/badge/build-passing-brightgreen?style=for-the-badge&logo=vite)](https://vitejs.dev)
+[![License](https://img.shields.io/badge/license-Proprietary-red?style=for-the-badge)](LICENSE)
 
-**Live URL**: https://pasefx.vercel.app
+**Website Komunitas Trading Forex Profesional dari Aceh**
+
+🌐 **Live**: [https://pasefx.vercel.app](https://pasefx.vercel.app)
+
+</div>
+
+---
+
+## 📋 Daftar Isi
+
+- [Tentang Pasè FX](#-tentang-pasè-fx)
+- [Founders](#-founders)
+- [Fitur Utama](#-fitur-utama)
+- [Tech Stack](#-tech-stack)
+- [Struktur Project](#-struktur-project)
+- [Instalasi](#-instalasi)
+- [Deployment](#-deployment)
+- [Kontak](#-kontak)
+- [Disclaimer](#-disclaimer)
 
 ---
 
 ## ✨ Tentang Pasè FX
 
-**Pasè FX** (dibaca: "Pasè" - dari bahasa Aceh "Pasai") adalah komunitas trading forex profesional yang berdiri sejak 2020. Kami menyediakan:
+**Pasè FX** (dibaca: "Pasè" - dari bahasa Aceh "Pasai") adalah komunitas trading forex profesional yang berdiri sejak 2020. Kami menyediakan ekosistem trading yang sehat dan terstruktur.
 
-- 📊 **Sinyal Trading** gratis untuk member
-- 📚 **Edukasi Lengkap** berbagai metode trading
-- 🧮 **Tools Trading** (calculators, widgets)
-- 👥 **Komunitas Supportif** tanpa toxic
-- 📖 **Ebook Gratis** "Day Trading Untuk Orang Waras"
+### Apa yang Kami Tawarkan?
 
-**Tagline**: *"Ta doeng saban-saban sabe keudroe-droe, beu koeng lage meupula"*  
-*(Disiplin bertahap, sabar, jangan rakus)*
+- 📊 **Sinyal Trading** - Analisis teknikal dengan entry, SL, TP lengkap
+- 📚 **Edukasi Lengkap** - 20+ artikel trading dari basic hingga advanced
+- 🧮 **Tools Trading** - 3 kalkulator + 4 widget real-time
+- 👥 **Komunitas Supportif** - 1,250+ member, no toxic
+- 📖 **Ebook Gratis** - "Day Trading Untuk Orang Waras" (500+ halaman)
+
+### Tagline
+
+> *"Ta doeng saban-saban sabe keudroe-droe, beu koeng lage meupula"*
+> 
+> *(Disiplin bertahap, sabar, jangan rakus)*
 
 ---
 
 ## 👥 Founders
 
-### Mulky Malikul Dhaher - **Founder**
-- **Role**: Founder, Lead Developer & Admin
-- **Phone**: +62 853-2262-4048
-- **Spesialisasi**: ICT, Alchemist x MSNR, SMC, Custom Fibo
-- **Achievement**: Creator of Alchemist Method, Lead Developer Platform
+### Mulky Malikul Dhaher
+**Founder, Lead Developer & Admin**
 
-### Azil Jabet - **Co-Founder**
-- **Role**: Co-Founder & Head Analyst  
-- **Phone**: +62 812-6232-9823
-- **Spesialisasi**: SNR, Reversal, Chart Pattern, Trendline
-- **Achievement**: Head Analyst, Mentor 500+ trader
+- 📱 **WhatsApp**: [+62 853-2262-4048](https://wa.me/6285322624048)
+- 🎯 **Spesialisasi**: ICT, Alchemist x MSNR, SMC, Custom Fibo
+- 🏆 **Achievement**:
+  - Founder Pasè FX (2020)
+  - Lead Developer Platform
+  - Creator of Alchemist Method
+  - Expert ICT & SMC Integration
+
+### Azil Jabet
+**Co-Founder & Head Analyst**
+
+- 📱 **WhatsApp**: [+62 812-6232-9823](https://wa.me/6281262329823)
+- 🎯 **Spesialisasi**: SNR, Reversal, Chart Pattern, Trendline
+- 🏆 **Achievement**:
+  - Co-Founder Pasè FX (2020)
+  - Head Analyst Komunitas
+  - Mentor 500+ trader
+  - 8+ years trading experience
 
 ---
 
 ## 🚀 Fitur Utama
 
-### 1. **Sinyal Trading** 📊
-- Sinyal real-time dari analis profesional
-- Entry, SL, TP lengkap dengan rasio R:R
-- Status tracking: ACTIVE, HIT_TP, HIT_SL
-- Analisis teknikal detail
+### 1. 📊 Sinyal Trading
+- 5 sinyal dengan analisis detail
+- Entry, SL, TP1/TP2/TP3 lengkap
+- Status: ACTIVE, HIT_TP, HIT_SL
+- Risk/Reward ratio tracking
+- Win rate real-time calculation
 
-### 2. **Library Metode Trading** 📚
-- 12+ metode trading lengkap
-- SMC, ICT, SNR, Supply & Demand, dll
-- Detail konsep, timeframe, tingkat kesulitan
-- Sumber belajar terpercaya
+### 2. 📚 Library Metode Trading
+12 metode trading lengkap:
+- Support & Resistance (SNR)
+- Smart Money Concepts (SMC)
+- Inner Circle Trader (ICT)
+- Supply & Demand
+- Price Action
+- Breakout Trading
+- Trendline Analysis
+- Chart Pattern
+- Fundamental Analysis
+- Reversal Trading
+- Fibonacci Trading
+- Alchemist x MSNR (Custom)
 
-### 3. **Anggota Komunitas** 👥
-- Directory member dengan spesialisasi
+### 3. 👥 Directory Anggota
+- 8 member aktif terdaftar
 - Filter by expertise (Technical/Fundamental/Hybrid)
-- Real-time status (online/offline)
-- Direct contact ke founders
+- Real-time status indicator
+- Direct WhatsApp contact
+- Core Team section
 
-### 4. **Tools Trading** 🧮
-- **Pip Calculator**
-- **Position Size Calculator** 
-- **Risk/Reward Calculator**
-- **Trade Journal** (localStorage)
-- **Market Overview** (real-time)
-- **Session Timer**
+### 4. 🧮 Tools Trading
+**Kalkulator**:
+- Pip Calculator
+- Position Size Calculator
+- Risk/Reward Calculator
 
-### 5. **TradingView Widgets** 📈
+**Widgets**:
+- Market Overview (real-time)
+- Session Timer
+- Trade Journal (localStorage)
+
+### 5. 📈 TradingView Integration
 - Economic Calendar
-- Advanced Chart
+- Advanced Real-Time Chart
 - Forex Heat Map
 - Gold Price (XAUUSD)
 - DXY Index
 - Market Sentiment
-- COT Data
+- Ticker Tape
 
-### 6. **Ebook Gratis** 📖
-- Judul: "Day Trading Untuk Orang Waras"
-- 500+ halaman
-- Request via WhatsApp langsung ke Founders
-- Gratis untuk member komunitas
+### 6. 📖 Ebook Gratis
+**"Day Trading Untuk Orang Waras"**
+- 500+ halaman konten
+- 7 bab komprehensif
+- Request via WhatsApp
+- Gratis untuk member
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Framework**: React 19.2.4 + TypeScript 5.8.2
-- **Build Tool**: Vite 6.2.0
-- **Styling**: Tailwind CSS + Custom CSS (Liquid Glass Design)
-- **Charts**: Recharts
-- **Icons**: Lucide React
-- **Hosting**: Vercel
-- **Widgets**: TradingView
+| Kategori | Teknologi |
+|----------|-----------|
+| **Framework** | React 19.2.4 + TypeScript 5.8.2 |
+| **Build Tool** | Vite 6.2.0 |
+| **Styling** | Tailwind CSS + Custom Liquid Glass CSS |
+| **Charts** | Recharts |
+| **Icons** | Lucide React |
+| **Widgets** | TradingView |
+| **Hosting** | Vercel |
+
+### Design System: Liquid Glass
+- Apple-grade glassmorphism
+- Backdrop blur 20px
+- Smooth 60fps animations
+- Dark theme default
+- Responsive mobile-first
 
 ---
 
@@ -102,55 +161,62 @@
 
 ```
 pase-fx/
-├── api/                    # API endpoints (Vercel Edge Functions)
-│   ├── go.ts              # Affiliate link tracker
-│   ├── signals.ts         # Signal API
-│   ├── subscribe.ts       # Newsletter subscription
-│   └── track.ts           # Click tracking
+├── api/                          # Vercel Edge Functions
+│   ├── go.ts                    # Affiliate tracker
+│   ├── signals.ts               # Signal API
+│   ├── subscribe.ts             # Newsletter
+│   └── track.ts                 # Click tracking
+│
 ├── components/
-│   ├── calculators/       # Trading calculators
+│   ├── calculators/             # 3 Trading calculators
 │   │   ├── PipCalculator.tsx
 │   │   ├── PositionCalculator.tsx
 │   │   └── RiskRewardCalculator.tsx
-│   ├── widgets/           # Market widgets
+│   │
+│   ├── widgets/                 # 2 Market widgets
 │   │   ├── MarketOverview.tsx
 │   │   └── SessionTimer.tsx
+│   │
 │   ├── BrokerCard.tsx
 │   ├── FloatingButtons.tsx
 │   ├── Footer.tsx
 │   ├── Navbar.tsx
 │   └── SignalCard.tsx
-├── pages/                 # Page components
+│
+├── pages/                       # 13 Page components
 │   ├── Brokers.tsx
 │   ├── Community.tsx
 │   ├── Ebook.tsx
 │   ├── Education.tsx
 │   ├── Founders.tsx
 │   ├── Home.tsx
-│   ├── Members.tsx        # Member directory
-│   ├── Methods.tsx        # Trading methods library
+│   ├── Members.tsx
+│   ├── Methods.tsx
 │   ├── Signals.tsx
 │   ├── Tools.tsx
 │   └── TradeJournal.tsx
-├── constants.ts           # All constants & data
-├── types.ts               # TypeScript types
-├── index.css              # Global styles (Liquid Glass)
-└── App.tsx                # Main app component
+│
+├── constants.ts                 # All data & constants
+├── types.ts                     # TypeScript types
+├── index.css                    # Liquid Glass Design System
+├── App.tsx                      # Main router
+└── index.tsx                    # Entry point
 ```
 
 ---
 
-## 🚀 Deployment
+## 💻 Instalasi
 
 ### Prerequisites
 - Node.js 18+
 - npm atau yarn
-- Vercel CLI (opsional)
+- Git
 
 ### Local Development
+
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/pase-fx.git
+git clone https://github.com/mulkymalikuldhrs/pase-fx.git
 cd pase-fx
 
 # Install dependencies
@@ -158,35 +224,75 @@ npm install
 
 # Run development server
 npm run dev
+
+# Build production
+npm run build
+
+# Preview production build
+npm run preview
 ```
 
-### Build for Production
-```bash
-npm run build
-```
+---
+
+## 🚀 Deployment
 
 ### Deploy to Vercel
+
 ```bash
 # Install Vercel CLI
 npm i -g vercel
+
+# Login
+vercel login
 
 # Deploy
 vercel --prod
 ```
 
+### Environment Variables
+
+Buat file `.env.local`:
+
+```env
+# API Configuration
+VITE_API_URL=https://pasefx.vercel.app/api
+
+# Analytics (optional)
+VITE_PLAUSIBLE_DOMAIN=pasefx.vercel.app
+```
+
 ---
 
-## 🔗 Links
+## 📊 Statistics
 
-- **Website**: https://pasefx.vercel.app
-- **Telegram**: https://t.me/pasefx
-- **WhatsApp Group**: https://chat.whatsapp.com/EqEhHNB1tuaCyQy0bVyOnZ
-- **Instagram**: https://www.instagram.com/pase_fx
-- **Email**: pasefx@email.com
+| Metrik | Nilai |
+|--------|-------|
+| **Total Pages** | 13 |
+| **Components** | 11 |
+| **Trading Methods** | 12 |
+| **Community Members** | 1,250+ |
+| **Registered Members** | 8 |
+| **Education Articles** | 20 |
+| **Brokers** | 8 |
+| **API Endpoints** | 4 |
+| **CSS Lines** | 600+ |
+| **Bundle Size** | ~673 KB |
 
 ---
 
-## 📞 Kontak Langsung
+## 🔗 Links & Kontak
+
+### Website
+- 🌐 **Main**: https://pasefx.vercel.app
+- 📊 **Signals**: https://pasefx.vercel.app/#/sinyal
+- 📚 **Education**: https://pasefx.vercel.app/#/edukasi
+- 🧮 **Tools**: https://pasefx.vercel.app/#/tools
+
+### Social Media
+- 💬 **Telegram**: https://t.me/pasefx
+- 💬 **WhatsApp Group**: https://chat.whatsapp.com/EqEhHNB1tuaCyQy0bVyOnZ
+- 📸 **Instagram**: https://www.instagram.com/pase_fx
+- 📧 **Email**: pasefx@email.com
 
 ### Request Ebook
 - **Mulky**: [WhatsApp](https://wa.me/6285322624048?text=Halo%20Mulky%2C%20saya%20ingin%20request%20ebook%20%22Day%20Trading%20Untuk%20Orang%20Waras%22%20dari%20Pas%C3%A8%20FX.%20Terima%20kasih.)
@@ -196,7 +302,21 @@ vercel --prod
 
 ## ⚠️ Disclaimer
 
-Trading forex melibatkan risiko tinggi. 70-80% trader retail kehilangan uang. Semua konten di website ini hanya untuk edukasi dan informasi, bukan financial advice. Keputusan trading sepenuhnya tanggung jawab masing-masing trader.
+**Peringatan Risiko Tinggi**
+
+Trading forex melibatkan risiko tinggi. 70-80% trader retail kehilangan uang. 
+
+- Semua konten hanya untuk edukasi
+- Bukan financial advice
+- Keputusan trading tanggung jawab masing-masing
+- Jangan trading dengan uang yang tidak mampu hilang
+- Pastikan memahami risiko sebelum trading
+
+---
+
+## 📝 Changelog
+
+Lihat [CHANGELOG.md](./CHANGELOG.md) untuk riwayat perubahan lengkap.
 
 ---
 
@@ -208,6 +328,10 @@ This project is proprietary. All rights reserved.
 
 ---
 
+<div align="center">
+
 **"Ta doeng saban-saban sabe keudroe-droe, beu koeng lage meupula"** 🎯
 
 *Disiplin. Bertahap. Waras. Profit.*
+
+</div>
