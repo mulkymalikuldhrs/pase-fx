@@ -1,5 +1,6 @@
 import { Broker, EducationArticle, Signal } from './types';
 import { TrendingUp, Shield, Brain, Users } from 'lucide-react';
+import { EDUCATION_ARTICLES as ARTICLES_DATA } from './educationArticles';
 
 export const APP_NAME = "Pasè FX";
 export const TAGLINE_ACEH = "Ta doeng saban-saban sabe keudroe-droe, beu koeng lage meupula";
@@ -115,68 +116,143 @@ export const COMMUNITY_MEMBERS = [
 ];
 
 // =============================================================================
-// TRADING METHODS - DAFTAR METODE (REFERENSI)
+// TRADING METHODS - LIBRARY LENGKAP (12 METODE)
 // =============================================================================
-// Ini adalah daftar metode trading yang umum dipelajari
-// Bukan "library" lengkap, hanya referensi dasar
-// Untuk pembelajaran detail, join komunitas atau pelajari dari sumber terpercaya
+// Library edukasi metode trading yang umum digunakan
+// Referensi untuk pembelajaran - join komunitas untuk diskusi detail
 export const TRADING_METHODS = [
   {
     id: "snr",
     name: "Support & Resistance (SNR)",
     category: "Technical",
-    description: "Metode trading berdasarkan level support dan resistance untuk identifikasi titik balik harga.",
-    keyConcepts: ["Support Levels", "Resistance Levels", "Breakout", "Bounce", "Retest"],
+    description: "Metode trading berdasarkan level support dan resistance untuk identifikasi titik balik harga. Level-level ini mewakili zona supply dan demand yang signifikan.",
+    keyConcepts: ["Support Levels", "Resistance Levels", "Breakout", "Bounce", "Retest", "Flip Zone", "Multi-timeframe Analysis"],
     timeframe: "Semua timeframe",
     difficulty: "Beginner",
-    resources: ["BabyPips.com", "Investopedia"],
-    relatedMethods: ["breakout", "trendline"]
+    resources: ["BabyPips.com", "Investopedia Support Resistance Guide", "YouTube: The Trading Channel"],
+    relatedMethods: ["supply-demand", "trendline", "breakout"]
   },
   {
     id: "smc",
     name: "Smart Money Concepts (SMC)",
     category: "Technical",
-    description: "Metode mengikuti jejak institusi besar melalui Order Block, Fair Value Gap, dan Market Structure.",
-    keyConcepts: ["Order Block", "Fair Value Gap (FVG)", "Breaker Block", "Mitigation Block", "Liquidity"],
+    description: "Metode mengikuti jejak institusi besar melalui analisis Order Block, Fair Value Gap, dan Market Structure. Fokus pada understanding bagaimana 'smart money' bergerak di market.",
+    keyConcepts: ["Order Block (OB)", "Fair Value Gap (FVG)", "Breaker Block", "Mitigation Block", "Liquidity Pools", "Market Structure Break (MSB)"],
     timeframe: "H1, H4, Daily",
     difficulty: "Advanced",
-    resources: ["ICT YouTube Channel"],
-    relatedMethods: ["ict", "supply-demand"]
+    resources: ["ICT YouTube Channel", "SMC YouTube Community", "Forex Academy SMC Course"],
+    relatedMethods: ["ict", "supply-demand", "order-flow"]
   },
   {
     id: "ict",
     name: "Inner Circle Trader (ICT)",
     category: "Technical",
-    description: "Metode Michael J. Huddleston yang fokus pada konsep waktu, liquidity, dan market structure.",
-    keyConcepts: ["Killzones", "Market Structure Shift (MSS)", "Order Blocks", "Displacements", "FVG"],
+    description: "Metode oleh Michael J. Huddleston yang fokus pada konsep waktu (killzones), liquidity, market structure, dan order blocks. Mengajarkan cara 'think like institutional traders'.",
+    keyConcepts: ["Killzones (NY, London, Asia)", "Market Structure Shift (MSS)", "Order Blocks", "Displacements", "FVG", "Liquidity Sweeps", "Judas Swing"],
     timeframe: "M15, H1, H4",
     difficulty: "Advanced",
-    resources: ["ICT YouTube Channel"],
-    relatedMethods: ["smc", "price-action"]
+    resources: ["ICT YouTube Channel (Mentorship Series)", "ICT Private Mentorship", "ICT Forex Twitter"],
+    relatedMethods: ["smc", "price-action", "order-flow"]
   },
   {
     id: "supply-demand",
     name: "Supply & Demand",
     category: "Technical",
-    description: "Metode identifikasi zona imbalance antara supply dan demand untuk entry berkualitas tinggi.",
-    keyConcepts: ["Supply Zone", "Demand Zone", "Base", "Rally/Drop", "Zone to Zone"],
+    description: "Metode identifikasi zona imbalance antara supply (jual) dan demand (beli) untuk entry berkualitas tinggi. Berdasarkan konsep ekonomi dasar yang diaplikasikan ke chart.",
+    keyConcepts: ["Supply Zone", "Demand Zone", "Base/Rally Base", "Rally/Drop Base", "Zone to Zone", "Fresh vs Tested Zones"],
     timeframe: "H1, H4, Daily",
     difficulty: "Intermediate",
-    resources: ["Sam Seiden Method"],
-    relatedMethods: ["snr", "smc"]
+    resources: ["Sam Seiden Method (Online Trading Academy)", "Alfaro Supply Demand Strategy", "Mentfx YouTube"],
+    relatedMethods: ["snr", "smc", "price-action"]
   },
   {
     id: "price-action",
     name: "Price Action",
     category: "Technical",
-    description: "Analisis murni berdasarkan pergerakan harga dan candlestick pattern tanpa indikator.",
-    keyConcepts: ["Candlestick Patterns", "Pin Bar", "Engulfing", "Doji", "Inside Bar"],
+    description: "Analisis murni berdasarkan pergerakan harga dan candlestick pattern tanpa indikator teknikal. Fokus pada membaca 'story' dari candle dan struktur market.",
+    keyConcepts: ["Candlestick Patterns", "Pin Bar", "Engulfing", "Doji", "Inside Bar", "Fakey Pattern", "Price Patterns"],
     timeframe: "Semua timeframe",
     difficulty: "Intermediate",
-    resources: ["Al Brooks Books"],
-    relatedMethods: ["candlestick", "chart-pattern"]
+    resources: ["Al Brooks Trading Price Action Series", "Lance Beggs YTC Price Action", "Nial Fuller Price Action"],
+    relatedMethods: ["candlestick", "chart-pattern", "support-resistance"]
+  },
+  {
+    id: "breakout",
+    name: "Breakout Trading",
+    category: "Technical",
+    description: "Strategi entry saat harga menembus level penting seperti support/resistance, trendline, atau chart pattern dengan volume confirmation. Mengikuti momentum setelah konsolidasi.",
+    keyConcepts: ["Breakout Confirmation", "False Breakout", "Pullback to Broken Level", "Volume Analysis", "Momentum Entry", "Retest Entry"],
+    timeframe: "M15, H1, H4",
+    difficulty: "Intermediate",
+    resources: ["Mark Douglas Trading in the Zone", "Breakout Trading Strategy Books", "YouTube: UKspreadbetting"],
+    relatedMethods: ["snr", "trendline", "chart-pattern", "momentum"]
+  },
+  {
+    id: "trendline",
+    name: "Trendline Analysis",
+    category: "Technical",
+    description: "Menggunakan garis trend untuk mengidentifikasi arah trend, level entry, dan exit. Channel trading menggunakan parallel trendlines untuk trading range-bound markets.",
+    keyConcepts: ["Uptrend Line", "Downtrend Line", "Channel Trading", "Trendline Break", "Parallel Channels", "Median Line"],
+    timeframe: "H1, H4, Daily",
+    difficulty: "Beginner",
+    resources: ["Bulkowski's Trendline Analysis", "Andrew's Pitchfork Guide", "Trendline Trading Basics"],
+    relatedMethods: ["snr", "breakout", "channel-trading"]
+  },
+  {
+    id: "chart-pattern",
+    name: "Chart Pattern",
+    category: "Technical",
+    description: "Mengidentifikasi pola-pola klasik di chart yang menunjukkan continuation atau reversal. Pola seperti Head & Shoulders, Double Top/Bottom, Triangle, dan Flag.",
+    keyConcepts: ["Head & Shoulders", "Double Top/Bottom", "Triangle (Ascending, Descending, Symmetrical)", "Flag & Pennant", "Wedge Patterns"],
+    timeframe: "H1, H4, Daily",
+    difficulty: "Intermediate",
+    resources: ["Bulkowski's Encyclopedia of Chart Patterns", "Classic Technical Analysis Books", "Pattern Recognition Tools"],
+    relatedMethods: ["price-action", "breakout", "reversal-trading"]
+  },
+  {
+    id: "fundamental",
+    name: "Fundamental Analysis",
+    category: "Fundamental",
+    description: "Analisis berdasarkan berita ekonomi, data makroekonomi, kebijakan bank sentral, dan geopolitik. Fokus pada 'why' harga bergerak, bukan hanya 'how'.",
+    keyConcepts: ["Economic Indicators (NFP, CPI, GDP)", "Central Bank Policy", "Interest Rates", "Geopolitical Events", "Market Sentiment"],
+    timeframe: "H4, Daily, Weekly",
+    difficulty: "Advanced",
+    resources: ["Forex Factory Economic Calendar", "DailyFX Fundamental Analysis", "Bloomberg/Reuters News"],
+    relatedMethods: ["news-trading", "sentiment-analysis", "intermarket"]
+  },
+  {
+    id: "reversal",
+    name: "Reversal Trading",
+    category: "Technical",
+    description: "Strategi entry saat mendeteksi potensi perubahan arah trend menggunakan divergence, overbought/oversold indicators, atau exhaustion signals.",
+    keyConcepts: ["Divergence (RSI, MACD)", "Overbought/Oversold", "Exhaustion Candles", "Trend Reversal Patterns", "Momentum Shift"],
+    timeframe: "H1, H4, Daily",
+    difficulty: "Advanced",
+    resources: ["Divergence Trading Strategy", "RSI/MACD Divergence Guide", "Reversal Pattern Books"],
+    relatedMethods: ["divergence", "pattern-recognition", "price-action"]
+  },
+  {
+    id: "fibonacci",
+    name: "Fibonacci Trading",
+    category: "Technical",
+    description: "Menggunakan deret Fibonacci untuk mengidentifikasi level retracement, extension, dan proyeksi harga. Tools seperti Fib Retracement, Expansion, dan Fans.",
+    keyConcepts: ["Fibonacci Retracement (38.2%, 50%, 61.8%)", "Fibonacci Extension", "Fibonacci Fans", "Confluence Zones", "Fib Time Zones"],
+    timeframe: "Semua timeframe",
+    difficulty: "Intermediate",
+    resources: ["Fibonacci Trading Books by Boroden", "Carolyn Boroden Fibonacci Queen", "Fibonacci Trading Course"],
+    relatedMethods: ["price-action", "support-resistance", "elliott-wave"]
+  },
+  {
+    id: "alchemist",
+    name: "Alchemist x MSNR",
+    category: "Technical",
+    description: "Metode proprietary oleh Mulky Malikul Dhaher yang menggabungkan konsep ICT, SMC, dan fibonacci dengan modifikasi khusus untuk kondisi market Asia. Fokus pada konsistensi dan risk management.",
+    keyConcepts: ["MSNR Levels (Modified SNR)", "Killzone Adaptasi Asia", "Custom Fibo Clusters", "Hybrid Confirmation", "Strict Risk Rules"],
+    timeframe: "M15, H1, H4",
+    difficulty: "Advanced",
+    resources: ["Pasè FX Community", "Private Mentorship dengan Mulky", "Alchemist Method Documentation"],
+    relatedMethods: ["ict", "smc", "fibonacci", "custom-method"]
   }
-  // Catatan: Metode lain akan ditambahkan di kemudian hari
 ];
 
 // =============================================================================
@@ -282,12 +358,12 @@ export const BROKERS_DATA: Broker[] = [
 ];
 
 // =============================================================================
-// EDUCATION - BELUM TERSEDIA
+// EDUCATION - REAL CONTENT AVAILABLE
 // =============================================================================
-// Status: Konten edukasi dalam penulisan
-// Target: Artikel akan ditambahkan secara bertahap
-// Saat ini belum ada artikel yang tersedia
-export const EDUCATION_ARTICLES: EducationArticle[] = [];
+// Status: ✅ 5 Artikel Berkualitas Tersedia
+// Update: Februari 2026
+// Konten ditulis oleh tim Pasè FX dengan standar profesional
+export const EDUCATION_ARTICLES: EducationArticle[] = ARTICLES_DATA;
 
 // =============================================================================
 // FEATURES - APA YANG KAMI USAHAKAN BANGUN
@@ -315,18 +391,12 @@ export const FEATURES = [
   }
 ];
 
-// API Configuration
-export const API_CONFIG = {
-  baseUrl: process.env.NODE_ENV === 'production' 
-    ? 'https://pasefx.vercel.app/api'
-    : '/api',
-  endpoints: {
-    signals: '/signals/latest',
-    brokers: '/brokers',
-    track: '/track',
-    subscribe: '/subscribe'
-  }
-};
+// =============================================================================
+// ANALYTICS - PURE FRONTEND (NO BACKEND)
+// =============================================================================
+// Website ini 100% frontend static - tidak ada server/backend
+// Semua data disimpan di browser user (localStorage) atau static
+// Tidak ada tracking server-side
 
 // Analytics Configuration
 export const ANALYTICS_CONFIG = {

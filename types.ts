@@ -35,6 +35,7 @@ export interface EducationArticle {
   category: string;
   summary: string;
   readTime: string;
+  content?: string;
 }
 
 export interface NavItem {

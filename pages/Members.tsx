@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Users, Search, MessageCircle, Award, Activity, Filter } from 'lucide-react';
-import { COMMUNITY_MEMBERS, SOCIAL_LINKS } from '../constants';
+import { COMMUNITY_MEMBERS, SOCIAL_LINKS, TRADING_METHODS } from '../constants';
 
 const Members: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');

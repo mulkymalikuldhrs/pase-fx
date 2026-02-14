@@ -1,0 +1,20 @@
+# robots.txt for Pasè FX Trader Hub
+# https://pasefx.vercel.app
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://pasefx.vercel.app/sitemap.xml
+
+# Disallow sensitive or development paths
+Disallow: /api/
+Disallow: /*?*
+
+# Allow specific assets
+Allow: /logo.png
+Allow: /index.css
+Allow: /assets/
+
+# Crawl rate
+Crawl-delay: 10

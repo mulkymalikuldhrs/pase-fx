@@ -12,11 +12,24 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1 md:col-span-1">
             <div className="flex items-center gap-2 mb-4">
-              <img 
-                src="/logo.png" 
-                alt="Pasè FX Logo" 
-                className="h-8 w-auto object-contain"
-              />
+              <div className="relative">
+                <img 
+                  src="/logo.png" 
+                  alt="Pasè FX Logo" 
+                  className="h-8 w-auto object-contain bg-white/10 rounded-lg p-1"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    const fallback = target.parentElement?.querySelector('.logo-fallback-footer');
+                    if (fallback) fallback.classList.remove('hidden');
+                  }}
+                />
+                <div className="logo-fallback-footer hidden absolute inset-0 flex items-center justify-center">
+                  <div className="h-8 w-8 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center">
+                    <span className="text-white font-bold text-sm">Pè</span>
+                  </div>
+                </div>
+              </div>
               <h3 className="text-white text-lg font-bold">{APP_NAME}</h3>
             </div>
             <p className="text-sm italic mb-4">"Ta doeng saban-saban sabe keudroe-droe, beu koeng lage meupula"</p>
@@ -38,6 +51,8 @@ const Footer: React.FC = () => {
             <h4 className="text-white font-semibold mb-4">Legal & Support</h4>
             <ul className="space-y-2 text-sm">
               <li><a href="#/disclaimer" className="hover:text-emerald-400 transition">Disclaimer & Risiko</a></li>
+              <li><a href="/terms-of-service.html" className="hover:text-emerald-400 transition">Syarat & Ketentuan</a></li>
+              <li><a href="/privacy-policy.html" className="hover:text-emerald-400 transition">Kebijakan Privasi</a></li>
               <li><a href="#/jurnal" className="hover:text-emerald-400 transition">Jurnal Trading</a></li>
               <li><a href={SOCIAL_LINKS.telegram} target="_blank" rel="noreferrer" className="hover:text-emerald-400 transition">Hubungi Admin</a></li>
             </ul>

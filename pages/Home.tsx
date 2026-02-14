@@ -53,16 +53,24 @@ const Home: React.FC = () => {
           
           {/* Logo */}
           <div className="mb-8">
-            <img 
-              src="/logo.png" 
-              alt="Pasè FX Logo" 
-              className="h-24 w-auto mx-auto object-contain drop-shadow-2xl animate-float"
-              onError={(e) => {
-                // Fallback if logo fails to load
-                const target = e.target as HTMLImageElement;
-                target.style.display = 'none';
-              }}
-            />
+            <div className="relative inline-block">
+              <img 
+                src="/logo.png" 
+                alt="Pasè FX Logo" 
+                className="h-24 w-auto mx-auto object-contain drop-shadow-2xl animate-float bg-white/10 backdrop-blur-sm rounded-2xl p-4"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                  const fallback = target.parentElement?.querySelector('.logo-fallback');
+                  if (fallback) fallback.classList.remove('hidden');
+                }}
+              />
+              <div className="logo-fallback hidden absolute inset-0 flex items-center justify-center">
+                <div className="h-24 w-24 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center shadow-2xl">
+                  <span className="text-white font-bold text-3xl">Pè</span>
+                </div>
+              </div>
+            </div>
           </div>
           
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-sm font-medium mb-8 animate-fade-in-up">
