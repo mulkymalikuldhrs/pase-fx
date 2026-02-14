@@ -5,17 +5,17 @@ import { AlertTriangle, ExternalLink } from 'lucide-react';
 
 const Brokers: React.FC = () => {
   return (
-    <div className="bg-slate-50 min-h-screen py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen py-12 px-4">
+      <div className="max-w-7xl mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h1 className="text-3xl font-bold text-slate-900 mb-4">Broker & Prop Firm Rekomendasi</h1>
-          <p className="text-slate-600 text-lg">
+          <h1 className="text-3xl font-bold text-gray-900 mb-4">Broker & Prop Firm Rekomendasi</h1>
+          <p className="text-gray-600 text-lg">
             Kami telah menyeleksi partner terbaik yang mendukung gaya trading profesional. Aman, regulasi jelas, dan kondisi trading yang fair.
           </p>
         </div>
 
         {/* Warning Banner */}
-        <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-12 rounded-r-lg flex items-start gap-3">
+        <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-12 rounded-r-lg flex items-start gap-3 shadow-sm">
             <AlertTriangle className="text-yellow-600 shrink-0 mt-0.5" />
             <div>
                 <h4 className="font-bold text-yellow-800 text-sm uppercase mb-1">Peringatan Risiko</h4>
@@ -32,7 +32,7 @@ const Brokers: React.FC = () => {
         </div>
 
         {/* Traders Family Section */}
-        <div className="mt-12 bg-gradient-to-r from-blue-600 to-blue-800 p-8 rounded-xl text-white">
+        <div className="mt-12 bg-gradient-to-r from-blue-600 to-blue-800 p-8 rounded-xl text-white shadow-lg">
           <div className="max-w-4xl mx-auto text-center">
             <h3 className="text-2xl font-bold mb-4">Partner Utama Kami</h3>
             <p className="text-blue-100 mb-6">
@@ -42,7 +42,7 @@ const Brokers: React.FC = () => {
               href={AFFILIATE_LINKS.mrg}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-3 bg-white text-blue-800 px-8 py-4 rounded-xl font-bold hover:bg-blue-50 transition shadow-lg"
+              className="inline-flex items-center gap-3 bg-white text-blue-800 px-8 py-4 rounded-xl font-bold hover:bg-blue-50 transition shadow-lg hover:shadow-xl"
             >
               <img 
                 src={MRG_LOGO_URL} 
@@ -62,9 +62,9 @@ const Brokers: React.FC = () => {
           </div>
         </div>
 
-        <div className="mt-16 bg-white p-8 rounded-xl border border-slate-200 text-center">
-            <h3 className="text-xl font-bold text-slate-900 mb-2">Transparansi Afiliasi (IB)</h3>
-            <p className="text-slate-600 max-w-2xl mx-auto">
+        <div className="mt-16 glass-card bg-white/70 p-8 border-gray-200 text-center">
+            <h3 className="text-xl font-bold text-gray-900 mb-2">Transparansi Afiliasi (IB)</h3>
+            <p className="text-gray-600 max-w-2xl mx-auto">
                 Kami menerima komisi ketika Anda mendaftar melalui link di atas. Komisi ini digunakan 100% untuk operasional komunitas, pengembangan website, dan donasi sosial. Harga/spread yang Anda dapatkan TIDAK menjadi lebih mahal.
             </p>
         </div>

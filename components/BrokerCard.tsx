@@ -33,9 +33,9 @@ const BrokerCard: React.FC<BrokerCardProps> = ({ broker }) => {
   const isMRG = broker.id === 'mrg';
 
   return (
-    <div className="glass-card flex flex-col h-full">
+    <div className="glass-card flex flex-col h-full bg-white/60 hover:bg-white/80 transition-all duration-300">
       {broker.isRecommended && (
-        <div className="absolute top-0 right-0 bg-emerald-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg z-10">
+        <div className="absolute top-0 right-0 bg-emerald-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-xl z-10 shadow-sm">
           RECOMMENDED
         </div>
       )}
@@ -43,7 +43,7 @@ const BrokerCard: React.FC<BrokerCardProps> = ({ broker }) => {
       <div className="p-6 flex-1">
         <div className="flex items-center justify-between mb-4">
            {/* Logo */}
-           <div className="h-12 w-32 bg-slate-800/50 rounded flex items-center justify-center overflow-hidden">
+           <div className="h-12 w-32 bg-white/80 border border-gray-100 rounded flex items-center justify-center overflow-hidden shadow-sm">
                {isMRG ? (
                  <a 
                    href={AFFILIATE_LINKS.mrg} 
@@ -59,47 +59,47 @@ const BrokerCard: React.FC<BrokerCardProps> = ({ broker }) => {
                    />
                  </a>
                ) : (
-                 <img src={broker.logo} alt={broker.name} className="w-full h-full object-cover opacity-80" />
+                 <img src={broker.logo} alt={broker.name} className="w-full h-full object-cover opacity-90" />
                )}
            </div>
-           <div className="flex items-center gap-1 bg-yellow-500/10 px-2 py-1 rounded-md border border-yellow-500/30">
-               <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-               <span className="text-sm font-bold text-slate-300">{broker.rating}</span>
+           <div className="flex items-center gap-1 bg-yellow-50 px-2 py-1 rounded-md border border-yellow-200 shadow-sm">
+               <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+               <span className="text-sm font-bold text-gray-700">{broker.rating}</span>
            </div>
         </div>
 
-        <h3 className="text-xl font-bold text-white mb-1">{broker.name}</h3>
+        <h3 className="text-xl font-bold text-gray-900 mb-1">{broker.name}</h3>
         <div className="flex items-center gap-2 mb-4">
-            <span className="text-xs px-2 py-0.5 rounded-full bg-slate-700 text-slate-300 border border-slate-600">
+            <span className="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-600 border border-gray-200">
                 {broker.type}
             </span>
-             <span className="flex items-center gap-1 text-xs text-slate-400">
+             <span className="flex items-center gap-1 text-xs text-gray-500">
                 <ShieldCheck size={12} /> {broker.regulation}
             </span>
         </div>
 
         <ul className="space-y-2 mb-6">
             {broker.features.slice(0, 4).map((feature, idx) => (
-                <li key={idx} className="flex items-start gap-2 text-sm text-slate-300">
-                    <CheckCircle className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
+                <li key={idx} className="flex items-start gap-2 text-sm text-gray-600">
+                    <CheckCircle className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" />
                     <span>{feature}</span>
                 </li>
             ))}
         </ul>
       </div>
 
-      <div className="p-4 bg-slate-800/30 border-t border-slate-700/50 mt-auto">
+      <div className="p-4 bg-gray-50/50 border-t border-gray-100 mt-auto rounded-b-xl">
         <a 
             href={isMRG ? AFFILIATE_LINKS.mrg : `/api/go?broker=${broker.id}`}
             onClick={handleClick}
             target="_blank" 
             rel="noreferrer"
-            className="flex items-center justify-center gap-2 w-full py-2.5 bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-400 border border-emerald-500/30 rounded-lg font-medium transition-all"
+            className="flex items-center justify-center gap-2 w-full py-2.5 bg-emerald-50 text-emerald-600 hover:bg-emerald-100 border border-emerald-200 rounded-lg font-medium transition-all shadow-sm"
         >
             Buka Akun
             <ExternalLink size={16} />
         </a>
-        <p className="text-[10px] text-center text-slate-500 mt-2">
+        <p className="text-[10px] text-center text-gray-400 mt-2">
             Dengan mendaftar melalui link ini, Anda mendukung komunitas Pasè FX.
         </p>
       </div>

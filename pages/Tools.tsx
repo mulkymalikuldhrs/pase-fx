@@ -27,7 +27,7 @@ const Tools: React.FC = () => {
               "symbol": "OANDA:XAUUSD",
               "interval": "D",
               "timezone": "Asia/Jakarta",
-              "theme": "dark",
+              "theme": "light",
               "style": "1",
               "locale": "en",
               "enable_publishing": false,
@@ -45,7 +45,7 @@ const Tools: React.FC = () => {
           script.src = "https://s3.tradingview.com/external-embedding/embed-widget-events.js";
           script.async = true;
           script.innerHTML = JSON.stringify({
-            "colorTheme": "dark",
+            "colorTheme": "light",
             "isTransparent": false,
             "width": "100%",
             "height": "400",
@@ -77,7 +77,7 @@ const Tools: React.FC = () => {
               "NZD"
             ],
             "isTransparent": false,
-            "colorTheme": "dark",
+            "colorTheme": "light",
             "locale": "en"
           });
           heatmapContainerRef.current.appendChild(script);
@@ -98,7 +98,7 @@ const Tools: React.FC = () => {
             "showIntervalTabs": true,
             "displayMode": "single",
             "locale": "en",
-            "colorTheme": "dark"
+            "colorTheme": "light"
           });
           sentimentContainerRef.current.appendChild(script);
       }
@@ -112,7 +112,7 @@ const Tools: React.FC = () => {
           script.innerHTML = JSON.stringify({
             "symbol": "OANDA:XAUUSD",
             "width": "100%",
-            "colorTheme": "dark",
+            "colorTheme": "light",
             "isTransparent": false,
             "locale": "en"
           });
@@ -128,7 +128,7 @@ const Tools: React.FC = () => {
           script.innerHTML = JSON.stringify({
             "symbol": "TVC:DXY",
             "width": "100%",
-            "colorTheme": "dark",
+            "colorTheme": "light",
             "isTransparent": false,
             "locale": "en"
           });
@@ -145,7 +145,7 @@ const Tools: React.FC = () => {
             "symbol": "CFTC:EUR_NET",
             "width": "100%",
             "locale": "en",
-            "colorTheme": "dark"
+            "colorTheme": "light"
           });
           cotContainerRef.current.appendChild(script);
       }
@@ -153,15 +153,15 @@ const Tools: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-12 px-4">
+    <div className="min-h-screen py-12 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Tools Trading</h1>
-          <p className="text-slate-400 max-w-2xl mx-auto">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Tools Trading</h1>
+          <p className="text-gray-500 max-w-2xl mx-auto">
             Kalkulator dan widget untuk membantu analisis dan manajemen trading Anda.
           </p>
-          <div className="mt-4 inline-flex items-center gap-2 text-xs text-blue-400 bg-blue-400/10 px-3 py-1 rounded-full">
+          <div className="mt-4 inline-flex items-center gap-2 text-xs text-blue-600 bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
             <span>ℹ️</span>
             <span>Kalkulator untuk estimasi. Selalu verifikasi dengan platform trading Anda.</span>
           </div>
@@ -175,8 +175,8 @@ const Tools: React.FC = () => {
 
         {/* Calculators Section */}
         <div className="mb-12">
-          <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
-            <Calculator className="text-emerald-400" /> Trading Calculators
+          <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+            <Calculator className="text-emerald-500" /> Trading Calculators
           </h2>
           <div className="grid lg:grid-cols-3 gap-6">
             <PipCalculator />
@@ -186,16 +186,16 @@ const Tools: React.FC = () => {
         </div>
 
         {/* Trading Widgets Grid */}
-        <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
-          <BarChart3 className="text-emerald-400" /> Market Widgets
+        <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+          <BarChart3 className="text-emerald-500" /> Market Widgets
         </h2>
         
         <div className="grid lg:grid-cols-2 gap-6">
             {/* Economic Calendar */}
-            <div className="glass-card p-6 overflow-hidden">
+            <div className="glass-card bg-white/60 p-6 overflow-hidden border-gray-200">
                 <div className="flex items-center justify-between mb-6">
-                    <h3 className="text-lg font-bold flex items-center gap-2 text-white">
-                        <Calendar className="text-emerald-400" /> Economic Calendar
+                    <h3 className="text-lg font-bold flex items-center gap-2 text-gray-900">
+                        <Calendar className="text-emerald-500" /> Economic Calendar
                     </h3>
                 </div>
                 <div className="tradingview-widget-container" ref={calendarContainerRef}>
@@ -204,10 +204,10 @@ const Tools: React.FC = () => {
             </div>
 
             {/* Currency Strength / Heat Map */}
-            <div className="glass-card p-6 overflow-hidden">
+            <div className="glass-card bg-white/60 p-6 overflow-hidden border-gray-200">
                 <div className="flex items-center justify-between mb-6">
-                    <h3 className="text-lg font-bold flex items-center gap-2 text-white">
-                        <Activity className="text-emerald-400" /> Forex Heat Map
+                    <h3 className="text-lg font-bold flex items-center gap-2 text-gray-900">
+                        <Activity className="text-emerald-500" /> Forex Heat Map
                     </h3>
                 </div>
                 <div className="tradingview-widget-container" ref={heatmapContainerRef}>
@@ -216,10 +216,10 @@ const Tools: React.FC = () => {
             </div>
             
             {/* Gold Price (XAUUSD) */}
-            <div className="glass-card p-6">
+            <div className="glass-card bg-white/60 p-6 border-gray-200">
                 <div className="flex items-center justify-between mb-6">
-                    <h3 className="text-lg font-bold flex items-center gap-2 text-white">
-                        <TrendingUp className="text-yellow-400" /> Gold Price (XAUUSD)
+                    <h3 className="text-lg font-bold flex items-center gap-2 text-gray-900">
+                        <TrendingUp className="text-yellow-500" /> Gold Price (XAUUSD)
                     </h3>
                 </div>
                 <div className="tradingview-widget-container" ref={goldContainerRef}>
@@ -228,10 +228,10 @@ const Tools: React.FC = () => {
             </div>
 
             {/* DXY Index */}
-            <div className="glass-card p-6">
+            <div className="glass-card bg-white/60 p-6 border-gray-200">
                 <div className="flex items-center justify-between mb-6">
-                    <h3 className="text-lg font-bold flex items-center gap-2 text-white">
-                        <DollarSign className="text-green-400" /> DXY Index
+                    <h3 className="text-lg font-bold flex items-center gap-2 text-gray-900">
+                        <DollarSign className="text-green-600" /> DXY Index
                     </h3>
                 </div>
                 <div className="tradingview-widget-container" ref={dxyContainerRef}>
@@ -240,10 +240,10 @@ const Tools: React.FC = () => {
             </div>
             
             {/* Market Sentiment */}
-            <div className="glass-card p-6 overflow-hidden">
+            <div className="glass-card bg-white/60 p-6 overflow-hidden border-gray-200">
                 <div className="flex items-center justify-between mb-6">
-                    <h3 className="text-lg font-bold flex items-center gap-2 text-white">
-                        <Globe className="text-blue-400" /> Market Sentiment (EURUSD)
+                    <h3 className="text-lg font-bold flex items-center gap-2 text-gray-900">
+                        <Globe className="text-blue-500" /> Market Sentiment (EURUSD)
                     </h3>
                 </div>
                 <div className="tradingview-widget-container" ref={sentimentContainerRef}>
@@ -252,28 +252,28 @@ const Tools: React.FC = () => {
             </div>
 
             {/* COT Data (Commitment of Traders) */}
-            <div className="glass-card p-6">
+            <div className="glass-card bg-white/60 p-6 border-gray-200">
                 <div className="flex items-center justify-between mb-6">
-                    <h3 className="text-lg font-bold flex items-center gap-2 text-white">
-                        <BarChart3 className="text-purple-400" /> COT Data (EUR)
+                    <h3 className="text-lg font-bold flex items-center gap-2 text-gray-900">
+                        <BarChart3 className="text-purple-500" /> COT Data (EUR)
                     </h3>
                 </div>
                 <div className="tradingview-widget-container" ref={cotContainerRef}>
                     <div className="tradingview-widget-container__widget"></div>
                 </div>
-                <p className="text-xs text-slate-400 mt-4">
+                <p className="text-xs text-gray-400 mt-4">
                     *Commitment of Traders data shows net positions of institutional traders. Updated weekly (Friday).
                 </p>
             </div>
 
             {/* TradingView Advanced Chart - Full Width */}
-            <div className="glass-card p-6 lg:col-span-2">
+            <div className="glass-card bg-white/60 p-6 lg:col-span-2 border-gray-200">
                 <div className="flex items-center justify-between mb-4">
-                     <h3 className="text-lg font-bold flex items-center gap-2 text-white">
-                        <DollarSign className="text-emerald-400" /> Advanced Chart
+                     <h3 className="text-lg font-bold flex items-center gap-2 text-gray-900">
+                        <DollarSign className="text-emerald-500" /> Advanced Chart
                     </h3>
                 </div>
-                <div className="aspect-video bg-slate-800/50 rounded-lg overflow-hidden border border-slate-700">
+                <div className="aspect-video bg-gray-50 rounded-lg overflow-hidden border border-gray-200">
                     <div className="tradingview-widget-container h-full w-full" ref={chartContainerRef}>
                         <div className="tradingview-widget-container__widget h-full w-full"></div>
                     </div>
@@ -282,12 +282,12 @@ const Tools: React.FC = () => {
         </div>
 
         {/* Quick Tip */}
-        <div className="mt-12 p-6 glass-card border-l-4 border-emerald-500">
-          <h3 className="text-lg font-bold text-white mb-2 flex items-center gap-2">
-            <Clock className="text-emerald-400" />
+        <div className="mt-12 p-6 glass-card bg-white/80 border-l-4 border-emerald-500">
+          <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
+            <Clock className="text-emerald-500" />
             Trading Tips
           </h3>
-          <ul className="space-y-2 text-slate-300 text-sm">
+          <ul className="space-y-2 text-gray-600 text-sm">
             <li>• Use the Position Calculator before every trade to ensure proper risk management</li>
             <li>• Check Market Sessions to trade during high volatility periods</li>
             <li>• Monitor Economic Calendar for high-impact news events</li>
