@@ -1,7 +1,7 @@
 import React from 'react';
-import { BROKERS_DATA } from '../constants';
+import { BROKERS_DATA, AFFILIATE_LINKS, MRG_LOGO_URL } from '../constants';
 import BrokerCard from '../components/BrokerCard';
-import { AlertTriangle } from 'lucide-react';
+import { AlertTriangle, ExternalLink } from 'lucide-react';
 
 const Brokers: React.FC = () => {
   return (
@@ -29,6 +29,37 @@ const Brokers: React.FC = () => {
           {BROKERS_DATA.map(broker => (
             <BrokerCard key={broker.id} broker={broker} />
           ))}
+        </div>
+
+        {/* Traders Family Section */}
+        <div className="mt-12 bg-gradient-to-r from-blue-600 to-blue-800 p-8 rounded-xl text-white">
+          <div className="max-w-4xl mx-auto text-center">
+            <h3 className="text-2xl font-bold mb-4">Partner Utama Kami</h3>
+            <p className="text-blue-100 mb-6">
+              Kami bekerja sama dengan Traders Family untuk memberikan layanan broker terbaik
+            </p>
+            <a 
+              href={AFFILIATE_LINKS.mrg}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-3 bg-white text-blue-800 px-8 py-4 rounded-xl font-bold hover:bg-blue-50 transition shadow-lg"
+            >
+              <img 
+                src={MRG_LOGO_URL} 
+                alt="Traders Family" 
+                className="h-8 w-auto"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                }}
+              />
+              <span>Daftar MRG via Traders Family</span>
+              <ExternalLink size={18} />
+            </a>
+            <p className="text-xs text-blue-200 mt-4">
+              Klik logo di atas untuk mendaftar akun trading MRG melalui Traders Family
+            </p>
+          </div>
         </div>
 
         <div className="mt-16 bg-white p-8 rounded-xl border border-slate-200 text-center">

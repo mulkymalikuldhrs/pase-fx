@@ -72,11 +72,10 @@ export const AFFILIATE_LINKS = {
 export const MRG_LOGO_URL = "https://account.tradersfamily.id/images/logo-tf-rebrand.png";
 
 // =============================================================================
-// COMMUNITY MEMBERS - HANYA FOUNDERS (TERVERIFIKASI)
+// COMMUNITY MEMBERS - TERVERIFIKASI
 // =============================================================================
-// Status: Belum ada sistem database anggota
-// Saat ini hanya menampilkan founders yang aktif
-// Integrasi dengan Telegram/WhatsApp API akan datang di update berikutnya
+// Status: Daftar anggota yang sudah dikonfirmasi keberadaannya
+// Catatan: Anggota lain akan ditambahkan setelah verifikasi
 export const COMMUNITY_MEMBERS = [
   {
     id: 1,
@@ -100,6 +99,17 @@ export const COMMUNITY_MEMBERS = [
     expertise: "technical",
     joinDate: "2020-01-15",
     whatsapp: WHATSAPP_CONTACTS.azil.phone,
+    verified: true
+  },
+  {
+    id: 3,
+    name: "Hadi Saputra",
+    role: "Senior Analyst",
+    avatar: "H",
+    status: "online",
+    methods: ["Fundamental", "SNR", "Breakout", "SMC", "Chart Pattern"],
+    expertise: "hybrid",
+    joinDate: "2021-03-01",
     verified: true
   }
 ];
@@ -218,8 +228,57 @@ export const BROKERS_DATA: Broker[] = [
     regulation: "Prop Firm",
     features: ["Challenge $5k - $100k", "Payout Cepat", "Rules Fair", "No Time Limit"],
     isRecommended: true
+  },
+  {
+    id: "valetax",
+    name: "Valetax",
+    type: "International",
+    link: AFFILIATE_LINKS.valetax,
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/2560px-Flag_of_the_United_States.svg.png",
+    rating: 4.5,
+    regulation: "FSA",
+    features: ["Low Spread", "Fast Execution", "MT5 Support", "Micro Account"]
+  },
+  {
+    id: "the5ers",
+    name: "The 5%ers",
+    type: "Prop Firm",
+    link: AFFILIATE_LINKS.the5ers,
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/2560px-Flag_of_the_United_States.svg.png",
+    rating: 4.7,
+    regulation: "Prop Firm",
+    features: ["Instant Funding", "No Challenge", "Growth Plan", "Real Account"]
+  },
+  {
+    id: "didimax",
+    name: "Didimax",
+    type: "Local",
+    link: AFFILIATE_LINKS.didimax,
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Flag_of_Indonesia.svg/2560px-Flag_of_Indonesia.svg.png",
+    rating: 4.4,
+    regulation: "BAPPEBTI",
+    features: ["Deposit Bank Lokal", "MT4/MT5", "Edukasi Gratis", "Komunitas Aktif"]
+  },
+  {
+    id: "hfm",
+    name: "HFM (HotForex)",
+    type: "International",
+    link: AFFILIATE_LINKS.hfm,
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/2560px-Flag_of_the_United_States.svg.png",
+    rating: 4.5,
+    regulation: "FCA/CySEC",
+    features: ["Multi-Asset", "Copy Trading", "Bonus Programs", "Research Tools"]
+  },
+  {
+    id: "fbs",
+    name: "FBS",
+    type: "International",
+    link: AFFILIATE_LINKS.fbs,
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/2560px-Flag_of_the_United_States.svg.png",
+    rating: 4.3,
+    regulation: "CySEC/IFSC",
+    features: ["Cent Account", "Bonus 100%", "Loyalty Program", "24/7 Support"]
   }
-  // Catatan: Broker lain akan ditambahkan
 ];
 
 // =============================================================================
