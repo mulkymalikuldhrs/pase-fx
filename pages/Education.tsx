@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { EDUCATION_ARTICLES } from '../constants';
-import { Clock, ChevronRight, BookOpen, Search, Filter } from 'lucide-react';
+import { Clock, BookOpen, AlertTriangle, Send } from 'lucide-react';
+import { SOCIAL_LINKS } from '../constants';
 
 const Education: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
 
-  const categories = ['All', ...Array.from(new Set(EDUCATION_ARTICLES.map(a => a.category)))];
+  const categories = ['All']; // Empty for now
 
   const filteredArticles = EDUCATION_ARTICLES.filter(article => {
     const matchesCategory = selectedCategory === 'All' || article.category === selectedCategory;
@@ -18,77 +19,89 @@ const Education: React.FC = () => {
   return (
     <div className="bg-slate-50 min-h-screen py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
         <div className="text-center mb-12">
-            <h1 className="text-3xl font-bold text-slate-900 mb-2">Pusat Edukasi</h1>
-            <p className="text-slate-600">Belajar trading dari nol sampai mahir dengan kurikulum sistematis.</p>
-            <p className="text-sm text-emerald-600 mt-2 font-medium">
-              {EDUCATION_ARTICLES.length} Artikel Tersedia
-            </p>
+          <h1 className="text-3xl font-bold text-slate-900 mb-2">Pusat Edukasi</h1>
+          <p className="text-slate-600">Belajar trading dari nol sampai mahir dengan kurikulum sistematis.</p>
+          <div className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-50 border border-amber-200">
+            <AlertTriangle className="text-amber-500" size={16} />
+            <span className="text-sm text-amber-700 font-medium">Konten dalam pengembangan</span>
+          </div>
         </div>
 
-        {/* Search and Filter */}
-        <div className="mb-8 space-y-4">
+        {/* Warning Banner */}
+        <div className="bg-amber-50 border-l-4 border-amber-400 p-4 mb-8 rounded-r-lg flex items-start gap-3">
+          <AlertTriangle className="text-amber-600 shrink-0 mt-0.5" size={24} />
+          <div>
+            <h4 className="font-bold text-amber-800 text-sm uppercase mb-1">Artikel Belum Tersedia</h4>
+            <p className="text-sm text-amber-800/80 mb-2">
+              Konten edukasi masih dalam proses penulisan. Kami sedang menyiapkan materi-materi berkualitas untuk komunitas.
+            </p>
+            <p className="text-sm text-amber-800/80">
+              Sementara ini, Anda bisa belajar langsung di komunitas Telegram atau WhatsApp kami.
+            </p>
+          </div>
+        </div>
+
+        {/* Search and Filter - Disabled */}
+        <div className="mb-8 space-y-4 opacity-50">
           <div className="relative max-w-md mx-auto">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
             <input
               type="text"
               placeholder="Cari artikel..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+              disabled
+              className="w-full pl-10 pr-4 py-3 bg-slate-100 border border-slate-200 rounded-lg cursor-not-allowed"
             />
           </div>
 
           <div className="flex flex-wrap justify-center gap-2">
-            {categories.map(cat => (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                  selectedCategory === cat
-                    ? 'bg-emerald-500 text-white'
-                    : 'bg-white text-slate-600 border border-slate-200 hover:border-emerald-500 hover:text-emerald-500'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
+            <button
+              disabled
+              className="px-4 py-2 rounded-full text-sm font-medium bg-slate-200 text-slate-400 cursor-not-allowed"
+            >
+              All
+            </button>
           </div>
         </div>
 
-        {/* Articles Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredArticles.map(article => (
-            <div key={article.id} className="bg-white rounded-xl border border-slate-200 p-6 hover:shadow-lg transition-all cursor-pointer group hover:-translate-y-1">
-              <div className="flex items-center gap-2 mb-3">
-                <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-700 uppercase tracking-wider">
-                  {article.category}
+        {/* Empty State */}
+        <div className="bg-white rounded-xl border border-slate-200 p-12 text-center">
+          <BookOpen className="w-16 h-16 text-slate-300 mx-auto mb-4" />
+          <h3 className="text-xl font-bold text-slate-700 mb-2">Belum Ada Artikel</h3>
+          <p className="text-slate-500 max-w-md mx-auto mb-6">
+            Konten edukasi masih dalam tahap penulisan. Artikel-artikel akan ditambahkan secara bertahap.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <a 
+              href={SOCIAL_LINKS.telegram}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+            >
+              <Send size={18} />
+              Join Telegram
+            </a>
+            <a 
+              href={SOCIAL_LINKS.whatsapp}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
+            >
+              Join WhatsApp Group
+            </a>
+          </div>
+          
+          <div className="mt-8 pt-8 border-t border-slate-100">
+            <p className="text-sm text-slate-400 mb-4">Topik yang akan datang:</p>
+            <div className="flex flex-wrap justify-center gap-2">
+              {['Trading Plan', 'Risk Management', 'SMC', 'ICT', 'Price Action', 'Psychology'].map((topic) => (
+                <span key={topic} className="px-3 py-1 bg-slate-100 text-slate-500 text-xs rounded-full">
+                  {topic}
                 </span>
-              </div>
-              <h3 className="text-lg font-bold text-slate-900 mb-3 group-hover:text-emerald-600 transition-colors line-clamp-2">
-                {article.title}
-              </h3>
-              <p className="text-slate-600 text-sm mb-4 line-clamp-3">
-                {article.summary}
-              </p>
-              <div className="flex items-center justify-between text-xs text-slate-400 border-t border-slate-100 pt-3">
-                <span className="flex items-center gap-1">
-                  <Clock size={12} /> {article.readTime} read
-                </span>
-                <span className="flex items-center gap-1 font-medium text-emerald-600 group-hover:translate-x-1 transition-transform">
-                  Baca Artikel <ChevronRight size={12} />
-                </span>
-              </div>
+              ))}
             </div>
-          ))}
-        </div>
-
-        {filteredArticles.length === 0 && (
-          <div className="text-center py-20">
-            <BookOpen className="w-16 h-16 text-slate-300 mx-auto mb-4" />
-            <p className="text-slate-500">Tidak ada artikel ditemukan.</p>
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
