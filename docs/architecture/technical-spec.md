@@ -180,15 +180,16 @@ User Action → State Update → LocalStorage Save → Re-render
 
 ## 📈 Performance Metrics (Current)
 
-| Metric | Target | Current (v0.1.4) | Status |
+| Metric | Target | Current (v2.0.0) | Status |
 |--------|--------|------------------|--------|
 | First Contentful Paint | < 1.5s | ~1.2s | ✅ |
 | Largest Contentful Paint | < 2.5s | ~2.1s | ✅ |
 | Time to Interactive | < 3.5s | ~2.5s | ✅ |
-| Bundle Size | < 500KB | ~400KB | ✅ |
+| Bundle Size | < 600KB | ~450KB | ✅ |
 | TypeScript Errors | 0 | 0 | ✅ |
-| Build Time | < 60s | ~52s | ✅ |
+| Build Time | < 60s | ~48s | ✅ |
 | Lighthouse Score | > 80 | TBD | 🔄 |
+| AI Response Time | < 10s | ~3-5s | ✅ |
 
 ## 🚀 Deployment
 
