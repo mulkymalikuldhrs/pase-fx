@@ -23,7 +23,7 @@ interface Trade {
 
 const TRADING_METHODS = ['SNR', 'SMC', 'ICT', 'Price Action', 'Breakout', 'Fundamental', 'Lainnya'];
 
-const STORAGE_KEY = 'pasè_fx_trades';
+const STORAGE_KEY = 'pasefx_trade_journal';
 
 const TradeJournal: React.FC = () => {
   const [trades, setTrades] = useState<Trade[]>(() => {
@@ -117,17 +117,31 @@ const TradeJournal: React.FC = () => {
     const csvContent = [
       headers.join(','),
       ...trades.map(t => [
-        t.date, t.pair, t.direction, t.entry, t.exit, t.sl, t.tp, t.lots, 
-        t.result, t.pips, t.profit, t.method, `"${t.notes}"`
+        t.date, 
+        t.pair, 
+        t.direction, 
+        t.entry, 
+        t.exit, 
+        t.sl, 
+        t.tp, 
+        t.lots, 
+        t.result, 
+        t.pips, 
+        t.profit, 
+        t.method, 
+        `"${(t.notes || '').replace(/"/g, '""')}"`
       ].join(','))
     ].join('\n');
     
-    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
     a.download = `trade-journal-${new Date().toISOString().split('T')[0]}.csv`;
+    document.body.appendChild(a);
     a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
   };
 
   // Import from CSV

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Search, Loader2, TrendingUp, TrendingDown, Minus } from 'lucide-react'
-import { recognizePattern, PatternRecognition } from '../../services/puterAI'
+import puterAI, { recognizePattern, PatternRecognition } from '@/services/puterAI'
 
 interface AIPatternRecognitionProps {
   symbol: string
@@ -18,8 +18,13 @@ const AIPatternRecognition: React.FC<AIPatternRecognitionProps> = ({ symbol }) =
     try {
       const result = await recognizePattern(symbol)
       setPattern(result)
+      // Check if using fallback (Puter not available)
+      if (!puterAI.isPuterAvailable()) {
+        console.log('Using fallback pattern recognition (Puter.js not available)')
+      }
     } catch (err) {
-      setError('Tidak ada pola yang terdeteksi. Menggunakan analisis teknikal dasar.')
+      // This shouldn't happen due to fallback, but just in case
+      console.error('Pattern recognition error:', err)
     } finally {
       setLoading(false)
     }

@@ -3,7 +3,7 @@
 <div align="center">
 
 [![Status](https://img.shields.io/badge/status-PRODUCTION-green?style=for-the-badge)]()
-[![Version](https://img.shields.io/badge/version-1.0.0-blue?style=for-the-badge)]()
+[![Version](https://img.shields.io/badge/version-2.0.0-blue?style=for-the-badge)]()
 [![License](https://img.shields.io/badge/license-Proprietary-red?style=for-the-badge)]()
 
 **Komunitas Trading Forex Profesional dari Aceh**
@@ -111,6 +111,7 @@ npm run build
 - **Styling**: Tailwind CSS
 - **Charts**: TradingView Widgets, Recharts
 - **Market Data**: ExchangeRate-API + Fallback APIs
+- **AI Integration**: Puter.js (400+ Models, GPT-4, Claude, Gemini)
 - **Deployment**: Vercel
 
 ---

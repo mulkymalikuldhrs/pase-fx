@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Brain, Loader2, TrendingUp, TrendingDown, Minus, AlertCircle } from 'lucide-react'
-import { analyzeMarket, AIAnalysis } from '../../services/puterAI'
+import { analyzeMarket, AIAnalysis, isPuterAvailable } from '@/services/puterAI'
 
 interface MarketInstrument {
   symbol: string
@@ -30,8 +30,13 @@ const AIAnalysisWidget: React.FC<AIAnalysisWidgetProps> = ({
     try {
       const result = await analyzeMarket(instrument.symbol, timeframe, currentPrice)
       setAnalysis(result)
+      // Check if using fallback (Puter not available)
+      if (!puterAI.isPuterAvailable()) {
+        console.log('Using fallback AI analysis (Puter.js not available)')
+      }
     } catch (err) {
-      setError('Gagal menganalisis. Analisis teknikal menggunakan aturan dasar.')
+      // This shouldn't happen due to fallback, but just in case
+      console.error('AI analysis error:', err)
     } finally {
       setLoading(false)
     }

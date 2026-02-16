@@ -25,12 +25,12 @@ const PositionCalculator: React.FC = () => {
     if (sl === 0) return;
 
     const riskAmount = balance * (risk / 100);
-    const pipValue = 10;
-    const positionSize = riskAmount / (sl * pipValue);
-    const lots = positionSize / 100000;
+    const pipValuePerLot = 10;
+    const lots = riskAmount / (sl * pipValuePerLot);
+    const positionSize = Math.floor(lots * 100000);
 
     setResult({
-      positionSize: Math.floor(positionSize),
+      positionSize: positionSize,
       lots: parseFloat(lots.toFixed(2)),
       riskAmount: parseFloat(riskAmount.toFixed(2)),
       recommendedRisk: balance * 0.02

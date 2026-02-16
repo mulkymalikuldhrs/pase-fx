@@ -36,7 +36,9 @@ Pasè FX Trader Hub is a **static frontend application** built with modern web t
 | Routing | Hash-based (custom) | - | Client-side Navigation |
 | Storage | LocalStorage | - | Data Persistence |
 | Charts | TradingView Widgets | - | Market Data |
+| AI | Puter.js | 2.x | AI Trading Assistant |
 | State | React Hooks | - | Local State Management |
+| AI Platform | Puter.js | 2.x | AI Trading Assistant |
 | Package Manager | npm | 10.x | Dependencies |
 
 ## 📁 Project Structure
@@ -44,6 +46,12 @@ Pasè FX Trader Hub is a **static frontend application** built with modern web t
 ```
 pase-fx/
 ├── components/          # Reusable UI components
+│   ├── ai/             # AI Trading Assistant (NEW v2.0.0)
+│   │   ├── AIAnalysisWidget.tsx
+│   │   ├── AIPatternRecognition.tsx
+│   │   ├── AIDailyBriefing.tsx
+│   │   ├── AITradeIdeas.tsx
+│   │   └── AIJournalReview.tsx
 │   ├── calculators/     # Trading calculators (4 total)
 │   │   ├── PipCalculator.tsx
 │   │   ├── PositionCalculator.tsx
@@ -71,7 +79,8 @@ pase-fx/
 │   ├── Founders.tsx
 │   └── Members.tsx
 ├── utils/              # Utility functions
-│   └── signals.ts      # Signal CRUD operations
+│   ├── signals.ts      # Signal CRUD operations
+│   └── puterAI.ts      # Puter.js AI service (NEW v2.0.0)
 ├── docs/               # Documentation
 ├── public/             # Static assets
 ├── constants.ts        # App constants
@@ -205,6 +214,6 @@ See `.github/workflows/ci.yml` for automated:
 
 See [CHANGELOG.md](../../CHANGELOG.md) for detailed version history.
 
-**Current Version**: 0.1.4-alpha  
-**Last Updated**: February 15, 2026  
-**Status**: Phase 1 Complete - All major features implemented
+**Current Version**: 2.0.0  
+**Last Updated**: February 16, 2026  
+**Status**: Production - AI Powered Trading Platform

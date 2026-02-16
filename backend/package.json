@@ -1,6 +1,6 @@
 {
   "name": "pase-fx-backend",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Pasè FX Trader Hub - Backend API",
   "main": "dist/index.js",
   "scripts": {

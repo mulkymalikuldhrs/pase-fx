@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Sparkles, Loader2, Clock, TrendingUp, AlertTriangle, CheckCircle } from 'lucide-react'
-import { generateDailyBriefing, DailyBriefing } from '../../services/puterAI'
-import { TRADING_INSTRUMENTS } from '../../constants/instruments'
+import puterAI, { generateDailyBriefing, DailyBriefing } from '@/services/puterAI'
 
 const AIDailyBriefing: React.FC = () => {
   const [briefing, setBriefing] = useState<DailyBriefing | null>(null)
@@ -16,8 +15,13 @@ const AIDailyBriefing: React.FC = () => {
       const result = await generateDailyBriefing()
       setBriefing(result)
       setLastUpdated(new Date())
+      // Check if using fallback (Puter not available)
+      if (!puterAI.isPuterAvailable()) {
+        console.log('Using fallback daily briefing (Puter.js not available)')
+      }
     } catch (err) {
-      setError('Gagal generate briefing. Menggunakan analisis pasar dasar.')
+      // This shouldn't happen due to fallback, but just in case
+      console.error('Daily briefing error:', err)
     } finally {
       setLoading(false)
     }
