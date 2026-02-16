@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Brain, Loader2, Star, AlertCircle, CheckCircle } from 'lucide-react'
-import puterAI, { reviewTrade, TradeReview } from '@/services/puterAI'
+import puterAI, { reviewTrade, TradeReview } from '../../services/puterAI'
 
 interface AIJournalReviewProps {
   trade: {
@@ -85,7 +85,7 @@ const AIJournalReview: React.FC<AIJournalReviewProps> = ({ trade, onReviewComple
         </button>
       </div>
 
-      {review && (
+      {review ? (
         <div className="space-y-4">
           {/* Overall Score */}
           <div className="p-4 bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl border border-purple-100">

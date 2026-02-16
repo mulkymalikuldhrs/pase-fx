@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Lightbulb, Loader2, TrendingUp, TrendingDown, RefreshCw } from 'lucide-react'
-import puterAI, { generateTradeIdea, TradeIdea } from '@/services/puterAI'
+import puterAI, { generateTradeIdea, TradeIdea } from '../../services/puterAI'
 
 const AITradeIdeas: React.FC = () => {
   const [idea, setIdea] = useState<TradeIdea | null>(null)

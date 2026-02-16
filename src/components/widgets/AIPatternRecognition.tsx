@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Search, Loader2, TrendingUp, TrendingDown, Minus } from 'lucide-react'
-import puterAI, { recognizePattern, PatternRecognition } from '@/services/puterAI'
+import puterAI, { recognizePattern, PatternRecognition } from '../../services/puterAI'
 
 interface AIPatternRecognitionProps {
   symbol: string

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Sparkles, Loader2, Clock, TrendingUp, AlertTriangle, CheckCircle } from 'lucide-react'
-import puterAI, { generateDailyBriefing, DailyBriefing } from '@/services/puterAI'
+import puterAI, { generateDailyBriefing, DailyBriefing } from '../../services/puterAI'
 
 const AIDailyBriefing: React.FC = () => {
   const [briefing, setBriefing] = useState<DailyBriefing | null>(null)
