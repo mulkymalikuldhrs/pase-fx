@@ -34,8 +34,8 @@ const COMMUNITY_DATA: Member[] = [
 ];
 
 const INITIAL_STATS = {
-  total: 1250, // Total from actual community
-  online: COMMUNITY_DATA.filter(m => m.status === 'online').length + 42, // Simulated real-time
+  total: 1250, // Estimasi total anggota komunitas
+  online: COMMUNITY_DATA.filter(m => m.status === 'online').length + 42, // Estimasi online
   analysts: COMMUNITY_DATA.filter(m => m.role === 'analyst' || m.role === 'admin').length
 };
 
@@ -69,7 +69,7 @@ const CommunityMembers: React.FC = () => {
           </div>
           <div>
             <h3 className="text-lg font-bold text-gray-900">Community Members</h3>
-            <p className="text-sm text-gray-500">Live from Telegram & WhatsApp</p>
+            <p className="text-sm text-gray-500">Tim inti Pasè FX - Data terverifikasi manual</p>
           </div>
         </div>
       </div>
