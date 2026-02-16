@@ -17,17 +17,14 @@ import {
 } from 'lucide-react';
 
 const MarketCyclesDashboard: React.FC = () => {
-  const [cycles, setCycles] = useState<CycleData[]>([]);
-  const [sessions, setSessions] = useState<SessionData[]>([]);
+  const [cycles, setCycles] = useState<CycleData[]>(() => marketCyclesService.getAllCycles());
+  const [sessions, setSessions] = useState<SessionData[]>(() => marketCyclesService.calculateDailySessions());
   const [selectedCycle, setSelectedCycle] = useState<string>('all');
   const [currentTimeGMT7, setCurrentTimeGMT7] = useState<string>('');
   const [currentTimeNY, setCurrentTimeNY] = useState<string>('');
   const [expandedCycles, setExpandedCycles] = useState<Set<string>>(new Set());
 
   useEffect(() => {
-    // Load cycles data
-    setCycles(marketCyclesService.getAllCycles());
-    setSessions(marketCyclesService.calculateDailySessions());
 
     // Update time every second
     const timeInterval = setInterval(() => {

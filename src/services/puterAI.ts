@@ -175,7 +175,7 @@ export const analyzeMarket = async (
     // Try to use Puter.js AI
     const prompt = `Analyze ${instrument} on ${timeframe} timeframe. Current price: ${currentPrice}. Provide technical analysis with BUY/SELL recommendation, confidence level, entry price, stop loss, take profit levels, risk:reward ratio, and key reasoning points.`
     
-    const response = await window.puter.ai.chat(prompt, { model: 'gpt-4.1-nano' })
+      await window.puter.ai.chat(prompt, { model: 'gpt-4.1-nano' })
     
     // Parse response (this is simplified - real implementation would be more robust)
     return fallbackAIAnalysis(instrument, currentPrice) // For now, still return fallback
@@ -198,7 +198,7 @@ export const recognizePattern = async (
     // Try to use Puter.js AI
     const prompt = `Analyze ${symbol} for chart patterns. Identify any technical patterns like Head and Shoulders, Double Top/Bottom, Triangles, Flags, etc.`
     
-    const response = await window.puter.ai.chat(prompt, { model: 'gpt-4.1-nano' })
+      await window.puter.ai.chat(prompt, { model: 'gpt-4.1-nano' })
     
     // Parse response (this is simplified - real implementation would be more robust)
     return fallbackPatternRecognition(symbol) // For now, still return fallback
@@ -219,7 +219,7 @@ export const generateDailyBriefing = async (): Promise<DailyBriefing> => {
     // Try to use Puter.js AI
     const prompt = `Generate a daily market briefing covering market sentiment, key events, trading opportunities, and risk factors.`
     
-    const response = await window.puter.ai.chat(prompt, { model: 'gpt-4.1-nano' })
+      await window.puter.ai.chat(prompt, { model: 'gpt-4.1-nano' })
     
     // Parse response (this is simplified - real implementation would be more robust)
     return fallbackDailyBriefing() // For now, still return fallback

@@ -17,7 +17,7 @@ interface AIJournalReviewProps {
   onReviewComplete?: (review: TradeReview) => void
 }
 
-const AIJournalReview: React.FC<AIJournalReviewProps> = ({ trade, onReviewComplete }) => {
+const AIJournalReview: React.FC<AIJournalReviewProps> = ({ trade: _trade, onReviewComplete }) => {
   const [review, setReview] = useState<TradeReview | null>(null)
   const [loading, setLoading] = useState(false)
 

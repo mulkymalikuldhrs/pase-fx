@@ -43,31 +43,31 @@ const FibonacciCalculator: React.FC = () => {
   };
 
   const getLevelColor = (level: number) => {
-    if (level === 61.8 || level === 50) return 'text-emerald-600 bg-emerald-50 border-emerald-200';
-    if (level === 38.2 || level === 78.6) return 'text-blue-600 bg-blue-50 border-blue-200';
-    if (level === 23.6 || level === 0 || level === 100) return 'text-gray-600 bg-gray-50 border-gray-200';
-    return 'text-purple-600 bg-purple-50 border-purple-200';
+    if (level === 61.8 || level === 50) return 'text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/20 border-emerald-200 dark:border-emerald-800';
+    if (level === 38.2 || level === 78.6) return 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800';
+    if (level === 23.6 || level === 0 || level === 100) return 'text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-slate-700/50 border-gray-200 dark:border-slate-600';
+    return 'text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/20 border-purple-200 dark:border-purple-800';
   };
 
   return (
-    <div className="glass-card p-6 bg-white/70 border border-gray-200 rounded-xl">
+    <div className="glass-card p-6 bg-white/70 dark:bg-slate-800/70 border border-gray-200 dark:border-slate-700 rounded-xl">
       <div className="flex items-center gap-3 mb-6">
         <div className="p-2 bg-purple-500/10 rounded-lg">
           <Sparkles className="w-6 h-6 text-purple-600" />
         </div>
-        <h3 className="text-xl font-bold text-gray-900">Fibonacci Calculator</h3>
+        <h3 className="text-xl font-bold text-gray-900 dark:text-slate-100">Fibonacci Calculator</h3>
       </div>
 
       <div className="space-y-4">
         <div>
-          <label className="block text-sm text-gray-600 mb-2 font-medium">Direction</label>
+          <label className="block text-sm text-gray-600 dark:text-slate-400 mb-2 font-medium">Direction</label>
           <div className="flex gap-2">
             <button
               onClick={() => setDirection('BUY')}
               className={`flex-1 py-2 px-4 rounded-lg border transition flex items-center justify-center gap-2 ${
                 direction === 'BUY' 
-                  ? 'bg-emerald-50 border-emerald-500 text-emerald-700' 
-                  : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50'
+                  ? 'bg-emerald-50 dark:bg-emerald-900/30 border-emerald-500 text-emerald-700 dark:text-emerald-300' 
+                  : 'bg-white dark:bg-slate-800 border-gray-300 dark:border-slate-600 text-gray-700 dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-slate-700'
               }`}
             >
               <TrendingUp size={16} />
@@ -77,8 +77,8 @@ const FibonacciCalculator: React.FC = () => {
               onClick={() => setDirection('SELL')}
               className={`flex-1 py-2 px-4 rounded-lg border transition flex items-center justify-center gap-2 ${
                 direction === 'SELL' 
-                  ? 'bg-red-50 border-red-500 text-red-700' 
-                  : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50'
+                  ? 'bg-red-50 dark:bg-red-900/30 border-red-500 text-red-700 dark:text-red-300' 
+                  : 'bg-white dark:bg-slate-800 border-gray-300 dark:border-slate-600 text-gray-700 dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-slate-700'
               }`}
             >
               <TrendingDown size={16} />
@@ -89,7 +89,7 @@ const FibonacciCalculator: React.FC = () => {
 
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm text-gray-600 mb-2 font-medium">
+            <label className="block text-sm text-gray-600 dark:text-slate-400 mb-2 font-medium">
               {direction === 'BUY' ? 'Swing High' : 'Swing Low'}
             </label>
             <input
@@ -97,11 +97,11 @@ const FibonacciCalculator: React.FC = () => {
               step="0.0001"
               value={high}
               onChange={(e) => setHigh(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 bg-white text-gray-900"
+              className="w-full px-3 py-2 border border-gray-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100"
             />
           </div>
           <div>
-            <label className="block text-sm text-gray-600 mb-2 font-medium">
+            <label className="block text-sm text-gray-600 dark:text-slate-400 mb-2 font-medium">
               {direction === 'BUY' ? 'Swing Low' : 'Swing High'}
             </label>
             <input
@@ -109,7 +109,7 @@ const FibonacciCalculator: React.FC = () => {
               step="0.0001"
               value={low}
               onChange={(e) => setLow(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 bg-white text-gray-900"
+              className="w-full px-3 py-2 border border-gray-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100"
             />
           </div>
         </div>
@@ -126,7 +126,7 @@ const FibonacciCalculator: React.FC = () => {
           <div className="mt-6 space-y-4">
             {/* Retracements */}
             <div>
-              <h4 className="text-sm font-bold text-gray-700 mb-2">Retracement Levels</h4>
+              <h4 className="text-sm font-bold text-gray-700 dark:text-slate-300 mb-2">Retracement Levels</h4>
               <div className="space-y-2">
                 {result.retracements.map((item) => (
                   <div 
@@ -142,12 +142,12 @@ const FibonacciCalculator: React.FC = () => {
 
             {/* Extensions */}
             <div>
-              <h4 className="text-sm font-bold text-gray-700 mb-2">Extension Levels</h4>
+              <h4 className="text-sm font-bold text-gray-700 dark:text-slate-300 mb-2">Extension Levels</h4>
               <div className="space-y-2">
                 {result.extensions.map((item) => (
                   <div 
                     key={item.level}
-                    className="flex justify-between items-center p-2 rounded-lg border text-purple-600 bg-purple-50 border-purple-200"
+                    className="flex justify-between items-center p-2 rounded-lg border text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/20 border-purple-200 dark:border-purple-800"
                   >
                     <span className="font-medium">{item.level}%</span>
                     <span className="font-mono font-bold">{item.price.toFixed(5)}</span>
@@ -157,8 +157,8 @@ const FibonacciCalculator: React.FC = () => {
             </div>
 
             {/* Tips */}
-            <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg">
-              <p className="text-xs text-blue-700">
+            <div className="p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+              <p className="text-xs text-blue-700 dark:text-blue-300">
                 <strong>💡 Tips:</strong> Level 61.8% dan 50% adalah zona entry paling umum. 
                 Gunakan confluence dengan support/resistance untuk konfirmasi.
               </p>

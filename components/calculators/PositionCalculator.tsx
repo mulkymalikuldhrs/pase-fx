@@ -38,18 +38,18 @@ const PositionCalculator: React.FC = () => {
   };
 
   return (
-    <div className="glass-card p-6 bg-white/70 border border-gray-200 rounded-xl">
+    <div className="glass-card p-6 bg-white/70 dark:bg-slate-800/70 border border-gray-200 dark:border-slate-700 rounded-xl">
       <div className="flex items-center gap-3 mb-6">
         <div className="p-2 bg-blue-500/10 rounded-lg">
           <Scale className="w-6 h-6 text-blue-600" />
         </div>
-        <h3 className="text-xl font-bold text-gray-900">Position Size Calculator</h3>
+        <h3 className="text-xl font-bold text-gray-900 dark:text-slate-100">Position Size Calculator</h3>
       </div>
 
-      <div className="mb-4 p-3 bg-amber-50 border border-amber-200 rounded-lg">
+      <div className="mb-4 p-3 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg">
         <div className="flex items-start gap-2">
           <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
-          <p className="text-sm text-amber-800">
+          <p className="text-sm text-amber-800 dark:text-amber-200">
             Risk max 1-2% per trade. Never risk more than you can afford to lose.
           </p>
         </div>
@@ -57,11 +57,11 @@ const PositionCalculator: React.FC = () => {
 
       <div className="space-y-4">
         <div>
-          <label className="block text-sm text-gray-600 mb-2 font-medium">Currency Pair</label>
+          <label className="block text-sm text-gray-600 dark:text-slate-400 mb-2 font-medium">Currency Pair</label>
           <select
             value={pair}
             onChange={(e) => setPair(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-900"
+            className="w-full px-3 py-2 border border-gray-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100"
           >
             {pairs.map((p) => (
               <option key={p} value={p}>{p}</option>
@@ -70,35 +70,35 @@ const PositionCalculator: React.FC = () => {
         </div>
 
         <div>
-          <label className="block text-sm text-gray-600 mb-2 font-medium">Account Balance ($)</label>
+          <label className="block text-sm text-gray-600 dark:text-slate-400 mb-2 font-medium">Account Balance ($)</label>
           <input
             type="number"
             value={accountBalance}
             onChange={(e) => setAccountBalance(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-900"
+            className="w-full px-3 py-2 border border-gray-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100"
           />
         </div>
 
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm text-gray-600 mb-2 font-medium">Risk %</label>
+            <label className="block text-sm text-gray-600 dark:text-slate-400 mb-2 font-medium">Risk %</label>
             <input
               type="number"
               step="0.1"
               max="5"
               value={riskPercent}
               onChange={(e) => setRiskPercent(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-900"
+              className="w-full px-3 py-2 border border-gray-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100"
             />
-            <p className="text-xs text-gray-500 mt-1">Rekomendasi: 1-2%</p>
+            <p className="text-xs text-gray-500 dark:text-slate-500 mt-1">Rekomendasi: 1-2%</p>
           </div>
           <div>
-            <label className="block text-sm text-gray-600 mb-2 font-medium">Stop Loss (pips)</label>
+            <label className="block text-sm text-gray-600 dark:text-slate-400 mb-2 font-medium">Stop Loss (pips)</label>
             <input
               type="number"
               value={stopLoss}
               onChange={(e) => setStopLoss(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-900"
+              className="w-full px-3 py-2 border border-gray-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100"
             />
           </div>
         </div>
@@ -112,22 +112,22 @@ const PositionCalculator: React.FC = () => {
 
         {result && (
           <div className="mt-6 space-y-3">
-            <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-lg">
-              <p className="text-xs text-gray-600 mb-1">Recommended Lot Size</p>
+            <div className="p-4 bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800 rounded-lg">
+              <p className="text-xs text-gray-600 dark:text-slate-400 mb-1">Recommended Lot Size</p>
               <p className="text-2xl font-bold text-emerald-600">{result.lots} lots</p>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <div className="p-3 bg-gray-50 rounded-lg border border-gray-200">
-                <p className="text-xs text-gray-500 mb-1">Position Size</p>
-                <p className="text-lg font-semibold text-gray-900">{result.positionSize.toLocaleString()}</p>
+              <div className="p-3 bg-gray-50 dark:bg-slate-700/50 rounded-lg border border-gray-200 dark:border-slate-600">
+                <p className="text-xs text-gray-500 dark:text-slate-400 mb-1">Position Size</p>
+                <p className="text-lg font-semibold text-gray-900 dark:text-slate-100">{result.positionSize.toLocaleString()}</p>
               </div>
-              <div className="p-3 bg-gray-50 rounded-lg border border-gray-200">
-                <p className="text-xs text-gray-500 mb-1">Risk Amount</p>
-                <p className="text-lg font-semibold text-gray-900">${result.riskAmount}</p>
+              <div className="p-3 bg-gray-50 dark:bg-slate-700/50 rounded-lg border border-gray-200 dark:border-slate-600">
+                <p className="text-xs text-gray-500 dark:text-slate-400 mb-1">Risk Amount</p>
+                <p className="text-lg font-semibold text-gray-900 dark:text-slate-100">${result.riskAmount}</p>
               </div>
             </div>
-            <div className="p-3 bg-blue-50 rounded-lg border border-blue-200">
-              <p className="text-xs text-blue-600 flex items-center gap-1">
+            <div className="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+              <p className="text-xs text-blue-600 dark:text-blue-400 flex items-center gap-1">
                 <Info size={12} />
                 Max recommended risk: ${result.recommendedRisk.toFixed(2)} (2%)
               </p>

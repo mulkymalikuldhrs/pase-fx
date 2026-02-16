@@ -39,27 +39,27 @@ const PipCalculator: React.FC = () => {
   };
 
   return (
-    <div className="glass-card p-6 bg-white/70 border border-gray-200 rounded-xl">
+    <div className="glass-card p-6 bg-white/70 dark:bg-slate-800/70 border border-gray-200 dark:border-slate-700 rounded-xl">
       <div className="flex items-center gap-3 mb-6">
         <div className="p-2 bg-emerald-500/10 rounded-lg">
           <Calculator className="w-6 h-6 text-emerald-600" />
         </div>
-        <h3 className="text-xl font-bold text-gray-900">Pip Calculator</h3>
+        <h3 className="text-xl font-bold text-gray-900 dark:text-slate-100">Pip Calculator</h3>
       </div>
 
       <div className="space-y-4">
         <div>
-          <label className="block text-sm text-gray-600 mb-2 font-medium">Currency Pair</label>
+          <label className="block text-sm text-gray-600 dark:text-slate-400 mb-2 font-medium">Currency Pair</label>
           <select 
             value={pair}
             onChange={(e) => setPair(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white text-gray-900"
+            className="w-full px-3 py-2 border border-gray-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100"
           >
             {Object.keys(pairs).map((p) => (
               <option key={p} value={p}>{p}</option>
             ))}
           </select>
-          <p className="text-xs text-gray-500 mt-1 flex items-center gap-1">
+          <p className="text-xs text-gray-500 dark:text-slate-500 mt-1 flex items-center gap-1">
             <Info size={12} />
             {pairs[pair].description}
           </p>
@@ -67,23 +67,23 @@ const PipCalculator: React.FC = () => {
 
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm text-gray-600 mb-2 font-medium">Lot Size</label>
+            <label className="block text-sm text-gray-600 dark:text-slate-400 mb-2 font-medium">Lot Size</label>
             <input
               type="number"
               step="0.01"
               value={lotSize}
               onChange={(e) => setLotSize(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white text-gray-900"
+              className="w-full px-3 py-2 border border-gray-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100"
               placeholder="1.0"
             />
           </div>
           <div>
-            <label className="block text-sm text-gray-600 mb-2 font-medium">Pip Count</label>
+            <label className="block text-sm text-gray-600 dark:text-slate-400 mb-2 font-medium">Pip Count</label>
             <input
               type="number"
               value={pipCount}
               onChange={(e) => setPipCount(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white text-gray-900"
+              className="w-full px-3 py-2 border border-gray-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100"
               placeholder="50"
             />
           </div>
@@ -98,14 +98,14 @@ const PipCalculator: React.FC = () => {
         </button>
 
         {result && (
-          <div className="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+          <div className="mt-6 p-4 bg-gray-50 dark:bg-slate-700/50 rounded-lg border border-gray-200 dark:border-slate-600">
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <p className="text-xs text-gray-500 mb-1">Value per Pip</p>
+                <p className="text-xs text-gray-500 dark:text-slate-400 mb-1">Value per Pip</p>
                 <p className="text-lg font-bold text-emerald-600">${result.pipValue}</p>
               </div>
               <div>
-                <p className="text-xs text-gray-500 mb-1">Total Value</p>
+                <p className="text-xs text-gray-500 dark:text-slate-400 mb-1">Total Value</p>
                 <p className="text-lg font-bold text-emerald-600">${result.totalValue}</p>
               </div>
             </div>

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Calendar, Activity, DollarSign, Globe, TrendingUp, BarChart3, Calculator, Clock, ExternalLink, Sparkles, BarChart2, Brain, Bot } from 'lucide-react';
+import { Calendar, Activity, DollarSign, Globe, TrendingUp, BarChart3, Calculator, Clock, ExternalLink, Sparkles, BarChart2, Bot } from 'lucide-react';
 import PipCalculator from '../components/calculators/PipCalculator';
 import PositionCalculator from '../components/calculators/PositionCalculator';
 import RiskRewardCalculator from '../components/calculators/RiskRewardCalculator';

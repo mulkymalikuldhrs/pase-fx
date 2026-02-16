@@ -48,62 +48,62 @@ const RiskRewardCalculator: React.FC = () => {
   };
 
   const getRRBgColor = (rr: number) => {
-    if (rr >= 2) return 'bg-emerald-50 border-emerald-200';
-    if (rr >= 1.5) return 'bg-yellow-50 border-yellow-200';
-    return 'bg-red-50 border-red-200';
+    if (rr >= 2) return 'bg-emerald-50 dark:bg-emerald-900/20 border-emerald-200 dark:border-emerald-800';
+    if (rr >= 1.5) return 'bg-yellow-50 dark:bg-yellow-900/20 border-yellow-200 dark:border-yellow-800';
+    return 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800';
   };
 
   return (
-    <div className="glass-card p-6 bg-white/70 border border-gray-200 rounded-xl">
+    <div className="glass-card p-6 bg-white/70 dark:bg-slate-800/70 border border-gray-200 dark:border-slate-700 rounded-xl">
       <div className="flex items-center gap-3 mb-6">
         <div className="p-2 bg-purple-500/10 rounded-lg">
           <Target className="w-6 h-6 text-purple-600" />
         </div>
-        <h3 className="text-xl font-bold text-gray-900">Risk/Reward Calculator</h3>
+        <h3 className="text-xl font-bold text-gray-900 dark:text-slate-100">Risk/Reward Calculator</h3>
       </div>
 
       <div className="space-y-4">
         <div className="grid grid-cols-3 gap-3">
           <div>
-            <label className="block text-sm text-gray-600 mb-2 font-medium">Entry</label>
+            <label className="block text-sm text-gray-600 dark:text-slate-400 mb-2 font-medium">Entry</label>
             <input
               type="number"
               step="0.0001"
               value={entry}
               onChange={(e) => setEntry(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 bg-white text-gray-900"
+              className="w-full px-3 py-2 border border-gray-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100"
             />
           </div>
           <div>
-            <label className="block text-sm text-gray-600 mb-2 font-medium">SL</label>
+            <label className="block text-sm text-gray-600 dark:text-slate-400 mb-2 font-medium">SL</label>
             <input
               type="number"
               step="0.0001"
               value={stopLoss}
               onChange={(e) => setStopLoss(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 bg-white text-gray-900"
+              className="w-full px-3 py-2 border border-gray-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100"
             />
           </div>
           <div>
-            <label className="block text-sm text-gray-600 mb-2 font-medium">TP</label>
+            <label className="block text-sm text-gray-600 dark:text-slate-400 mb-2 font-medium">TP</label>
             <input
               type="number"
               step="0.0001"
               value={takeProfit}
               onChange={(e) => setTakeProfit(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white text-gray-900"
+              className="w-full px-3 py-2 border border-gray-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100"
             />
           </div>
         </div>
 
         <div>
-          <label className="block text-sm text-gray-600 mb-2 font-medium">Lot Size</label>
+          <label className="block text-sm text-gray-600 dark:text-slate-400 mb-2 font-medium">Lot Size</label>
           <input
             type="number"
             step="0.01"
             value={lotSize}
             onChange={(e) => setLotSize(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 bg-white text-gray-900"
+            className="w-full px-3 py-2 border border-gray-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100"
           />
         </div>
 
@@ -117,14 +117,14 @@ const RiskRewardCalculator: React.FC = () => {
         {result && (
           <div className="mt-6 space-y-4">
             <div className={`text-center p-4 rounded-lg border ${getRRBgColor(result.riskReward)}`}>
-              <p className="text-sm text-gray-600 mb-1">Risk:Reward Ratio</p>
+              <p className="text-sm text-gray-600 dark:text-slate-400 mb-1">Risk:Reward Ratio</p>
               <p className={`text-4xl font-bold ${getRRColor(result.riskReward)}`}>
                 1:{result.riskReward}
               </p>
               <div className="flex justify-center gap-4 mt-2 text-sm">
-                <span className="text-gray-600">{result.riskPips} pips risk</span>
-                <span className="text-gray-400">|</span>
-                <span className="text-gray-600">{result.rewardPips} pips reward</span>
+                <span className="text-gray-600 dark:text-slate-400">{result.riskPips} pips risk</span>
+                <span className="text-gray-400 dark:text-slate-600">|</span>
+                <span className="text-gray-600 dark:text-slate-400">{result.rewardPips} pips reward</span>
               </div>
               {result.riskReward < 1.5 && (
                 <p className="text-xs text-red-600 mt-2 flex items-center justify-center gap-1">
@@ -141,19 +141,19 @@ const RiskRewardCalculator: React.FC = () => {
             </div>
 
             <div className="grid grid-cols-2 gap-4">
-              <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
+              <div className="p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
                 <div className="flex items-center gap-2 mb-1">
                   <TrendingDown className="w-4 h-4 text-red-600" />
                   <span className="text-sm text-red-600 font-medium">Risk</span>
                 </div>
-                <p className="text-xl font-bold text-gray-900">${result.riskAmount}</p>
+                <p className="text-xl font-bold text-gray-900 dark:text-slate-100">${result.riskAmount}</p>
               </div>
-              <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-lg">
+              <div className="p-3 bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800 rounded-lg">
                 <div className="flex items-center gap-2 mb-1">
                   <TrendingUp className="w-4 h-4 text-emerald-600" />
                   <span className="text-sm text-emerald-600 font-medium">Reward</span>
                 </div>
-                <p className="text-xl font-bold text-gray-900">${result.rewardAmount}</p>
+                <p className="text-xl font-bold text-gray-900 dark:text-slate-100">${result.rewardAmount}</p>
               </div>
             </div>
           </div>
