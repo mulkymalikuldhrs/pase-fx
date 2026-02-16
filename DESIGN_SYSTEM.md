@@ -163,6 +163,64 @@ border-radius: 1rem;
 <span className="glass-badge">Label</span>
 ```
 
+### AI Components (v2.0.0)
+
+New AI Trading Assistant components in `components/ai/`:
+
+#### AIAnalysisWidget
+Displays AI market analysis:
+- Recommendation badges (BUY/SELL/NEUTRAL)
+- Confidence score (0-100%)
+- Entry/SL/TP levels
+- Risk:Reward ratio
+- Technical analysis text
+
+```tsx
+<AIAnalysisWidget
+  pair="EUR/USD"
+  timeframe="1H"
+  recommendation="BUY"
+  confidence={78}
+  entryPrice={1.0850}
+  stopLoss={1.0820}
+  takeProfit={1.0920}
+/>
+```
+
+#### AIPatternRecognition
+Pattern detection display:
+- Detected pattern name
+- Direction (Bullish/Bearish/Neutral)
+- Target price
+- Invalidation level
+
+#### AIDailyBriefing
+Daily market summary:
+- Sentiment gauge
+- Key events list
+- Opportunities section
+- Risk warnings
+
+#### AITradeIdeas
+Trade recommendation cards:
+- Symbol suggestions
+- Setup descriptions
+- Confidence level
+- Action buttons
+
+#### AIJournalReview
+Trade performance review:
+- Overall score (0-100)
+- Category scores (Entry, Exit, Risk)
+- Lessons learned
+- Improvement tips
+
+**AI Component Styling:**
+- Base: `glass-card`
+- AI indicator: Purple gradient `bg-gradient-to-r from-purple-500 to-indigo-500`
+- Confidence bar: Multi-color gradient
+- Loading: `animate-pulse` with shimmer effect
+
 ### Custom Components
 
 #### Loading Skeletons (`components/ui/LoadingSkeleton.tsx`)
