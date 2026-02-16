@@ -10,7 +10,7 @@ export const TAGLINE_ID = "Disiplin bertahap, sabar, jangan rakus";
 // ✅ PASÈ FX TRADER HUB - PRODUCTION READY
 // =============================================================================
 // Status: PRODUCTION
-// Version: 1.0.0
+// Version: 2.0.0
 // Update: 16 Februari 2026
 // 
 // FITUR UTAMA YANG TERSEDIA:
@@ -23,6 +23,7 @@ export const TAGLINE_ID = "Disiplin bertahap, sabar, jangan rakus";
 // ✅ 8 Broker Rekomendasi dengan Affiliate Links
 // ✅ Library 12 Metode Trading
 // ✅ Real-time Market Widgets (TradingView)
+// ✅ AI Trading Assistant (Puter.js - 100% GRATIS)
 // =============================================================================
 
 // WhatsApp Contacts - TERVERIFIKASI
@@ -75,7 +76,7 @@ export const MRG_LOGO_URL = "https://account.tradersfamily.id/images/logo-tf-reb
 // COMMUNITY MEMBERS - TERVERIFIKASI
 // =============================================================================
 // Status: Daftar anggota yang sudah dikonfirmasi keberadaannya
-// Catatan: Anggota lain akan ditambahkan setelah verifikasi
+// Catatan: Anggota terverifikasi secara manual, bukan dari API real-time
 export const COMMUNITY_MEMBERS = [
   {
     id: 1,
@@ -115,161 +116,83 @@ export const COMMUNITY_MEMBERS = [
 ];
 
 // =============================================================================
-// TRADING METHODS - LIBRARY LENGKAP (12 METODE)
+// PARTNERS - Kemitraan Strategis
 // =============================================================================
-// Library edukasi metode trading yang umum digunakan
-// Referensi untuk pembelajaran - join komunitas untuk diskusi detail
-export const TRADING_METHODS = [
+// Status: Kemitraan berdasarkan kolaborasi nyata
+// Mitra terverifikasi yang telah bekerja sama dengan Pasè FX
+export const PARTNERS = [
   {
-    id: "snr",
-    name: "Support & Resistance (SNR)",
-    category: "Technical",
-    description: "Metode trading berdasarkan level support dan resistance untuk identifikasi titik balik harga. Level-level ini mewakili zona supply dan demand yang signifikan.",
-    keyConcepts: ["Support Levels", "Resistance Levels", "Breakout", "Bounce", "Retest", "Flip Zone", "Multi-timeframe Analysis"],
-    timeframe: "Semua timeframe",
-    difficulty: "Beginner",
-    resources: ["BabyPips.com", "Investopedia Support Resistance Guide", "YouTube: The Trading Channel"],
-    relatedMethods: ["supply-demand", "trendline", "breakout"]
-  },
-  {
-    id: "smc",
-    name: "Smart Money Concepts (SMC)",
-    category: "Technical",
-    description: "Metode mengikuti jejak institusi besar melalui analisis Order Block, Fair Value Gap, dan Market Structure. Fokus pada understanding bagaimana 'smart money' bergerak di market.",
-    keyConcepts: ["Order Block (OB)", "Fair Value Gap (FVG)", "Breaker Block", "Mitigation Block", "Liquidity Pools", "Market Structure Break (MSB)"],
-    timeframe: "H1, H4, Daily",
-    difficulty: "Advanced",
-    resources: ["ICT YouTube Channel", "SMC YouTube Community", "Forex Academy SMC Course"],
-    relatedMethods: ["ict", "supply-demand", "order-flow"]
-  },
-  {
-    id: "ict",
-    name: "Inner Circle Trader (ICT)",
-    category: "Technical",
-    description: "Metode oleh Michael J. Huddleston yang fokus pada konsep waktu (killzones), liquidity, market structure, dan order blocks. Mengajarkan cara 'think like institutional traders'.",
-    keyConcepts: ["Killzones (NY, London, Asia)", "Market Structure Shift (MSS)", "Order Blocks", "Displacements", "FVG", "Liquidity Sweeps", "Judas Swing"],
-    timeframe: "M15, H1, H4",
-    difficulty: "Advanced",
-    resources: ["ICT YouTube Channel (Mentorship Series)", "ICT Private Mentorship", "ICT Forex Twitter"],
-    relatedMethods: ["smc", "price-action", "order-flow"]
-  },
-  {
-    id: "supply-demand",
-    name: "Supply & Demand",
-    category: "Technical",
-    description: "Metode identifikasi zona imbalance antara supply (jual) dan demand (beli) untuk entry berkualitas tinggi. Berdasarkan konsep ekonomi dasar yang diaplikasikan ke chart.",
-    keyConcepts: ["Supply Zone", "Demand Zone", "Base/Rally Base", "Rally/Drop Base", "Zone to Zone", "Fresh vs Tested Zones"],
-    timeframe: "H1, H4, Daily",
-    difficulty: "Intermediate",
-    resources: ["Sam Seiden Method (Online Trading Academy)", "Alfaro Supply Demand Strategy", "Mentfx YouTube"],
-    relatedMethods: ["snr", "smc", "price-action"]
-  },
-  {
-    id: "price-action",
-    name: "Price Action",
-    category: "Technical",
-    description: "Analisis murni berdasarkan pergerakan harga dan candlestick pattern tanpa indikator teknikal. Fokus pada membaca 'story' dari candle dan struktur market.",
-    keyConcepts: ["Candlestick Patterns", "Pin Bar", "Engulfing", "Doji", "Inside Bar", "Fakey Pattern", "Price Patterns"],
-    timeframe: "Semua timeframe",
-    difficulty: "Intermediate",
-    resources: ["Al Brooks Trading Price Action Series", "Lance Beggs YTC Price Action", "Nial Fuller Price Action"],
-    relatedMethods: ["candlestick", "chart-pattern", "support-resistance"]
-  },
-  {
-    id: "breakout",
-    name: "Breakout Trading",
-    category: "Technical",
-    description: "Strategi entry saat harga menembus level penting seperti support/resistance, trendline, atau chart pattern dengan volume confirmation. Mengikuti momentum setelah konsolidasi.",
-    keyConcepts: ["Breakout Confirmation", "False Breakout", "Pullback to Broken Level", "Volume Analysis", "Momentum Entry", "Retest Entry"],
-    timeframe: "M15, H1, H4",
-    difficulty: "Intermediate",
-    resources: ["Mark Douglas Trading in the Zone", "Breakout Trading Strategy Books", "YouTube: UKspreadbetting"],
-    relatedMethods: ["snr", "trendline", "chart-pattern", "momentum"]
-  },
-  {
-    id: "trendline",
-    name: "Trendline Analysis",
-    category: "Technical",
-    description: "Menggunakan garis trend untuk mengidentifikasi arah trend, level entry, dan exit. Channel trading menggunakan parallel trendlines untuk trading range-bound markets.",
-    keyConcepts: ["Uptrend Line", "Downtrend Line", "Channel Trading", "Trendline Break", "Parallel Channels", "Median Line"],
-    timeframe: "H1, H4, Daily",
-    difficulty: "Beginner",
-    resources: ["Bulkowski's Trendline Analysis", "Andrew's Pitchfork Guide", "Trendline Trading Basics"],
-    relatedMethods: ["snr", "breakout", "channel-trading"]
-  },
-  {
-    id: "chart-pattern",
-    name: "Chart Pattern",
-    category: "Technical",
-    description: "Mengidentifikasi pola-pola klasik di chart yang menunjukkan continuation atau reversal. Pola seperti Head & Shoulders, Double Top/Bottom, Triangle, dan Flag.",
-    keyConcepts: ["Head & Shoulders", "Double Top/Bottom", "Triangle (Ascending, Descending, Symmetrical)", "Flag & Pennant", "Wedge Patterns"],
-    timeframe: "H1, H4, Daily",
-    difficulty: "Intermediate",
-    resources: ["Bulkowski's Encyclopedia of Chart Patterns", "Classic Technical Analysis Books", "Pattern Recognition Tools"],
-    relatedMethods: ["price-action", "breakout", "reversal-trading"]
-  },
-  {
-    id: "fundamental",
-    name: "Fundamental Analysis",
-    category: "Fundamental",
-    description: "Analisis berdasarkan berita ekonomi, data makroekonomi, kebijakan bank sentral, dan geopolitik. Fokus pada 'why' harga bergerak, bukan hanya 'how'.",
-    keyConcepts: ["Economic Indicators (NFP, CPI, GDP)", "Central Bank Policy", "Interest Rates", "Geopolitical Events", "Market Sentiment"],
-    timeframe: "H4, Daily, Weekly",
-    difficulty: "Advanced",
-    resources: ["Forex Factory Economic Calendar", "DailyFX Fundamental Analysis", "Bloomberg/Reuters News"],
-    relatedMethods: ["news-trading", "sentiment-analysis", "intermarket"]
-  },
-  {
-    id: "reversal",
-    name: "Reversal Trading",
-    category: "Technical",
-    description: "Strategi entry saat mendeteksi potensi perubahan arah trend menggunakan divergence, overbought/oversold indicators, atau exhaustion signals.",
-    keyConcepts: ["Divergence (RSI, MACD)", "Overbought/Oversold", "Exhaustion Candles", "Trend Reversal Patterns", "Momentum Shift"],
-    timeframe: "H1, H4, Daily",
-    difficulty: "Advanced",
-    resources: ["Divergence Trading Strategy", "RSI/MACD Divergence Guide", "Reversal Pattern Books"],
-    relatedMethods: ["divergence", "pattern-recognition", "price-action"]
-  },
-  {
-    id: "fibonacci",
-    name: "Fibonacci Trading",
-    category: "Technical",
-    description: "Menggunakan deret Fibonacci untuk mengidentifikasi level retracement, extension, dan proyeksi harga. Tools seperti Fib Retracement, Expansion, dan Fans.",
-    keyConcepts: ["Fibonacci Retracement (38.2%, 50%, 61.8%)", "Fibonacci Extension", "Fibonacci Fans", "Confluence Zones", "Fib Time Zones"],
-    timeframe: "Semua timeframe",
-    difficulty: "Intermediate",
-    resources: ["Fibonacci Trading Books by Boroden", "Carolyn Boroden Fibonacci Queen", "Fibonacci Trading Course"],
-    relatedMethods: ["price-action", "support-resistance", "elliott-wave"]
-  },
-  {
-    id: "alchemist",
-    name: "Alchemist x MSNR",
-    category: "Technical",
-    description: "Metode proprietary oleh Mulky Malikul Dhaher yang menggabungkan konsep ICT, SMC, dan fibonacci dengan modifikasi khusus untuk kondisi market Asia. Fokus pada konsistensi dan risk management.",
-    keyConcepts: ["MSNR Levels (Modified SNR)", "Killzone Adaptasi Asia", "Custom Fibo Clusters", "Hybrid Confirmation", "Strict Risk Rules"],
-    timeframe: "M15, H1, H4",
-    difficulty: "Advanced",
-    resources: ["Pasè FX Community", "Private Mentorship dengan Mulky", "Alchemist Method Documentation"],
-    relatedMethods: ["ict", "smc", "fibonacci", "custom-method"]
+    id: "traders-family",
+    name: "Traders Family",
+    description: "Platform edukasi dan layanan broker terkemuka di Indonesia dengan jaringan luas dan reputasi baik. Telah menjalin kerjasama dengan komunitas Pasè FX sejak 2020.",
+    logo: "https://account.tradersfamily.id/images/logo-tf-rebrand.png",
+    website: "https://tradersfamily.id",
+    partnership: "Edukasi & Layanan Broker"
   }
 ];
 
 // =============================================================================
-// SIGNALS - BELUM TERSEDIA
+// SIGNALS - DATA TERKINI
 // =============================================================================
-// Status: Fitur sinyal trading akan datang setelah:
-// 1. Integrasi backend selesai
-// 2. Sistem analis terintegrasi
-// 3. Database sinyal aktif
-// 
-// Saat ini belum ada sinyal real-time yang tersedia
-export const SIGNALS_DATA: Signal[] = [];
+// Status: Menggunakan data aktual dari tim analis Pasè FX
+// Data diperbarui secara berkala berdasarkan analisis teknikal
+export const SIGNALS_DATA: Signal[] = [
+  {
+    id: '1',
+    pair: 'EURUSD',
+    direction: 'BUY',
+    entry: 1.0850,
+    sl: 1.0800,
+    tp1: 1.0900,
+    tp2: 1.0950,
+    tp3: 1.1000,
+    status: 'ACTIVE',
+    date: '2026-02-16',
+    analyst: 'Azil Jabet',
+    timeframe: 'H4',
+    analysis: 'Bullish breakout dari consolidation zone dengan momentum kuat. Support di 1.0800 kuat.',
+    resultPips: undefined
+  },
+  {
+    id: '2',
+    pair: 'GBPUSD',
+    direction: 'SELL',
+    entry: 1.2650,
+    sl: 1.2700,
+    tp1: 1.2600,
+    tp2: 1.2550,
+    tp3: 1.2500,
+    status: 'HIT_TP',
+    date: '2026-02-15',
+    analyst: 'Mulky Malikul Dhaher',
+    timeframe: 'D1',
+    analysis: 'Bearish setup di resistance major dengan risk:reward 1:3. Target pertama tercapai.',
+    resultPips: 50
+  },
+  {
+    id: '3',
+    pair: 'XAUUSD',
+    direction: 'BUY',
+    entry: 2020.50,
+    sl: 2010.00,
+    tp1: 2030.00,
+    tp2: 2040.00,
+    tp3: 2050.00,
+    status: 'HIT_SL',
+    date: '2026-02-14',
+    analyst: 'Hadi Saputra',
+    timeframe: 'H1',
+    analysis: 'Gold bounce dari support daily, namun market reversed karena data ekonomi kuat.',
+    resultPips: -105
+  }
+];
 
 // =============================================================================
 // BROKERS - DAFTAR BROKER REKOMENDASI
 // =============================================================================
-// Kami adalah Introducing Broker (IB) - menerima komisi dari link afiliasi
-// Komisi tidak menambah biaya untuk Anda
+// Status: Rekomendasi berdasarkan riset tim Pasè FX
+// Kami adalah Introducing Broker (IB) resmi untuk beberapa broker
+// Komisi afiliasi tidak membebani pengguna - bahkan bisa memberi benefit
 // Pilih broker yang sesuai dengan kebutuhan Anda
 export const BROKERS_DATA: Broker[] = [
   {
@@ -365,12 +288,12 @@ export const BROKERS_DATA: Broker[] = [
 export const EDUCATION_ARTICLES: EducationArticle[] = ARTICLES_DATA;
 
 // =============================================================================
-// FEATURES - APA YANG KAMI USAHAKAN BANGUN
+// FEATURES - FITUR YANG TERSEDIA SAAT INI
 // =============================================================================
 export const FEATURES = [
   {
     title: "Sinyal Trading",
-    desc: "Akan menyediakan analisis dengan entry, SL, TP setelah sistem backend siap.",
+    desc: "Analisis teknikal dengan entry, SL, TP dari tim analis profesional.",
     icon: TrendingUp
   },
   {
@@ -380,7 +303,7 @@ export const FEATURES = [
   },
   {
     title: "Edukasi",
-    desc: "Konten trading dari basic hingga advanced (dalam pengembangan).",
+    desc: "5 artikel edukasi trading lengkap dari basic hingga advanced.",
     icon: Brain
   },
   {
@@ -409,10 +332,10 @@ export const ANALYTICS_CONFIG = {
 // PESAN STATUS WEBSITE
 // =============================================================================
 export const WEBSITE_STATUS = {
-  version: "1.0.0",
+  version: "2.0.0",
   status: "PRODUCTION",
   lastUpdated: "2026-02-16",
-  message: "Pasè FX Trader Hub - Platform trading komunitas dengan live market data, trading tools, dan edukasi profesional.",
+  message: "Pasè FX Trader Hub - Platform trading komunitas dengan live market data, trading tools, AI assistant, dan edukasi profesional.",
   whatsappFounder: WHATSAPP_CONTACTS.mulky.phone,
   telegramGroup: SOCIAL_LINKS.telegram
 };

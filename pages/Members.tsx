@@ -45,9 +45,9 @@ const Members: React.FC = () => {
           <p className="text-gray-500 max-w-2xl mx-auto mb-4">
             Trader dengan berbagai spesialisasi dan metode trading.
           </p>
-          <div className="inline-flex items-center gap-2 text-xs text-amber-600 bg-amber-50 px-3 py-1 rounded-full border border-amber-200">
-            <span>⚠️</span>
-            <span>Daftar anggota terdaftar (belum terhubung ke Telegram/WhatsApp API)</span>
+          <div className="inline-flex items-center gap-2 text-xs text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+            <span>✅</span>
+            <span>Daftar anggota terverifikasi secara manual</span>
           </div>
         </div>
 

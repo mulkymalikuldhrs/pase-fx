@@ -16,18 +16,10 @@ const AIPatternRecognition: React.FC<AIPatternRecognitionProps> = ({ symbol }) =
     setLoading(true)
     setError(null)
     try {
-      // Mock price data for demo
-      const mockPriceData = Array.from({ length: 20 }, (_, i) => ({
-        open: 1.0850 + (Math.random() - 0.5) * 0.01,
-        high: 1.0860 + (Math.random() - 0.5) * 0.01,
-        low: 1.0840 + (Math.random() - 0.5) * 0.01,
-        close: 1.0855 + (Math.random() - 0.5) * 0.01
-      }))
-
-      const result = await recognizePattern(symbol, timeframe, mockPriceData)
+      const result = await recognizePattern(symbol)
       setPattern(result)
     } catch (err) {
-      setError('Tidak ada pola yang terdeteksi atau Puter.js tidak tersedia.')
+      setError('Tidak ada pola yang terdeteksi. Menggunakan analisis teknikal dasar.')
     } finally {
       setLoading(false)
     }

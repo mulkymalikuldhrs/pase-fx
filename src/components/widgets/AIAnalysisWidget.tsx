@@ -1,7 +1,13 @@
 import React, { useState } from 'react'
 import { Brain, Loader2, TrendingUp, TrendingDown, Minus, AlertCircle } from 'lucide-react'
 import { analyzeMarket, AIAnalysis } from '../../services/puterAI'
-import { MarketInstrument } from '../../constants/instruments'
+
+interface MarketInstrument {
+  symbol: string
+  name: string
+  type: 'forex' | 'crypto' | 'commodity' | 'index'
+  category: string
+}
 
 interface AIAnalysisWidgetProps {
   instrument: MarketInstrument
@@ -22,10 +28,10 @@ const AIAnalysisWidget: React.FC<AIAnalysisWidgetProps> = ({
     setLoading(true)
     setError(null)
     try {
-      const result = await analyzeMarket(instrument, timeframe, currentPrice)
+      const result = await analyzeMarket(instrument.symbol, timeframe, currentPrice)
       setAnalysis(result)
     } catch (err) {
-      setError('Gagal menganalisis. Pastikan Puter.js tersedia.')
+      setError('Gagal menganalisis. Analisis teknikal menggunakan aturan dasar.')
     } finally {
       setLoading(false)
     }

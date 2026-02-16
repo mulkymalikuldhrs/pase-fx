@@ -13,21 +13,19 @@ const AIDailyBriefing: React.FC = () => {
     setLoading(true)
     setError(null)
     try {
-      const result = await generateDailyBriefing(TRADING_INSTRUMENTS)
+      const result = await generateDailyBriefing()
       setBriefing(result)
       setLastUpdated(new Date())
     } catch (err) {
-      setError('Gagal generate briefing. Puter.js mungkin tidak tersedia.')
+      setError('Gagal generate briefing. Menggunakan analisis pasar dasar.')
     } finally {
       setLoading(false)
     }
   }
 
   useEffect(() => {
-    // Auto-generate on mount if Puter is available
-    if (typeof window !== 'undefined' && 'puter' in window) {
-      generateBriefing()
-    }
+    // Auto-generate on mount
+    generateBriefing()
   }, [])
 
   const getSentimentColor = (sentiment: string) => {
