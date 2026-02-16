@@ -81,7 +81,7 @@ const Navbar: React.FC = () => {
           {/* Logo - Dynamic Island Style */}
           <div className="flex items-center">
             <a href="#/" className="flex-shrink-0 flex items-center gap-2 group" aria-label="Pasè FX Home">
-              <div className={`relative transition-all duration-300 ${scrolled ? 'h-8 w-8' : 'h-10 w-10'} rounded-lg bg-white/50 backdrop-blur-sm flex items-center justify-center border border-white/50 shadow-sm overflow-hidden`}>
+              <div className={`relative transition-all duration-300 ${scrolled ? 'h-8 w-8' : 'h-10 w-10'} rounded-lg bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm flex items-center justify-center border border-white/50 dark:border-slate-700/50 shadow-sm overflow-hidden`}>
                 <img 
                   src="/logo.png" 
                   alt="Logo" 

@@ -442,8 +442,9 @@ body {
   }
 }
 
-/* ===== DARK MODE ===== */
-.dark {
+/* ===== DARK MODE - Single Source of Truth ===== */
+[data-theme="dark"] {
+  /* Gray Scale - Dark Mode */
   --color-gray-50: #0f172a;
   --color-gray-100: #1e293b;
   --color-gray-200: #334155;
@@ -455,6 +456,7 @@ body {
   --color-gray-800: #f1f5f9;
   --color-gray-900: #f8fafc;
   
+  /* Dark Mode Glass Variables */
   --glass-bg: rgba(15, 23, 42, 0.7);
   --glass-bg-light: rgba(15, 23, 42, 0.85);
   --glass-bg-dark: rgba(15, 23, 42, 0.5);
@@ -464,43 +466,43 @@ body {
   --glass-shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
-.dark body {
+[data-theme="dark"] body {
   background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
   color: #f1f5f9;
 }
 
-.dark .glass-card {
+[data-theme="dark"] .glass-card {
   background: var(--glass-bg);
   border-color: var(--glass-border-subtle);
 }
 
-.dark .glass-card:hover {
+[data-theme="dark"] .glass-card:hover {
   background: var(--glass-bg-light);
   border-color: var(--glass-border);
 }
 
-.dark .glass-input {
+[data-theme="dark"] .glass-input {
   background: rgba(30, 41, 59, 0.8);
   border-color: rgba(255, 255, 255, 0.1);
   color: #f1f5f9;
 }
 
-.dark .glass-input:focus {
+[data-theme="dark"] .glass-input:focus {
   background: rgba(30, 41, 59, 0.95);
   border-color: rgba(5, 150, 105, 0.5);
 }
 
-.dark .glass-input::placeholder {
+[data-theme="dark"] .glass-input::placeholder {
   color: rgba(148, 163, 184, 0.7);
 }
 
-.dark .text-primary { color: #f1f5f9; }
-.dark .text-secondary { color: #cbd5e1; }
-.dark .text-tertiary { color: #94a3b8; }
-.dark .text-muted { color: #64748b; }
+[data-theme="dark"] .text-primary { color: #f1f5f9; }
+[data-theme="dark"] .text-secondary { color: #cbd5e1; }
+[data-theme="dark"] .text-tertiary { color: #94a3b8; }
+[data-theme="dark"] .text-muted { color: #64748b; }
 
 @media (prefers-color-scheme: dark) {
-  body {
+  body:not([data-theme]) {
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
   }
 }

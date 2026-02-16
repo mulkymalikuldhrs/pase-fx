@@ -339,3 +339,277 @@ export const WEBSITE_STATUS = {
   whatsappFounder: WHATSAPP_CONTACTS.mulky.phone,
   telegramGroup: SOCIAL_LINKS.telegram
 };
+
+// =============================================================================
+// TRADING METHODS LIBRARY
+// =============================================================================
+export const TRADING_METHODS = [
+  {
+    id: 'ict',
+    name: 'ICT (Inner Circle Trader)',
+    category: 'Technical',
+    difficulty: 'Advanced',
+    timeframe: 'H1, H4, D1',
+    description: 'Metode trading berbasis Smart Money Concepts dengan fokus pada market structure, order blocks, fair value gaps, dan liquidity sweeps. Dikembangkan oleh Michael J. Huddleston.',
+    keyConcepts: [
+      'Market Structure (BOS/CHoCH)',
+      'Order Blocks (OB)',
+      'Fair Value Gaps (FVG)',
+      'Breaker Blocks',
+      'Mitigation Blocks',
+      'Liquidity Sweeps',
+      'Killzones (London/NY)',
+      'OTE (Optimal Trade Entry)'
+    ],
+    relatedMethods: ['SMC', 'Wyckoff', 'Smart Money'],
+    resources: [
+      'YouTube: The Inner Circle Trader',
+      'ICT Mentorship Core Content',
+      '2022 Mentorship Episode 1-10'
+    ]
+  },
+  {
+    id: 'smc',
+    name: 'SMC (Smart Money Concepts)',
+    category: 'Technical',
+    difficulty: 'Advanced',
+    timeframe: 'M15, H1, H4',
+    description: 'Konsep trading yang mengikuti jejak institusi besar/smart money. Fokus pada order flow dan area di mana bank besar melakukan transaksi.',
+    keyConcepts: [
+      'Supply & Demand Zones',
+      'Order Blocks',
+      'Breaker Structures',
+      'Liquidity Grabs',
+      'Inducement',
+      'Displacement',
+      'Market Structure Shift'
+    ],
+    relatedMethods: ['ICT', 'Wyckoff', 'Price Action'],
+    resources: [
+      'Smart Money Concepts by LuxAlgo',
+      'YouTube: Phantom Trading',
+      'YouTube: Six Figure Capital'
+    ]
+  },
+  {
+    id: 'snr',
+    name: 'SNR (Support & Resistance)',
+    category: 'Technical',
+    difficulty: 'Beginner',
+    timeframe: 'Semua Timeframe',
+    description: 'Metode klasik berbasis level support dan resistance. Foundation dari hampir semua strategi trading teknikal.',
+    keyConcepts: [
+      'Support & Resistance Levels',
+      'Trendlines',
+      'Channels',
+      'Pivot Points',
+      'Key Levels',
+      'Round Numbers',
+      'Multiple Timeframe Analysis'
+    ],
+    relatedMethods: ['Price Action', 'Supply Demand', 'Trendline'],
+    resources: [
+      'Technical Analysis of the Financial Markets - John Murphy',
+      'Trading Support and Resistance - Rayner Teo'
+    ]
+  },
+  {
+    id: 'price-action',
+    name: 'Price Action',
+    category: 'Technical',
+    difficulty: 'Intermediate',
+    timeframe: 'M5, M15, H1, H4',
+    description: 'Trading berbasis pergerakan harga murni tanpa indikator. Fokus pada pola candlestick, chart patterns, dan struktur harga.',
+    keyConcepts: [
+      'Candlestick Patterns',
+      'Chart Patterns',
+      'Trend Analysis',
+      'Consolidation vs Expansion',
+      'Breakouts & False Breakouts',
+      'Pin Bars',
+      'Engulfing Patterns'
+    ],
+    relatedMethods: ['SNR', 'Supply Demand', 'SMC'],
+    resources: [
+      'Naked Forex - Alex Nekritin',
+      'YouTube: The Trading Channel',
+      'YouTube: Rayner Teo'
+    ]
+  },
+  {
+    id: 'wyckoff',
+    name: 'Wyckoff Method',
+    category: 'Technical',
+    difficulty: 'Advanced',
+    timeframe: 'H4, D1, W1',
+    description: 'Metode analisis volume dan harga untuk mengidentifikasi akumulasi dan distribusi smart money. Dikembangkan oleh Richard Wyckoff.',
+    keyConcepts: [
+      'Accumulation & Distribution',
+      'Composite Operator',
+      'Wyckoff Schematics',
+      'Volume Analysis',
+      'Phase Analysis (A-E)',
+      'Buying/Selling Climax',
+      'Tests & Springs'
+    ],
+    relatedMethods: ['VSA', 'Volume Profile', 'SMC'],
+    resources: [
+      'Wyckoff Method by David Weis',
+      'The Wyckoff Methodology in Depth - Ruben Villahermosa'
+    ]
+  },
+  {
+    id: 'supply-demand',
+    name: 'Supply & Demand',
+    category: 'Technical',
+    difficulty: 'Intermediate',
+    timeframe: 'M15, H1, H4, D1',
+    description: 'Trading berbasis zona supply dan demand imbalance. Konsep ekonomi dasar yang diterapkan dalam trading.',
+    keyConcepts: [
+      'Supply Zones',
+      'Demand Zones',
+      'Fresh vs Tested Zones',
+      'Zone Strength',
+      'Base Patterns',
+      'Rally-Base-Rally (RBR)',
+      'Drop-Base-Drop (DBD)'
+    ],
+    relatedMethods: ['SNR', 'Price Action', 'SMC'],
+    resources: [
+      'Supply and Demand Trading - Alfonso Moreno',
+      'YouTube: TraderTom'
+    ]
+  },
+  {
+    id: 'elliott-wave',
+    name: 'Elliott Wave Theory',
+    category: 'Technical',
+    difficulty: 'Advanced',
+    timeframe: 'Semua Timeframe',
+    description: 'Teori analisis gelombang yang mengidentifikasi pola psikologi massa dalam pergerakan harga.',
+    keyConcepts: [
+      '5-Wave Impulse',
+      '3-Wave Correction (ABC)',
+      'Fractal Nature',
+      'Wave Degrees',
+      'Fibonacci Relationships',
+      'Wave Extensions',
+      'Alternation Principle'
+    ],
+    relatedMethods: ['Fibonacci', 'Harmonic Patterns', 'Volume Analysis'],
+    resources: [
+      'Elliott Wave Principle - Frost & Prechter',
+      'Mastering Elliott Wave - Glenn Neely'
+    ]
+  },
+  {
+    id: 'harmonic',
+    name: 'Harmonic Patterns',
+    category: 'Technical',
+    difficulty: 'Intermediate',
+    timeframe: 'H1, H4, D1',
+    description: 'Trading berbasis pola geometris spesifik dengan rasio Fibonacci presisi untuk mengidentifikasi reversal zones.',
+    keyConcepts: [
+      'Gartley Pattern',
+      'Butterfly Pattern',
+      'Bat Pattern',
+      'Crab Pattern',
+      'Shark Pattern',
+      'Fibonacci Ratios',
+      'PRZ (Potential Reversal Zone)'
+    ],
+    relatedMethods: ['Fibonacci', 'Elliott Wave', 'Pattern Trading'],
+    resources: [
+      'Harmonic Trading Vol 1-3 - Scott Carney',
+      'YouTube: Akil Stokes'
+    ]
+  },
+  {
+    id: 'fibonacci',
+    name: 'Fibonacci Trading',
+    category: 'Technical',
+    difficulty: 'Beginner',
+    timeframe: 'Semua Timeframe',
+    description: 'Penggunaan rasio Fibonacci untuk mengidentifikasi level retracement, extension, dan confluence zones.',
+    keyConcepts: [
+      'Fibonacci Retracement',
+      'Fibonacci Extension',
+      'Fibonacci Fans',
+      'Fibonacci Time Zones',
+      'Golden Ratio (0.618)',
+      'Confluence Zones',
+      'Fibonacci Clusters'
+    ],
+    relatedMethods: ['Elliott Wave', 'Harmonic Patterns', 'SNR'],
+    resources: [
+      'Fibonacci Trading - Carolyn Boroden',
+      'The Complete Guide to Fibonacci Trading'
+    ]
+  },
+  {
+    id: 'vsa',
+    name: 'VSA (Volume Spread Analysis)',
+    category: 'Technical',
+    difficulty: 'Advanced',
+    timeframe: 'H1, H4, D1',
+    description: 'Analisis hubungan antara volume, spread (range), dan close price untuk mengidentifikasi aktivitas smart money.',
+    keyConcepts: [
+      'No Demand Bar',
+      'No Supply Bar',
+      'Stopping Volume',
+      'Upthrust',
+      'Test for Supply',
+      'Shakeout',
+      'VSA Climax'
+    ],
+    relatedMethods: ['Wyckoff', 'Volume Profile', 'Price Action'],
+    resources: [
+      'Trade Guider by Gavin Holmes',
+      'The Secret of VSA - Tom Williams'
+    ]
+  },
+  {
+    id: 'fundamental',
+    name: 'Fundamental Analysis',
+    category: 'Fundamental',
+    difficulty: 'Intermediate',
+    timeframe: 'D1, W1, MN',
+    description: 'Analisis berbasis data ekonomi, berita, dan faktor fundamental yang mempengaruhi pergerakan harga jangka panjang.',
+    keyConcepts: [
+      'Economic Indicators',
+      'Interest Rates',
+      'GDP & Employment',
+      'Central Bank Policy',
+      'Geopolitical Events',
+      'News Trading',
+      'Market Sentiment'
+    ],
+    relatedMethods: ['Sentiment Analysis', 'Macro Trading', 'News Trading'],
+    resources: [
+      'Currency Forecasting - Michael Rosenberg',
+      'Fundamental Analysis - Kathy Lien'
+    ]
+  },
+  {
+    id: 'trendline',
+    name: 'Trendline Trading',
+    category: 'Technical',
+    difficulty: 'Beginner',
+    timeframe: 'M15, H1, H4',
+    description: 'Trading berbasis trendlines dan channel. Simple namun powerful untuk mengikuti trend.',
+    keyConcepts: [
+      'Trendline Basics',
+      'Valid Trendlines',
+      'Channel Trading',
+      'Trendline Breaks',
+      'Fan Principle',
+      'Trendline Bounces',
+      'Internal Trendlines'
+    ],
+    relatedMethods: ['SNR', 'Price Action', 'Channels'],
+    resources: [
+      'Trend Following - Michael Covel',
+      'YouTube: TechnicalFX'
+    ]
+  }
+];
