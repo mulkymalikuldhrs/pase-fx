@@ -186,7 +186,7 @@ class RealMarketDataService {
       const cached = this.cache.get(comm.symbol);
       const basePrice = cached?.price || comm.price;
       
-      // Small random fluctuation for demo (in production, use real API)
+      // Price fluctuation simulation for commodities (until real commodity API is integrated)
       const fluctuation = (Math.random() - 0.5) * 0.1;
       const newPrice = basePrice * (1 + fluctuation / 100);
       

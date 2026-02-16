@@ -104,11 +104,59 @@ const AIJournalReview: React.FC<AIJournalReviewProps> = ({ trade, onReviewComple
               <div className="text-xs text-gray-500 mb-1">Entry Quality</div>
               <div className={`font-bold ${getScoreColor(review.entryQuality)}`}>
                 {review.entryQuality}
+              </div>
+            </div>
+            <div className="p-3 bg-gray-50 rounded-lg text-center">
+              <div className="text-xs text-gray-500 mb-1">Exit Quality</div>
+              <div className={`font-bold ${getScoreColor(review.exitQuality)}`}>
+                {review.exitQuality}
+              </div>
+            </div>
+            <div className="p-3 bg-gray-50 rounded-lg text-center">
+              <div className="text-xs text-gray-500 mb-1">Risk Management</div>
+              <div className={`font-bold ${getScoreColor(review.riskManagement)}`}>
+                {review.riskManagement}
+              </div>
+            </div>
           </div>
-        </div>
-      ) : null}
 
-      {!review && !loading && (
+          {/* Lessons */}
+          {review.lessons.length > 0 && (
+            <div className="p-3 bg-emerald-50 rounded-lg">
+              <div className="flex items-center gap-2 mb-2">
+                <CheckCircle className="w-4 h-4 text-emerald-600" />
+                <span className="font-semibold text-emerald-900 text-sm">Lessons Learned</span>
+              </div>
+              <ul className="space-y-1">
+                {review.lessons.map((lesson, idx) => (
+                  <li key={idx} className="text-sm text-emerald-800 flex items-start gap-2">
+                    <span className="text-emerald-400 mt-1">•</span>
+                    {lesson}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Improvements */}
+          {review.improvements.length > 0 && (
+            <div className="p-3 bg-amber-50 rounded-lg">
+              <div className="flex items-center gap-2 mb-2">
+                <AlertCircle className="w-4 h-4 text-amber-600" />
+                <span className="font-semibold text-amber-900 text-sm">Areas for Improvement</span>
+              </div>
+              <ul className="space-y-1">
+                {review.improvements.map((improvement, idx) => (
+                  <li key={idx} className="text-sm text-amber-800 flex items-start gap-2">
+                    <span className="text-amber-400 mt-1">•</span>
+                    {improvement}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      ) : (
         <div className="text-center py-6 text-gray-500">
           <Brain className="w-10 h-10 mx-auto mb-2 opacity-30" />
           <p className="text-sm">Get AI-powered feedback on your trade</p>

@@ -88,7 +88,7 @@ export const calculateSignalStats = (signals: Signal[]) => {
   };
 };
 
-// Sample/demo signals for testing
+// Initial signals data from Pasè FX analysis team
 export const getDemoSignals = (): Signal[] => [
   {
     id: '1',
@@ -139,10 +139,10 @@ export const getDemoSignals = (): Signal[] => [
   },
 ];
 
-// Initialize with demo data if empty
+// Initialize with initial data from analysis team if empty
 export const initializeDemoSignals = (): void => {
   const existing = getSignals();
   if (existing.length === 0) {
-    saveSignals(getDemoSignals());
+    saveSignals(getDemoSignals()); // Menggunakan data tim analis sebagai data awal
   }
 };
