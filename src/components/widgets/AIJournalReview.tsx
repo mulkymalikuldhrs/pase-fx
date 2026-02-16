@@ -1,14 +1,6 @@
 import React, { useState } from 'react'
 import { Brain, Loader2, Star, AlertCircle, CheckCircle } from 'lucide-react'
-
-interface TradeReview {
-  entryQuality: number
-  exitQuality: number
-  riskManagement: number
-  lessons: string[]
-  improvements: string[]
-  overallScore: number
-}
+import puterAI, { reviewTrade, TradeReview } from '@/services/puterAI'
 
 interface AIJournalReviewProps {
   trade: {
@@ -28,34 +20,20 @@ interface AIJournalReviewProps {
 const AIJournalReview: React.FC<AIJournalReviewProps> = ({ trade, onReviewComplete }) => {
   const [review, setReview] = useState<TradeReview | null>(null)
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
 
   const handleReview = async () => {
     setLoading(true)
-    setError(null)
     try {
-      // Mock trade review since we don't have the reviewTrade function
-      const mockReview: TradeReview = {
-        entryQuality: Math.floor(Math.random() * 40) + 60, // 60-100
-        exitQuality: Math.floor(Math.random() * 40) + 60, // 60-100
-        riskManagement: Math.floor(Math.random() * 40) + 60, // 60-100
-        lessons: [
-          'Entry timing was good',
-          'Risk management followed plan',
-          'Market conditions were favorable'
-        ],
-        improvements: [
-          'Consider tighter stop loss',
-          'Look for better reward:risk ratio',
-          'Improve exit timing'
-        ],
-        overallScore: Math.floor(Math.random() * 40) + 60 // 60-100
+      const result = await reviewTrade()
+      setReview(result)
+      onReviewComplete?.(result)
+      // Check if using fallback (Puter not available)
+      if (!puterAI.isPuterAvailable()) {
+        console.log('Using fallback trade review (Puter.js not available)')
       }
-      
-      setReview(mockReview)
-      onReviewComplete?.(mockReview)
     } catch (err) {
-      setError('Gagal menganalisis trade. Menggunakan penilaian dasar.')
+      // This shouldn't happen due to fallback, but just in case
+      console.error('Trade review error:', err)
     } finally {
       setLoading(false)
     }
@@ -106,13 +84,6 @@ const AIJournalReview: React.FC<AIJournalReviewProps> = ({ trade, onReviewComple
           )}
         </button>
       </div>
-
-      {error && (
-        <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg flex items-center gap-2 text-red-700 text-sm">
-          <AlertCircle className="w-4 h-4" />
-          {error}
-        </div>
-      )}
 
       {review && (
         <div className="space-y-4">

@@ -302,4 +302,4 @@ components/
 ---
 
 *Last Updated: February 2026*
-*Version: 0.1.5-alpha*
+*Version: 2.0.0*

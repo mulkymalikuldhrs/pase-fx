@@ -32,13 +32,23 @@ Pasè FX Trader Hub is a forex trading community website from Aceh, Indonesia. B
 - **Data**: LocalStorage + Hash-based routing
 - **Charts**: TradingView widgets
 
-## ✨ Current Features (v0.1.4)
+## ✨ Current Features (v2.0.0)
+
+### 🤖 AI Trading Assistant (Powered by Puter.js) - NEW!
+- **AI Market Analysis**: Automatic BUY/SELL recommendations with confidence scores
+- **Pattern Recognition**: Auto-detect chart patterns (Head & Shoulders, Double Top/Bottom, etc.)
+- **Daily Briefing**: Daily market sentiment, opportunities, and risk factors
+- **AI Trade Ideas**: Smart trading recommendations
+- **Trade Journal Review**: AI-powered trade analysis with 0-100 scoring
+- **Smart Calculator**: AI-optimized position sizing
+- **100% FREE**: No API key required, powered by Puter.js
 
 ### Trading Tools
 - **4 Calculators**: Pip, Position Size, Risk/Reward, Fibonacci
 - **Trading Signals**: Full CRUD with localStorage, statistics, filters
-- **Trade Journal**: Advanced tracking with export/import CSV
+- **Trade Journal**: Advanced tracking with export/import CSV + AI Review
 - **Market Widgets**: Economic Calendar, Heat Map, Gold/DXY prices
+- **Live Market Data**: Real-time rates with auto-refresh
 
 ### Education
 - 5 Complete Educational Articles
@@ -65,5 +75,5 @@ For questions or support, contact through the website's WhatsApp link.
 
 ---
 
-*Last Updated: February 15, 2026*
-*Version: 0.1.5-alpha*
+*Last Updated: February 16, 2026*
+*Version: 2.0.0*

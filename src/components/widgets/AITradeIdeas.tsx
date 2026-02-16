@@ -1,39 +1,23 @@
 import React, { useState } from 'react'
 import { Lightbulb, Loader2, TrendingUp, TrendingDown, RefreshCw } from 'lucide-react'
+import puterAI, { generateTradeIdea, TradeIdea } from '@/services/puterAI'
 
 const AITradeIdeas: React.FC = () => {
-  const [idea, setIdea] = useState<{
-    symbol: string
-    direction: string
-    timeframe: string
-    setup: string
-    confidence: number
-  } | null>(null)
+  const [idea, setIdea] = useState<TradeIdea | null>(null)
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
 
   const generateIdea = async () => {
     setLoading(true)
-    setError(null)
     try {
-      // Mock trade idea since we don't have the generateTradeIdea function
-      const instruments = ['EUR/USD', 'GBP/USD', 'USD/JPY', 'BTC/USD', 'XAU/USD']
-      const directions = ['BUY', 'SELL']
-      const timeframes = ['M15', 'H1', 'H4', 'D1']
-      
-      const selectedInstrument = instruments[Math.floor(Math.random() * instruments.length)]
-      const selectedDirection = directions[Math.floor(Math.random() * directions.length)]
-      const selectedTimeframe = timeframes[Math.floor(Math.random() * timeframes.length)]
-      
-      setIdea({
-        symbol: selectedInstrument,
-        direction: selectedDirection,
-        timeframe: selectedTimeframe,
-        setup: `Setup ${selectedDirection.toLowerCase()} berdasarkan analisis teknikal`,
-        confidence: Math.floor(Math.random() * 40) + 60 // 60-100%
-      })
+      const result = await generateTradeIdea()
+      setIdea(result)
+      // Check if using fallback (Puter not available)
+      if (!puterAI.isPuterAvailable()) {
+        console.log('Using fallback trade idea (Puter.js not available)')
+      }
     } catch (err) {
-      setError('Gagal generate ide trading. Menggunakan ide dasar.')
+      // This shouldn't happen due to fallback, but just in case
+      console.error('Trade idea generation error:', err)
     } finally {
       setLoading(false)
     }
@@ -61,12 +45,6 @@ const AITradeIdeas: React.FC = () => {
           Generate
         </button>
       </div>
-
-      {error && (
-        <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
-          {error}
-        </div>
-      )}
 
       {idea && (
         <div className="bg-white/70 rounded-xl p-4 space-y-3">
@@ -96,6 +74,29 @@ const AITradeIdeas: React.FC = () => {
               <div className="font-semibold text-gray-900">{idea.confidence}%</div>
             </div>
           </div>
+
+          {(idea.entryPrice || idea.stopLoss || idea.takeProfit) && (
+            <div className="grid grid-cols-3 gap-2 text-xs">
+              {idea.entryPrice && (
+                <div className="bg-blue-50 rounded-lg p-2">
+                  <span className="text-blue-600">Entry</span>
+                  <div className="font-semibold text-blue-700">{idea.entryPrice}</div>
+                </div>
+              )}
+              {idea.stopLoss && (
+                <div className="bg-red-50 rounded-lg p-2">
+                  <span className="text-red-600">SL</span>
+                  <div className="font-semibold text-red-700">{idea.stopLoss}</div>
+                </div>
+              )}
+              {idea.takeProfit && (
+                <div className="bg-emerald-50 rounded-lg p-2">
+                  <span className="text-emerald-600">TP</span>
+                  <div className="font-semibold text-emerald-700">{idea.takeProfit}</div>
+                </div>
+              )}
+            </div>
+          )}
 
           <div className="bg-gray-50 rounded-lg p-3">
             <span className="text-sm text-gray-500">Setup</span>

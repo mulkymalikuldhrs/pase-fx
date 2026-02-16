@@ -129,11 +129,116 @@ Access educational content:
 - Stay updated with market news
 - Join our community for support
 
+## 🤖 AI Trading Assistant (NEW in v2.0.0)
+
+Pasè FX now features a powerful AI Trading Assistant powered by Puter.js - completely FREE to use!
+
+### Getting Started with AI
+
+#### No Setup Required
+- No API keys to configure
+- No registration needed
+- Works directly in your browser
+- 400+ AI models available (GPT-4, Claude, Gemini, Llama, etc.)
+
+### AI Features
+
+#### 1. AI Market Analysis
+- **Automatic Technical Analysis**: Get BUY/SELL/NEUTRAL recommendations
+- **Confidence Score**: See AI confidence level (0-100%)
+- **Trade Levels**: Entry price, Stop Loss, Take Profit suggestions
+- **Risk:Reward**: Automatic R:R calculation
+
+**How to use:**
+1. Go to Tools page
+2. Select currency pair
+3. Click "Analyze with AI"
+4. Review the analysis and recommendations
+
+#### 2. Pattern Recognition
+- **Automatic Detection**: Head & Shoulders, Double Top/Bottom, Triangle, etc.
+- **Directional Signal**: Bullish/Bearish/Neutral classification
+- **Target Price**: Proyeksi harga target
+- **Invalidation Level**: Know when pattern fails
+
+**How to use:**
+1. Open Pattern Recognition tool
+2. Select currency pair and timeframe
+3. AI will analyze and highlight patterns
+4. Click on detected patterns for details
+
+#### 3. Daily Market Briefing
+- **Market Sentiment**: Daily sentiment analysis
+- **Key Events**: Important events to watch
+- **Trading Opportunities**: Identified opportunities
+- **Risk Factors**: Potential risks
+
+**How to use:**
+1. Visit the Dashboard
+2. View "Daily Briefing" section
+3. Updated automatically every day
+4. Click "Generate New Briefing" for fresh analysis
+
+#### 4. AI Trade Ideas
+- **Smart Recommendations**: AI-generated trading ideas
+- **Symbol Suggestions**: Recommended pairs/instruments
+- **Setup Description**: Complete trading setup
+- **Confidence Level**: Trust score for each idea
+
+**How to use:**
+1. Go to "AI Trade Ideas" section
+2. Select your preferred pairs
+3. AI generates ideas based on current market
+4. Review confidence level before trading
+
+#### 5. Trade Journal Review
+- **Performance Analysis**: AI reviews your trades
+- **Score System**: 0-100 scoring for each aspect
+  - Entry Quality
+  - Exit Quality
+  - Risk Management
+  - Overall Trade
+- **Lessons Learned**: AI identifies learning points
+- **Improvements**: Suggestions for better trading
+
+**How to use:**
+1. Add trades to your Trade Journal
+2. Select trades to review
+3. Click "AI Review"
+4. Review the detailed feedback
+
+#### 6. Smart Position Calculator
+- **AI-Powered**: Position size calculation with AI reasoning
+- **Risk Optimization**: Based on your risk profile
+- **Explanation**: AI explains the calculation logic
+
+**How to use:**
+1. Open Position Size Calculator
+2. Enable "AI Assist" mode
+3. Enter your parameters
+4. Get AI-optimized recommendation
+
+### AI Usage Tips
+
+1. **Be Specific**: Provide clear context for better results
+2. **Verify**: Always verify AI recommendations with your own analysis
+3. **Risk Management**: AI is a tool, not a guarantee - always use proper risk management
+4. **Multiple Models**: Try different AI models for varied perspectives
+5. **Learn**: Use AI explanations to improve your trading knowledge
+
+### AI Limitations
+
+- AI provides analysis based on available data
+- Past performance doesn't guarantee future results
+- Always combine AI with your own research
+- Not financial advice - use at your own risk
+
 ## 📞 Support
 
 Need help? Contact us through:
 - WhatsApp: Available on the website
 - Community Forum: Join other traders
+- **AI Support**: Ask the AI Assistant for help with platform features
 
 ---
 

@@ -52,6 +52,66 @@ interface Signal {
 }
 ```
 
+## 🤖 AI Integration (v2.0.0)
+
+### Puter.js AI Service
+
+Pasè FX uses Puter.js for AI-powered trading analysis without backend requirements.
+
+#### Service: `puterAI.ts`
+
+**Location**: `src/utils/puterAI.ts`
+
+**Features:**
+- Direct browser AI integration
+- 400+ AI models support
+- No API keys required
+- User-pays pricing model
+
+**Methods:**
+```typescript
+// Market Analysis
+analyzeMarket(pair: string, timeframe: string): Promise<AIAnalysisResult>
+
+// Pattern Recognition
+recognizePatterns(pair: string, data: PriceData[]): Promise<PatternResult[]>
+
+// Daily Briefing
+generateDailyBriefing(): Promise<DailyBriefing>
+
+// Trade Ideas
+generateTradeIdeas(preferences: UserPreferences): Promise<TradeIdea[]>
+
+// Trade Review
+reviewTrade(trade: Trade): Promise<TradeReview>
+
+// Position Calculation
+calculatePosition(params: PositionParams): Promise<PositionRecommendation>
+```
+
+**AI Models Available:**
+- GPT-4 (OpenAI)
+- Claude (Anthropic)
+- Gemini (Google)
+- Llama (Meta)
+- 400+ models via Puter.js
+
+**Usage Example:**
+```typescript
+import { analyzeMarket } from '@/utils/puterAI'
+
+const analysis = await analyzeMarket('EUR/USD', '1H')
+// Returns: {
+//   recommendation: 'BUY',
+//   confidence: 78,
+//   entryPrice: 1.0850,
+//   stopLoss: 1.0820,
+//   takeProfit: 1.0920,
+//   riskReward: '1:2.3',
+//   technicalAnalysis: 'Strong support at...'
+// }
+```
+
 ## 🔌 External Integrations
 
 ### TradingView Widgets
@@ -128,4 +188,4 @@ const saveTrades = (trades: Trade[]) => {
 ---
 
 *Last Updated: February 2026*
-*Version: 0.1.5-alpha*
+*Version: 2.0.0*
