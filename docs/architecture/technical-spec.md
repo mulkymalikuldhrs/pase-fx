@@ -217,3 +217,37 @@ See [CHANGELOG.md](../../CHANGELOG.md) for detailed version history.
 **Current Version**: 2.0.0  
 **Last Updated**: February 16, 2026  
 **Status**: Production - AI Powered Trading Platform
+
+---
+
+## 🤖 AI Integration Architecture (v2.0.0)
+
+### Puter.js AI Platform
+
+Pasè FX integrates Puter.js AI platform for free AI-powered trading analysis.
+
+#### Features
+- **No API Key Required**: Direct browser integration
+- **400+ AI Models**: GPT-4, Claude, Gemini, Llama, and more
+- **User-Pays Model**: Users pay for their own AI usage
+- **Free Developer Tier**: No cost for implementation
+
+#### AI Components
+```
+AIAnalysisWidget       → Market analysis with BUY/SELL recommendations
+AIPatternRecognition   → Chart pattern detection
+AIDailyBriefing       → Daily market sentiment and opportunities
+AITradeIdeas          → AI-generated trading ideas
+AIJournalReview       → Trade performance review with scoring
+```
+
+#### Data Flow
+```
+User Request → Puter.js SDK → AI Model → Response → UI Display
+```
+
+#### Security
+- No API keys in codebase
+- Client-side only (no backend required)
+- User authentication via Puter.js
+- Encrypted communication

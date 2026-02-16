@@ -153,39 +153,72 @@ const TradeJournal: React.FC = () => {
     reader.onload = (e) => {
       const text = e.target?.result as string;
       const lines = text.split('\n');
-      // Skip header and parse
       const importedTrades: Trade[] = [];
+      const baseId = Date.now();
+      
       for (let i = 1; i < lines.length; i++) {
         const line = lines[i].trim();
         if (!line) continue;
         
-        const parts = line.split(',');
-        if (parts.length >= 10) {
+        const parts = parseCSVLine(line);
+        if (parts.length >= 10 && parts[0] && parts[1]) {
+          const entry = parseFloat(parts[3]);
+          const exit = parseFloat(parts[4]);
+          
+          if (isNaN(entry) || isNaN(exit)) continue;
+          
           importedTrades.push({
-            id: Date.now().toString() + i,
+            id: `${baseId}-${i}`,
             date: parts[0],
-            pair: parts[1],
-            direction: parts[2] as 'BUY' | 'SELL',
-            entry: parseFloat(parts[3]),
-            exit: parseFloat(parts[4]),
+            pair: parts[1].toUpperCase(),
+            direction: parts[2] === 'SELL' ? 'SELL' : 'BUY',
+            entry,
+            exit,
             sl: parseFloat(parts[5]) || 0,
             tp: parseFloat(parts[6]) || 0,
             lots: parseFloat(parts[7]) || 0.1,
-            result: parts[8] as 'WIN' | 'LOSS' | 'BE',
-            pips: parseFloat(parts[9]),
+            result: ['WIN', 'LOSS', 'BE'].includes(parts[8]) ? parts[8] as 'WIN' | 'LOSS' | 'BE' : 'BE',
+            pips: parseFloat(parts[9]) || 0,
             profit: parseFloat(parts[10]) || 0,
-            method: parts[11] || 'Lainnya',
-            notes: parts[12]?.replace(/"/g, '') || ''
+            method: TRADING_METHODS.includes(parts[11]) ? parts[11] : 'Lainnya',
+            notes: parts[12] || ''
           });
         }
       }
       
       if (importedTrades.length > 0 && confirm(`Import ${importedTrades.length} trades?`)) {
-        setTrades([...importedTrades, ...trades]);
+        setTrades(prev => [...importedTrades, ...prev]);
       }
     };
     reader.readAsText(file);
     event.target.value = '';
+  };
+  
+  // Parse CSV line handling quoted fields
+  const parseCSVLine = (line: string): string[] => {
+    const result: string[] = [];
+    let current = '';
+    let inQuotes = false;
+    
+    for (let i = 0; i < line.length; i++) {
+      const char = line[i];
+      
+      if (char === '"') {
+        if (inQuotes && line[i + 1] === '"') {
+          current += '"';
+          i++;
+        } else {
+          inQuotes = !inQuotes;
+        }
+      } else if (char === ',' && !inQuotes) {
+        result.push(current.trim());
+        current = '';
+      } else {
+        current += char;
+      }
+    }
+    result.push(current.trim());
+    return result;
   };
 
   // Statistics
@@ -199,7 +232,8 @@ const TradeJournal: React.FC = () => {
     const totalProfit = trades.reduce((acc, t) => acc + t.profit, 0);
     const avgProfit = total > 0 ? totalProfit / total : 0;
     const avgWin = wins > 0 ? trades.filter(t => t.result === 'WIN').reduce((a, t) => a + t.profit, 0) / wins : 0;
-    const avgLoss = losses > 0 ? trades.filter(t => t.result === 'LOSS').reduce((a, t) => a + t.profit, 0) / losses : 0;
+    const avgLoss = losses > 0 ? Math.abs(trades.filter(t => t.result === 'LOSS').reduce((a, t) => a + t.profit, 0) / losses) : 0;
+    const profitFactor = avgLoss > 0 ? avgWin / avgLoss : 0;
     
     // Method stats
     const methodStats = TRADING_METHODS.map(method => {
@@ -213,7 +247,7 @@ const TradeJournal: React.FC = () => {
       };
     }).filter(m => m.count > 0).sort((a, b) => b.count - a.count);
     
-    return { total, wins, losses, be, winRate, totalPips, totalProfit, avgProfit, avgWin, avgLoss, methodStats };
+    return { total, wins, losses, be, winRate, totalPips, totalProfit, avgProfit, avgWin, avgLoss, profitFactor, methodStats };
   }, [trades]);
 
   // Filtered trades
@@ -288,8 +322,8 @@ const TradeJournal: React.FC = () => {
                 <p className="text-xs text-gray-500">Avg Loss</p>
               </div>
               <div className="glass-card bg-white/50 p-3 text-center border border-gray-200 rounded-xl">
-                <p className="text-lg font-bold text-gray-900">{(stats.avgWin / Math.abs(stats.avgLoss || 1)).toFixed(2)}</p>
-                <p className="text-xs text-gray-500">Win/Loss Ratio</p>
+                <p className="text-lg font-bold text-gray-900">{stats.profitFactor.toFixed(2)}</p>
+                <p className="text-xs text-gray-500">Profit Factor</p>
               </div>
             </div>
 

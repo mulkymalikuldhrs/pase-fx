@@ -137,5 +137,5 @@ Need help? Contact us through:
 
 ---
 
-*Last Updated: February 15, 2026*
-*Version: 0.1.4-alpha*
+*Last Updated: February 16, 2026*
+*Version: 2.0.0*
