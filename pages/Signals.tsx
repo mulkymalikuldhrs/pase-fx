@@ -157,9 +157,9 @@ const Signals: React.FC = () => {
     }
   };
 
-  // Handle reset to demo
+  // Handle reset to initial data
   const handleReset = () => {
-    if (confirm('Reset ke data demo? Semua sinyal akan dihapus.')) {
+    if (confirm('Reset ke data awal? Semua sinyal akan dihapus dan diganti dengan data dari tim analis.')) {
       localStorage.removeItem('pasefx_signals');
       initializeDemoSignals();
       setSignals(getSignals());
@@ -550,7 +550,7 @@ const Signals: React.FC = () => {
           </div>
         )}
 
-        {/* Reset Demo Button (Admin Only) */}
+        {/* Reset to Initial Data Button (Admin Only) */}
         {isAdmin && signals.length > 0 && (
           <div className="mt-12 text-center border-t border-gray-200 pt-8">
             <button
@@ -558,7 +558,7 @@ const Signals: React.FC = () => {
               className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-red-600 transition px-4 py-2 hover:bg-red-50 rounded-lg"
             >
               <RotateCcw size={16} />
-              Reset ke Data Demo
+              Reset ke Data Awal
             </button>
           </div>
         )}

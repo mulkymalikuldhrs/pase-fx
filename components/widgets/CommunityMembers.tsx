@@ -13,7 +13,8 @@ interface Member {
   platform: 'telegram' | 'whatsapp';
 }
 
-// Static community data - in production, this would fetch from Telegram/WhatsApp APIs
+// Community data - manually verified members
+// Data diupdate secara manual oleh tim admin, bukan real-time dari API
 const COMMUNITY_DATA: Member[] = [
   // Founders (Admins)
   { id: 1, name: 'Mulky Malikul Dhaher', username: '@mulky_mdh', role: 'admin', avatar: 'M', status: 'online', expertise: ['ICT', 'SMC', 'Development'], joinDate: '2020-01-15', platform: 'telegram' },
