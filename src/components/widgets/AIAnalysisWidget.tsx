@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Brain, Loader2, TrendingUp, TrendingDown, Minus, AlertCircle } from 'lucide-react'
-import { analyzeMarket, AIAnalysis, isPuterAvailable } from '@/services/puterAI'
+import puterAI, { analyzeMarket, AIAnalysis } from '../../services/puterAI'
 
 interface MarketInstrument {
   symbol: string

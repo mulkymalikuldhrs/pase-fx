@@ -105,7 +105,7 @@ const AITradeIdeas: React.FC = () => {
         </div>
       )}
 
-      {!idea && !loading && !error && (
+      {!idea && !loading && (
         <div className="text-center py-6">
           <Lightbulb className="w-12 h-12 mx-auto mb-3 text-emerald-300" />
           <p className="text-gray-600 mb-2">Get AI Trading Ideas</p>

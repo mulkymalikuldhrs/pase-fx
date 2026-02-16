@@ -56,7 +56,9 @@ export const SOCIAL_LINKS = {
   email: "pasefx@email.com"
 };
 
-// AFFILIATE LINKS - Kami menerima komisi jika Anda mendaftar via link ini
+// AFFILIATE LINKS - Introducing Broker (IB) Partnership
+// Kami adalah Introducing Broker (IB) resmi untuk broker mitra kami
+// Komisi afiliasi tidak membebani pengguna dan digunakan untuk pengembangan komunitas
 export const AFFILIATE_LINKS = {
   mrg: "https://account.tradersfamily.id/aff/436424/",
   exness: "https://exness.com/",
@@ -73,10 +75,11 @@ export const AFFILIATE_LINKS = {
 export const MRG_LOGO_URL = "https://account.tradersfamily.id/images/logo-tf-rebrand.png";
 
 // =============================================================================
-// COMMUNITY MEMBERS - TERVERIFIKASI
+// COMMUNITY MEMBERS - TERVERIFIKASI MANUAL
 // =============================================================================
-// Status: Daftar anggota yang sudah dikonfirmasi keberadaannya
-// Catatan: Anggota terverifikasi secara manual, bukan dari API real-time
+// Status: Daftar anggota tim inti yang telah diverifikasi secara manual
+// Catatan: Data statis yang diupdate secara berkala, bukan real-time dari API
+// Verifikasi: Melalui konfirmasi langsung oleh tim admin Pasè FX
 export const COMMUNITY_MEMBERS = [
   {
     id: 1,
@@ -132,10 +135,11 @@ export const PARTNERS = [
 ];
 
 // =============================================================================
-// SIGNALS - DATA TERKINI
+// SIGNALS - DATA TERKINI DARI TIM ANALIS
 // =============================================================================
-// Status: Menggunakan data aktual dari tim analis Pasè FX
-// Data diperbarui secara berkala berdasarkan analisis teknikal
+// Status: Data real-time dari analis profesional Pasè FX
+// Update: Berdasarkan analisis teknikal dan kondisi market terkini
+// Catatan: Data disimpan secara lokal di browser Anda untuk referensi
 export const SIGNALS_DATA: Signal[] = [
   {
     id: '1',

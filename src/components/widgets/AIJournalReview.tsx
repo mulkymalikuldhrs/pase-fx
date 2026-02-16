@@ -158,7 +158,7 @@ const AIJournalReview: React.FC<AIJournalReviewProps> = ({ trade, onReviewComple
         </div>
       )}
 
-      {!review && !loading && !error && (
+      {!review && !loading && (
         <div className="text-center py-6 text-gray-500">
           <Brain className="w-10 h-10 mx-auto mb-2 opacity-30" />
           <p className="text-sm">Get AI-powered feedback on your trade</p>
