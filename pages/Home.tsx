@@ -1,42 +1,38 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { FEATURES, SOCIAL_LINKS, WEBSITE_STATUS } from '../constants';
+import React, { useEffect, useRef } from 'react';
+import { FEATURES, SOCIAL_LINKS } from '../constants';
 import DisclaimerBanner from '../components/DisclaimerBanner';
-import { AlertTriangle, BookOpen, Zap, Send, MessageCircle, Clock, TrendingUp, Users, BarChart3, ArrowRight } from 'lucide-react';
+import { AlertTriangle, BookOpen, Zap, Send, MessageCircle, TrendingUp, Users, BarChart3, ArrowRight, Sparkles } from 'lucide-react';
 import { getSignals } from '../utils/signals';
 import SignalCard from '../components/SignalCard';
-import { Signal } from '../types';
+import CommunityMembers from '../components/widgets/CommunityMembers';
+import AIDailyBriefing from '../src/components/widgets/AIDailyBriefing';
+import AITradeIdeas from '../src/components/widgets/AITradeIdeas';
 
 const Home: React.FC = () => {
   const tickerContainerRef = useRef<HTMLDivElement>(null);
-  const [recentSignals, setRecentSignals] = useState<Signal[]>([]);
-  const [stats, setStats] = useState({
-    members: 1250,
-    signals: 0,
-    winRate: 0,
-    active: 0
-  });
-
-  useEffect(() => {
-    // Load signals for preview & stats
-    const signals = getSignals();
-    setRecentSignals(signals.slice(0, 3)); // Top 3 latest
-
-    // Calculate stats
+  
+  // Load signals and calculate stats
+  const signals = React.useMemo(() => getSignals(), []);
+  const recentSignals = React.useMemo(() => signals.slice(0, 3), [signals]);
+  
+  const stats = React.useMemo(() => {
     const totalSignals = signals.length;
     const wins = signals.filter(s => s.status === 'HIT_TP').length;
     const losses = signals.filter(s => s.status === 'HIT_SL').length;
     const completed = wins + losses;
     const winRate = completed > 0 ? Math.round((wins / completed) * 100) : 0;
     const active = signals.filter(s => s.status === 'ACTIVE').length;
-
-    setStats(prev => ({
-      ...prev,
+    
+    return {
+      members: 1250,
       signals: totalSignals,
       winRate: winRate,
       active: active
-    }));
+    };
+  }, [signals]);
 
-    // TradingView Ticker
+  // TradingView Ticker
+  useEffect(() => {
     if (tickerContainerRef.current) {
       tickerContainerRef.current.innerHTML = '';
       
@@ -174,6 +170,44 @@ const Home: React.FC = () => {
          </div>
       </div>
 
+      {/* AI Daily Briefing Section */}
+      <section className="py-20 px-4 bg-gradient-to-b from-purple-50/50 to-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-4">
+            <div>
+              <h2 className="text-3xl font-bold text-gray-900 mb-3 flex items-center gap-3">
+                <span className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600">
+                  <Sparkles size={24} />
+                </span>
+                AI Trading Assistant
+              </h2>
+              <p className="text-gray-500 max-w-xl">
+                Dapatkan analisis market harian dan ide trading dari AI gratis. Powered by Puter.js - tanpa API key!
+              </p>
+            </div>
+          </div>
+
+          <div className="grid lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2">
+              <AIDailyBriefing />
+            </div>
+            <div className="space-y-6">
+              <AITradeIdeas />
+              <div className="bg-blue-50 rounded-2xl p-6 border border-blue-100">
+                <h3 className="text-lg font-bold text-blue-900 mb-2 flex items-center gap-2">
+                  <Zap className="w-5 h-5" />
+                  100% Gratis
+                </h3>
+                <p className="text-sm text-blue-700">
+                  Semua fitur AI di Pasè FX menggunakan Puter.js - platform AI gratis tanpa batasan. 
+                  User-Pays model: user bayar sendiri untuk penggunaannya.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Signal Preview Section */}
       <section className="py-20 px-4 bg-gray-50/50">
         <div className="max-w-7xl mx-auto">
@@ -209,6 +243,48 @@ const Home: React.FC = () => {
               </a>
             </div>
           )}
+        </div>
+      </section>
+
+      {/* Community Members Section */}
+      <section className="py-20 px-4 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-4">
+            <div>
+              <h2 className="text-3xl font-bold text-gray-900 mb-3 flex items-center gap-3">
+                <span className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600">
+                  <Users size={24} />
+                </span>
+                Komunitas Kami
+              </h2>
+              <p className="text-gray-500 max-w-xl">
+                Bergabung dengan 1,250+ trader dari seluruh Indonesia. Belajar, berdiskusi, dan berkembang bersama.
+              </p>
+            </div>
+          </div>
+          
+          <div className="grid lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2">
+              <CommunityMembers />
+            </div>
+            <div className="space-y-6">
+              <div className="bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl p-6 text-white">
+                <h3 className="text-xl font-bold mb-2">Mengapa Join?</h3>
+                <ul className="space-y-2 text-sm opacity-90">
+                  <li>✓ Signal trading real-time</li>
+                  <li>✓ Analisis harian dari expert</li>
+                  <li>✓ Diskusi strategi & metode</li>
+                  <li>✓ Update market 24/7</li>
+                  <li>✓ Support komunitas aktif</li>
+                </ul>
+              </div>
+              <div className="bg-blue-50 rounded-2xl p-6 border border-blue-100">
+                <h3 className="text-lg font-bold text-blue-900 mb-2">Daily Signals</h3>
+                <p className="text-sm text-blue-700 mb-4">Dapatkan 3-5 signal trading berkualitas setiap hari dari tim analyst profesional.</p>
+                <a href="#/sinyal" className="text-blue-600 font-semibold text-sm hover:underline">Lihat Signals →</a>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

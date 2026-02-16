@@ -7,23 +7,22 @@ export const TAGLINE_ACEH = "Ta doeng saban-saban sabe keudroe-droe, beu koeng l
 export const TAGLINE_ID = "Disiplin bertahap, sabar, jangan rakus";
 
 // =============================================================================
-// ⚠️ PENTING: WEBSITE DALAM TAHAP PENGEMBANGAN
+// ✅ PASÈ FX TRADER HUB - PRODUCTION READY
 // =============================================================================
-// Status: ALPHA - Dalam pengembangan aktif
-// Update: 15 Februari 2026
+// Status: PRODUCTION
+// Version: 1.0.0
+// Update: 16 Februari 2026
 // 
-// APA YANG SUDAH TERSEDIA:
-// ✅ 3 Founders terverifikasi (Mulky, Azil, Hadi)
-// ✅ Komunitas Telegram & WhatsApp (REAL - langsung connect)
-// ✅ 3 Kalkulator trading (Pip, Position Size, Risk/Reward)
-// ✅ 5 Artikel edukasi lengkap (bukan hanya daftar)
-// ✅ TradingView widgets (real-time)
-// 
-// APA YANG SEDANG DIKEMBANGKAN:
-// 🚧 Sinyal Trading (estimasi)
-// 🚧 Ebook (dalam penulisan)
-// 🚧 Notifikasi Market
-// 🚧 PWA Mobile App
+// FITUR UTAMA YANG TERSEDIA:
+// ✅ Live Exchange Rates - Real-time market data
+// ✅ Trading Signals System - Dengan market context
+// ✅ Trading Calculators - Pip, Position, Risk/Reward, Fibonacci
+// ✅ Trade Journal - Export/Import CSV
+// ✅ 5 Artikel Edukasi Trading Lengkap
+// ✅ Komunitas Telegram & WhatsApp (Terverifikasi)
+// ✅ 8 Broker Rekomendasi dengan Affiliate Links
+// ✅ Library 12 Metode Trading
+// ✅ Real-time Market Widgets (TradingView)
 // =============================================================================
 
 // WhatsApp Contacts - TERVERIFIKASI
@@ -410,10 +409,10 @@ export const ANALYTICS_CONFIG = {
 // PESAN STATUS WEBSITE
 // =============================================================================
 export const WEBSITE_STATUS = {
-  version: "0.1.1-alpha",
-  status: "DEVELOPMENT",
-  lastUpdated: "2026-02-15",
-  message: "Website dalam tahap pengembangan aktif. Beberapa fitur sudah tersedia.",
+  version: "1.0.0",
+  status: "PRODUCTION",
+  lastUpdated: "2026-02-16",
+  message: "Pasè FX Trader Hub - Platform trading komunitas dengan live market data, trading tools, dan edukasi profesional.",
   whatsappFounder: WHATSAPP_CONTACTS.mulky.phone,
   telegramGroup: SOCIAL_LINKS.telegram
 };

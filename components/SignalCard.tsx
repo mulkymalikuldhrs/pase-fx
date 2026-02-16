@@ -8,9 +8,6 @@ interface SignalCardProps {
 
 const SignalCard: React.FC<SignalCardProps> = ({ signal }) => {
   const isBuy = signal.direction === 'BUY';
-  const isActive = signal.status === 'ACTIVE';
-  const isProfit = signal.status === 'HIT_TP';
-  const isLoss = signal.status === 'HIT_SL';
   
   const statusColors = {
     'ACTIVE': 'bg-blue-100 text-blue-800 border-blue-200',

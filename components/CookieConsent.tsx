@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Cookie, X } from 'lucide-react';
+import { Cookie } from 'lucide-react';
 
 const COOKIE_CONSENT_KEY = 'pasefx_cookie_consent';
 

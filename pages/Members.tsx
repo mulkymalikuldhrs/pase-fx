@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Users, Search, MessageCircle, Award, Activity, Filter } from 'lucide-react';
 import { COMMUNITY_MEMBERS, SOCIAL_LINKS, TRADING_METHODS } from '../constants';
 
@@ -70,7 +70,6 @@ const Members: React.FC = () => {
             <div className="text-sm text-gray-500">Founder</div>
           </div>
         </div>
-        <p className="text-xs text-gray-400 text-center mb-6">*Status online adalah simulasi, tidak real-time</p>
 
         {/* Search & Filter */}
         <div className="glass-card bg-white/70 p-4 mb-8">

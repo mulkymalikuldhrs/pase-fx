@@ -18,7 +18,6 @@ const sessions: Session[] = [
 
 const SessionTimer: React.FC = () => {
   const [currentTime, setCurrentTime] = useState<Date>(new Date());
-  const [activeSessions, setActiveSessions] = useState<string[]>([]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -28,9 +27,9 @@ const SessionTimer: React.FC = () => {
     return () => clearInterval(timer);
   }, []);
 
-  useEffect(() => {
+  const activeSessions = React.useMemo(() => {
     const hour = currentTime.getUTCHours();
-    const active = sessions
+    return sessions
       .filter(session => {
         if (session.close < session.open) {
           return hour >= session.open || hour < session.close;
@@ -38,7 +37,6 @@ const SessionTimer: React.FC = () => {
         return hour >= session.open && hour < session.close;
       })
       .map(s => s.name);
-    setActiveSessions(active);
   }, [currentTime]);
 
   const formatTime = (date: Date) => {

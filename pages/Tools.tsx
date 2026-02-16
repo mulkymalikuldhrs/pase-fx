@@ -1,11 +1,25 @@
 import React, { useEffect, useRef } from 'react';
-import { Calendar, Activity, DollarSign, Globe, TrendingUp, BarChart3, Calculator, Clock, ExternalLink } from 'lucide-react';
+import { Calendar, Activity, DollarSign, Globe, TrendingUp, BarChart3, Calculator, Clock, ExternalLink, Sparkles, BarChart2, Brain, Bot } from 'lucide-react';
 import PipCalculator from '../components/calculators/PipCalculator';
 import PositionCalculator from '../components/calculators/PositionCalculator';
 import RiskRewardCalculator from '../components/calculators/RiskRewardCalculator';
 import FibonacciCalculator from '../components/calculators/FibonacciCalculator';
 import SessionTimer from '../components/widgets/SessionTimer';
 import MarketOverview from '../components/widgets/MarketOverview';
+import LiveRates from '../components/widgets/LiveRates';
+import CurrencyStrengthMeter from '../components/widgets/CurrencyStrengthMeter';
+import MarketScreener from '../components/widgets/MarketScreener';
+import CorrelationMatrix from '../components/widgets/CorrelationMatrix';
+import EconomicCalendarPro from '../components/widgets/EconomicCalendarPro';
+import COTAnalysisDashboard from '../components/widgets/COTAnalysisDashboard';
+import CurrencyStrengthDashboard from '../components/widgets/CurrencyStrengthDashboard';
+import MarketSentimentDashboard from '../components/widgets/MarketSentimentDashboard';
+import MultiAssetDashboard from '../components/widgets/MultiAssetDashboard';
+import MarketCyclesDashboard from '../components/widgets/MarketCyclesDashboard';
+import AIAnalysisWidget from '../src/components/widgets/AIAnalysisWidget';
+import AIPatternRecognition from '../src/components/widgets/AIPatternRecognition';
+import AITradeIdeas from '../src/components/widgets/AITradeIdeas';
+import { TRADING_INSTRUMENTS } from '../src/constants/instruments';
 
 const Tools: React.FC = () => {
   const chartContainerRef = useRef<HTMLDivElement>(null);
@@ -197,14 +211,60 @@ const Tools: React.FC = () => {
           </div>
         </div>
 
-        {/* Market Overview & Session Timer */}
-        <div className="grid lg:grid-cols-2 gap-6 mb-8">
-          <MarketOverview />
+        {/* AI Trading Tools Section */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+            <Bot className="text-purple-600" /> AI Trading Assistant (Powered by Puter.js)
+          </h2>
+          <p className="text-gray-600 mb-6 text-sm">
+            Fitur AI gratis tanpa API key. Gunakan Puter.js untuk analisis market otomatis, pattern recognition, dan trade ideas.
+            <span className="text-purple-600 font-medium"> 100% Gratis!</span>
+          </p>
+          
+          <div className="grid lg:grid-cols-3 gap-6">
+            {/* AI Analysis Widget */}
+            <div className="lg:col-span-2">
+              <AIAnalysisWidget 
+                instrument={TRADING_INSTRUMENTS[0]} 
+                currentPrice={1.0850}
+                timeframe="H4"
+              />
+            </div>
+            
+            {/* AI Pattern Recognition */}
+            <div className="space-y-6">
+              <AIPatternRecognition symbol="EUR/USD" />
+              <AITradeIdeas />
+            </div>
+          </div>
+        </section>
+
+        {/* Live Rates, Market Overview & Session Timer */}
+        <div className="grid lg:grid-cols-3 gap-6 mb-8">
+          <div className="lg:col-span-2">
+            <LiveRates />
+          </div>
           <SessionTimer />
         </div>
+         <div className="mb-8">
+           <MarketOverview />
+         </div>
 
-        {/* Calculators Section */}
-        <div className="mb-12">
+         {/* Multi-Asset Dashboard - All Markets */}
+         <div className="mb-12">
+           <MultiAssetDashboard />
+         </div>
+
+         {/* Market Cycles Analysis */}
+         <div className="mb-12">
+           <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+             <Clock className="text-indigo-600" /> Market Cycles & Timing
+           </h2>
+           <MarketCyclesDashboard />
+         </div>
+ 
+         {/* Calculators Section */}
+         <div className="mb-12">
           <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
             <Calculator className="text-emerald-500" /> Trading Calculators
           </h2>
@@ -216,9 +276,53 @@ const Tools: React.FC = () => {
           </div>
         </div>
 
+        {/* Professional Market Analysis */}
+        <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+          <Sparkles className="text-purple-500" /> Professional Market Analysis
+        </h2>
+
+        <div className="grid lg:grid-cols-2 gap-6 mb-8">
+          <MarketScreener />
+          <CurrencyStrengthMeter />
+        </div>
+
+        {/* Institutional Grade Tools */}
+        <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+          <BarChart2 className="text-indigo-500" /> Institutional Grade Analysis (COT & Smart Money)
+        </h2>
+
+        <div className="mb-8">
+          <COTAnalysisDashboard />
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-6 mb-8">
+          <CurrencyStrengthDashboard />
+          <MarketSentimentDashboard />
+        </div>
+
+        <div className="mb-8">
+          <EconomicCalendarPro />
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-6 mb-8">
+          <CorrelationMatrix />
+          
+          {/* Currency Strength / Heat Map */}
+          <div className="glass-card bg-white p-6 overflow-hidden border border-gray-200 shadow-sm rounded-xl">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-lg font-bold flex items-center gap-2 text-gray-900">
+                <Activity className="text-emerald-500" /> Forex Heat Map
+              </h3>
+            </div>
+            <div className="tradingview-widget-container" ref={heatmapContainerRef}>
+              <div className="tradingview-widget-container__widget"></div>
+            </div>
+          </div>
+        </div>
+
         {/* Trading Widgets Grid */}
         <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-          <BarChart3 className="text-emerald-500" /> Market Widgets
+          <BarChart3 className="text-emerald-500" /> TradingView Widgets
         </h2>
         
         <div className="grid lg:grid-cols-2 gap-6">
@@ -226,22 +330,10 @@ const Tools: React.FC = () => {
             <div className="glass-card bg-white p-6 overflow-hidden border border-gray-200 shadow-sm rounded-xl">
                 <div className="flex items-center justify-between mb-6">
                     <h3 className="text-lg font-bold flex items-center gap-2 text-gray-900">
-                        <Calendar className="text-emerald-500" /> Economic Calendar
+                        <Calendar className="text-emerald-500" /> Economic Calendar (TradingView)
                     </h3>
                 </div>
                 <div className="tradingview-widget-container" ref={calendarContainerRef}>
-                    <div className="tradingview-widget-container__widget"></div>
-                </div>
-            </div>
-
-            {/* Currency Strength / Heat Map */}
-            <div className="glass-card bg-white p-6 overflow-hidden border border-gray-200 shadow-sm rounded-xl">
-                <div className="flex items-center justify-between mb-6">
-                    <h3 className="text-lg font-bold flex items-center gap-2 text-gray-900">
-                        <Activity className="text-emerald-500" /> Forex Heat Map
-                    </h3>
-                </div>
-                <div className="tradingview-widget-container" ref={heatmapContainerRef}>
                     <div className="tradingview-widget-container__widget"></div>
                 </div>
             </div>

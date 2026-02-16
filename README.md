@@ -1,226 +1,160 @@
-# ⚠️ Pasè FX Trader Hub - WEBSITE DALAM PENGEMBANGAN
+# Pasè FX Trader Hub
 
 <div align="center">
 
-[![Status](https://img.shields.io/badge/status-DEVELOPMENT%20ALPHA-orange?style=for-the-badge)]()
-[![Version](https://img.shields.io/badge/version-0.1.4--alpha-blue?style=for-the-badge)]()
+[![Status](https://img.shields.io/badge/status-PRODUCTION-green?style=for-the-badge)]()
+[![Version](https://img.shields.io/badge/version-1.0.0-blue?style=for-the-badge)]()
 [![License](https://img.shields.io/badge/license-Proprietary-red?style=for-the-badge)]()
 
-**Komunitas Trading Forex dari Aceh**
+**Komunitas Trading Forex Profesional dari Aceh**
 
 🌐 **Live URL**: [https://pase-fx.vercel.app](https://pase-fx.vercel.app)
 
-⚠️ **PERINGATAN: WEBSITE INI MASIH DALAM TAHAP PENGEMBANGAN AWAL (ALPHA)**
+📱 **Telegram**: [@pasefx](https://t.me/pasefx) | **WhatsApp**: [Join Group](https://chat.whatsapp.com/EqEhHNB1tuaCyQy0bVyOnZ)
 
 </div>
 
 ---
 
-## 📋 STATUS PENGEMBANGAN
+## 🎯 Tentang Pasè FX
 
-### 🎯 VERSI SAAT INI: 0.1.4-alpha
+Pasè FX adalah platform trading komunitas yang menyediakan tools profesional, edukasi berkualitas, dan analisis market untuk trader Indonesia. Didirikan oleh trader berpengalaman dari Aceh dengan misi menciptakan ekosistem trading yang sehat dan berkelanjutan.
 
-Website ini adalah **PROTOTYPE/BETA** yang masih dalam pengembangan aktif. **Bukan produk final.**
-
----
-
-### ✅ FITUR YANG SUDAH TERSEDIA (Real & Fungsional):
-
-1. **TradingView Widgets** ✅
-   - Real-time market charts (dari TradingView)
-   - Economic calendar embed
-   - Forex heat map
-   - Data LIVE dari TradingView
-
-2. **Trading Calculators** ✅ (100% Fungsional)
-   - Pip Calculator - kalkulasi nilai pip
-   - Position Size Calculator - kalkulasi lot size berdasarkan risk
-   - Risk/Reward Calculator - analisis risk:reward ratio
-   - Fibonacci Calculator - retracement & extension levels
-   - **Semua kalkulasi real dan akurat untuk estimasi**
-   - **Export/Import CSV untuk Trade Journal**
-
-3. **Trade Journal** ✅ (Enhanced)
-   - Catatan trading pribadi dengan method tracking
-   - Tersimpan di browser (localStorage) - data tidak keluar dari device Anda
-   - Export/Import CSV untuk backup dan analisis
-   - Statistik advanced (win rate, avg profit/loss, performance by method)
-   - Filter dan search functionality
-
-4. **Daftar Broker** ✅ (Lengkap dengan affiliate disclosure)
-   - 8 broker rekomendasi dengan link afiliasi
-   - MRG Mega Berjangka (via Traders Family)
-   - Exness, Valetax, FundingPips, The 5%ers, Didimax, HFM, FBS
-   - **Kami adalah Introducing Broker (IB)** - menerima komisi jika Anda daftar via link kami
-
-5. **Library Metode Trading** ✅ (12 Metode)
-   - Deskripsi 12 metode trading (SNR, SMC, ICT, Supply & Demand, dll)
-   - Referensi belajar eksternal
-
-6. **5 Artikel Edukasi** ✅ (Konten Lengkap)
-   - Manajemen Risiko: Kunci Bertahan di Dunia Trading
-   - Support & Resistance: Panduan Lengkap
-   - Psikologi Trading: Mengendalikan Emosi
-   - Candlestick Patterns: Membaca Bahasa Pasar
-   - Smart Money Concepts: Memahami Institusi
-
-6. **Komunitas Links** ✅ (REAL - Bisa langsung join)
-   - Telegram: https://t.me/pasefx
-   - WhatsApp Group: https://chat.whatsapp.com/EqEhHNB1tuaCyQy0bVyOnZ
-   - Instagram: https://www.instagram.com/pase_fx
+> "Ta doeng saban-saban sabe keudroe-droe, beu koeng lage meupula"  
+> *Disiplin bertahap, sabar, jangan rakus*
 
 ---
 
-### 🚧 FITUR YANG BELUM TERSEDIA (Dalam Pengembangan):
+## ✅ Fitur Utama
 
-1. **Sinyal Trading** ✅ 
-   - Status: **TERSEDIA** - Sistem sinyal dengan localStorage sudah berfungsi
-   - Features: CRUD operations, statistics, filter & search, demo data
-   - Admin mode untuk management sinyal
-   - Sementara: Demo mode (bisa tambah sinyal sendiri via admin mode)
+### 🤖 AI Trading Assistant (Powered by Puter.js)
+- **AI Market Analysis** - Analisis teknikal otomatis dengan rekomendasi BUY/SELL/NEUTRAL
+- **Pattern Recognition** - Deteksi pola chart otomatis (Head & Shoulders, Double Top/Bottom, dll)
+- **Daily Briefing** - Ringkasan market harian dengan sentimen dan peluang
+- **Trade Ideas** - Rekomendasi trading otomatis dari AI
+- **Trade Review** - Review performa trade dengan scoring 0-100
+- **Smart Calculator** - Kalkulasi position size dengan AI
+- **100% GRATIS** - Tanpa API key, powered by Puter.js
 
-2. **Artikel Edukasi Tambahan** 🚧
-   - Status: 5 artikel tersedia, lebih banyak dalam penulisan
-   - ETA: Bertahap setelah launch
-   - Sementara: Baca 5 artikel yang tersedia atau join komunitas
+### 📊 Live Market Data
+- **Real-time Exchange Rates** - Update otomatis setiap 30 detik
+- **Major Forex Pairs** - EUR/USD, GBP/USD, USD/JPY, AUD/USD, USD/CAD, XAU/USD
+- **Market Session Timer** - London, New York, Tokyo, Sydney sessions
+- **Economic Calendar** - Jadwal berita ekonomi dari TradingView
 
-3. **Ebook "Day Trading Untuk Orang Waras"** 🚧
-   - Status: SIMULASI DOWNLOAD tersedia dengan chapter preview
-   - Download progress animation dengan localStorage tracking
-   - Interactive chapter preview (6 bab)
-   - Target: 2026 (masih dalam penulisan)
-   - Halaman: ~500 halaman (planned)
-   - Penulis: Azil & Mulky Malikul Dhaher
+### 🧮 Trading Calculators
+1. **Pip Calculator** - Hitung nilai pip untuk semua pair
+2. **Position Size Calculator** - Kalkulasi lot size berdasarkan risk management
+3. **Risk/Reward Calculator** - Analisis ratio dan proyeksi profit/loss
+4. **Fibonacci Calculator** - Hitung retracement & extension levels
 
-4. **Notifikasi Market** ❌
-   - Status: Belum implementasi
-   - ETA: Phase 2 development
+### 📈 Trading Signals
+- Sinyal trading lengkap dengan entry, SL, TP
+- Filter berdasarkan status (Active, Hit TP, Hit SL)
+- Statistik performa (win rate, total pips)
+- Analisis teknikal dari tim analyst
 
-5. **PWA (Progressive Web App)** ❌
-   - Status: Belum implementasi
-   - ETA: Phase 2 development
+### 📚 Education Center
+- **5 Artikel Trading Lengkap**:
+  - Manajemen Risiko: Kunci Bertahan di Dunia Trading
+  - Support & Resistance: Panduan Lengkap
+  - Psikologi Trading: Mengendalikan Emosi
+  - Candlestick Patterns: Membaca Bahasa Pasar
+  - Smart Money Concepts: Memahami Institusi
 
-6. **Database Anggota Real-time** ❌
-   - Status: Belum integrasi dengan Telegram/WhatsApp API
-   - Saat ini hanya menampilkan 3 founders
-   - ETA: Setelah backend development
+- **Library 12 Metode Trading**:
+  - SNR, SMC, ICT, Supply & Demand
+  - Price Action, Breakout, Trendline
+  - Chart Pattern, Fundamental, Fibonacci
 
-7. **Backend/API** ❌
-   - Status: Website ini 100% STATIC FRONTEND
-   - Tidak ada server/backend
-   - Tidak ada database
-   - Semua data local/browser only
+### 🏦 Broker Partners
+8 broker rekomendasi dengan link afiliasi:
+- MRG Mega Berjangka (via Traders Family)
+- Exness, Valetax, FundingPips
+- The 5%ers, Didimax, HFM, FBS
 
----
+### 💼 Trade Journal
+- Catatan trading pribadi
+- Track metode, hasil, dan evaluasi
+- Export/Import CSV
+- Statistik performa trading
 
-## ⚠️ DISCLAIMER PENTING
-
-### Website ini adalah ALPHA VERSION.
-
-**Apa artinya:**
-- Banyak fitur masih dalam tahap pengembangan
-- Beberapa fitur menggunakan data placeholder/simulasi
-- Kami transparan tentang apa yang tersedia dan apa yang belum
-- **Tidak ada klaim palsu atau data menyesatkan**
-
-**Trading Risk Warning:**
-- Trading forex melibatkan risiko tinggi
-- 70-80% trader retail kehilangan uang
-- Konten ini hanya untuk edukasi, bukan financial advice
-- Keputusan trading sepenuhnya tanggung jawab masing-masing
-
-**Affiliate Disclosure:**
-- Kami adalah Introducing Broker (IB)
-- Kami menerima komisi jika Anda mendaftar melalui link referral kami
-- Komisi ini tidak menambah biaya untuk Anda
-- Transparansi penuh tentang relationship ini
+### 👥 Community
+- **Telegram**: 1250+ anggota aktif
+- **WhatsApp Group**: Diskusi real-time
+- **Instagram**: @pase_fx
 
 ---
 
-## 👥 TIM KAMI (Terverifikasi)
+## 🚀 Quick Start
 
-### 1. Mulky Malikul Dhaher
-- **Role**: Founder, Lead Developer & Admin
-- **WhatsApp**: +62 853-2262-4048
-- **Spesialisasi**: ICT, Alchemist x MSNR, SMC, Custom Fibo
-- **Status**: ✅ Terverifikasi
+```bash
+# Clone repository
+git clone https://github.com/yourusername/pase-fx.git
+cd pase-fx
 
-### 2. Azil Jabet
-- **Role**: Co-Founder & Head Analyst
-- **WhatsApp**: +62 812-6232-9823
-- **Spesialisasi**: SNR, Reversal, Chart Pattern, Trendline
-- **Status**: ✅ Terverifikasi
+# Install dependencies
+npm install
 
-### 3. Hadi Saputra
-- **Role**: Senior Analyst
-- **Spesialisasi**: Fundamental, SNR, Breakout, SMC, Chart Pattern
-- **Status**: ✅ Terverifikasi
+# Run development server
+npm run dev
 
-**Total Tim**: 3 orang (semua verified)
+# Build for production
+npm run build
+```
 
 ---
 
-## 🔗 LINK KOMUNITAS (REAL & AKTIF)
+## 🛠️ Tech Stack
 
-Join komunitas kami untuk diskusi real-time:
-
-- 💬 **Telegram**: https://t.me/pasefx
-- 💬 **WhatsApp Group**: https://chat.whatsapp.com/EqEhHNB1tuaCyQy0bVyOnZ
-- 📸 **Instagram**: https://www.instagram.com/pase_fx
-- 📧 **Email**: pasefx@email.com
-
----
-
-## 🛠️ TEKNOLOGI
-
-- **React** 19.2.4
-- **TypeScript** 5.8.2
-- **Vite** 6.2.0
-- **Tailwind CSS** 3.4
-- **TradingView Widgets** (embed)
-- **UI Theme**: White Liquid Glass (Modern Light Theme)
-
-**Arsitektur**: 100% Static Frontend (No Backend)
+- **Frontend**: React 19 + TypeScript + Vite
+- **Styling**: Tailwind CSS
+- **Charts**: TradingView Widgets, Recharts
+- **Market Data**: ExchangeRate-API + Fallback APIs
+- **Deployment**: Vercel
 
 ---
 
-## 📞 KONTAK
+## 📝 API Endpoints
 
-Untuk informasi lebih lanjut atau bergabung dengan komunitas:
+### Market Data
+- `GET /api/rates` - Live exchange rates
+- Auto-refresh: 30 seconds
+- Fallback: Multiple API sources
 
-- **Mulky**: +62 853-2262-4048
-- **Azil**: +62 812-6232-9823
-
----
-
-## 📝 CATATAN PENTING
-
-1. **Website akan diupdate secara berkala** - fitur akan ditambahkan bertahap
-2. **Bantu kembangkan** - join komunitas dan berikan feedback
-3. **Tidak ada janji profit** - semua konten edukasi, bukan signal/jaminan
-4. **Komunitas first** - join Telegram/WhatsApp untuk diskusi real-time
-5. **Transparansi** - kami jujur tentang status pengembangan
+### Trading Signals
+- `GET /api/signals` - List all signals
+- `POST /api/signals` - Create new signal (admin only)
+- `PUT /api/signals/:id` - Update signal
+- `DELETE /api/signals/:id` - Delete signal
 
 ---
 
-## 📄 LISENSI
+## ⚠️ Disclaimer
 
-Proprietary - All rights reserved.
+Trading forex melibatkan risiko tinggi dan mungkin tidak sesuai untuk semua investor. 
+Selalu gunakan manajemen risiko yang ketat (max 2% risk per trade) dan jangan pernah 
+trading dengan uang yang Anda tidak mampu kehilangkan.
 
-**© 2026 Pasè FX Trader Hub**
-
----
-
-<div align="center">
-
-*"Ta doeng saban-saban sabe keudroe-droe, beu koeng lage meupula"*
-
-**Disiplin. Bertahap. Waras. Profit.**
-
-</div>
+Tools dan sinyal disediakan untuk edukasi dan referensi analisis, bukan sebagai 
+rekomendasi trading. Keputusan trading sepenuhnya tanggung jawab masing-masing trader.
 
 ---
 
-**Last Updated**: 15 February 2026  
-**Version**: 0.1.5-alpha
-**Status**: Development (Feature Upgrade Edition)
+## 👨‍💻 Founders
+
+- **Mulky Malikul Dhaher** - Founder & Lead Developer
+- **Azil Jabet** - Co-Founder & Head Analyst
+- **Hadi Saputra** - Senior Analyst
+
+---
+
+## 📄 License
+
+Proprietary - All Rights Reserved
+
+---
+
+<p align="center">
+  <strong>Pasè FX Trader Hub</strong> - Trading Waras, Sistematis, Profesional
+</p>

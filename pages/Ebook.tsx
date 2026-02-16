@@ -1,20 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { BookOpen, Check, MessageCircle, Users, Download, Clock, Star, FileText, ChevronRight, Lock, Unlock } from 'lucide-react';
 import { getWhatsAppEbookLink, WHATSAPP_CONTACTS } from '../constants';
 
 const Ebook: React.FC = () => {
   const [downloadProgress, setDownloadProgress] = useState<number>(0);
   const [isDownloading, setIsDownloading] = useState(false);
-  const [isDownloaded, setIsDownloaded] = useState(false);
+  const [isDownloaded, setIsDownloaded] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return localStorage.getItem('pasefx_ebook_downloaded') === 'true';
+  });
   const [activeChapter, setActiveChapter] = useState<number | null>(null);
-
-  // Check if already downloaded
-  useEffect(() => {
-    const downloaded = localStorage.getItem('pasefx_ebook_downloaded');
-    if (downloaded === 'true') {
-      setIsDownloaded(true);
-    }
-  }, []);
 
   const handleDownload = () => {
     setIsDownloading(true);

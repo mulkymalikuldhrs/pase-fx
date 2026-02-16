@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Signal, SignalStatus } from '../types';
 import SignalCard from '../components/SignalCard';
 import { 
@@ -41,7 +41,10 @@ interface SignalFormData {
 }
 
 const Signals: React.FC = () => {
-  const [signals, setSignals] = useState<Signal[]>([]);
+  const [signals, setSignals] = useState<Signal[]>(() => {
+    initializeDemoSignals();
+    return getSignals();
+  });
   const [filterStatus, setFilterStatus] = useState<SignalStatus | 'ALL'>('ALL');
   const [searchQuery, setSearchQuery] = useState('');
   const [showAddForm, setShowAddForm] = useState(false);
@@ -60,12 +63,6 @@ const Signals: React.FC = () => {
     timeframe: 'H1',
     analysis: '',
   });
-
-  // Load signals on mount
-  useEffect(() => {
-    initializeDemoSignals();
-    setSignals(getSignals());
-  }, []);
 
   // Filter signals
   const filteredSignals = signals.filter(signal => {
@@ -117,7 +114,7 @@ const Signals: React.FC = () => {
   // Handle add signal
   const handleAddSignal = (e: React.FormEvent) => {
     e.preventDefault();
-    const newSignal = addSignal({
+    addSignal({
       pair: formData.pair.toUpperCase(),
       direction: formData.direction,
       entry: parseFloat(formData.entry),
@@ -215,8 +212,9 @@ const Signals: React.FC = () => {
           <div>
             <h4 className="font-bold text-blue-800 text-sm uppercase mb-1">Catatan Penting</h4>
             <p className="text-sm text-blue-800/80">
-              Sinyal trading ini bersifat edukasi dan demonstrasi. Data tersimpan di browser Anda (localStorage). 
-              Keputusan trading sepenuhnya tanggung jawab masing-masing trader.
+              Sinyal trading disediakan untuk edukasi dan referensi analisis. 
+              Keputusan trading sepenuhnya tanggung jawab masing-masing trader. 
+              Selalu gunakan manajemen risiko yang ketat.
             </p>
           </div>
         </div>
@@ -536,9 +534,9 @@ const Signals: React.FC = () => {
             </div>
             <h3 className="text-xl font-bold text-gray-900 mb-2">Belum Ada Sinyal</h3>
             <p className="text-gray-500 max-w-md mx-auto mb-8">
-              {searchQuery || filterStatus !== 'ALL' 
-                ? 'Tidak ada sinyal yang cocok dengan filter Anda.' 
-                : 'Belum ada sinyal trading. Aktifkan mode admin untuk menambah sinyal demo.'}
+              {searchQuery || filterStatus !== 'ALL'
+                ? 'Tidak ada sinyal yang cocok dengan filter Anda.'
+                : 'Belum ada sinyal trading yang tersedia saat ini. Aktifkan mode admin untuk menambahkan sinyal baru.'}
             </p>
             {isAdmin && (
               <button

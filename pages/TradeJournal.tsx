@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { 
   BookOpen, Plus, Trash2, TrendingUp, TrendingDown, Calendar, Target, 
-  Download, Upload, Filter, BarChart3, PieChart, ChevronDown, ChevronUp,
-  FileSpreadsheet, AlertTriangle
+  Download, Upload, BarChart3
 } from 'lucide-react';
 
 interface Trade {
@@ -24,8 +23,21 @@ interface Trade {
 
 const TRADING_METHODS = ['SNR', 'SMC', 'ICT', 'Price Action', 'Breakout', 'Fundamental', 'Lainnya'];
 
+const STORAGE_KEY = 'pasè_fx_trades';
+
 const TradeJournal: React.FC = () => {
-  const [trades, setTrades] = useState<Trade[]>([]);
+  const [trades, setTrades] = useState<Trade[]>(() => {
+    if (typeof window === 'undefined') return [];
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch (e) {
+        console.error('Failed to load trades:', e);
+      }
+    }
+    return [];
+  });
   const [showForm, setShowForm] = useState(false);
   const [filterMethod, setFilterMethod] = useState<string>('all');
   const [filterResult, setFilterResult] = useState<string>('all');
@@ -37,21 +49,9 @@ const TradeJournal: React.FC = () => {
     method: 'SNR'
   });
 
-  // Load trades from localStorage on mount
-  useEffect(() => {
-    const saved = localStorage.getItem('pasè_fx_trades');
-    if (saved) {
-      try {
-        setTrades(JSON.parse(saved));
-      } catch (e) {
-        console.error('Failed to load trades:', e);
-      }
-    }
-  }, []);
-
   // Save to localStorage whenever trades change
   useEffect(() => {
-    localStorage.setItem('pasè_fx_trades', JSON.stringify(trades));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(trades));
   }, [trades]);
 
   const addTrade = () => {

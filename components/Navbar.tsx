@@ -5,18 +5,15 @@ import { APP_NAME } from '../constants';
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
-  const [currentHash, setCurrentHash] = useState(typeof window !== 'undefined' ? window.location.hash || '#/' : '#/');
-
-  // Initialize dark mode from localStorage or system preference
-  useEffect(() => {
+  const [darkMode, setDarkMode] = useState(() => {
+    if (typeof window === 'undefined') return false;
     const savedDarkMode = localStorage.getItem('pasefx_dark_mode');
     if (savedDarkMode !== null) {
-      setDarkMode(savedDarkMode === 'true');
-    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setDarkMode(true);
+      return savedDarkMode === 'true';
     }
-  }, []);
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  });
+  const [currentHash, setCurrentHash] = useState(typeof window !== 'undefined' ? window.location.hash || '#/' : '#/');
 
   // Apply dark mode to document using data-theme attribute
   useEffect(() => {
