@@ -22,6 +22,7 @@ import MarketSentimentDashboard from '../components/widgets/MarketSentimentDashb
 import MultiAssetDashboard from '../components/widgets/MultiAssetDashboard';
 import MarketCyclesDashboard from '../components/widgets/MarketCyclesDashboard';
 import AIAnalysisWidget from '../src/components/widgets/AIAnalysisWidget';
+import TradingAnalysis from '../src/components/widgets/TradingAnalysis';
 import AIPatternRecognition from '../src/components/widgets/AIPatternRecognition';
 import AITradeIdeas from '../src/components/widgets/AITradeIdeas';
 import { TRADING_INSTRUMENTS } from '../src/constants/instruments';
@@ -305,6 +306,7 @@ const Tools: React.FC = () => {
 
         <div className="mb-8">
           <COTAnalysisDashboard />
+          <TradingAnalysis />
         </div>
 
         <div className="grid lg:grid-cols-2 gap-6 mb-8">
