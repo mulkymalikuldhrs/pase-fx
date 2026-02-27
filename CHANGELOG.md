@@ -6,6 +6,39 @@ Format berdasarkan [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [2.1.0] - 2026-02-27 - TOOLS UPGRADE & AI FIX 🔧
+
+### ✨ Fitur Baru - Trading Calculators
+
+#### 🧮 Kalkulator Baru (4 Tools)
+- **MarginCalculator**: Hitung margin required per instrumen
+- **ProfitCalculator**: Kalkulasi profit/loss dengan akurat
+- **DrawdownCalculator**: Analisis drawdown & recovery
+- **PivotPointsCalculator**: Level pivot (Standard, Fibonacci, Woodie, Camarilla)
+
+#### 📊 Widget Baru
+- **SessionVolatility**: Display sesi trading aktif (Sydney, Tokyo, London, NY) dalam WIB
+
+### 🔧 Perbaikan
+
+#### 🤖 AI Analysis Engine Upgrade
+- Menggunakan **EMA + RSI** untuk analisis teknikal
+- Menentukan **trend** (Bullish/Bearish/Neutral) 
+- Menghitung **support & resistance** dengan pivot
+- **Confidence score** berbasis multiple factors
+- Reasoning detail untuk setiap sinyal
+- SL/TP dengan **risk:reward ratio** yang proper
+
+#### 📝 Copywriting Fixes
+- Hapus klaim overclaim ("100% Gratis!")
+- Ganti "Institutional Grade" → "Market Analysis"
+- Disclaimer yang lebih jelas
+
+#### 🐛 Bug Fixes
+- ErrorBoundary: Dinonaktifkan sementara (TypeScript issues)
+
+---
+
 ## [2.0.0] - 2026-02-16 - AI POWERED UPDATE 🤖✨
 
 ### ✨ Fitur Baru - AI Trading Assistant

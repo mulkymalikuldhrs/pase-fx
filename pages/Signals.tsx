@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
 import { Signal, SignalStatus } from '../types';
 import SignalCard from '../components/SignalCard';
-import { 
-  getSignals, 
-  addSignal, 
-  updateSignalStatus, 
+import {
+  getSignals,
+  addSignal,
+  updateSignalStatus,
   deleteSignal,
   calculateSignalStats,
-  initializeDemoSignals 
+  initializeDemoSignals
 } from '../utils/signals';
-import { 
-  Search, 
-  BarChart3, 
-  TrendingUp, 
-  TrendingDown, 
-  Target, 
-  Shield, 
+import {
+  Search,
+  BarChart3,
+  TrendingUp,
+  TrendingDown,
+  Target,
+  Shield,
   Plus,
   Trash2,
   X,
@@ -26,6 +26,7 @@ import {
   RotateCcw
 } from 'lucide-react';
 import { ResponsiveContainer, BarChart as RechartsBar, Bar, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts';
+import useSEO from '../hooks/useSEO';
 
 interface SignalFormData {
   pair: string;
@@ -41,6 +42,12 @@ interface SignalFormData {
 }
 
 const Signals: React.FC = () => {
+  useSEO({
+    title: 'Sinyal Trading',
+    description: 'Arsip sinyal trading Pasè FX - Dapatkan peluang trading forex dan komoditas terbaik dengan analisis teknikal lengkap.',
+    keywords: 'sinyal forex, trading signal, eurusd, gold, xauusd, analisis teknikal'
+  });
+
   const [signals, setSignals] = useState<Signal[]>(() => {
     initializeDemoSignals();
     return getSignals();
@@ -68,7 +75,7 @@ const Signals: React.FC = () => {
   const filteredSignals = signals.filter(signal => {
     const matchesStatus = filterStatus === 'ALL' || signal.status === filterStatus;
     const matchesSearch = signal.pair.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         signal.analyst.toLowerCase().includes(searchQuery.toLowerCase());
+      signal.analyst.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesStatus && matchesSearch;
   });
 
@@ -78,16 +85,16 @@ const Signals: React.FC = () => {
   // Calculate monthly performance for chart
   const calculatePerformanceData = () => {
     const monthlyData: Record<string, number> = {};
-    
+
     signals.forEach(signal => {
       if (signal.status === 'HIT_TP' || signal.status === 'HIT_SL') {
         const date = new Date(signal.date);
         const monthYear = date.toLocaleString('default', { month: 'short' });
-        
+
         if (!monthlyData[monthYear]) {
           monthlyData[monthYear] = 0;
         }
-        
+
         if (signal.resultPips) {
           monthlyData[monthYear] += signal.resultPips;
         }
@@ -182,7 +189,7 @@ const Signals: React.FC = () => {
             <h1 className="text-3xl font-bold text-gray-900 mb-2">Sinyal Trading</h1>
             <p className="text-gray-600">Arsip sinyal trading Pasè FX - Data tersimpan lokal</p>
           </div>
-          
+
           {/* Admin Toggle */}
           <div className="flex items-center gap-2">
             <label className="flex items-center gap-2 text-sm text-gray-600 cursor-pointer select-none">
@@ -212,8 +219,8 @@ const Signals: React.FC = () => {
           <div>
             <h4 className="font-bold text-blue-800 text-sm uppercase mb-1">Catatan Penting</h4>
             <p className="text-sm text-blue-800/80">
-              Sinyal trading disediakan untuk edukasi dan referensi analisis. 
-              Keputusan trading sepenuhnya tanggung jawab masing-masing trader. 
+              Sinyal trading disediakan untuk edukasi dan referensi analisis.
+              Keputusan trading sepenuhnya tanggung jawab masing-masing trader.
               Selalu gunakan manajemen risiko yang ketat.
             </p>
           </div>
@@ -255,46 +262,46 @@ const Signals: React.FC = () => {
 
         {/* Performance Chart */}
         <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm mb-8">
-            <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
-                <BarChart3 className="text-emerald-600" /> 
-                Performance Analysis (Pips)
-            </h3>
-            <div className="h-72 w-full">
-                <ResponsiveContainer width="100%" height="100%">
-                    <RechartsBar data={performanceData}>
-                        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e5e7eb" />
-                        <XAxis 
-                          dataKey="name" 
-                          tick={{fontSize: 12, fill: '#6b7280'}} 
-                          axisLine={false} 
-                          tickLine={false}
-                          dy={10}
-                        />
-                        <YAxis 
-                          tick={{fontSize: 12, fill: '#6b7280'}} 
-                          axisLine={false} 
-                          tickLine={false}
-                          dx={-10}
-                        />
-                        <Tooltip 
-                            cursor={{fill: '#f9fafb'}} 
-                            contentStyle={{
-                              borderRadius: '12px', 
-                              border: '1px solid #e5e7eb', 
-                              boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
-                              backgroundColor: 'rgba(255, 255, 255, 0.95)',
-                              backdropFilter: 'blur(4px)'
-                            }}
-                        />
-                        <Bar 
-                          dataKey="pips" 
-                          fill="#10b981" 
-                          radius={[4, 4, 0, 0]} 
-                          barSize={40}
-                        />
-                    </RechartsBar>
-                </ResponsiveContainer>
-            </div>
+          <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
+            <BarChart3 className="text-emerald-600" />
+            Performance Analysis (Pips)
+          </h3>
+          <div className="h-72 w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <RechartsBar data={performanceData}>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e5e7eb" />
+                <XAxis
+                  dataKey="name"
+                  tick={{ fontSize: 12, fill: '#6b7280' }}
+                  axisLine={false}
+                  tickLine={false}
+                  dy={10}
+                />
+                <YAxis
+                  tick={{ fontSize: 12, fill: '#6b7280' }}
+                  axisLine={false}
+                  tickLine={false}
+                  dx={-10}
+                />
+                <Tooltip
+                  cursor={{ fill: '#f9fafb' }}
+                  contentStyle={{
+                    borderRadius: '12px',
+                    border: '1px solid #e5e7eb',
+                    boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
+                    backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                    backdropFilter: 'blur(4px)'
+                  }}
+                />
+                <Bar
+                  dataKey="pips"
+                  fill="#10b981"
+                  radius={[4, 4, 0, 0]}
+                  barSize={40}
+                />
+              </RechartsBar>
+            </ResponsiveContainer>
+          </div>
         </div>
 
         {/* Filters */}
@@ -305,16 +312,14 @@ const Signals: React.FC = () => {
               <button
                 key={key}
                 onClick={() => setFilterStatus(key)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition ${
-                  filterStatus === key
-                    ? 'bg-emerald-600 text-white shadow-sm'
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                }`}
+                className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition ${filterStatus === key
+                  ? 'bg-emerald-600 text-white shadow-sm'
+                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                  }`}
               >
                 {label}
-                <span className={`text-xs px-1.5 py-0.5 rounded ml-1.5 ${
-                  filterStatus === key ? 'bg-emerald-500/20 text-emerald-50' : 'bg-gray-200 text-gray-600'
-                }`}>
+                <span className={`text-xs px-1.5 py-0.5 rounded ml-1.5 ${filterStatus === key ? 'bg-emerald-500/20 text-emerald-50' : 'bg-gray-200 text-gray-600'
+                  }`}>
                   {count}
                 </span>
               </button>
@@ -487,7 +492,7 @@ const Signals: React.FC = () => {
             {filteredSignals.map((signal) => (
               <div key={signal.id} className="relative group">
                 <SignalCard signal={signal} />
-                
+
                 {/* Admin Actions */}
                 {isAdmin && (
                   <div className="absolute top-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-200 bg-white/90 p-1.5 rounded-lg shadow-sm backdrop-blur-sm border border-gray-100">

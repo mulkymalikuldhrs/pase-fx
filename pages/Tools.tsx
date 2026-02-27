@@ -4,7 +4,12 @@ import PipCalculator from '../components/calculators/PipCalculator';
 import PositionCalculator from '../components/calculators/PositionCalculator';
 import RiskRewardCalculator from '../components/calculators/RiskRewardCalculator';
 import FibonacciCalculator from '../components/calculators/FibonacciCalculator';
+import MarginCalculator from '../components/calculators/MarginCalculator';
+import ProfitCalculator from '../components/calculators/ProfitCalculator';
+import DrawdownCalculator from '../components/calculators/DrawdownCalculator';
+import PivotPointsCalculator from '../components/calculators/PivotPointsCalculator';
 import SessionTimer from '../components/widgets/SessionTimer';
+import SessionVolatility from '../components/widgets/SessionVolatility';
 import MarketOverview from '../components/widgets/MarketOverview';
 import LiveRates from '../components/widgets/LiveRates';
 import CurrencyStrengthMeter from '../components/widgets/CurrencyStrengthMeter';
@@ -217,8 +222,8 @@ const Tools: React.FC = () => {
             <Bot className="text-purple-600" /> AI Trading Assistant (Powered by Puter.js)
           </h2>
           <p className="text-gray-600 mb-6 text-sm">
-            Fitur AI gratis tanpa API key. Gunakan Puter.js untuk analisis market otomatis, pattern recognition, dan trade ideas.
-            <span className="text-purple-600 font-medium"> 100% Gratis!</span>
+            Fitur AI tanpa API key menggunakan Puter.js untuk analisis market otomatis, pattern recognition, dan trade ideas.
+            <span className="text-purple-600 font-medium"> Gratis untuk digunakan!</span>
           </p>
           
           <div className="grid lg:grid-cols-3 gap-6">
@@ -245,6 +250,9 @@ const Tools: React.FC = () => {
             <LiveRates />
           </div>
           <SessionTimer />
+        </div>
+        <div className="mb-8">
+          <SessionVolatility />
         </div>
          <div className="mb-8">
            <MarketOverview />
@@ -273,6 +281,10 @@ const Tools: React.FC = () => {
             <PositionCalculator />
             <RiskRewardCalculator />
             <FibonacciCalculator />
+            <MarginCalculator />
+            <ProfitCalculator />
+            <DrawdownCalculator />
+            <PivotPointsCalculator />
           </div>
         </div>
 
@@ -286,9 +298,9 @@ const Tools: React.FC = () => {
           <CurrencyStrengthMeter />
         </div>
 
-        {/* Institutional Grade Tools */}
+        {/* Professional Market Analysis Tools */}
         <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-          <BarChart2 className="text-indigo-500" /> Institutional Grade Analysis (COT & Smart Money)
+          <BarChart2 className="text-indigo-500" /> Market Analysis (COT & Smart Money)
         </h2>
 
         <div className="mb-8">

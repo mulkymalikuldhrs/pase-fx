@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { 
-  BookOpen, Plus, Trash2, TrendingUp, TrendingDown, Calendar, Target, 
+import {
+  BookOpen, Plus, Trash2, TrendingUp, TrendingDown, Calendar, Target,
   Download, Upload, BarChart3
 } from 'lucide-react';
+import useSEO from '../hooks/useSEO';
 
 interface Trade {
   id: string;
@@ -26,6 +27,12 @@ const TRADING_METHODS = ['SNR', 'SMC', 'ICT', 'Price Action', 'Breakout', 'Funda
 const STORAGE_KEY = 'pasefx_trade_journal';
 
 const TradeJournal: React.FC = () => {
+  useSEO({
+    title: 'Jurnal Trading',
+    description: 'Catat dan evaluasi setiap trade Anda di Pasè FX Trade Journal. Tingkatkan disiplin dan performa trading Anda.',
+    keywords: 'jurnal trading, trade diary, evaluasi trading, catatan forex'
+  });
+
   const [trades, setTrades] = useState<Trade[]>(() => {
     if (typeof window === 'undefined') return [];
     const saved = localStorage.getItem(STORAGE_KEY);
@@ -56,11 +63,11 @@ const TradeJournal: React.FC = () => {
 
   const addTrade = () => {
     if (!newTrade.pair || !newTrade.entry || !newTrade.exit) return;
-    
+
     const entry = newTrade.entry || 0;
     const exit = newTrade.exit || 0;
     const direction = newTrade.direction || 'BUY';
-    
+
     // Calculate pips
     let pips = 0;
     if (newTrade.pair.includes('JPY')) {
@@ -68,11 +75,11 @@ const TradeJournal: React.FC = () => {
     } else {
       pips = direction === 'BUY' ? (exit - entry) * 10000 : (entry - exit) * 10000;
     }
-    
+
     // Calculate profit (simplified)
     const lots = newTrade.lots || 0.1;
     const profit = pips * 10 * lots;
-    
+
     // Determine result
     let result: 'WIN' | 'LOSS' | 'BE' = 'BE';
     if (profit > 0) result = 'WIN';
@@ -117,22 +124,22 @@ const TradeJournal: React.FC = () => {
     const csvContent = [
       headers.join(','),
       ...trades.map(t => [
-        t.date, 
-        t.pair, 
-        t.direction, 
-        t.entry, 
-        t.exit, 
-        t.sl, 
-        t.tp, 
-        t.lots, 
-        t.result, 
-        t.pips, 
-        t.profit, 
-        t.method, 
+        t.date,
+        t.pair,
+        t.direction,
+        t.entry,
+        t.exit,
+        t.sl,
+        t.tp,
+        t.lots,
+        t.result,
+        t.pips,
+        t.profit,
+        t.method,
         `"${(t.notes || '').replace(/"/g, '""')}"`
       ].join(','))
     ].join('\n');
-    
+
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -148,25 +155,25 @@ const TradeJournal: React.FC = () => {
   const importFromCSV = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file) return;
-    
+
     const reader = new FileReader();
     reader.onload = (e) => {
       const text = e.target?.result as string;
       const lines = text.split('\n');
       const importedTrades: Trade[] = [];
       const baseId = Date.now();
-      
+
       for (let i = 1; i < lines.length; i++) {
         const line = lines[i].trim();
         if (!line) continue;
-        
+
         const parts = parseCSVLine(line);
         if (parts.length >= 10 && parts[0] && parts[1]) {
           const entry = parseFloat(parts[3]);
           const exit = parseFloat(parts[4]);
-          
+
           if (isNaN(entry) || isNaN(exit)) continue;
-          
+
           importedTrades.push({
             id: `${baseId}-${i}`,
             date: parts[0],
@@ -185,7 +192,7 @@ const TradeJournal: React.FC = () => {
           });
         }
       }
-      
+
       if (importedTrades.length > 0 && confirm(`Import ${importedTrades.length} trades?`)) {
         setTrades(prev => [...importedTrades, ...prev]);
       }
@@ -193,16 +200,16 @@ const TradeJournal: React.FC = () => {
     reader.readAsText(file);
     event.target.value = '';
   };
-  
+
   // Parse CSV line handling quoted fields
   const parseCSVLine = (line: string): string[] => {
     const result: string[] = [];
     let current = '';
     let inQuotes = false;
-    
+
     for (let i = 0; i < line.length; i++) {
       const char = line[i];
-      
+
       if (char === '"') {
         if (inQuotes && line[i + 1] === '"') {
           current += '"';
@@ -234,19 +241,19 @@ const TradeJournal: React.FC = () => {
     const avgWin = wins > 0 ? trades.filter(t => t.result === 'WIN').reduce((a, t) => a + t.profit, 0) / wins : 0;
     const avgLoss = losses > 0 ? Math.abs(trades.filter(t => t.result === 'LOSS').reduce((a, t) => a + t.profit, 0) / losses) : 0;
     const profitFactor = avgLoss > 0 ? avgWin / avgLoss : 0;
-    
+
     // Method stats
     const methodStats = TRADING_METHODS.map(method => {
       const methodTrades = trades.filter(t => t.method === method);
       return {
         method,
         count: methodTrades.length,
-        winRate: methodTrades.length > 0 
+        winRate: methodTrades.length > 0
           ? Math.round((methodTrades.filter(t => t.result === 'WIN').length / methodTrades.length) * 100)
           : 0
       };
     }).filter(m => m.count > 0).sort((a, b) => b.count - a.count);
-    
+
     return { total, wins, losses, be, winRate, totalPips, totalProfit, avgProfit, avgWin, avgLoss, profitFactor, methodStats };
   }, [trades]);
 
@@ -306,7 +313,7 @@ const TradeJournal: React.FC = () => {
                 <p className="text-xs text-gray-500">Total Profit</p>
               </div>
             </div>
-            
+
             {/* Extended Stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="glass-card bg-white/50 p-3 text-center border border-gray-200 rounded-xl">
@@ -372,7 +379,7 @@ const TradeJournal: React.FC = () => {
               <option value="BE">Break Even</option>
             </select>
           </div>
-          
+
           <div className="flex gap-2">
             <button
               onClick={exportToCSV}
@@ -412,7 +419,7 @@ const TradeJournal: React.FC = () => {
                 <input
                   type="date"
                   value={newTrade.date}
-                  onChange={(e) => setNewTrade({...newTrade, date: e.target.value})}
+                  onChange={(e) => setNewTrade({ ...newTrade, date: e.target.value })}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white"
                 />
               </div>
@@ -422,7 +429,7 @@ const TradeJournal: React.FC = () => {
                   type="text"
                   placeholder="EURUSD"
                   value={newTrade.pair || ''}
-                  onChange={(e) => setNewTrade({...newTrade, pair: e.target.value})}
+                  onChange={(e) => setNewTrade({ ...newTrade, pair: e.target.value })}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white"
                 />
               </div>
@@ -430,7 +437,7 @@ const TradeJournal: React.FC = () => {
                 <label className="block text-sm text-gray-600 mb-1 font-medium">Direction</label>
                 <select
                   value={newTrade.direction}
-                  onChange={(e) => setNewTrade({...newTrade, direction: e.target.value as 'BUY' | 'SELL'})}
+                  onChange={(e) => setNewTrade({ ...newTrade, direction: e.target.value as 'BUY' | 'SELL' })}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white"
                 >
                   <option value="BUY">BUY</option>
@@ -441,7 +448,7 @@ const TradeJournal: React.FC = () => {
                 <label className="block text-sm text-gray-600 mb-1 font-medium">Method</label>
                 <select
                   value={newTrade.method}
-                  onChange={(e) => setNewTrade({...newTrade, method: e.target.value})}
+                  onChange={(e) => setNewTrade({ ...newTrade, method: e.target.value })}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white"
                 >
                   {TRADING_METHODS.map(m => <option key={m} value={m}>{m}</option>)}
@@ -453,7 +460,7 @@ const TradeJournal: React.FC = () => {
                   type="number"
                   step="0.00001"
                   value={newTrade.entry || ''}
-                  onChange={(e) => setNewTrade({...newTrade, entry: parseFloat(e.target.value)})}
+                  onChange={(e) => setNewTrade({ ...newTrade, entry: parseFloat(e.target.value) })}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white"
                 />
               </div>
@@ -463,7 +470,7 @@ const TradeJournal: React.FC = () => {
                   type="number"
                   step="0.00001"
                   value={newTrade.exit || ''}
-                  onChange={(e) => setNewTrade({...newTrade, exit: parseFloat(e.target.value)})}
+                  onChange={(e) => setNewTrade({ ...newTrade, exit: parseFloat(e.target.value) })}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white"
                 />
               </div>
@@ -473,7 +480,7 @@ const TradeJournal: React.FC = () => {
                   type="number"
                   step="0.00001"
                   value={newTrade.sl || ''}
-                  onChange={(e) => setNewTrade({...newTrade, sl: parseFloat(e.target.value)})}
+                  onChange={(e) => setNewTrade({ ...newTrade, sl: parseFloat(e.target.value) })}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white"
                 />
               </div>
@@ -483,7 +490,7 @@ const TradeJournal: React.FC = () => {
                   type="number"
                   step="0.00001"
                   value={newTrade.tp || ''}
-                  onChange={(e) => setNewTrade({...newTrade, tp: parseFloat(e.target.value)})}
+                  onChange={(e) => setNewTrade({ ...newTrade, tp: parseFloat(e.target.value) })}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white"
                 />
               </div>
@@ -493,7 +500,7 @@ const TradeJournal: React.FC = () => {
                   type="number"
                   step="0.01"
                   value={newTrade.lots || ''}
-                  onChange={(e) => setNewTrade({...newTrade, lots: parseFloat(e.target.value)})}
+                  onChange={(e) => setNewTrade({ ...newTrade, lots: parseFloat(e.target.value) })}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white"
                 />
               </div>
@@ -502,7 +509,7 @@ const TradeJournal: React.FC = () => {
               <label className="block text-sm text-gray-600 mb-1 font-medium">Catatan</label>
               <textarea
                 value={newTrade.notes || ''}
-                onChange={(e) => setNewTrade({...newTrade, notes: e.target.value})}
+                onChange={(e) => setNewTrade({ ...newTrade, notes: e.target.value })}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white"
                 rows={2}
                 placeholder="Setup, emosi, lesson learned..."
@@ -537,10 +544,9 @@ const TradeJournal: React.FC = () => {
               <div key={trade.id} className="glass-card bg-white/80 p-4 hover:border-emerald-300 transition-all shadow-sm border border-gray-200 rounded-xl">
                 <div className="flex flex-wrap items-center justify-between gap-4">
                   <div className="flex items-center gap-4">
-                    <div className={`p-2 rounded-lg ${
-                      trade.result === 'WIN' ? 'bg-emerald-100 text-emerald-600' : 
+                    <div className={`p-2 rounded-lg ${trade.result === 'WIN' ? 'bg-emerald-100 text-emerald-600' :
                       trade.result === 'LOSS' ? 'bg-red-100 text-red-600' : 'bg-gray-100 text-gray-500'
-                    }`}>
+                      }`}>
                       {trade.result === 'WIN' ? (
                         <TrendingUp className="w-5 h-5" />
                       ) : trade.result === 'LOSS' ? (
@@ -552,9 +558,8 @@ const TradeJournal: React.FC = () => {
                     <div>
                       <div className="flex items-center gap-2">
                         <span className="font-bold text-gray-900">{trade.pair}</span>
-                        <span className={`text-xs px-2 py-0.5 rounded font-medium ${
-                          trade.direction === 'BUY' ? 'bg-emerald-50 text-emerald-600 border border-emerald-200' : 'bg-red-50 text-red-600 border border-red-200'
-                        }`}>
+                        <span className={`text-xs px-2 py-0.5 rounded font-medium ${trade.direction === 'BUY' ? 'bg-emerald-50 text-emerald-600 border border-emerald-200' : 'bg-red-50 text-red-600 border border-red-200'
+                          }`}>
                           {trade.direction}
                         </span>
                         {trade.method && (
@@ -574,16 +579,14 @@ const TradeJournal: React.FC = () => {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="text-right">
-                    <div className={`text-xl font-bold ${
-                      trade.profit > 0 ? 'text-emerald-600' : trade.profit < 0 ? 'text-red-600' : 'text-gray-500'
-                    }`}>
+                    <div className={`text-xl font-bold ${trade.profit > 0 ? 'text-emerald-600' : trade.profit < 0 ? 'text-red-600' : 'text-gray-500'
+                      }`}>
                       {trade.profit > 0 ? '+' : ''}{trade.profit.toFixed(2)} USD
                     </div>
-                    <div className={`text-sm ${
-                      trade.pips > 0 ? 'text-emerald-600' : trade.pips < 0 ? 'text-red-600' : 'text-gray-500'
-                    }`}>
+                    <div className={`text-sm ${trade.pips > 0 ? 'text-emerald-600' : trade.pips < 0 ? 'text-red-600' : 'text-gray-500'
+                      }`}>
                       {trade.pips > 0 ? '+' : ''}{trade.pips} pips
                     </div>
                   </div>

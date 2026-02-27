@@ -14,6 +14,7 @@ import Founders from './pages/Founders';
 import TradeJournal from './pages/TradeJournal';
 import Members from './pages/Members';
 import Methods from './pages/Methods';
+// import ErrorBoundary from './components/ui/ErrorBoundary';
 import { AFFILIATE_LINKS } from './constants';
 import { ShieldAlert } from 'lucide-react';
 
@@ -34,7 +35,7 @@ const Disclaimer = () => (
             <p className="text-gray-500 mt-1">Harap baca dengan seksama sebelum menggunakan layanan kami.</p>
           </div>
         </div>
-        
+
         <div className="space-y-8 text-gray-700">
           <div className="p-5 bg-red-50 border border-red-100 rounded-xl flex gap-4">
             <div className="text-2xl">⚠️</div>
@@ -54,7 +55,7 @@ const Disclaimer = () => (
                 Bukan Nasihat Keuangan
               </h3>
               <p className="text-gray-600 text-sm leading-relaxed pl-8">
-                Semua konten di website Pasè FX, termasuk sinyal, artikel, dan ebook, hanya untuk tujuan edukasi dan informasi. 
+                Semua konten di website Pasè FX, termasuk sinyal, artikel, dan ebook, hanya untuk tujuan edukasi dan informasi.
                 Tidak ada jaminan profit. Keputusan trading sepenuhnya tanggung jawab masing-masing trader.
               </p>
             </div>
@@ -65,7 +66,7 @@ const Disclaimer = () => (
                 Risiko Modal
               </h3>
               <p className="text-gray-600 text-sm leading-relaxed pl-8">
-                Sebelum memutuskan untuk berinvestasi, pertimbangkan tujuan investasi, tingkat pengalaman, dan selera risiko Anda. 
+                Sebelum memutuskan untuk berinvestasi, pertimbangkan tujuan investasi, tingkat pengalaman, dan selera risiko Anda.
                 <strong className="text-gray-900 font-semibold"> Jangan pernah trading dengan uang yang Anda tidak mampu kehilangannya.</strong>
               </p>
             </div>
@@ -76,7 +77,7 @@ const Disclaimer = () => (
                 Afiliasi (IB)
               </h3>
               <p className="text-gray-600 text-sm leading-relaxed pl-8">
-                Pasè FX beroperasi sebagai Introducing Broker (IB). Kami menerima komisi dari broker mitra kami ketika Anda mendaftar melalui link referral kami. 
+                Pasè FX beroperasi sebagai Introducing Broker (IB). Kami menerima komisi dari broker mitra kami ketika Anda mendaftar melalui link referral kami.
                 Hal ini tidak membebankan biaya tambahan kepada Anda dan tidak mempengaruhi rekomendasi kami.
               </p>
             </div>
@@ -95,52 +96,52 @@ const Disclaimer = () => (
 
 // Redirect component for premium
 const PremiumRedirect = () => {
-    React.useEffect(() => {
-        window.location.href = AFFILIATE_LINKS.traderFamilyPremium;
-    }, []);
-    return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin w-12 h-12 border-4 border-emerald-500 border-t-transparent rounded-full mx-auto mb-4"></div>
-          <p className="text-gray-900 font-medium">Redirecting to Trader Family Premium...</p>
-        </div>
+  React.useEffect(() => {
+    window.location.href = AFFILIATE_LINKS.traderFamilyPremium;
+  }, []);
+  return (
+    <div className="min-h-screen bg-white flex items-center justify-center">
+      <div className="text-center">
+        <div className="animate-spin w-12 h-12 border-4 border-emerald-500 border-t-transparent rounded-full mx-auto mb-4"></div>
+        <p className="text-gray-900 font-medium">Redirecting to Trader Family Premium...</p>
       </div>
-    );
+    </div>
+  );
 };
 
 const App: React.FC = () => {
   const [currentPath, setCurrentPath] = useState(typeof window !== 'undefined' ? (window.location.hash.substring(1) || '/') : '/');
 
   useEffect(() => {
-      const handleHashChange = () => {
-          const path = window.location.hash.substring(1) || '/';
-          setCurrentPath(path);
-          window.scrollTo(0, 0);
-      };
-      window.addEventListener('hashchange', handleHashChange);
-      return () => window.removeEventListener('hashchange', handleHashChange);
+    const handleHashChange = () => {
+      const path = window.location.hash.substring(1) || '/';
+      setCurrentPath(path);
+      window.scrollTo(0, 0);
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
   const renderPage = () => {
-      // Normalize path (ignore query params for matching)
-      const path = currentPath.split('?')[0];
+    // Normalize path (ignore query params for matching)
+    const path = currentPath.split('?')[0];
 
-      switch(path) {
-          case '/': return <Home />;
-          case '/sinyal': return <Signals />;
-          case '/ebook': return <Ebook />;
-          case '/broker': return <Brokers />;
-          case '/tools': return <Tools />;
-          case '/edukasi': return <Education />;
-          case '/komunitas': return <Community />;
-          case '/founders': return <Founders />;
-          case '/jurnal': return <TradeJournal />;
-          case '/members': return <Members />;
-          case '/metode': return <Methods />;
-          case '/disclaimer': return <Disclaimer />;
-          case '/premium': return <PremiumRedirect />;
-          default: return <Home />;
-      }
+    switch (path) {
+      case '/': return <Home />;
+      case '/sinyal': return <Signals />;
+      case '/ebook': return <Ebook />;
+      case '/broker': return <Brokers />;
+      case '/tools': return <Tools />;
+      case '/edukasi': return <Education />;
+      case '/komunitas': return <Community />;
+      case '/founders': return <Founders />;
+      case '/jurnal': return <TradeJournal />;
+      case '/members': return <Members />;
+      case '/metode': return <Methods />;
+      case '/disclaimer': return <Disclaimer />;
+      case '/premium': return <PremiumRedirect />;
+      default: return <Home />;
+    }
   };
 
   return (

@@ -7,14 +7,21 @@ import SignalCard from '../components/SignalCard';
 import CommunityMembers from '../components/widgets/CommunityMembers';
 import AIDailyBriefing from '../src/components/widgets/AIDailyBriefing';
 import AITradeIdeas from '../src/components/widgets/AITradeIdeas';
+import useSEO from '../hooks/useSEO';
 
 const Home: React.FC = () => {
+  useSEO({
+    title: 'Home',
+    description: 'Pasè FX Trader Hub - Komunitas Trading No. 1 dari Aceh. Trader Waras, Sistematis, Profesional.',
+    keywords: 'trading, forex, aceh, signal trading, trading community, trader hub'
+  });
+
   const tickerContainerRef = useRef<HTMLDivElement>(null);
-  
+
   // Load signals and calculate stats
   const signals = React.useMemo(() => getSignals(), []);
   const recentSignals = React.useMemo(() => signals.slice(0, 3), [signals]);
-  
+
   const stats = React.useMemo(() => {
     const totalSignals = signals.length;
     const wins = signals.filter(s => s.status === 'HIT_TP').length;
@@ -22,7 +29,7 @@ const Home: React.FC = () => {
     const completed = wins + losses;
     const winRate = completed > 0 ? Math.round((wins / completed) * 100) : 0;
     const active = signals.filter(s => s.status === 'ACTIVE').length;
-    
+
     return {
       members: 1250,
       signals: totalSignals,
@@ -35,7 +42,7 @@ const Home: React.FC = () => {
   useEffect(() => {
     if (tickerContainerRef.current) {
       tickerContainerRef.current.innerHTML = '';
-      
+
       const script = document.createElement('script');
       script.src = "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js";
       script.async = true;
@@ -65,24 +72,24 @@ const Home: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 pt-4">
         <DisclaimerBanner />
       </div>
-      
+
       {/* Hero Section */}
       <section className="relative py-20 lg:py-32 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-emerald-50/50 via-white to-white" />
-        
+
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           {/* Development Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-50 text-amber-600 border border-amber-200 text-sm font-medium mb-8 animate-fade-in-up shadow-sm hover:shadow-md transition-shadow">
             <AlertTriangle size={16} />
             <span>Website dalam Pengembangan (Alpha)</span>
           </div>
-          
+
           {/* Logo */}
           <div className="mb-8 animate-float">
             <div className="relative inline-block">
-              <img 
-                src="/logo.png" 
-                alt="Pasè FX Logo" 
+              <img
+                src="/logo.png"
+                alt="Pasè FX Logo"
                 className="h-28 w-auto mx-auto object-contain drop-shadow-2xl bg-white/40 backdrop-blur-md rounded-3xl p-4 border border-white/60"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
@@ -98,12 +105,12 @@ const Home: React.FC = () => {
               </div>
             </div>
           </div>
-          
+
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-100 text-sm font-medium mb-6 animate-fade-in-up shadow-sm">
             <Zap size={16} />
             <span>Komunitas Trading No. 1 dari Aceh</span>
           </div>
-          
+
           <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 text-gray-900 leading-tight">
             <span className="text-gray-900">Pasè FX</span> <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500">Trader Hub</span>
           </h1>
@@ -113,7 +120,7 @@ const Home: React.FC = () => {
           <p className="text-lg text-gray-500 mb-10 italic max-w-2xl mx-auto border-l-4 border-emerald-500 pl-4 py-2 bg-gray-50/50 rounded-r-lg">
             "Ta doeng saban-saban sabe keudroe-droe, beu koeng lage meupula"
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
             <a href="#/ebook" className="group px-8 py-4 bg-white hover:bg-gray-50 text-emerald-600 border border-emerald-200 rounded-xl font-bold flex items-center justify-center gap-2 transition-all shadow-sm hover:shadow-md">
               <BookOpen size={20} className="group-hover:scale-110 transition-transform" />
@@ -165,9 +172,9 @@ const Home: React.FC = () => {
 
       {/* TradingView Ticker Widget */}
       <div className="bg-white border-y border-gray-100">
-         <div className="tradingview-widget-container" ref={tickerContainerRef}>
-            <div className="tradingview-widget-container__widget"></div>
-         </div>
+        <div className="tradingview-widget-container" ref={tickerContainerRef}>
+          <div className="tradingview-widget-container__widget"></div>
+        </div>
       </div>
 
       {/* AI Daily Briefing Section */}
@@ -199,7 +206,7 @@ const Home: React.FC = () => {
                   100% Gratis
                 </h3>
                 <p className="text-sm text-blue-700">
-                  Semua fitur AI di Pasè FX menggunakan Puter.js - platform AI gratis tanpa batasan. 
+                  Semua fitur AI di Pasè FX menggunakan Puter.js - platform AI gratis tanpa batasan.
                   User-Pays model: user bayar sendiri untuk penggunaannya.
                 </p>
               </div>
@@ -262,7 +269,7 @@ const Home: React.FC = () => {
               </p>
             </div>
           </div>
-          
+
           <div className="grid lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2">
               <CommunityMembers />
@@ -291,7 +298,7 @@ const Home: React.FC = () => {
       {/* Features Grid */}
       <section className="py-20 px-4">
         <div className="max-w-7xl mx-auto">
-           <div className="text-center mb-16">
+          <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Kenapa Memilih Pasè FX?</h2>
             <p className="text-gray-500 max-w-2xl mx-auto">
               Kami membangun ekosistem trading yang sehat, transparan, dan berkelanjutan untuk trader Aceh dan Indonesia.
@@ -315,7 +322,7 @@ const Home: React.FC = () => {
       <section className="py-20 px-4 bg-gray-900 text-white overflow-hidden relative">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1611974765270-ca12586343bb?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-10" />
         <div className="absolute inset-0 bg-gradient-to-b from-gray-900/80 to-gray-900" />
-        
+
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Fitur Unggulan</h2>
@@ -323,7 +330,7 @@ const Home: React.FC = () => {
               Tools profesional yang siap membantu trading journey Anda sekarang juga.
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-3 gap-8">
             <div className="p-8 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 transition-colors">
               <div className="text-4xl mb-6">📊</div>
@@ -335,7 +342,7 @@ const Home: React.FC = () => {
                 Lihat Tools <ArrowRight size={16} />
               </a>
             </div>
-            
+
             <div className="p-8 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 transition-colors">
               <div className="text-4xl mb-6">🧮</div>
               <h3 className="text-xl font-bold mb-3">Trading Calculators</h3>
@@ -346,7 +353,7 @@ const Home: React.FC = () => {
                 Coba Kalkulator <ArrowRight size={16} />
               </a>
             </div>
-            
+
             <div className="p-8 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 transition-colors">
               <div className="text-4xl mb-6">👥</div>
               <h3 className="text-xl font-bold mb-3">Komunitas Aktif</h3>
