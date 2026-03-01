@@ -14,6 +14,7 @@ import Founders from './pages/Founders';
 import TradeJournal from './pages/TradeJournal';
 import Members from './pages/Members';
 import Methods from './pages/Methods';
+import News from './pages/News';
 // import ErrorBoundary from './components/ui/ErrorBoundary';
 import { AFFILIATE_LINKS } from './constants';
 import { ShieldAlert } from 'lucide-react';
@@ -138,6 +139,7 @@ const App: React.FC = () => {
       case '/jurnal': return <TradeJournal />;
       case '/members': return <Members />;
       case '/metode': return <Methods />;
+      case '/berita': return <News />;
       case '/disclaimer': return <Disclaimer />;
       case '/premium': return <PremiumRedirect />;
       default: return <Home />;

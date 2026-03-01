@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Menu, X, BookOpen, Sun, Moon } from 'lucide-react';
+import { Menu, X, BookOpen, Sun, Moon, Newspaper } from 'lucide-react';
 import { APP_NAME } from '../constants';
 
 const Navbar: React.FC = () => {
@@ -53,6 +53,7 @@ const Navbar: React.FC = () => {
     { name: 'Metode', path: '/metode' },
     { name: 'Members', path: '/members' },
     { name: 'Tools', path: '/tools' },
+    { name: 'Berita', path: '/berita', icon: Newspaper },
     { name: 'Jurnal', path: '/jurnal', icon: BookOpen },
     { name: 'E-Book', path: '/ebook' },
   ];
