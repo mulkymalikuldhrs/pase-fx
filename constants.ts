@@ -68,7 +68,8 @@ export const AFFILIATE_LINKS = {
   didimax: "https://didimax.com/",
   hfm: "https://hfm.com/",
   fbs: "https://fbs.com/",
-  traderFamilyPremium: "https://link.tradersfamily.id/EA0CGxwAJxZWQFRRR0pd"
+  traderFamilyPremium: "https://link.tradersfamily.id/EA0CGxwAJxZWQFRRR0pd",
+  audacity: "https://trade.audacity.capital/user-auth/register?referral_code=e80c1b"
 };
 
 // TF Logo for MRG
@@ -280,6 +281,17 @@ export const BROKERS_DATA: Broker[] = [
     rating: 4.3,
     regulation: "CySEC/IFSC",
     features: ["Cent Account", "Bonus 100%", "Loyalty Program", "24/7 Support"]
+  },
+  {
+    id: "audacity",
+    name: "Audacity Capital",
+    type: "Prop Firm",
+    link: AFFILIATE_LINKS.audacity,
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/2560px-Flag_of_the_United_States.svg.png",
+    rating: 4.6,
+    regulation: "Prop Firm",
+    features: ["Challenge Prop Firm", "Payout Mingguan", "Rules Flexible", "Up to $200k Funding"],
+    isRecommended: true
   }
 ];
 
