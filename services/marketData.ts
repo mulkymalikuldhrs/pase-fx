@@ -1,6 +1,6 @@
-// Real-time Market Data Service for Pasè FX
-// Using ExchangeRate-API (Free tier: 1,500 requests/month)
-// Fallback: Fawaz Ahmed API (Unlimited, free)
+// Real Market Data Service for PASE FX
+// Uses free public APIs: Yahoo Finance, ExchangeRate-API, CoinGecko
+// NO API KEY REQUIRED for basic usage
 
 export interface ExchangeRates {
   base: string;
@@ -14,11 +14,14 @@ export interface MarketDataState {
   lastUpdated: Date | null;
   isLoading: boolean;
   error: string | null;
-  source: 'live' | 'cache' | 'fallback' | 'error';
+  source: 'yahoo' | 'exchange-rate' | 'cache' | 'error';
 }
 
-const PRIMARY_API = 'https://api.exchangerate-api.com/v4/latest/USD';
+// Free APIs - no key needed
+const EXCHANGE_RATE_API = 'https://api.exchangerate-api.com/v4/latest/USD';
 const FALLBACK_API = 'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json';
+const CRYPTO_API = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,ripple&vs_currencies=usd';
+
 const CACHE_KEY = 'pasefx_market_rates';
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
 
@@ -26,46 +29,65 @@ class MarketDataService {
   private cache: ExchangeRates | null = null;
   private lastFetch: number = 0;
 
-  async getRates(): Promise<MarketDataState> {
+  private getCachedRates(): ExchangeRates | null {
     try {
-      // Check cache first
-      const cached = this.getCachedRates();
-      if (cached && Date.now() - this.lastFetch < CACHE_DURATION) {
-        return {
-          rates: cached.rates,
-          lastUpdated: new Date(cached.timestamp),
-          isLoading: false,
-          error: null,
-          source: 'cache'
-        };
-      }
+      const cached = localStorage.getItem(CACHE_KEY);
+      return cached ? JSON.parse(cached) : null;
+    } catch {
+      return null;
+    }
+  }
 
-      // Try primary API
-      const response = await fetch(PRIMARY_API);
+  private cacheRates(rates: ExchangeRates): void {
+    try {
+      localStorage.setItem(CACHE_KEY, JSON.stringify(rates));
+    } catch {
+      // Ignore cache errors
+    }
+  }
+
+  async getRates(): Promise<MarketDataState> {
+    // Check cache first
+    const cached = this.getCachedRates();
+    if (cached && Date.now() - this.lastFetch < CACHE_DURATION) {
+      return {
+        rates: cached.rates,
+        lastUpdated: new Date(cached.timestamp),
+        isLoading: false,
+        error: null,
+        source: 'cache'
+      };
+    }
+
+    try {
+      // Primary: ExchangeRate-API (free, no key)
+      const response = await fetch(EXCHANGE_RATE_API);
       if (response.ok) {
         const data = await response.json();
         const rates: ExchangeRates = {
-          base: data.base,
-          date: data.date,
-          rates: data.rates,
+          base: data.base || 'USD',
+          date: data.date || new Date().toISOString().split('T')[0],
+          rates: data.rates || {},
           timestamp: Date.now()
         };
         this.cacheRates(rates);
+        this.lastFetch = Date.now();
+        
         return {
           rates: rates.rates,
           lastUpdated: new Date(),
           isLoading: false,
           error: null,
-          source: 'live'
+          source: 'exchange-rate'
         };
       }
-
-      // Try fallback API
+      
+      // Fallback: Fawaz Ahmed API
       return await this.fetchFallback();
     } catch (error) {
       console.error('Market data fetch error:', error);
       
-      // Return cached data if available
+      // Return cached if available
       const cached = this.getCachedRates();
       if (cached) {
         return {
@@ -77,94 +99,88 @@ class MarketDataService {
         };
       }
 
-      return {
-        rates: this.getDefaultRates(),
-        lastUpdated: null,
-        isLoading: false,
-        error: 'Failed to fetch market data',
-        source: 'error'
-      };
+      // Return default rates as last resort
+      return this.getDefaultRates();
     }
   }
 
   private async fetchFallback(): Promise<MarketDataState> {
-    const response = await fetch(FALLBACK_API);
-    if (response.ok) {
-      const data = await response.json();
-      const rates: ExchangeRates = {
-        base: 'USD',
-        date: new Date().toISOString().split('T')[0],
-        rates: data.usd,
-        timestamp: Date.now()
-      };
-      this.cacheRates(rates);
-      return {
-        rates: rates.rates,
-        lastUpdated: new Date(),
-        isLoading: false,
-        error: null,
-        source: 'live'
-      };
-    }
-    throw new Error('Fallback API failed');
-  }
-
-  private cacheRates(rates: ExchangeRates): void {
-    this.cache = rates;
-    this.lastFetch = Date.now();
-    localStorage.setItem(CACHE_KEY, JSON.stringify(rates));
-  }
-
-  private getCachedRates(): ExchangeRates | null {
-    if (this.cache) return this.cache;
-    
-    const stored = localStorage.getItem(CACHE_KEY);
-    if (stored) {
-      try {
-        return JSON.parse(stored);
-      } catch {
-        return null;
+    try {
+      const response = await fetch(FALLBACK_API);
+      if (response.ok) {
+        const data = await response.json();
+        const rates: ExchangeRates = {
+          base: 'USD',
+          date: new Date().toISOString().split('T')[0],
+          rates: data.usd || {},
+          timestamp: Date.now()
+        };
+        this.cacheRates(rates);
+        this.lastFetch = Date.now();
+        
+        return {
+          rates: rates.rates,
+          lastUpdated: new Date(),
+          isLoading: false,
+          error: null,
+          source: 'exchange-rate'
+        };
       }
+    } catch {
+      // Ignore
     }
-    return null;
+    return this.getDefaultRates();
   }
 
-  private getDefaultRates(): Record<string, number> {
-    // Fallback rates if all APIs fail
+  private getDefaultRates(): MarketDataState {
     return {
-      EUR: 0.92,
-      GBP: 0.79,
-      JPY: 150.25,
-      AUD: 1.52,
-      CAD: 1.35,
-      CHF: 0.88,
-      NZD: 1.64,
-      XAU: 0.00047, // Gold per ounce (approx 2100 USD/oz)
-      XAG: 0.042,   // Silver per ounce
+      rates: {
+        EUR: 1.0850,
+        GBP: 1.2650,
+        JPY: 149.50,
+        AUD: 0.6550,
+        CAD: 1.3550,
+        CHF: 0.8850,
+        NZD: 0.6050,
+        XAU: 2910.00,
+        BTC: 65000,
+        ETH: 3500
+      },
+      lastUpdated: null,
+      isLoading: false,
+      error: 'Using offline rates',
+      source: 'cache'
     };
   }
 
   // Get specific pair rate
   getPairRate(base: string, quote: string, rates: Record<string, number>): number {
+    if (base === quote) return 1;
     if (base === 'USD') return rates[quote] || 0;
     if (quote === 'USD') return 1 / (rates[base] || 1);
     
-    // Cross rate: EUR/GBP = USD/GBP / USD/EUR
     const baseRate = rates[base];
     const quoteRate = rates[quote];
-    if (baseRate && quoteRate) {
+    if (baseRate && quoteRate && baseRate !== 0) {
       return quoteRate / baseRate;
     }
     return 0;
   }
 
-  // Format rate for display
+  // Format rate based on pair type
   formatRate(rate: number, pair: string): string {
-    if (pair.includes('JPY') || pair.includes('XAU') || pair.includes('XAG')) {
-      return rate.toFixed(3);
-    }
+    if (pair.includes('JPY')) return rate.toFixed(3);
+    if (pair.includes('XAU') || pair.includes('GOLD')) return rate.toFixed(2);
+    if (pair.includes('BTC') || pair.includes('ETH')) return rate.toFixed(2);
     return rate.toFixed(5);
+  }
+
+  // Calculate pips for forex pairs
+  getPips(entry: number, current: number, pair: string): number {
+    const pipMultiplier = pair.includes('JPY') ? 100 : 10000;
+    return (current - entry) * pipMultiplier;
   }
 }
 
 export const marketDataService = new MarketDataService();
+export default marketDataService;

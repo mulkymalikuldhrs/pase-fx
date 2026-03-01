@@ -92,7 +92,7 @@ const CorrelationMatrix: React.FC = () => {
 
       <div className="mt-6 space-y-3">
         <div className="flex items-start gap-2">
-          <Info className="w-4 h-4 text-blue-500 mt-0.5" />
+          <Info className="w-4 h-4 text-emerald-500 mt-0.5" />
           <p className="text-sm text-gray-600">
             <strong>Positive correlation:</strong> Pairs move in the same direction. 
             Buying both increases risk exposure.

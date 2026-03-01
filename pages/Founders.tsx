@@ -90,7 +90,7 @@ const Founders: React.FC = () => {
             <div key={index} className="glass-card bg-white/80 p-8 relative overflow-hidden group border-emerald-100 hover:border-emerald-300 transition-all shadow-lg hover:shadow-xl">
               {/* Background Glow */}
               <div className={`absolute top-0 right-0 w-64 h-64 rounded-full blur-3xl -mr-32 -mt-32 transition-all duration-500 opacity-20 ${
-                founder.id === 'mulky' ? 'bg-emerald-500 group-hover:bg-emerald-400' : 'bg-blue-500 group-hover:bg-blue-400'
+                founder.id === 'mulky' ? 'bg-emerald-500 group-hover:bg-emerald-400' : 'bg-emerald-500 group-hover:bg-blue-400'
               }`} />
               
               {/* Founder Badge */}
@@ -98,7 +98,7 @@ const Founders: React.FC = () => {
                 <span className={`text-xs font-bold px-3 py-1 rounded-full border ${
                   founder.id === 'mulky' 
                     ? 'bg-emerald-50 text-emerald-600 border-emerald-200' 
-                    : 'bg-blue-50 text-blue-600 border-blue-200'
+                    : 'bg-emerald-50 text-emerald-600 border-emerald-200'
                 }`}>
                   {founder.id === 'mulky' ? 'FOUNDER' : 'CO-FOUNDER'}
                 </span>
@@ -116,7 +116,7 @@ const Founders: React.FC = () => {
                   </div>
                   <div className="flex-1">
                     <h2 className="text-2xl font-bold text-gray-900">{founder.name}</h2>
-                    <p className={`font-medium ${founder.id === 'mulky' ? 'text-emerald-600' : 'text-blue-600'}`}>
+                    <p className={`font-medium ${founder.id === 'mulky' ? 'text-emerald-600' : 'text-emerald-600'}`}>
                       {founder.role}
                     </p>
                     <a 

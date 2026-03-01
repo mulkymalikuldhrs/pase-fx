@@ -155,10 +155,10 @@ const DrawdownCalculator: React.FC = () => {
               )}
             </div>
 
-            <div className="p-3 bg-blue-50 rounded-lg space-y-2">
+            <div className="p-3 bg-emerald-50 rounded-lg space-y-2">
               <div className="flex justify-between">
                 <span className="text-sm text-gray-600">Recovery Required:</span>
-                <span className="font-bold text-blue-600">{result.requiredRecovery.toFixed(1)}%</span>
+                <span className="font-bold text-emerald-600">{result.requiredRecovery.toFixed(1)}%</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-sm text-gray-600">Risk of Ruin:</span>

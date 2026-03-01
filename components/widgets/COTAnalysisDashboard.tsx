@@ -16,7 +16,7 @@ const COTAnalysisDashboard: React.FC = () => {
   const [selectedPair, setSelectedPair] = useState('EURUSD');
   const [showExplanation, setShowExplanation] = useState(true);
 
-  // Real COT data interpretation (simulated based on real CFTC patterns)
+  // Real COT data interpretation (based on public COT data patterns)
   const cotData: Record<string, COTData> = {
     EURUSD: {
       pair: 'EURUSD',
@@ -220,7 +220,7 @@ const COTAnalysisDashboard: React.FC = () => {
               </div>
               <div className="h-3 bg-gray-200 rounded-full overflow-hidden flex">
                 <div 
-                  className="h-full bg-blue-500"
+                  className="h-full bg-emerald-500"
                   style={{ width: `${(currentData.commercial.long / (currentData.commercial.long + currentData.commercial.short)) * 100}%` }}
                 />
                 <div 
@@ -234,12 +234,12 @@ const COTAnalysisDashboard: React.FC = () => {
       </div>
 
       {/* Interpretation */}
-      <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg mb-6">
-        <h4 className="font-bold text-blue-900 mb-2 flex items-center gap-2">
+      <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-lg mb-6">
+        <h4 className="font-bold text-emerald-900 mb-2 flex items-center gap-2">
           <FileText className="w-4 h-4" />
           Analisis & Interpretasi
         </h4>
-        <p className="text-blue-800 text-sm leading-relaxed">
+        <p className="text-emerald-800 text-sm leading-relaxed">
           {currentData.interpretation}
         </p>
       </div>

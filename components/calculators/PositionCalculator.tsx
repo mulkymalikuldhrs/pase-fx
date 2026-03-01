@@ -40,8 +40,8 @@ const PositionCalculator: React.FC = () => {
   return (
     <div className="glass-card p-6 bg-white/70 dark:bg-slate-800/70 border border-gray-200 dark:border-slate-700 rounded-xl">
       <div className="flex items-center gap-3 mb-6">
-        <div className="p-2 bg-blue-500/10 rounded-lg">
-          <Scale className="w-6 h-6 text-blue-600" />
+        <div className="p-2 bg-emerald-500/10 rounded-lg">
+          <Scale className="w-6 h-6 text-emerald-600" />
         </div>
         <h3 className="text-xl font-bold text-gray-900 dark:text-slate-100">Position Size Calculator</h3>
       </div>
@@ -105,7 +105,7 @@ const PositionCalculator: React.FC = () => {
 
         <button
           onClick={calculatePosition}
-          className="w-full py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-medium"
+          className="w-full py-2.5 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition font-medium"
         >
           Calculate Position Size
         </button>
@@ -126,8 +126,8 @@ const PositionCalculator: React.FC = () => {
                 <p className="text-lg font-semibold text-gray-900 dark:text-slate-100">${result.riskAmount}</p>
               </div>
             </div>
-            <div className="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
-              <p className="text-xs text-blue-600 dark:text-blue-400 flex items-center gap-1">
+            <div className="p-3 bg-emerald-50 dark:bg-blue-900/20 rounded-lg border border-emerald-200 dark:border-blue-800">
+              <p className="text-xs text-emerald-600 dark:text-blue-400 flex items-center gap-1">
                 <Info size={12} />
                 Max recommended risk: ${result.recommendedRisk.toFixed(2)} (2%)
               </p>

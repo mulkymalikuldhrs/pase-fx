@@ -119,8 +119,8 @@ const SessionTimer: React.FC = () => {
         })}
       </div>
 
-      <div className="mt-4 p-3 bg-blue-500/10 border border-blue-500/30 rounded-lg">
-        <p className="text-xs text-blue-300 text-center">
+      <div className="mt-4 p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-lg">
+        <p className="text-xs text-emerald-300 text-center">
           🎯 Best trading times: London-NY overlap (13:00-17:00 UTC)
         </p>
       </div>

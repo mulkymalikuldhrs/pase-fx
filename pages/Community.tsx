@@ -50,7 +50,7 @@ const Community: React.FC = () => {
             <div className="p-8 border-t border-gray-100 text-center bg-gray-50/50">
                 <h3 className="font-bold text-gray-900 mb-4">Siap bergabung?</h3>
                 <div className="flex justify-center gap-4 flex-wrap">
-                     <a href={SOCIAL_LINKS.telegram} target="_blank" rel="noreferrer" className="px-6 py-3 bg-blue-50 hover:bg-blue-100 text-blue-600 border border-blue-200 rounded-full font-bold flex items-center gap-2 transition">
+                     <a href={SOCIAL_LINKS.telegram} target="_blank" rel="noreferrer" className="px-6 py-3 bg-emerald-50 hover:bg-emerald-100 text-emerald-600 border border-emerald-200 rounded-full font-bold flex items-center gap-2 transition">
                          <MessageCircle size={20} /> Join Telegram
                      </a>
                      <a href={SOCIAL_LINKS.whatsapp} target="_blank" rel="noreferrer" className="px-6 py-3 bg-green-50 hover:bg-green-100 text-green-600 border border-green-200 rounded-full font-bold flex items-center gap-2 transition">

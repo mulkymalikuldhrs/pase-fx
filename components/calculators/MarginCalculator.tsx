@@ -72,7 +72,7 @@ const MarginCalculator: React.FC = () => {
     <div className="glass-card bg-white p-6 border border-gray-200 shadow-sm rounded-xl">
       <div className="flex items-center justify-between mb-6">
         <h3 className="text-lg font-bold flex items-center gap-2 text-gray-900">
-          <Calculator className="text-blue-500" /> Margin Calculator
+          <Calculator className="text-emerald-500" /> Margin Calculator
         </h3>
       </div>
 
@@ -85,7 +85,7 @@ const MarginCalculator: React.FC = () => {
             type="number"
             value={accountBalance}
             onChange={(e) => setAccountBalance(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
             placeholder="10000"
           />
         </div>
@@ -97,7 +97,7 @@ const MarginCalculator: React.FC = () => {
           <select
             value={instrument}
             onChange={(e) => setInstrument(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
           >
             {Object.keys(MARGIN_INSTRUMENTS).map((inst) => (
               <option key={inst} value={inst}>{inst}</option>
@@ -114,7 +114,7 @@ const MarginCalculator: React.FC = () => {
             step="0.01"
             value={lotSize}
             onChange={(e) => setLotSize(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
             placeholder="0.1"
           />
         </div>
@@ -126,7 +126,7 @@ const MarginCalculator: React.FC = () => {
           <select
             value={leverage}
             onChange={(e) => setLeverage(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
           >
             <option value="10">1:10</option>
             <option value="20">1:20</option>
@@ -139,16 +139,16 @@ const MarginCalculator: React.FC = () => {
 
         <button
           onClick={calculate}
-          className="w-full flex items-center justify-center gap-2 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors"
+          className="w-full flex items-center justify-center gap-2 bg-emerald-500 text-white py-2 px-4 rounded-lg hover:bg-emerald-600 transition-colors"
         >
           <RefreshCw size={16} /> Calculate
         </button>
 
         {result && (
-          <div className="mt-4 p-4 bg-blue-50 rounded-lg space-y-2">
+          <div className="mt-4 p-4 bg-emerald-50 rounded-lg space-y-2">
             <div className="flex justify-between">
               <span className="text-sm text-gray-600">Margin Required:</span>
-              <span className="font-bold text-blue-600">${result.marginRequired.toFixed(2)}</span>
+              <span className="font-bold text-emerald-600">${result.marginRequired.toFixed(2)}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-sm text-gray-600">Free Margin:</span>

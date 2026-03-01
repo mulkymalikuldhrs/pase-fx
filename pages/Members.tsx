@@ -8,7 +8,8 @@ const Members: React.FC = () => {
   // Real member count from actual registered members only
   const memberCount = COMMUNITY_MEMBERS.length;
 
-  // Note: Online status is simulated - not connected to real-time database
+  // Note: Status Online adalah contoh/demonstrasi saja
+  // Untuk production, perlu integrate dengan real-time database
 
   const filteredMembers = COMMUNITY_MEMBERS.filter(member => {
     const matchesSearch = member.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -27,7 +28,7 @@ const Members: React.FC = () => {
 
   const getExpertiseColor = (expertise: string) => {
     switch (expertise) {
-      case 'technical': return 'bg-blue-500/20 text-blue-400';
+      case 'technical': return 'bg-emerald-500/20 text-emerald-400';
       case 'fundamental': return 'bg-green-500/20 text-green-400';
       case 'hybrid': return 'bg-purple-500/20 text-purple-400';
       default: return 'bg-slate-500/20 text-slate-400';
@@ -58,7 +59,7 @@ const Members: React.FC = () => {
             <div className="text-sm text-gray-500">Anggota Terdaftar</div>
           </div>
           <div className="glass-card bg-white/70 p-4 text-center">
-            <div className="text-3xl font-bold text-blue-500">{COMMUNITY_MEMBERS.filter(m => m.status === 'online').length}</div>
+            <div className="text-3xl font-bold text-emerald-500">{COMMUNITY_MEMBERS.filter(m => m.status === 'online').length}</div>
             <div className="text-sm text-gray-500">Status Online*</div>
           </div>
           <div className="glass-card bg-white/70 p-4 text-center">
@@ -160,7 +161,7 @@ const Members: React.FC = () => {
         {/* All Members Grid */}
         <div>
           <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-            <Users className="text-blue-500" />
+            <Users className="text-emerald-500" />
             Anggota Aktif
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -202,13 +203,13 @@ const Members: React.FC = () => {
         {/* Join CTA */}
         <div className="mt-12 glass-card bg-white/80 p-8 text-center border-emerald-100">
           <h3 className="text-2xl font-bold text-gray-900 mb-2">Ingin Bergabung?</h3>
-          <p className="text-gray-500 mb-6">Jadilah bagian dari komunitas trader terbesar di Aceh</p>
+          <p className="text-gray-500 mb-6">Jadilah bagian dari komunitas trader Indonesia</p>
           <div className="flex flex-wrap justify-center gap-4">
             <a 
               href={SOCIAL_LINKS.telegram}
               target="_blank"
               rel="noreferrer"
-              className="glass-button bg-blue-50 text-blue-600 border-blue-200 hover:bg-blue-100"
+              className="glass-button bg-emerald-50 text-emerald-600 border-emerald-200 hover:bg-emerald-100"
             >
               <MessageCircle size={18} />
               Join Telegram

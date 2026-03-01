@@ -54,7 +54,7 @@ const CommunityMembers: React.FC = () => {
       case 'admin':
         return <span className="px-2 py-0.5 bg-purple-100 text-purple-700 rounded-full text-xs font-semibold">Founder</span>;
       case 'analyst':
-        return <span className="px-2 py-0.5 bg-blue-100 text-blue-700 rounded-full text-xs font-semibold">Analyst</span>;
+        return <span className="px-2 py-0.5 bg-emerald-100 text-emerald-700 rounded-full text-xs font-semibold">Analyst</span>;
       default:
         return <span className="px-2 py-0.5 bg-gray-100 text-gray-600 rounded-full text-xs font-semibold">Member</span>;
     }
@@ -84,8 +84,8 @@ const CommunityMembers: React.FC = () => {
           <div className="text-2xl font-bold text-emerald-600">{stats.online}</div>
           <div className="text-xs text-gray-500">Online Now</div>
         </div>
-        <div className="text-center p-3 bg-blue-50 rounded-lg">
-          <div className="text-2xl font-bold text-blue-600">{stats.analysts}</div>
+        <div className="text-center p-3 bg-emerald-50 rounded-lg">
+          <div className="text-2xl font-bold text-emerald-600">{stats.analysts}</div>
           <div className="text-xs text-gray-500">Analysts</div>
         </div>
       </div>
@@ -103,7 +103,7 @@ const CommunityMembers: React.FC = () => {
         <button
           onClick={() => setActiveTab('telegram')}
           className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2 ${
-            activeTab === 'telegram' ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+            activeTab === 'telegram' ? 'bg-emerald-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
           }`}
         >
           <Send className="w-4 h-4" /> Telegram
@@ -124,7 +124,7 @@ const CommunityMembers: React.FC = () => {
           <div key={member.id} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
             <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm ${
               member.role === 'admin' ? 'bg-purple-500' : 
-              member.role === 'analyst' ? 'bg-blue-500' : 'bg-gray-400'
+              member.role === 'analyst' ? 'bg-emerald-500' : 'bg-gray-400'
             }`}>
               {member.avatar}
             </div>
@@ -151,7 +151,7 @@ const CommunityMembers: React.FC = () => {
             href="https://t.me/pasefx" 
             target="_blank" 
             rel="noreferrer"
-            className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm font-medium"
+            className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 transition-colors text-sm font-medium"
           >
             <Send className="w-4 h-4" /> Join Telegram
           </a>

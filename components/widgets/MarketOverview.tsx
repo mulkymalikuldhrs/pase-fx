@@ -1,46 +1,65 @@
 import React, { useState, useEffect } from 'react';
 import { TrendingUp, TrendingDown, Activity, DollarSign } from 'lucide-react';
-
-interface MarketData {
-  pair: string;
-  price: string;
-  change: number;
-  trend: 'up' | 'down';
-}
+import { realMarketDataService, RealAssetData } from '../../services/realMarketData';
 
 const MarketOverview: React.FC = () => {
-  const [marketData, setMarketData] = useState<MarketData[]>([
-    { pair: 'EURUSD', price: '1.0850', change: 0.25, trend: 'up' },
-    { pair: 'GBPUSD', price: '1.2650', change: -0.15, trend: 'down' },
-    { pair: 'USDJPY', price: '149.50', change: 0.45, trend: 'up' },
-    { pair: 'XAUUSD', price: '2035.20', change: 1.20, trend: 'up' },
-    { pair: 'US30', price: '38500', change: -0.35, trend: 'down' },
-    { pair: 'BTCUSD', price: '42500', change: 2.50, trend: 'up' },
-  ]);
+  const [assets, setAssets] = useState<RealAssetData[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  // Simulate real-time updates
   useEffect(() => {
-    const interval = setInterval(() => {
-      setMarketData(prev => prev.map(item => {
-        const change = (Math.random() - 0.5) * 0.1;
-        const newChange = item.change + change;
-        return {
-          ...item,
-          change: parseFloat(newChange.toFixed(2)),
-          trend: newChange > 0 ? 'up' : 'down'
-        };
-      }));
-    }, 5000);
+    // Subscribe to real market data
+    const unsubscribe = realMarketDataService.subscribe((data) => {
+      setAssets(data);
+      setLoading(false);
+    });
 
-    return () => clearInterval(interval);
+    return () => unsubscribe();
   }, []);
+
+  const formatPrice = (price: number, symbol: string): string => {
+    if (price === 0) return 'Loading...';
+    if (symbol.includes('BTC')) return price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    if (symbol.includes('ETH') || symbol.includes('SOL') || symbol.includes('XRP')) return price.toFixed(4);
+    return price.toFixed(5);
+  };
+
+  const getChangeColor = (change: number): string => {
+    if (change > 0) return 'text-emerald-400';
+    if (change < 0) return 'text-red-400';
+    return 'text-gray-400';
+  };
+
+  const getCategoryIcon = (category: string) => {
+    switch (category) {
+      case 'crypto': return <DollarSign className="w-4 h-4 text-orange-400" />;
+      default: return <Activity className="w-4 h-4 text-emerald-400" />;
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="glass-card p-6">
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-3">
+            <div className="p-2 bg-emerald-500/20 rounded-lg">
+              <Activity className="w-6 h-6 text-emerald-400" />
+            </div>
+            <h3 className="text-xl font-bold text-white">Live Market Overview</h3>
+          </div>
+        </div>
+        <div className="text-center py-8 text-gray-400">
+          Memuat data market...
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="glass-card p-6">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-blue-500/20 rounded-lg">
-            <Activity className="w-6 h-6 text-blue-400" />
+          <div className="p-2 bg-emerald-500/20 rounded-lg">
+            <Activity className="w-6 h-6 text-emerald-400" />
           </div>
           <h3 className="text-xl font-bold text-white">Live Market Overview</h3>
         </div>
@@ -50,48 +69,44 @@ const MarketOverview: React.FC = () => {
         </div>
       </div>
 
-      <div className="space-y-3">
-        {marketData.map((item) => (
-          <div
-            key={item.pair}
-            className="flex items-center justify-between p-3 bg-slate-800/30 rounded-lg hover:bg-slate-800/50 transition-all"
-          >
-            <div className="flex items-center gap-3">
-              <div className={`p-1.5 rounded ${
-                item.trend === 'up' ? 'bg-emerald-500/20' : 'bg-red-500/20'
-              }`}>
-                {item.trend === 'up' ? (
-                  <TrendingUp className="w-4 h-4 text-emerald-400" />
-                ) : (
-                  <TrendingDown className="w-4 h-4 text-red-400" />
-                )}
+      {assets.length === 0 ? (
+        <div className="text-center py-8 text-gray-400">
+          Data tidak tersedia. Coba refresh halaman.
+        </div>
+      ) : (
+        <div className="space-y-3">
+          {assets.map((item) => (
+            <div
+              key={item.symbol}
+              className="flex items-center justify-between p-3 bg-slate-800/30 rounded-lg hover:bg-slate-800/50 transition-all"
+            >
+              <div className="flex items-center gap-3">
+                <div className={`p-1.5 rounded ${
+                  item.category === 'crypto' ? 'bg-orange-500/20' : 'bg-emerald-500/20'
+                }`}>
+                  {getCategoryIcon(item.category)}
+                </div>
+                <div>
+                  <p className="font-medium text-white">{item.symbol}</p>
+                  <p className="text-xs text-gray-400">{item.name}</p>
+                </div>
               </div>
-              <div>
-                <p className="font-bold text-white">{item.pair}</p>
-                <p className="text-xs text-slate-400">Spot</p>
+              <div className="text-right">
+                <p className="font-medium text-white">${formatPrice(item.price, item.symbol)}</p>
+                <p className={`text-sm ${getChangeColor(item.change24h)}`}>
+                  {item.change24h > 0 ? <TrendingUp className="w-3 h-3 inline mr-1" /> : <TrendingDown className="w-3 h-3 inline mr-1" />}
+                  {item.change24h > 0 ? '+' : ''}{item.change24h.toFixed(2)}%
+                </p>
               </div>
             </div>
-            <div className="text-right">
-              <p className="font-mono font-bold text-white price-display">{item.price}</p>
-              <p className={`text-sm ${
-                item.change >= 0 ? 'text-emerald-400' : 'text-red-400'
-              }`}>
-                {item.change >= 0 ? '+' : ''}{item.change}%
-              </p>
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
 
       <div className="mt-4 pt-4 border-t border-slate-700">
-        <div className="flex items-center justify-between text-sm">
-          <span className="text-slate-400">DXY Index</span>
-          <span className="flex items-center gap-2">
-            <DollarSign className="w-4 h-4 text-emerald-400" />
-            <span className="font-mono text-white">103.45</span>
-            <span className="text-emerald-400">+0.12%</span>
-          </span>
-        </div>
+        <p className="text-xs text-gray-500 text-center">
+          Data harga real-time dari CoinGecko API. Update setiap 60 detik.
+        </p>
       </div>
     </div>
   );

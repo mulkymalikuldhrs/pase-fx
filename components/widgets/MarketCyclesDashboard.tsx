@@ -73,7 +73,7 @@ const MarketCyclesDashboard: React.FC = () => {
 
   const getPhaseColor = (phase: string) => {
     switch (phase) {
-      case 'accumulation': return 'bg-blue-100 text-blue-800 border-blue-300';
+      case 'accumulation': return 'bg-emerald-100 text-emerald-800 border-emerald-300';
       case 'markup': return 'bg-emerald-100 text-emerald-800 border-emerald-300';
       case 'distribution': return 'bg-amber-100 text-amber-800 border-amber-300';
       case 'markdown': return 'bg-red-100 text-red-800 border-red-300';
@@ -121,8 +121,8 @@ const MarketCyclesDashboard: React.FC = () => {
             <span className="text-sm font-medium text-gray-700">GMT+7 (WIB)</span>
             <span className="text-sm font-bold text-gray-900 font-mono">{currentTimeGMT7}</span>
           </div>
-          <div className="flex items-center gap-2 px-3 py-2 bg-blue-50 rounded-lg border border-blue-200">
-            <Sun className="w-4 h-4 text-blue-600" />
+          <div className="flex items-center gap-2 px-3 py-2 bg-emerald-50 rounded-lg border border-emerald-200">
+            <Sun className="w-4 h-4 text-emerald-600" />
             <span className="text-sm font-medium text-gray-700">New York</span>
             <span className="text-sm font-bold text-gray-900 font-mono">{currentTimeNY}</span>
           </div>
@@ -247,7 +247,7 @@ const MarketCyclesDashboard: React.FC = () => {
                   <div className="h-3 bg-gray-200 rounded-full overflow-hidden">
                     <div 
                       className={`h-full transition-all duration-500 ${
-                        cycle.currentPhase === 'accumulation' ? 'bg-blue-500' :
+                        cycle.currentPhase === 'accumulation' ? 'bg-emerald-500' :
                         cycle.currentPhase === 'markup' ? 'bg-emerald-500' :
                         cycle.currentPhase === 'distribution' ? 'bg-amber-500' :
                         'bg-red-500'

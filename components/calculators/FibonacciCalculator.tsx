@@ -44,7 +44,7 @@ const FibonacciCalculator: React.FC = () => {
 
   const getLevelColor = (level: number) => {
     if (level === 61.8 || level === 50) return 'text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/20 border-emerald-200 dark:border-emerald-800';
-    if (level === 38.2 || level === 78.6) return 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800';
+    if (level === 38.2 || level === 78.6) return 'text-emerald-600 dark:text-blue-400 bg-emerald-50 dark:bg-blue-900/20 border-emerald-200 dark:border-blue-800';
     if (level === 23.6 || level === 0 || level === 100) return 'text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-slate-700/50 border-gray-200 dark:border-slate-600';
     return 'text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/20 border-purple-200 dark:border-purple-800';
   };
@@ -157,8 +157,8 @@ const FibonacciCalculator: React.FC = () => {
             </div>
 
             {/* Tips */}
-            <div className="p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
-              <p className="text-xs text-blue-700 dark:text-blue-300">
+            <div className="p-3 bg-emerald-50 dark:bg-blue-900/20 border border-emerald-200 dark:border-blue-800 rounded-lg">
+              <p className="text-xs text-emerald-700 dark:text-blue-300">
                 <strong>💡 Tips:</strong> Level 61.8% dan 50% adalah zona entry paling umum. 
                 Gunakan confluence dengan support/resistance untuk konfirmasi.
               </p>

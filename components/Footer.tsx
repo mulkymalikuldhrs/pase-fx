@@ -68,7 +68,7 @@ const Footer: React.FC = () => {
               <a href={SOCIAL_LINKS.whatsapp} target="_blank" rel="noreferrer" className="bg-gray-100 dark:bg-slate-800 p-2 rounded-full hover:bg-green-500 hover:text-white text-gray-600 dark:text-slate-400 transition shadow-sm">
                 <Phone size={18} />
               </a>
-              <a href={`mailto:${SOCIAL_LINKS.email}`} className="bg-gray-100 dark:bg-slate-800 p-2 rounded-full hover:bg-blue-500 hover:text-white text-gray-600 dark:text-slate-400 transition shadow-sm">
+              <a href={`mailto:${SOCIAL_LINKS.email}`} className="bg-gray-100 dark:bg-slate-800 p-2 rounded-full hover:bg-emerald-500 hover:text-white text-gray-600 dark:text-slate-400 transition shadow-sm">
                 <Mail size={18} />
               </a>
             </div>

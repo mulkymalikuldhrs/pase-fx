@@ -1,363 +1,120 @@
-# 🎨 DESIGN SYSTEM - Pasè FX Trader Hub
-
-## Overview
-
-This document describes the design system for Pasè FX Trader Hub, a React + Tailwind CSS web application with a White Liquid Glass theme.
+# PASE FX DESIGN SYSTEM
+## Unified Color Palette - Emerald & White
 
 ---
 
-## Color Palette
+## PRIMARY COLORS (Emerald Green)
 
-### Primary Colors
-| Color | Hex | Usage |
-|-------|-----|-------|
-| Primary | `#059669` | Main actions, links |
-| Primary Light | `#10b981` | Hover states |
-| Primary Dark | `#047857` | Active states |
-
-### Gray Scale (Light Mode)
-| Color | Hex | Usage |
-|-------|-----|-------|
-| Gray 50 | `#f9fafb` | Backgrounds |
-| Gray 100 | `#f3f4f6` | Cards |
-| Gray 200 | `#e5e7eb` | Borders |
-| Gray 300 | `#d1d5db` | Dividers |
-| Gray 400 | `#9ca3af` | Placeholders |
-| Gray 500 | `#6b7280` | Secondary text |
-| Gray 600 | `#4b5563` | Body text |
-| Gray 700 | `#374151` | Headings |
-| Gray 800 | `#1f2937` | Dark headings |
-| Gray 900 | `#111827` | Primary text |
-
-### Gray Scale (Dark Mode)
-| Color | Hex | Usage |
-|-------|-----|-------|
-| Gray 50 | `#0f172a` | Dark backgrounds |
-| Gray 100 | `#1e293b` | Dark cards |
-| Gray 200 | `#334155` | Dark borders |
-| Gray 300 | `#475569` | Dark dividers |
-| Gray 400 | `#64748b` | Dark placeholders |
-| Gray 500 | `#94a3b8` | Dark secondary text |
-| Gray 600 | `#cbd5e1` | Dark body text |
-| Gray 700 | `#e2e8f0` | Dark headings |
-| Gray 800 | `#f1f5f9` | Dark primary text |
-| Gray 900 | `#f8fafc` | Bright text |
+| Name | Hex | Usage |
+|------|-----|-------|
+| emerald-50 | #ecfdf5 | Backgrounds, cards |
+| emerald-100 | #d1fae5 | Hover states, highlights |
+| emerald-200 | #a7f3d0 | Active states |
+| emerald-300 | #6ee7b7 | Borders |
+| emerald-400 | #34d399 | Icons, accents |
+| emerald-500 | #10b981 | Primary buttons, links |
+| emerald-600 | #059669 | Primary hover |
+| emerald-700 | #047857 | Active/pressed |
+| emerald-800 | #065f46 | Text on light bg |
+| emerald-900 | #064e3b | Dark text |
 
 ---
 
-## Typography
+## NEUTRAL COLORS (White/Gray)
 
-### Font Family
-```css
-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-```
-
-### Font Weights
-- **Regular**: 400
-- **Medium**: 500
-- **Semibold**: 600
-- **Bold**: 700
-
-### Font Sizes
-| Size | Value | Usage |
-|------|-------|-------|
-| xs | 0.75rem | Labels, badges |
-| sm | 0.875rem | Secondary text |
-| base | 1rem | Body text |
-| lg | 1.125rem | Lead text |
-| xl | 1.25rem | Subheadings |
-| 2xl | 1.5rem | Section titles |
-| 3xl | 1.875rem | Page titles |
-| 4xl | 2.25rem | Hero text |
-| 5xl | 3rem | Landing hero |
+| Name | Hex | Usage |
+|------|-----|-------|
+| white | #ffffff | Main background |
+| gray-50 | #f9fafb | Card backgrounds |
+| gray-100 | #f3f4f6 | Borders, dividers |
+| gray-200 | #e5e7eb | Disabled states |
+| gray-300 | #d1d5db | Placeholders |
+| gray-400 | #9ca3af | Secondary text |
+| gray-500 | #6b7280 | Muted text |
+| gray-600 | #4b5563 | Body text |
+| gray-700 | #374151 | Headings |
+| gray-800 | #1f2937 | Dark text |
+| gray-900 | #111827 | Primary text |
 
 ---
 
-## Spacing System
+## ACCENT COLORS
 
-Based on 4px base unit:
-- `xs`: 0.25rem (4px)
-- `sm`: 0.5rem (8px)
-- `md`: 1rem (16px)
-- `lg`: 1.5rem (24px)
-- `xl`: 2rem (32px)
-- `2xl`: 3rem (48px)
-- `3xl`: 4rem (64px)
-
----
-
-## Border Radius
-
-| Name | Value | Usage |
-|------|-------|-------|
-| sm | 0.5rem | Buttons, inputs |
-| md | 0.75rem | Cards |
-| lg | 1rem | Modals |
-| xl | 1.5rem | Large cards |
-| full | 9999px | Pills, avatars |
+| Name | Hex | Usage |
+|------|-----|-------|
+| red-500 | #ef4444 | Sell, loss, errors |
+| red-600 | #dc2626 | Sell hover |
+| green-500 | #22c55e | Buy, profit |
+| green-600 | #16a34a | Buy hover |
+| amber-500 | #f59e0b | Warnings, pending |
+| blue-500 | #3b82f6 | Info, links |
+| purple-500 | #8b5cf6 | Premium features |
 
 ---
 
-## Glass Effects
+## STATUS COLORS
 
-### Glass Card (Light)
-```css
-background: rgba(255, 255, 255, 0.7);
-backdrop-filter: blur(20px);
-border: 1px solid rgba(0, 0, 0, 0.08);
-border-radius: 1.5rem;
-box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.08);
-```
-
-### Glass Card (Dark)
-```css
-background: rgba(30, 41, 59, 0.8);
-backdrop-filter: blur(20px);
-border: 1px solid rgba(255, 255, 255, 0.1);
-```
-
-### Glass Button
-```css
-background: linear-gradient(135deg, rgba(5, 150, 105, 0.1), rgba(16, 185, 129, 0.05));
-backdrop-filter: blur(10px);
-border: 1px solid rgba(5, 150, 105, 0.3);
-border-radius: 1rem;
-color: #059669;
-```
-
-### Glass Input
-```css
-background: rgba(255, 255, 255, 0.8);
-backdrop-filter: blur(10px);
-border: 1px solid rgba(0, 0, 0, 0.1);
-border-radius: 1rem;
-```
+| Status | Background | Text |
+|--------|------------|------|
+| BUY | emerald-100 | emerald-700 |
+| SELL | red-100 | red-700 |
+| NEUTRAL | gray-100 | gray-600 |
+| ACTIVE | amber-100 | amber-700 |
+| HIT_TP | green-100 | green-700 |
+| HIT_SL | red-100 | red-700 |
 
 ---
 
-## Component Library
+## USAGE GUIDELINES
 
-### UI Components
+### Backgrounds
+- Main: `bg-white`
+- Cards: `bg-gray-50` or `bg-white`
+- Section: `bg-emerald-50` (subtle)
+- Dark mode: `bg-gray-900`
 
-#### Button
-```tsx
-<button className="glass-button">
-  Action
+### Buttons
+- Primary: `bg-emerald-500 hover:bg-emerald-600 text-white`
+- Secondary: `bg-white border border-emerald-500 text-emerald-600`
+- Danger: `bg-red-500 hover:bg-red-600 text-white`
+
+### Text
+- Primary: `text-gray-900`
+- Secondary: `text-gray-600`
+- Muted: `text-gray-400`
+- Accent: `text-emerald-600`
+
+### Borders
+- Subtle: `border-gray-100`
+- Default: `border-gray-200`
+- Strong: `border-emerald-200`
+
+---
+
+## TAILWIND CLASS REFERENCE
+
+```jsx
+// Backgrounds
+<div className="bg-white">Main content</div>
+<div className="bg-gray-50">Cards</div>
+<div className="bg-emerald-50">Highlights</div>
+
+// Text
+<p className="text-gray-900">Primary</p>
+<p className="text-gray-600">Secondary</p>
+<p className="text-emerald-600">Accent</p>
+
+// Buttons
+<button className="bg-emerald-500 text-white px-4 py-2 rounded-lg">
+  Primary
 </button>
-```
 
-#### Card
-```tsx
-<div className="glass-card">
-  Content
+// Borders
+<div className="border border-gray-200 rounded-lg">
+  Card
 </div>
 ```
 
-#### Input
-```tsx
-<input className="glass-input" placeholder="Enter text" />
-```
-
-#### Badge
-```tsx
-<span className="glass-badge">Label</span>
-```
-
-### AI Components (v2.0.0)
-
-New AI Trading Assistant components in `components/ai/`:
-
-#### AIAnalysisWidget
-Displays AI market analysis:
-- Recommendation badges (BUY/SELL/NEUTRAL)
-- Confidence score (0-100%)
-- Entry/SL/TP levels
-- Risk:Reward ratio
-- Technical analysis text
-
-```tsx
-<AIAnalysisWidget
-  pair="EUR/USD"
-  timeframe="1H"
-  recommendation="BUY"
-  confidence={78}
-  entryPrice={1.0850}
-  stopLoss={1.0820}
-  takeProfit={1.0920}
-/>
-```
-
-#### AIPatternRecognition
-Pattern detection display:
-- Detected pattern name
-- Direction (Bullish/Bearish/Neutral)
-- Target price
-- Invalidation level
-
-#### AIDailyBriefing
-Daily market summary:
-- Sentiment gauge
-- Key events list
-- Opportunities section
-- Risk warnings
-
-#### AITradeIdeas
-Trade recommendation cards:
-- Symbol suggestions
-- Setup descriptions
-- Confidence level
-- Action buttons
-
-#### AIJournalReview
-Trade performance review:
-- Overall score (0-100)
-- Category scores (Entry, Exit, Risk)
-- Lessons learned
-- Improvement tips
-
-**AI Component Styling:**
-- Base: `glass-card`
-- AI indicator: Purple gradient `bg-gradient-to-r from-purple-500 to-indigo-500`
-- Confidence bar: Multi-color gradient
-- Loading: `animate-pulse` with shimmer effect
-
-### Custom Components
-
-#### Loading Skeletons (`components/ui/LoadingSkeleton.tsx`)
-- `LoadingSkeleton` - Base skeleton
-- `CardSkeleton` - Card placeholder
-- `TableRowSkeleton` - Table row placeholder
-- `WidgetSkeleton` - TradingView widget placeholder
-- `CalculatorInputSkeleton` - Calculator input placeholder
-
-#### Page Transitions (`components/ui/PageTransition.tsx`)
-- `FadeIn` - Fade in animation
-- `SlideIn` - Slide in from right
-- `StaggerContainer` - Container for staggered animations
-- `StaggerItem` - Individual staggered item
-- `PageWrapper` - Page wrapper with scroll to top
-
 ---
 
-## Animations
-
-### Keyframes
-
-```css
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes slideInRight {
-  from { opacity: 0; transform: translateX(-30px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 5px rgba(5, 150, 105, 0.2); }
-  50% { box-shadow: 0 0 20px rgba(5, 150, 105, 0.4); }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-```
-
-### Animation Classes
-- `animate-fade-in-up` - Fade in from bottom
-- `animate-slide-in-right` - Slide in from left
-- `animate-pulse-glow` - Pulsing glow effect
-- `animate-float` - Floating animation
-
----
-
-## Responsive Breakpoints
-
-| Breakpoint | Width | Target |
-|------------|-------|--------|
-| sm | 640px | Mobile landscape |
-| md | 768px | Tablet |
-| lg | 1024px | Desktop |
-| xl | 1280px | Large desktop |
-| 2xl | 1536px | Extra large |
-
----
-
-## Dark Mode
-
-Dark mode is implemented using:
-1. CSS variables in `:root` and `[data-theme="dark"]`
-2. Tailwind's `.dark` class
-3. localStorage persistence (`pasefx_dark_mode`)
-4. System preference detection (`prefers-color-scheme`)
-
-### Toggle Component
-The Navbar includes a dark mode toggle button with:
-- Sun icon for light mode
-- Moon icon for dark mode
-- localStorage persistence
-- System preference detection
-
----
-
-## Accessibility
-
-### ARIA Attributes
-All interactive elements include proper ARIA attributes:
-- `role="navigation"` for nav elements
-- `aria-label` for buttons and links
-- `aria-expanded` for collapsible menus
-- `aria-current` for active navigation items
-
-### Focus States
-All interactive elements have visible focus states:
-```css
-:focus-visible {
-  outline: 2px solid #059669;
-  outline-offset: 2px;
-}
-```
-
-### Reduced Motion
-Animations are disabled for users who prefer reduced motion:
-```css
-@media (prefers-reduced-motion: reduce) {
-  * { animation: none !important; }
-}
-```
-
----
-
-## Best Practices
-
-1. **Use CSS Variables** - Always use CSS variables for colors and spacing
-2. **Mobile First** - Design for mobile first, then add desktop styles
-3. **Accessibility** - Include ARIA labels and focus states
-4. **Dark Mode** - Test all components in both light and dark modes
-5. **Consistency** - Use the component library for consistent UI
-
----
-
-## File Structure
-
-```
-components/
-├── ui/
-│   ├── LoadingSkeleton.tsx
-│   └── PageTransition.tsx
-├── Navbar.tsx
-├── Footer.tsx
-└── ...
-```
-
----
-
-*Last Updated: February 2026*
-*Version: 2.0.0*
+*Updated: 2026-03-01*

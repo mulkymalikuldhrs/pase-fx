@@ -214,11 +214,11 @@ const Signals: React.FC = () => {
         </div>
 
         {/* Info Banner */}
-        <div className="bg-blue-50 border-l-4 border-blue-400 p-4 mb-8 rounded-r-lg flex items-start gap-3 shadow-sm">
-          <AlertCircle className="text-blue-600 shrink-0 mt-0.5" size={24} />
+        <div className="bg-emerald-50 border-l-4 border-emerald-400 p-4 mb-8 rounded-r-lg flex items-start gap-3 shadow-sm">
+          <AlertCircle className="text-emerald-600 shrink-0 mt-0.5" size={24} />
           <div>
-            <h4 className="font-bold text-blue-800 text-sm uppercase mb-1">Catatan Penting</h4>
-            <p className="text-sm text-blue-800/80">
+            <h4 className="font-bold text-emerald-800 text-sm uppercase mb-1">Catatan Penting</h4>
+            <p className="text-sm text-emerald-800/80">
               Sinyal trading disediakan untuk edukasi dan referensi analisis.
               Keputusan trading sepenuhnya tanggung jawab masing-masing trader.
               Selalu gunakan manajemen risiko yang ketat.
@@ -230,7 +230,7 @@ const Signals: React.FC = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           <div className="glass-card bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
             <div className="flex items-center gap-2 mb-2">
-              <BarChart3 className="text-blue-500" size={20} />
+              <BarChart3 className="text-emerald-500" size={20} />
               <span className="text-sm text-gray-500 font-medium">Win Rate</span>
             </div>
             <div className="text-2xl font-bold text-gray-900">{stats.total > 0 ? `${stats.winRate}%` : '--'}</div>

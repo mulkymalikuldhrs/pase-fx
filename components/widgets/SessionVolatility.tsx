@@ -101,7 +101,7 @@ const SessionVolatility: React.FC = () => {
       case 'Sydney': return <Sunrise className="text-orange-400" />;
       case 'Tokyo': return <Sun className="text-yellow-500" />;
       case 'London': return <Sunset className="text-orange-500" />;
-      case 'New York': return <Moon className="text-blue-500" />;
+      case 'New York': return <Moon className="text-emerald-500" />;
       default: return <Clock className="text-gray-500" />;
     }
   };
@@ -168,7 +168,7 @@ const SessionVolatility: React.FC = () => {
       {nextSession && (
         <div className="mb-6">
           <h4 className="text-sm font-semibold text-gray-700 mb-3">Session Berikutnya</h4>
-          <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg flex items-center justify-between">
+          <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-lg flex items-center justify-between">
             <div className="flex items-center gap-3">
               {getSessionIcon(nextSession.name)}
               <div>

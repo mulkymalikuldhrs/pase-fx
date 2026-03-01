@@ -42,14 +42,14 @@ const Brokers: React.FC = () => {
         <div className="mt-12 bg-gradient-to-r from-blue-600 to-blue-800 p-8 rounded-xl text-white shadow-lg">
           <div className="max-w-4xl mx-auto text-center">
             <h3 className="text-2xl font-bold mb-4">Partner Utama Kami</h3>
-            <p className="text-blue-100 mb-6">
+            <p className="text-emerald-100 mb-6">
               Kami bekerja sama dengan Traders Family untuk memberikan layanan broker terbaik
             </p>
             <a
               href={AFFILIATE_LINKS.mrg}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-3 bg-white text-blue-800 px-8 py-4 rounded-xl font-bold hover:bg-blue-50 transition shadow-lg hover:shadow-xl"
+              className="inline-flex items-center gap-3 bg-white text-emerald-800 px-8 py-4 rounded-xl font-bold hover:bg-emerald-50 transition shadow-lg hover:shadow-xl"
             >
               <img
                 src={MRG_LOGO_URL}
@@ -63,7 +63,7 @@ const Brokers: React.FC = () => {
               <span>Daftar MRG via Traders Family</span>
               <ExternalLink size={18} />
             </a>
-            <p className="text-xs text-blue-200 mt-4">
+            <p className="text-xs text-emerald-200 mt-4">
               Klik logo di atas untuk mendaftar akun trading MRG melalui Traders Family
             </p>
           </div>

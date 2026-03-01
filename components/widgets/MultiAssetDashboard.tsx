@@ -24,7 +24,7 @@ const MultiAssetDashboard: React.FC = () => {
 
   const getCategoryIcon = (category: string) => {
     switch (category) {
-      case 'forex': return <Globe className="w-5 h-5 text-blue-500" />;
+      case 'forex': return <Globe className="w-5 h-5 text-emerald-500" />;
       case 'crypto': return <Zap className="w-5 h-5 text-orange-500" />;
       case 'commodity': return <DollarSign className="w-5 h-5 text-yellow-600" />;
       default: return <Activity className="w-5 h-5" />;
@@ -33,7 +33,7 @@ const MultiAssetDashboard: React.FC = () => {
 
   const getCategoryColor = (category: string) => {
     switch (category) {
-      case 'forex': return 'bg-blue-50 text-blue-700 border-blue-200';
+      case 'forex': return 'bg-emerald-50 text-emerald-700 border-emerald-200';
       case 'crypto': return 'bg-orange-50 text-orange-700 border-orange-200';
       case 'commodity': return 'bg-yellow-50 text-yellow-700 border-yellow-200';
       default: return 'bg-gray-50 text-gray-700 border-gray-200';
@@ -66,8 +66,8 @@ const MultiAssetDashboard: React.FC = () => {
     <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6">
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg border border-blue-100">
-            <BarChart3 className="w-6 h-6 text-blue-600" />
+          <div className="p-2 bg-gradient-to-br from-emerald-50 to-teal-50 rounded-lg border border-emerald-100">
+            <BarChart3 className="w-6 h-6 text-emerald-600" />
           </div>
           <div>
             <h3 className="text-lg font-bold text-gray-900">Multi-Asset Market Overview</h3>
@@ -153,8 +153,8 @@ const MultiAssetDashboard: React.FC = () => {
         </div>
       )}
 
-      <div className="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
-        <p className="text-sm text-blue-800">
+      <div className="mt-4 p-4 bg-emerald-50 rounded-lg border border-emerald-200">
+        <p className="text-sm text-emerald-800">
           <strong>Data Source:</strong> Real-time market data from CoinGecko (Crypto), ExchangeRate-API (Forex), and market feeds (Commodities). Updates every 30 seconds.
         </p>
       </div>

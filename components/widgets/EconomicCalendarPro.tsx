@@ -167,7 +167,7 @@ const EconomicCalendarPro: React.FC = () => {
               <div className="flex gap-6 text-right">
                 <div>
                   <div className="text-xs text-gray-500 mb-1">Forecast</div>
-                  <div className="font-semibold text-blue-600">{event.forecast}</div>
+                  <div className="font-semibold text-emerald-600">{event.forecast}</div>
                 </div>
                 <div>
                   <div className="text-xs text-gray-500 mb-1">Previous</div>

@@ -120,8 +120,8 @@ const CurrencyStrengthDashboard: React.FC = () => {
     <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6">
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-blue-50 rounded-lg">
-            <Globe className="w-6 h-6 text-blue-600" />
+          <div className="p-2 bg-emerald-50 rounded-lg">
+            <Globe className="w-6 h-6 text-emerald-600" />
           </div>
           <div>
             <h3 className="text-lg font-bold text-gray-900">Global Currency Strength</h3>
@@ -232,9 +232,9 @@ const CurrencyStrengthDashboard: React.FC = () => {
       </div>
 
       {/* Guide */}
-      <div className="mt-6 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg">
-        <h4 className="text-sm font-bold text-blue-900 mb-2">💡 How to Use Currency Strength:</h4>
-        <ul className="text-sm text-blue-800 space-y-1">
+      <div className="mt-6 p-4 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-lg">
+        <h4 className="text-sm font-bold text-emerald-900 mb-2">💡 How to Use Currency Strength:</h4>
+        <ul className="text-sm text-emerald-800 space-y-1">
           <li>• <strong>Buy:</strong> Strong currency (70%+) against Weak currency (&lt;30%)</li>
           <li>• <strong>Avoid:</strong> Trading when all currencies are neutral (40-60%)</li>
           <li>• <strong>Confirmation:</strong> Use with trend direction and price action</li>

@@ -69,8 +69,8 @@ const CurrencyStrengthMeter: React.FC = () => {
     <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-blue-50 rounded-lg">
-            <Activity className="w-6 h-6 text-blue-600" />
+          <div className="p-2 bg-emerald-50 rounded-lg">
+            <Activity className="w-6 h-6 text-emerald-600" />
           </div>
           <div>
             <h3 className="text-lg font-bold text-gray-900">Currency Strength Meter</h3>

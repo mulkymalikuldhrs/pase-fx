@@ -18,7 +18,7 @@ const FloatingButtons: React.FC = () => {
         href={SOCIAL_LINKS.telegram} 
         target="_blank" 
         rel="noreferrer"
-        className="w-14 h-14 bg-blue-500 hover:bg-blue-600 text-white rounded-full shadow-lg flex items-center justify-center transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+        className="w-14 h-14 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full shadow-lg flex items-center justify-center transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
         aria-label="Join Telegram"
       >
         <Send size={24} className="-ml-1 mt-1" />

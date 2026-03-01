@@ -272,7 +272,7 @@ const TradeJournal: React.FC = () => {
           <div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2">Trading Journal</h1>
             <p className="text-gray-600">Catat dan evaluasi setiap trade Anda untuk improvement berkelanjutan.</p>
-            <div className="mt-2 inline-flex items-center gap-2 text-xs text-blue-600 bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
+            <div className="mt-2 inline-flex items-center gap-2 text-xs text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
               <span>💾</span>
               <span>Data tersimpan secara lokal di browser Anda (localStorage)</span>
             </div>
@@ -384,7 +384,7 @@ const TradeJournal: React.FC = () => {
             <button
               onClick={exportToCSV}
               disabled={trades.length === 0}
-              className="px-3 py-2 bg-blue-50 text-blue-600 border border-blue-200 rounded-lg hover:bg-blue-100 transition flex items-center gap-2 text-sm disabled:opacity-50"
+              className="px-3 py-2 bg-emerald-50 text-emerald-600 border border-emerald-200 rounded-lg hover:bg-emerald-100 transition flex items-center gap-2 text-sm disabled:opacity-50"
             >
               <Download size={16} />
               Export CSV
@@ -563,7 +563,7 @@ const TradeJournal: React.FC = () => {
                           {trade.direction}
                         </span>
                         {trade.method && (
-                          <span className="text-xs px-2 py-0.5 rounded bg-blue-50 text-blue-600 border border-blue-200">
+                          <span className="text-xs px-2 py-0.5 rounded bg-emerald-50 text-emerald-600 border border-emerald-200">
                             {trade.method}
                           </span>
                         )}

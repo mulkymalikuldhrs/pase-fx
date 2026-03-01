@@ -12,8 +12,8 @@ import useSEO from '../hooks/useSEO';
 const Home: React.FC = () => {
   useSEO({
     title: 'Home',
-    description: 'Pasè FX Trader Hub - Komunitas Trading No. 1 dari Aceh. Trader Waras, Sistematis, Profesional.',
-    keywords: 'trading, forex, aceh, signal trading, trading community, trader hub'
+    description: 'Pasè FX Trader Hub - Komunitas Trader Indonesia. Trader Waras, Sistematis, Profesional.',
+    keywords: 'trading, forex, indonesia, signal trading, trading community, trader hub'
   });
 
   const tickerContainerRef = useRef<HTMLDivElement>(null);
@@ -108,7 +108,7 @@ const Home: React.FC = () => {
 
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-100 text-sm font-medium mb-6 animate-fade-in-up shadow-sm">
             <Zap size={16} />
-            <span>Komunitas Trading No. 1 dari Aceh</span>
+            <span>Komunitas Trader Indonesia</span>
           </div>
 
           <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 text-gray-900 leading-tight">
@@ -126,7 +126,7 @@ const Home: React.FC = () => {
               <BookOpen size={20} className="group-hover:scale-110 transition-transform" />
               Ebook (Soon)
             </a>
-            <a href={SOCIAL_LINKS.telegram} target="_blank" rel="noreferrer" className="group px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold flex items-center justify-center gap-2 transition-all shadow-lg hover:shadow-blue-500/30">
+            <a href={SOCIAL_LINKS.telegram} target="_blank" rel="noreferrer" className="group px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold flex items-center justify-center gap-2 transition-all shadow-lg hover:shadow-blue-500/30">
               <Send size={20} className="group-hover:translate-x-1 transition-transform" />
               Join Telegram
             </a>
@@ -140,7 +140,7 @@ const Home: React.FC = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
             <div className="p-6 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
               <div className="flex items-center justify-center mb-2">
-                <Users className="w-6 h-6 text-blue-500" />
+                <Users className="w-6 h-6 text-emerald-500" />
               </div>
               <div className="text-3xl font-bold text-gray-900">{stats.members}+</div>
               <div className="text-sm text-gray-500">Anggota Komunitas</div>
@@ -200,12 +200,12 @@ const Home: React.FC = () => {
             </div>
             <div className="space-y-6">
               <AITradeIdeas />
-              <div className="bg-blue-50 rounded-2xl p-6 border border-blue-100">
-                <h3 className="text-lg font-bold text-blue-900 mb-2 flex items-center gap-2">
+              <div className="bg-emerald-50 rounded-2xl p-6 border border-emerald-100">
+                <h3 className="text-lg font-bold text-emerald-900 mb-2 flex items-center gap-2">
                   <Zap className="w-5 h-5" />
                   100% Gratis
                 </h3>
-                <p className="text-sm text-blue-700">
+                <p className="text-sm text-emerald-700">
                   Semua fitur AI di Pasè FX menggunakan Puter.js - platform AI gratis tanpa batasan.
                   User-Pays model: user bayar sendiri untuk penggunaannya.
                 </p>
@@ -259,7 +259,7 @@ const Home: React.FC = () => {
           <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-4">
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-3 flex items-center gap-3">
-                <span className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600">
+                <span className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center text-emerald-600">
                   <Users size={24} />
                 </span>
                 Komunitas Kami
@@ -285,10 +285,10 @@ const Home: React.FC = () => {
                   <li>✓ Support komunitas aktif</li>
                 </ul>
               </div>
-              <div className="bg-blue-50 rounded-2xl p-6 border border-blue-100">
-                <h3 className="text-lg font-bold text-blue-900 mb-2">Daily Signals</h3>
-                <p className="text-sm text-blue-700 mb-4">Dapatkan 3-5 signal trading berkualitas setiap hari dari tim analyst profesional.</p>
-                <a href="#/sinyal" className="text-blue-600 font-semibold text-sm hover:underline">Lihat Signals →</a>
+              <div className="bg-emerald-50 rounded-2xl p-6 border border-emerald-100">
+                <h3 className="text-lg font-bold text-emerald-900 mb-2">Daily Signals</h3>
+                <p className="text-sm text-emerald-700 mb-4">Dapatkan 3-5 signal trading berkualitas setiap hari dari tim analyst profesional.</p>
+                <a href="#/sinyal" className="text-emerald-600 font-semibold text-sm hover:underline">Lihat Signals →</a>
               </div>
             </div>
           </div>

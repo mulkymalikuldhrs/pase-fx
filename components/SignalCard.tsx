@@ -10,7 +10,7 @@ const SignalCard: React.FC<SignalCardProps> = ({ signal }) => {
   const isBuy = signal.direction === 'BUY';
   
   const statusColors = {
-    'ACTIVE': 'bg-blue-100 text-blue-800 border-blue-200',
+    'ACTIVE': 'bg-emerald-100 text-emerald-800 border-emerald-200',
     'CLOSED': 'bg-slate-100 text-slate-800 border-slate-200',
     'HIT_TP': 'bg-emerald-100 text-emerald-800 border-emerald-200',
     'HIT_SL': 'bg-red-100 text-red-800 border-red-200',

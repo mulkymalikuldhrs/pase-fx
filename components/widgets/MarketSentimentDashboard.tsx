@@ -163,7 +163,7 @@ const MarketSentimentDashboard: React.FC = () => {
               </div>
               <div className="text-xs text-gray-500">Technical Score</div>
               <div className="mt-2 h-2 bg-gray-200 rounded-full overflow-hidden">
-                <div className="h-full bg-blue-500" style={{ width: `${currentSentiment.technicalScore}%` }} />
+                <div className="h-full bg-emerald-500" style={{ width: `${currentSentiment.technicalScore}%` }} />
               </div>
             </div>
             
@@ -213,12 +213,12 @@ const MarketSentimentDashboard: React.FC = () => {
       </div>
 
       {/* Contrarian Warning */}
-      <div className="mt-4 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg border border-blue-200">
-        <h4 className="text-sm font-bold text-blue-900 mb-2 flex items-center gap-2">
+      <div className="mt-4 p-4 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-lg border border-emerald-200">
+        <h4 className="text-sm font-bold text-emerald-900 mb-2 flex items-center gap-2">
           <Info className="w-4 h-4" />
           Sentiment Analysis Tips
         </h4>
-        <ul className="text-sm text-blue-800 space-y-1">
+        <ul className="text-sm text-emerald-800 space-y-1">
           <li>• <strong>Contrarian approach:</strong> When retail is 70%+ bullish, institutions often sell</li>
           <li>• <strong>Confirmation needed:</strong> Sentiment works best with price action confirmation</li>
           <li>• <strong>Extreme levels:</strong> Above 80% or below 20% often signal reversals</li>
