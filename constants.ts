@@ -62,7 +62,7 @@ export const SOCIAL_LINKS = {
 export const AFFILIATE_LINKS = {
   mrg: "https://account.tradersfamily.id/aff/436424/",
   exness: "https://exness.com/",
-  valetax: "https://valetax.com/",
+  valetax: "https://ma.valetax.com/p/2897019",
   fundingPips: "https://app.fundingpips.com/register?ref=e820c162",
   the5ers: "https://the5ers.com/",
   didimax: "https://didimax.com/",
