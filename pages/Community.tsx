@@ -60,6 +60,44 @@ const Community: React.FC = () => {
             </div>
         </div>
 
+        {/* Community Members */}
+        <div className="glass-card bg-white/80 overflow-hidden mb-12 border-gray-200">
+            <div className="p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                    <Users className="text-emerald-600" /> Community Members
+                </h2>
+                <div className="space-y-4 text-gray-600">
+                    <ul>
+                        <li>Member 1</li>
+                        <li>Member 2</li>
+                        <li>Member 3</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        {/* Trading Rules */}
+        <div className="glass-card bg-white/80 overflow-hidden mb-12 border-gray-200">
+            <div className="p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                    <Gavel className="text-emerald-600" /> Trading Rules
+                </h2>
+                <div className="space-y-4 text-gray-600">
+                    <ul>
+                        <li>Risk max 1-2%</li>
+                        <li>No full margin</li>
+                        <li>No revenge trade</li>
+                        <li>No SARA</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        {/* Join CTA */}
+        <div className="text-center mb-12">
+            <a href="#" className="px-6 py-3 bg-emerald-500 hover:bg-emerald-700 text-white rounded-full font-bold">Join Community</a>
+        </div>
+
         {/* Roles */}
         <div>
             <h3 className="text-xl font-bold text-gray-900 mb-6 text-center">Struktur Tim</h3>

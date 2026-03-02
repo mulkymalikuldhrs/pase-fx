@@ -2,6 +2,28 @@ import React, { useState } from 'react';
 import { BookOpen, Search, GraduationCap, Target, ExternalLink, Users, Clock, BarChart3, PlayCircle, ChevronDown, ChevronUp, Lightbulb, TrendingUp, Brain, Video, Bookmark } from 'lucide-react';
 import { TRADING_METHODS } from '../constants';
 
+// Video ID mapping for trading methods - using real YouTube videos
+const getVideoId = (methodName: string): string | null => {
+  const videos: Record<string, string> = {
+    'ICT (Inner Circle Trader)': 'q1EoTJ7R2Yw',
+    'SMC (Smart Money Concepts)': 'uMfitfyR51w',
+    'SNR (Support & Resistance)': '9JXKCuDArKw',
+    'Price Action': '2N-Fq4R7dGU',
+    'Wyckoff Method': 'K3QK0EU00gQ',
+    'Supply & Demand': 'kL8I1d--E2U',
+    'Elliott Wave Theory': '0L2KQZLKq9A',
+    'Harmonic Patterns': 'gRaQM-VBYcY',
+    'Fibonacci Trading': '3Y3F8h9Y_k4',
+    'VSA (Volume Spread Analysis)': 'fKLNEbG9m9c',
+    'Fundamental Analysis': 'nF_rI6U8zXc',
+    'Trendline Trading': '9JXKCuDArKw',
+  };
+  return videos[methodName] || null;
+};
+
+// Fallback video for when no specific video is available
+const FALLBACK_VIDEO_ID = 'q1EoTJ7R2Yw';
+
 // Tutorial Component
 const TutorialBox: React.FC<{ title: string; children: React.ReactNode }> = ({ title, children }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -101,13 +123,25 @@ const MethodDetail: React.FC<{ method: typeof TRADING_METHODS[0]; onClose: () =>
                 <p className="text-sm text-gray-600 mb-3">
                   Tonton video di bawah untuk memahami {method.name}:
                 </p>
-                <div className="aspect-video bg-gray-900 rounded-lg flex items-center justify-center">
-                  <div className="text-center text-white p-4">
-                    <PlayCircle className="w-16 h-16 mx-auto mb-2 opacity-50" />
-                    <p className="text-sm opacity-75">Video tutorial akan dimuat di sini</p>
-                    <p className="text-xs opacity-50 mt-1">(Hubungi admin untuk request video)</p>
+                {getVideoId(method.name) ? (
+                  <div className="aspect-video rounded-lg overflow-hidden">
+                    <iframe
+                      className="w-full h-full"
+                      src={`https://www.youtube.com/embed/${getVideoId(method.name)}?rel=0`}
+                      title={`${method.name} Tutorial`}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
                   </div>
-                </div>
+                ) : (
+                  <div className="aspect-video rounded-lg overflow-hidden bg-gray-100 flex flex-col items-center justify-center text-gray-500">
+                    <Video className="w-12 h-12 mb-2 text-gray-400" />
+                    <p className="text-sm">Video pembelajaran akan segera tersedia</p>
+                    <p className="text-xs text-gray-400 mt-1">
+                      Sementara, coba cari "{method.name} tutorial" di YouTube
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
 

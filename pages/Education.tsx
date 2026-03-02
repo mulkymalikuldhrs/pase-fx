@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { EDUCATION_ARTICLES } from '../constants';
+import { EDUCATION_ARTICLES } from '@/constants';
 import { Clock, BookOpen, ArrowLeft, ChevronRight } from 'lucide-react';
 
 const Education: React.FC = () => {
@@ -7,10 +7,18 @@ const Education: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedArticle, setSelectedArticle] = useState<typeof EDUCATION_ARTICLES[0] | null>(null);
 
-  const categories = ['All', ...Array.from(new Set(EDUCATION_ARTICLES.map(a => a.category)))];
+  const categories = ['All', 'Trading Plan', 'Risk Management', 'Technical', 'Fundamental'];
 
   const filteredArticles = EDUCATION_ARTICLES.filter(article => {
-    const matchesCategory = selectedCategory === 'All' || article.category === selectedCategory;
+    // Map existing categories to the new required categories for filtering
+    const getArticleCategory = (cat: string) => {
+      if (cat === 'Technical Analysis' || cat === 'Advanced') return 'Technical';
+      if (cat === 'Psychology') return 'Risk Management';
+      return cat;
+    };
+    const mappedCategory = getArticleCategory(article.category);
+    
+    const matchesCategory = selectedCategory === 'All' || mappedCategory === selectedCategory;
     const matchesSearch = article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          article.summary.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;

@@ -130,12 +130,12 @@ const Home: React.FC = () => {
             </div>
             
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
-              Pasè <span className="text-emerald-400">FX</span> Trader Hub
+              Pase <span className="text-emerald-400">FX</span> – Trader Waras, Sistematis, Profesional
             </h1>
             
             <p className="text-xl text-slate-400 mb-8 max-w-2xl mx-auto">
-              Data real-time, sinyal trading, edukasi, dan tools profesional. 
-              Semua dalam satu platform.
+              Platform trading profesional Indonesia dengan data real-time, sinyal akurat, 
+              dan edukasi mendalam untuk perjalanan trading Anda.
             </p>
             
             <div className="flex flex-wrap justify-center gap-4">
@@ -231,6 +231,74 @@ const Home: React.FC = () => {
           AI Market Analysis
         </h2>
         <AIDailyBriefing />
+      </div>
+
+      {/* Featured Education Section */}
+      <div className="bg-slate-900/50 border-y border-slate-800">
+        <div className="max-w-7xl mx-auto px-4 py-12">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-bold text-white flex items-center gap-2">
+              <BookOpen className="w-6 h-6 text-blue-400" />
+              Edukasi Trading
+            </h2>
+            <a href="/education" className="text-emerald-400 hover:text-emerald-300 flex items-center gap-1">
+              Lihat Semua <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-4">
+            {/* Featured Article 1 */}
+            <div className="bg-slate-800/50 rounded-xl p-5 border border-slate-700 hover:border-emerald-500/50 transition-all group">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="px-2 py-1 bg-blue-500/20 text-blue-400 text-xs font-medium rounded">Risk Management</span>
+                <span className="text-slate-500 text-xs">8 menit</span>
+              </div>
+              <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-emerald-400 transition-colors">
+                Manajemen Risiko: Kunci Bertahan di Dunia Trading
+              </h3>
+              <p className="text-slate-400 text-sm mb-4">
+                Pelajari cara melindungi modal dan mengelola risiko dengan benar. 70-80% trader gagal karena mengabaikan manajemen risiko.
+              </p>
+              <a href="/education/risk-management-101" className="text-emerald-400 text-sm hover:underline flex items-center gap-1">
+                Baca Selengkapnya <ArrowRight className="w-3 h-3" />
+              </a>
+            </div>
+
+            {/* Featured Article 2 */}
+            <div className="bg-slate-800/50 rounded-xl p-5 border border-slate-700 hover:border-emerald-500/50 transition-all group">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="px-2 py-1 bg-purple-500/20 text-purple-400 text-xs font-medium rounded">Teknikal</span>
+                <span className="text-slate-500 text-xs">12 menit</span>
+              </div>
+              <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-emerald-400 transition-colors">
+                Price Action: Trading Tanpa Indikator
+              </h3>
+              <p className="text-slate-400 text-sm mb-4">
+                Kuasai teknik price action untuk membaca pergerakan harga secara alami tanpa bergantung pada indikator.
+              </p>
+              <a href="/education/price-action-basics" className="text-emerald-400 text-sm hover:underline flex items-center gap-1">
+                Baca Selengkapnya <ArrowRight className="w-3 h-3" />
+              </a>
+            </div>
+
+            {/* Featured Article 3 */}
+            <div className="bg-slate-800/50 rounded-xl p-5 border border-slate-700 hover:border-emerald-500/50 transition-all group">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="px-2 py-1 bg-amber-500/20 text-amber-400 text-xs font-medium rounded">Psikologi</span>
+                <span className="text-slate-500 text-xs">6 menit</span>
+              </div>
+              <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-emerald-400 transition-colors">
+                Psikologi Trading: Kalahkan Diri Anda
+              </h3>
+              <p className="text-slate-400 text-sm mb-4">
+                Pahami bagaimana emosi mempengaruhi keputusan trading dan cara mengelolanya untuk hasil konsisten.
+              </p>
+              <a href="/education/trading-psychology" className="text-emerald-400 text-sm hover:underline flex items-center gap-1">
+                Baca Selengkapnya <ArrowRight className="w-3 h-3" />
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Recent Signals */}

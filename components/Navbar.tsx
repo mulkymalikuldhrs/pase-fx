@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Menu, X, BookOpen, Sun, Moon, Newspaper } from 'lucide-react';
+import { Menu, X, Sun, Moon } from 'lucide-react';
 import { APP_NAME } from '../constants';
 
 const Navbar: React.FC = () => {
@@ -49,13 +49,14 @@ const Navbar: React.FC = () => {
 
   const navItems = [
     { name: 'Home', path: '/' },
-    { name: 'Sinyal', path: '/sinyal' },
-    { name: 'Metode', path: '/metode' },
-    { name: 'Members', path: '/members' },
+    { name: 'Signals', path: '/signals' },
+    { name: 'Methods', path: '/methods' },
     { name: 'Tools', path: '/tools' },
-    { name: 'Berita', path: '/berita', icon: Newspaper },
-    { name: 'Jurnal', path: '/jurnal', icon: BookOpen },
-    { name: 'E-Book', path: '/ebook' },
+    { name: 'Education', path: '/education' },
+    { name: 'Ebook', path: '/ebook' },
+    { name: 'Brokers', path: '/brokers' },
+    { name: 'Community', path: '/community' },
+    { name: 'Members', path: '/members' },
   ];
 
   const checkActive = (path: string) => {
@@ -118,10 +119,7 @@ const Navbar: React.FC = () => {
                   }`}
                   aria-current={checkActive(item.path) ? 'page' : undefined}
                 >
-                  <span className="flex items-center gap-1.5">
-                    {item.icon && <item.icon size={14} />}
-                    {item.name}
-                  </span>
+                  <span>{item.name}</span>
                 </a>
               ))}
             </div>
@@ -185,10 +183,7 @@ const Navbar: React.FC = () => {
               aria-current={checkActive(item.path) ? 'page' : undefined}
               role="menuitem"
             >
-              <span className="flex items-center gap-2">
-                {item.icon && <item.icon size={16} />}
-                {item.name}
-              </span>
+              <span>{item.name}</span>
             </a>
           ))}
         </div>

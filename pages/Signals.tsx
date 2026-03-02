@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Signal, SignalStatus } from '../types';
-import SignalCard from '../components/SignalCard';
 import {
   getSignals,
   addSignal,
@@ -11,11 +10,6 @@ import {
 } from '../utils/signals';
 import {
   Search,
-  BarChart3,
-  TrendingUp,
-  TrendingDown,
-  Target,
-  Shield,
   Plus,
   Trash2,
   X,
@@ -23,9 +17,14 @@ import {
   AlertCircle,
   CheckCircle2,
   XCircle,
-  RotateCcw
+  RotateCcw,
+  ArrowUp,
+  ArrowDown,
+  Edit3,
+  History,
+  Shield,
+  Table
 } from 'lucide-react';
-import { ResponsiveContainer, BarChart as RechartsBar, Bar, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts';
 import useSEO from '../hooks/useSEO';
 
 interface SignalFormData {
@@ -40,6 +39,15 @@ interface SignalFormData {
   timeframe: string;
   analysis: string;
 }
+
+// Calculate Risk/Reward and Risk %
+const calculateRiskReward = (direction: 'BUY' | 'SELL', entry: number, sl: number, tp1: number) => {
+  const risk = Math.abs(entry - sl);
+  const reward = Math.abs(tp1 - entry);
+  const riskReward = risk > 0 ? (reward / risk).toFixed(2) : '0.00';
+  const riskPercent = ((risk / entry) * 100).toFixed(2);
+  return { riskReward, riskPercent };
+};
 
 const Signals: React.FC = () => {
   useSEO({
@@ -56,6 +64,8 @@ const Signals: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [showAddForm, setShowAddForm] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [viewMode, setViewMode] = useState<'table' | 'history'>('table');
+  const [editingSignal, setEditingSignal] = useState<Signal | null>(null);
 
   // Form state
   const [formData, setFormData] = useState<SignalFormData>({
@@ -82,42 +92,6 @@ const Signals: React.FC = () => {
   // Calculate stats
   const stats = calculateSignalStats(signals);
 
-  // Calculate monthly performance for chart
-  const calculatePerformanceData = () => {
-    const monthlyData: Record<string, number> = {};
-
-    signals.forEach(signal => {
-      if (signal.status === 'HIT_TP' || signal.status === 'HIT_SL') {
-        const date = new Date(signal.date);
-        const monthYear = date.toLocaleString('default', { month: 'short' });
-
-        if (!monthlyData[monthYear]) {
-          monthlyData[monthYear] = 0;
-        }
-
-        if (signal.resultPips) {
-          monthlyData[monthYear] += signal.resultPips;
-        }
-      }
-    });
-
-    // If no data, provide placeholder
-    if (Object.keys(monthlyData).length === 0) {
-      return [
-        { name: 'Jan', pips: 0 },
-        { name: 'Feb', pips: 0 },
-        { name: 'Mar', pips: 0 },
-      ];
-    }
-
-    return Object.entries(monthlyData).map(([name, pips]) => ({
-      name,
-      pips
-    }));
-  };
-
-  const performanceData = calculatePerformanceData();
-
   // Handle add signal
   const handleAddSignal = (e: React.FormEvent) => {
     e.preventDefault();
@@ -136,18 +110,35 @@ const Signals: React.FC = () => {
     });
     setSignals(getSignals());
     setShowAddForm(false);
-    setFormData({
-      pair: '',
-      direction: 'BUY',
-      entry: '',
-      sl: '',
-      tp1: '',
-      tp2: '',
-      tp3: '',
-      analyst: '',
-      timeframe: 'H1',
-      analysis: '',
-    });
+    resetForm();
+  };
+
+  // Handle update signal
+  const handleUpdateSignal = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!editingSignal) return;
+    
+    const signalsList = getSignals();
+    const index = signalsList.findIndex(s => s.id === editingSignal.id);
+    if (index !== -1) {
+      signalsList[index] = {
+        ...signalsList[index],
+        pair: formData.pair.toUpperCase(),
+        direction: formData.direction,
+        entry: parseFloat(formData.entry),
+        sl: parseFloat(formData.sl),
+        tp1: parseFloat(formData.tp1),
+        tp2: parseFloat(formData.tp2) || parseFloat(formData.tp1),
+        tp3: parseFloat(formData.tp3) || parseFloat(formData.tp1),
+        analyst: formData.analyst,
+        timeframe: formData.timeframe,
+        analysis: formData.analysis,
+      };
+      localStorage.setItem('pasefx_signals', JSON.stringify(signalsList));
+      setSignals(getSignals());
+    }
+    setEditingSignal(null);
+    resetForm();
   };
 
   // Handle update status
@@ -162,6 +153,40 @@ const Signals: React.FC = () => {
       deleteSignal(id);
       setSignals(getSignals());
     }
+  };
+
+  // Handle edit - populate form
+  const handleEdit = (signal: Signal) => {
+    setFormData({
+      pair: signal.pair,
+      direction: signal.direction,
+      entry: signal.entry.toString(),
+      sl: signal.sl.toString(),
+      tp1: signal.tp1.toString(),
+      tp2: signal.tp2.toString(),
+      tp3: signal.tp3.toString(),
+      analyst: signal.analyst,
+      timeframe: signal.timeframe,
+      analysis: signal.analysis,
+    });
+    setEditingSignal(signal);
+    setShowAddForm(true);
+  };
+
+  // Reset form
+  const resetForm = () => {
+    setFormData({
+      pair: '',
+      direction: 'BUY',
+      entry: '',
+      sl: '',
+      tp1: '',
+      tp2: '',
+      tp3: '',
+      analyst: '',
+      timeframe: 'H1',
+      analysis: '',
+    });
   };
 
   // Handle reset to initial data
@@ -179,6 +204,26 @@ const Signals: React.FC = () => {
     { key: 'HIT_TP', label: 'Profit', count: stats.hitTP },
     { key: 'HIT_SL', label: 'Loss', count: stats.hitSL },
   ];
+
+  const getStatusBadge = (status: SignalStatus) => {
+    const styles = {
+      ACTIVE: 'bg-blue-100 text-blue-700',
+      HIT_TP: 'bg-emerald-100 text-emerald-700',
+      HIT_SL: 'bg-red-100 text-red-700',
+      CLOSED: 'bg-gray-100 text-gray-700',
+    };
+    const labels = {
+      ACTIVE: 'Aktif',
+      HIT_TP: 'Profit',
+      HIT_SL: 'Loss',
+      CLOSED: 'Tutup',
+    };
+    return (
+      <span className={`px-2 py-1 rounded-full text-xs font-semibold ${styles[status]}`}>
+        {labels[status]}
+      </span>
+    );
+  };
 
   return (
     <div className="min-h-screen py-12 bg-gray-50">
@@ -203,7 +248,11 @@ const Signals: React.FC = () => {
             </label>
             {isAdmin && (
               <button
-                onClick={() => setShowAddForm(true)}
+                onClick={() => {
+                  resetForm();
+                  setEditingSignal(null);
+                  setShowAddForm(true);
+                }}
                 className="flex items-center gap-2 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition shadow-sm"
               >
                 <Plus size={18} />
@@ -213,100 +262,44 @@ const Signals: React.FC = () => {
           </div>
         </div>
 
-        {/* Info Banner */}
-        <div className="bg-emerald-50 border-l-4 border-emerald-400 p-4 mb-8 rounded-r-lg flex items-start gap-3 shadow-sm">
-          <AlertCircle className="text-emerald-600 shrink-0 mt-0.5" size={24} />
+        {/* Risk Disclaimer */}
+        <div className="bg-amber-50 border-l-4 border-amber-400 p-4 mb-8 rounded-r-lg flex items-start gap-3 shadow-sm">
+          <Shield className="text-amber-600 shrink-0 mt-0.5" size={24} />
           <div>
-            <h4 className="font-bold text-emerald-800 text-sm uppercase mb-1">Catatan Penting</h4>
-            <p className="text-sm text-emerald-800/80">
-              Sinyal trading disediakan untuk edukasi dan referensi analisis.
-              Keputusan trading sepenuhnya tanggung jawab masing-masing trader.
-              Selalu gunakan manajemen risiko yang ketat.
+            <h4 className="font-bold text-amber-800 text-sm uppercase mb-1">Peringatan Risiko</h4>
+            <p className="text-sm text-amber-800/80">
+              Trading forex dan komoditas melibatkan risiko tinggi. Sinyal trading disediakan untuk edukasi dan referensi analisis saja. 
+              Keputusan trading sepenuhnya tanggung jawab masing-masing trader. Selalu gunakan manajemen risiko yang ketat 
+              dan hanya trade dengan modal yang siap Anda rugikan.
             </p>
           </div>
         </div>
 
         {/* Stats Cards */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          <div className="glass-card bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-            <div className="flex items-center gap-2 mb-2">
-              <BarChart3 className="text-emerald-500" size={20} />
-              <span className="text-sm text-gray-500 font-medium">Win Rate</span>
-            </div>
-            <div className="text-2xl font-bold text-gray-900">{stats.total > 0 ? `${stats.winRate}%` : '--'}</div>
+          <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+            <div className="text-sm text-gray-500 font-medium mb-1">Total Sinyal</div>
+            <div className="text-2xl font-bold text-gray-900">{stats.total}</div>
           </div>
-          <div className="glass-card bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-            <div className="flex items-center gap-2 mb-2">
-              <Target className="text-purple-500" size={20} />
-              <span className="text-sm text-gray-500 font-medium">Total Pips</span>
-            </div>
+          <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+            <div className="text-sm text-gray-500 font-medium mb-1">Win Rate</div>
+            <div className="text-2xl font-bold text-emerald-600">{stats.total > 0 ? `${stats.winRate}%` : '--'}</div>
+          </div>
+          <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+            <div className="text-sm text-gray-500 font-medium mb-1">Total Pips</div>
             <div className={`text-2xl font-bold ${stats.totalPips >= 0 ? 'text-emerald-600' : 'text-red-600'}`}>
               {stats.total > 0 ? `${stats.totalPips > 0 ? '+' : ''}${stats.totalPips}` : '--'}
             </div>
           </div>
-          <div className="glass-card bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-            <div className="flex items-center gap-2 mb-2">
-              <TrendingUp className="text-emerald-500" size={20} />
-              <span className="text-sm text-gray-500 font-medium">Profit</span>
-            </div>
-            <div className="text-2xl font-bold text-emerald-600">{stats.hitTP || '--'}</div>
-          </div>
-          <div className="glass-card bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-            <div className="flex items-center gap-2 mb-2">
-              <Shield className="text-red-500" size={20} />
-              <span className="text-sm text-gray-500 font-medium">Loss</span>
-            </div>
-            <div className="text-2xl font-bold text-red-600">{stats.hitSL || '--'}</div>
+          <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+            <div className="text-sm text-gray-500 font-medium mb-1">Sinyal Aktif</div>
+            <div className="text-2xl font-bold text-blue-600">{stats.active}</div>
           </div>
         </div>
 
-        {/* Performance Chart */}
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm mb-8">
-          <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
-            <BarChart3 className="text-emerald-600" />
-            Performance Analysis (Pips)
-          </h3>
-          <div className="h-72 w-full">
-            <ResponsiveContainer width="100%" height="100%">
-              <RechartsBar data={performanceData}>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e5e7eb" />
-                <XAxis
-                  dataKey="name"
-                  tick={{ fontSize: 12, fill: '#6b7280' }}
-                  axisLine={false}
-                  tickLine={false}
-                  dy={10}
-                />
-                <YAxis
-                  tick={{ fontSize: 12, fill: '#6b7280' }}
-                  axisLine={false}
-                  tickLine={false}
-                  dx={-10}
-                />
-                <Tooltip
-                  cursor={{ fill: '#f9fafb' }}
-                  contentStyle={{
-                    borderRadius: '12px',
-                    border: '1px solid #e5e7eb',
-                    boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
-                    backgroundColor: 'rgba(255, 255, 255, 0.95)',
-                    backdropFilter: 'blur(4px)'
-                  }}
-                />
-                <Bar
-                  dataKey="pips"
-                  fill="#10b981"
-                  radius={[4, 4, 0, 0]}
-                  barSize={40}
-                />
-              </RechartsBar>
-            </ResponsiveContainer>
-          </div>
-        </div>
-
-        {/* Filters */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-8 bg-white p-4 rounded-xl shadow-sm border border-gray-200">
-          <div className="flex items-center gap-2 overflow-x-auto w-full md:w-auto scrollbar-hide pb-2 md:pb-0">
+        {/* Filters & View Toggle */}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-6 bg-white p-4 rounded-xl shadow-sm border border-gray-200">
+          <div className="flex items-center gap-2 overflow-x-auto w-full md:w-auto">
             <Filter size={18} className="text-gray-400 shrink-0" />
             {statusFilters.map(({ key, label, count }) => (
               <button
@@ -325,29 +318,60 @@ const Signals: React.FC = () => {
               </button>
             ))}
           </div>
-          <div className="relative w-full md:w-72">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
-            <input
-              type="text"
-              placeholder="Cari pair atau analyst..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all"
-            />
+          
+          <div className="flex items-center gap-3 w-full md:w-auto">
+            {/* View Toggle */}
+            <div className="flex bg-gray-100 rounded-lg p-1">
+              <button
+                onClick={() => setViewMode('table')}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition ${viewMode === 'table' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-600 hover:text-gray-900'}`}
+              >
+                <Table size={16} />
+                Tabel
+              </button>
+              <button
+                onClick={() => setViewMode('history')}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition ${viewMode === 'history' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-600 hover:text-gray-900'}`}
+              >
+                <History size={16} />
+                Riwayat
+              </button>
+            </div>
+            
+            {/* Search */}
+            <div className="relative flex-1 md:w-64">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+              <input
+                type="text"
+                placeholder="Cari pair atau analyst..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-10 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all"
+              />
+            </div>
           </div>
         </div>
 
-        {/* Add Signal Form Modal */}
+        {/* Add/Edit Signal Form Modal */}
         {showAddForm && (
-          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fade-in">
-            <div className="bg-white rounded-2xl shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto animate-scale-up">
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div className="bg-white rounded-2xl shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
               <div className="p-6 border-b border-gray-100 flex justify-between items-center sticky top-0 bg-white z-10">
-                <h2 className="text-xl font-bold text-gray-900">Tambah Sinyal Baru</h2>
-                <button onClick={() => setShowAddForm(false)} className="p-2 hover:bg-gray-100 rounded-full transition">
+                <h2 className="text-xl font-bold text-gray-900">
+                  {editingSignal ? 'Edit Sinyal' : 'Tambah Sinyal Baru'}
+                </h2>
+                <button 
+                  onClick={() => {
+                    setShowAddForm(false);
+                    setEditingSignal(null);
+                    resetForm();
+                  }} 
+                  className="p-2 hover:bg-gray-100 rounded-full transition"
+                >
                   <X size={24} className="text-gray-500" />
                 </button>
               </div>
-              <form onSubmit={handleAddSignal} className="p-6 space-y-5">
+              <form onSubmit={editingSignal ? handleUpdateSignal : handleAddSignal} className="p-6 space-y-5">
                 <div className="grid grid-cols-2 gap-5">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1.5">Pair</label>
@@ -469,7 +493,11 @@ const Signals: React.FC = () => {
                 <div className="flex gap-3 pt-4 border-t border-gray-100">
                   <button
                     type="button"
-                    onClick={() => setShowAddForm(false)}
+                    onClick={() => {
+                      setShowAddForm(false);
+                      setEditingSignal(null);
+                      resetForm();
+                    }}
                     className="flex-1 px-4 py-2.5 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition font-medium"
                   >
                     Batal
@@ -478,7 +506,7 @@ const Signals: React.FC = () => {
                     type="submit"
                     className="flex-1 px-4 py-2.5 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition font-medium shadow-md hover:shadow-lg"
                   >
-                    Simpan Sinyal
+                    {editingSignal ? 'Update Sinyal' : 'Simpan Sinyal'}
                   </button>
                 </div>
               </form>
@@ -486,71 +514,187 @@ const Signals: React.FC = () => {
           </div>
         )}
 
-        {/* Signals Grid */}
-        {filteredSignals.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in">
-            {filteredSignals.map((signal) => (
-              <div key={signal.id} className="relative group">
-                <SignalCard signal={signal} />
-
-                {/* Admin Actions */}
-                {isAdmin && (
-                  <div className="absolute top-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-200 bg-white/90 p-1.5 rounded-lg shadow-sm backdrop-blur-sm border border-gray-100">
-                    {signal.status === 'ACTIVE' && (
-                      <>
-                        <button
-                          onClick={() => {
-                            const pips = prompt('Berapa pips profit?');
-                            if (pips) handleUpdateStatus(signal.id, 'HIT_TP', parseFloat(pips));
-                          }}
-                          className="p-1.5 bg-emerald-100 text-emerald-600 rounded-md hover:bg-emerald-200 transition"
-                          title="Mark as Profit"
-                        >
-                          <CheckCircle2 size={18} />
-                        </button>
-                        <button
-                          onClick={() => {
-                            const pips = prompt('Berapa pips loss? (masukkan angka negatif)');
-                            if (pips) handleUpdateStatus(signal.id, 'HIT_SL', parseFloat(pips));
-                          }}
-                          className="p-1.5 bg-red-100 text-red-600 rounded-md hover:bg-red-200 transition"
-                          title="Mark as Loss"
-                        >
-                          <XCircle size={18} />
-                        </button>
-                      </>
-                    )}
-                    <button
-                      onClick={() => handleDelete(signal.id)}
-                      className="p-1.5 bg-gray-100 text-gray-600 rounded-md hover:bg-gray-200 transition"
-                      title="Delete"
-                    >
-                      <Trash2 size={18} />
-                    </button>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-16 text-center animate-fade-in">
-            <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-6">
-              <TrendingDown className="w-10 h-10 text-gray-400" />
+        {/* Signal Table View */}
+        {viewMode === 'table' && (
+          <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead className="bg-gray-50 border-b border-gray-200">
+                  <tr>
+                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Pair</th>
+                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Direction</th>
+                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Entry</th>
+                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">SL</th>
+                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">TP1</th>
+                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">TP2</th>
+                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">TP3</th>
+                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">R/R</th>
+                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Risk %</th>
+                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Status</th>
+                    {isAdmin && <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Aksi</th>}
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-100">
+                  {filteredSignals.length > 0 ? (
+                    filteredSignals.map((signal) => {
+                      const { riskReward, riskPercent } = calculateRiskReward(signal.direction, signal.entry, signal.sl, signal.tp1);
+                      return (
+                        <tr key={signal.id} className="hover:bg-gray-50 transition">
+                          <td className="px-4 py-3">
+                            <div className="font-semibold text-gray-900">{signal.pair}</div>
+                            <div className="text-xs text-gray-500">{signal.timeframe} • {signal.analyst}</div>
+                          </td>
+                          <td className="px-4 py-3">
+                            <span className={`inline-flex items-center gap-1 px-2 py-1 rounded text-xs font-semibold ${
+                              signal.direction === 'BUY' 
+                                ? 'bg-emerald-100 text-emerald-700' 
+                                : 'bg-red-100 text-red-700'
+                            }`}>
+                              {signal.direction === 'BUY' ? <ArrowUp size={12} /> : <ArrowDown size={12} />}
+                              {signal.direction}
+                            </span>
+                          </td>
+                          <td className="px-4 py-3 text-gray-900 font-mono">{signal.entry.toFixed(5)}</td>
+                          <td className="px-4 py-3 text-red-600 font-mono">{signal.sl.toFixed(5)}</td>
+                          <td className="px-4 py-3 text-emerald-600 font-mono">{signal.tp1.toFixed(5)}</td>
+                          <td className="px-4 py-3 text-emerald-600 font-mono">{signal.tp2.toFixed(5)}</td>
+                          <td className="px-4 py-3 text-emerald-600 font-mono">{signal.tp3.toFixed(5)}</td>
+                          <td className="px-4 py-3">
+                            <span className="font-semibold text-purple-600">1:{riskReward}</span>
+                          </td>
+                          <td className="px-4 py-3 text-gray-600">{riskPercent}%</td>
+                          <td className="px-4 py-3">{getStatusBadge(signal.status)}</td>
+                          {isAdmin && (
+                            <td className="px-4 py-3">
+                              <div className="flex items-center gap-1">
+                                {signal.status === 'ACTIVE' && (
+                                  <>
+                                    <button
+                                      onClick={() => {
+                                        const pips = prompt('Berapa pips profit?');
+                                        if (pips) handleUpdateStatus(signal.id, 'HIT_TP', parseFloat(pips));
+                                      }}
+                                      className="p-1.5 bg-emerald-100 text-emerald-600 rounded-md hover:bg-emerald-200 transition"
+                                      title="Mark as Profit"
+                                    >
+                                      <CheckCircle2 size={16} />
+                                    </button>
+                                    <button
+                                      onClick={() => {
+                                        const pips = prompt('Berapa pips loss? (masukkan angka negatif)');
+                                        if (pips) handleUpdateStatus(signal.id, 'HIT_SL', parseFloat(pips));
+                                      }}
+                                      className="p-1.5 bg-red-100 text-red-600 rounded-md hover:bg-red-200 transition"
+                                      title="Mark as Loss"
+                                    >
+                                      <XCircle size={16} />
+                                    </button>
+                                  </>
+                                )}
+                                <button
+                                  onClick={() => handleEdit(signal)}
+                                  className="p-1.5 bg-blue-100 text-blue-600 rounded-md hover:bg-blue-200 transition"
+                                  title="Edit"
+                                >
+                                  <Edit3 size={16} />
+                                </button>
+                                <button
+                                  onClick={() => handleDelete(signal.id)}
+                                  className="p-1.5 bg-gray-100 text-gray-600 rounded-md hover:bg-gray-200 transition"
+                                  title="Delete"
+                                >
+                                  <Trash2 size={16} />
+                                </button>
+                              </div>
+                            </td>
+                          )}
+                        </tr>
+                      );
+                    })
+                  ) : (
+                    <tr>
+                      <td colSpan={isAdmin ? 11 : 10} className="px-4 py-12 text-center text-gray-500">
+                        Tidak ada sinyal yang ditemukan
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
             </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Belum Ada Sinyal</h3>
-            <p className="text-gray-500 max-w-md mx-auto mb-8">
-              {searchQuery || filterStatus !== 'ALL'
-                ? 'Tidak ada sinyal yang cocok dengan filter Anda.'
-                : 'Belum ada sinyal trading yang tersedia saat ini. Aktifkan mode admin untuk menambahkan sinyal baru.'}
-            </p>
-            {isAdmin && (
-              <button
-                onClick={() => setShowAddForm(true)}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition shadow-md hover:shadow-lg font-medium"
-              >
-                <Plus size={20} />
-                Tambah Sinyal
-              </button>
+          </div>
+        )}
+
+        {/* Signal History View */}
+        {viewMode === 'history' && (
+          <div className="space-y-4">
+            {filteredSignals.filter(s => s.status !== 'ACTIVE').length > 0 ? (
+              filteredSignals
+                .filter(s => s.status !== 'ACTIVE')
+                .map((signal) => {
+                  const { riskReward, riskPercent } = calculateRiskReward(signal.direction, signal.entry, signal.sl, signal.tp1);
+                  return (
+                    <div key={signal.id} className="bg-white rounded-xl border border-gray-200 p-4 shadow-sm">
+                      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div className="flex items-center gap-4">
+                          <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${
+                            signal.status === 'HIT_TP' ? 'bg-emerald-100' : 'bg-red-100'
+                          }`}>
+                            {signal.status === 'HIT_TP' ? (
+                              <CheckCircle2 className="text-emerald-600" size={24} />
+                            ) : (
+                              <XCircle className="text-red-600" size={24} />
+                            )}
+                          </div>
+                          <div>
+                            <div className="flex items-center gap-2">
+                              <span className="text-lg font-bold text-gray-900">{signal.pair}</span>
+                              <span className={`px-2 py-0.5 rounded text-xs font-semibold ${
+                                signal.direction === 'BUY' ? 'bg-emerald-100 text-emerald-700' : 'bg-red-100 text-red-700'
+                              }`}>
+                                {signal.direction}
+                              </span>
+                              <span className={`px-2 py-0.5 rounded text-xs font-semibold ${
+                                signal.status === 'HIT_TP' ? 'bg-emerald-100 text-emerald-700' : 'bg-red-100 text-red-700'
+                              }`}>
+                                {signal.status === 'HIT_TP' ? `+${signal.resultPips} pips` : `${signal.resultPips} pips`}
+                              </span>
+                            </div>
+                            <div className="text-sm text-gray-500 mt-1">
+                              Entry: {signal.entry.toFixed(5)} • SL: {signal.sl.toFixed(5)} • TP: {signal.tp1.toFixed(5)}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-6 text-sm">
+                          <div>
+                            <span className="text-gray-500">Risk/Reward:</span>
+                            <span className="ml-1 font-semibold text-purple-600">1:{riskReward}</span>
+                          </div>
+                          <div>
+                            <span className="text-gray-500">Risk:</span>
+                            <span className="ml-1 font-semibold">{riskPercent}%</span>
+                          </div>
+                          <div>
+                            <span className="text-gray-500">Date:</span>
+                            <span className="ml-1 font-semibold">{signal.date}</span>
+                          </div>
+                          <div>
+                            <span className="text-gray-500">Analyst:</span>
+                            <span className="ml-1 font-semibold">{signal.analyst}</span>
+                          </div>
+                        </div>
+                      </div>
+                      {signal.analysis && (
+                        <div className="mt-3 pt-3 border-t border-gray-100">
+                          <p className="text-sm text-gray-600">{signal.analysis}</p>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })
+            ) : (
+              <div className="bg-white rounded-xl border border-gray-200 p-12 text-center">
+                <p className="text-gray-500">Belum ada riwayat sinyal</p>
+              </div>
             )}
           </div>
         )}
