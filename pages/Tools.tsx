@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { 
-  Calculator, Clock, TrendingUp, Activity, DollarSign, Globe, 
+  Calculator, Clock, TrendingUp, TrendingDown, Activity, DollarSign, Globe, 
   BarChart3, Calendar, Sparkles, BarChart2, Bot, BookOpen, 
   HelpCircle, ChevronDown, ChevronUp, Info, Zap, Brain,
-  Search, RefreshCw, AlertTriangle
+  Search, RefreshCw, AlertTriangle, Gauge, Target, LineChart,
+  Layers, PieChart, Binary, Wallet, Percent
 } from 'lucide-react';
 import PipCalculator from '../components/calculators/PipCalculator';
 import PositionCalculator from '../components/calculators/PositionCalculator';
@@ -31,24 +32,28 @@ import TradingAnalysis from '../src/components/widgets/TradingAnalysis';
 import AIPatternRecognition from '../src/components/widgets/AIPatternRecognition';
 import AITradeIdeas from '../src/components/widgets/AITradeIdeas';
 
-// Tutorial Component
-const TutorialBox: React.FC<{ title: string; children: React.ReactNode }> = ({ title, children }) => {
+// Tutorial Component - Enhanced with better styling
+const TutorialBox: React.FC<{ title: string; children: React.ReactNode; icon?: React.ReactNode }> = ({ title, children, icon }) => {
   const [isOpen, setIsOpen] = useState(false);
   
   return (
-    <div className="mb-4 border border-emerald-200 rounded-xl overflow-hidden">
+    <div className="mb-6 border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between p-4 bg-emerald-50 hover:bg-emerald-100 transition-colors"
+        className="w-full flex items-center justify-between p-4 bg-gradient-to-r from-emerald-50 to-teal-50 hover:from-emerald-100 hover:to-teal-100 transition-all"
       >
-        <div className="flex items-center gap-2">
-          <BookOpen className="w-5 h-5 text-emerald-600" />
-          <span className="font-semibold text-emerald-800">{title}</span>
+        <div className="flex items-center gap-3">
+          <div className="p-1.5 bg-emerald-100 rounded-lg">
+            {icon || <BookOpen className="w-4 h-4 text-emerald-600" />}
+          </div>
+          <span className="font-semibold text-gray-800">{title}</span>
         </div>
-        {isOpen ? <ChevronUp className="w-5 h-5 text-emerald-600" /> : <ChevronDown className="w-5 h-5 text-emerald-600" />}
+        <div className={`p-1 bg-emerald-200 rounded-lg transition-transform ${isOpen ? 'rotate-180' : ''}`}>
+          <ChevronDown className="w-4 h-4 text-emerald-700" />
+        </div>
       </button>
       {isOpen && (
-        <div className="p-4 bg-white border-t border-emerald-100">
+        <div className="p-5 bg-white border-t border-gray-100">
           <div className="prose prose-sm max-w-none text-gray-600">
             {children}
           </div>
@@ -238,25 +243,51 @@ const Tools: React.FC = () => {
           </div>
         </div>
 
-        {/* AI Trading Tools Section */}
+        {/* ═══════════════════════════════════════════════════════════ */}
+        {/* AI TRADING TOOLS SECTION */}
+        {/* ═══════════════════════════════════════════════════════════ */}
         <section className="mb-8 sm:mb-12">
-          <div className="flex items-center gap-2 mb-4">
-            <Bot className="w-6 h-6 text-emerald-600" />
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
-              🤖 AI Trading Assistant
-            </h2>
+          <div className="flex items-center gap-3 mb-4">
+            <div className="p-2.5 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl shadow-lg">
+              <Bot className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
+                🤖 AI Trading Assistant
+              </h2>
+              <p className="text-sm text-gray-500">Analisis market berbasis AI • Gratis tanpa API</p>
+            </div>
           </div>
           <p className="text-gray-600 mb-4 text-sm sm:text-base">
             Analisis market otomatis menggunakan AI. Gratis, tanpa API key!
           </p>
           
-          <TutorialBox title="📖 Cara Menggunakan AI Trading Assistant">
-            <ul className="list-disc pl-4 space-y-2">
-              <li><strong>AI Analysis:</strong> Pilih instrumen (XAUUSD, EURUSD, dll) dan timeframe, lalu klik "Analisis". AI akan memberikan rekomendasi BUY/SELL.</li>
-              <li><strong>Pattern Recognition:</strong> Klik untuk mendeteksi pola chart seperti Double Top, Head & Shoulders, dll.</li>
-              <li><strong>Trade Ideas:</strong> Klik "Generate" untuk mendapatkan ide trading hari ini.</li>
-              <li><strong>Tip:</strong> Selalu konfirmasi dengan analisis manual sebelum entry!</li>
-            </ul>
+          <TutorialBox 
+            title="📖 Cara Menggunakan AI Trading Assistant" 
+            icon={<Zap className="w-4 h-4 text-emerald-600" />}
+          >
+            <div className="grid md:grid-cols-2 gap-4">
+              <div>
+                <h4 className="font-semibold text-emerald-700 mb-2">🎯 Fitur Utama:</h4>
+                <ul className="list-disc pl-4 space-y-1.5 text-sm">
+                  <li><strong>AI Analysis:</strong> Pilih instrumen (XAUUSD, EURUSD, dll) dan timeframe (H1, H4, D1), lalu klik "Analisis". AI akan memberikan rekomendasi BUY/SELL dengan confidence level.</li>
+                  <li><strong>Pattern Recognition:</strong> Klik untuk mendeteksi pola chart otomatis seperti Double Top/Bottom, Head & Shoulders, Triangle, dll.</li>
+                  <li><strong>Trade Ideas:</strong> Klik "Generate" untuk mendapatkan ide trading hari ini berdasarkan analisis teknikal.</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold text-emerald-700 mb-2">💡 Tips Penggunaan:</h4>
+                <ul className="list-disc pl-4 space-y-1.5 text-sm">
+                  <li>Gunakan timeframe yang lebih tinggi (H4/D1) untuk sinyal yang lebih akurat</li>
+                  <li>Selalu konfirmasi dengan analisis manual sebelum entry</li>
+                  <li>Perhatikan confidence level - semakin tinggi semakin可靠</li>
+                  <li>Kombinasikan dengan Support/Resistance untuk konfirmasi</li>
+                </ul>
+              </div>
+            </div>
+            <div className="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-lg">
+              <p className="text-sm text-amber-800"><strong>⚠️ Disclaimer:</strong> AI memberikan rekomendasi berdasarkan pola historis. Selalu gunakan risk management maksimal 2% per trade!</p>
+            </div>
           </TutorialBox>
           
           <div className="grid md:grid-cols-3 gap-4 sm:gap-6">
@@ -270,22 +301,46 @@ const Tools: React.FC = () => {
           </div>
         </section>
 
-        {/* Market Data Section */}
+        {/* ═══════════════════════════════════════════════════════════ */}
+        {/* MARKET DATA SECTION - Live Rates, Sessions, Overview */}
+        {/* ═══════════════════════════════════════════════════════════ */}
         <section className="mb-8 sm:mb-12">
-          <div className="flex items-center gap-2 mb-4">
-            <TrendingUp className="w-6 h-6 text-emerald-600" />
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
-              📈 Data Market Real-Time
-            </h2>
+          <div className="flex items-center gap-3 mb-4">
+            <div className="p-2.5 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl shadow-lg">
+              <Activity className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
+                📈 Data Market Real-Time
+              </h2>
+              <p className="text-sm text-gray-500">Live rates • Session timer • Market overview</p>
+            </div>
           </div>
           
-          <TutorialBox title="📖 Cara Membaca Live Rates & Market Overview">
-            <ul className="list-disc pl-4 space-y-2">
-              <li><strong>Live Rates:</strong> Menampilkan harga terkini pasangan mata uang. Angka hijau = naik, merah = turun.</li>
-              <li><strong>Market Overview:</strong> Ringkasan kondisi market hari ini. BUY = mayoritas buy, SELL = mayoritas sell.</li>
-              <li><strong>Session Timer:</strong> Menunjukkan sesi trading yang aktif. London dan NY adalah sesi paling volatil.</li>
-              <li><strong>Tip:</strong> Perhatikan warna - hijau menunjukkan bullish, merah bearish.</li>
-            </ul>
+          <TutorialBox 
+            title="📖 Cara Membaca Live Rates & Market Overview" 
+            icon={<TrendingUp className="w-4 h-4 text-emerald-600" />}
+          >
+            <div className="grid md:grid-cols-2 gap-4">
+              <div>
+                <h4 className="font-semibold text-emerald-700 mb-2">📊 Komponen Utama:</h4>
+                <ul className="list-disc pl-4 space-y-1.5 text-sm">
+                  <li><strong>Live Rates:</strong> Menampilkan harga terkini pasangan mata uang. <span className="text-emerald-600">Hijau = naik</span>, <span className="text-red-500">merah = turun</span>.</li>
+                  <li><strong>Market Overview:</strong> Ringkasan kondisi market hari ini dengan perubahan 24 jam.</li>
+                  <li><strong>Session Timer:</strong> Menunjukkan sesi trading yang aktif (Asia/London/NY).</li>
+                  <li><strong>Session Volatility:</strong> Tingkat volatilitas setiap sesi.</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold text-emerald-700 mb-2">💡 Tips Trading:</h4>
+                <ul className="list-disc pl-4 space-y-1.5 text-sm">
+                  <li>Warna hijau = bullish (naik), merah = bearish (turun)</li>
+                  <li>London dan NY adalah sesi paling volatil</li>
+                  <li> Hindari trading saat sesi overlap selesai</li>
+                  <li>Gunakan live rates untuk entry yang lebih presisi</li>
+                </ul>
+              </div>
+            </div>
           </TutorialBox>
           
           <div className="grid lg:grid-cols-3 gap-4 sm:gap-6 mb-6">
@@ -305,59 +360,97 @@ const Tools: React.FC = () => {
           </div>
         </section>
 
-        {/* Market Cycles Section */}
+        {/* ═══════════════════════════════════════════════════════════ */}
+        {/* SESSIONS & TIMING SECTION */}
+        {/* ═══════════════════════════════════════════════════════════ */}
         <section className="mb-8 sm:mb-12">
-          <div className="flex items-center gap-2 mb-4">
-            <Clock className="w-6 h-6 text-emerald-600" />
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
-              ⏰ Sesi & Timing Trading
-            </h2>
+          <div className="flex items-center gap-3 mb-4">
+            <div className="p-2.5 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl shadow-lg">
+              <Clock className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
+                ⏰ Sesi & Timing Trading
+              </h2>
+              <p className="text-sm text-gray-500">Market cycles • Best trading times • Session volatility</p>
+            </div>
           </div>
           
-          <TutorialBox title="📖 Cara Memahami Sesi Trading">
-            <ul className="list-disc pl-4 space-y-2">
-              <li><strong>Asian Session (07:00-10:00 WIB):</strong> Volatilitas rendah. Cocok untuk range trading.</li>
-              <li><strong>London Session (13:00-16:00 WIB):</strong> Volatilitas tinggi. Sesi paling aktif.</li>
-              <li><strong>New York Session (19:00-22:00 WIB):</strong> Volatilitas tinggi. Overlap dengan London sangat dinamis.</li>
-              <li><strong>Judas Zone (11:30-12:30):</strong> Hindari trading - sering manipulasi.</li>
-              <li><strong>Tip:</strong> Trading di awal sesi untuk pergerakan terbesar!</li>
-            </ul>
+          <TutorialBox 
+            title="📖 Cara Memahami Sesi Trading" 
+            icon={<Clock className="w-4 h-4 text-emerald-600" />}
+          >
+            <div className="grid md:grid-cols-2 gap-4">
+              <div>
+                <h4 className="font-semibold text-emerald-700 mb-2">🕐 Jadwal Sesi (WIB):</h4>
+                <ul className="list-disc pl-4 space-y-1.5 text-sm">
+                  <li><strong>Asian Session (07:00-10:00):</strong> Volatilitas rendah. Cocok untuk range trading. Pergerakan sekitar 20-30 pips.</li>
+                  <li><strong>London Session (13:00-16:00):</strong> Volatilitas tinggi. Sesi paling aktif. Pergerakan 40-80 pips.</li>
+                  <li><strong>New York Session (19:00-22:00):</strong> Volatilitas tinggi. Overlap dengan London sangat dinamis.</li>
+                  <li><strong>Judas Zone (11:30-12:30):</strong> Hindari trading - sering manipulasi.</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold text-emerald-700 mb-2">💡 Strategi Sesi:</h4>
+                <ul className="list-disc pl-4 space-y-1.5 text-sm">
+                  <li>Trading di awal sesi untuk pergerakan terbesar</li>
+                  <li>Gunakan strategi breakout di awal London</li>
+                  <li>Range trading saat Asian session</li>
+                  <li>Follow trend di sesi NY untuk pergerakan lanjutan</li>
+                </ul>
+              </div>
+            </div>
+            <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+              <p className="text-sm text-blue-800"><strong>💡 Tip:</strong> Sesi paling baik untuk trading adalah 1-2 jam setelah open London (13:00-14:00) dan saat overlap London-NY (19:00-21:00).</p>
+            </div>
           </TutorialBox>
           
           <MarketCyclesDashboard />
         </section>
 
-        {/* Calculators Section */}
+        {/* ═══════════════════════════════════════════════════════════ */}
+        {/* CALCULATORS SECTION - All Trading Calculators */}
+        {/* ═══════════════════════════════════════════════════════════ */}
         <section className="mb-8 sm:mb-12">
-          <div className="flex items-center gap-2 mb-4">
-            <Calculator className="w-6 h-6 text-emerald-600" />
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
-              🧮 Kalkulator Trading
-            </h2>
+          <div className="flex items-center gap-3 mb-4">
+            <div className="p-2.5 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl shadow-lg">
+              <Calculator className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
+                🧮 Kalkulator Trading
+              </h2>
+              <p className="text-sm text-gray-500">Pip • Position Size • Risk/Reward • Margin • Fibonacci • Pivot</p>
+            </div>
           </div>
           
-          <TutorialBox title="📖 Cara Menggunakan Kalkulator">
+          <TutorialBox 
+            title="📖 Cara Menggunakan Kalkulator Trading" 
+            icon={<Calculator className="w-4 h-4 text-emerald-600" />}
+          >
             <div className="grid md:grid-cols-2 gap-4">
               <div>
-                <h4 className="font-semibold text-emerald-700 mb-2">Kalkulator Dasar:</h4>
-                <ul className="list-disc pl-4 space-y-1 text-sm">
-                  <li><strong>Pip Calculator:</strong> Hitung nilai pip berdasarkan pair dan lot size.</li>
-                  <li><strong>Position Size:</strong> Tentukan besar posisi sesuai risk management.</li>
-                  <li><strong>Profit Calculator:</strong> Estimasi profit/loss berdasarkan entry dan exit.</li>
+                <h4 className="font-semibold text-emerald-700 mb-2">🧮 Kalkulator Dasar:</h4>
+                <ul className="list-disc pl-4 space-y-1.5 text-sm">
+                  <li><strong>Pip Calculator:</strong> Hitung nilai pip berdasarkan pair, lot size, dan account currency.</li>
+                  <li><strong>Position Size:</strong> Tentukan besar posisi ideal sesuai risk management (default 2%).</li>
+                  <li><strong>Profit Calculator:</strong> Estimasi profit/loss berdasarkan entry, exit, dan lot size.</li>
+                  <li><strong>Risk/Reward:</strong> Hitung rasio R:R untuk memastikan risk worth taking.</li>
                 </ul>
               </div>
               <div>
-                <h4 className="font-semibold text-emerald-700 mb-2">Kalkulator Lanjutan:</h4>
-                <ul className="list-disc pl-4 space-y-1 text-sm">
-                  <li><strong>Risk/Reward:</strong> Hitung rasio risk:reward.</li>
-                  <li><strong>Fibonacci:</strong> Hitung level Fibonacci retracement.</li>
-                  <li><strong>Margin:</strong> Hitung margin yang dibutuhkan.</li>
-                  <li><strong>Drawdown:</strong> Hitung maksimal drawdown.</li>
-                  <li><strong>Pivot Points:</strong> Hitung level pivot harian.</li>
+                <h4 className="font-semibold text-emerald-700 mb-2">📈 Kalkulator Lanjutan:</h4>
+                <ul className="list-disc pl-4 space-y-1.5 text-sm">
+                  <li><strong>Fibonacci:</strong> Hitung level Fibonacci retracement (23.6%, 38.2%, 50%, 61.8%).</li>
+                  <li><strong>Margin:</strong> Hitung margin yang dibutuhkan untuk membuka posisi.</li>
+                  <li><strong>Drawdown:</strong> Hitung maksimal drawdown dan recovery needed.</li>
+                  <li><strong>Pivot Points:</strong> Hitung level pivot harian (PP, R1, R2, S1, S2).</li>
                 </ul>
               </div>
             </div>
-            <p className="mt-3 text-sm"><strong>Tip:</strong> Selalu hitung position size sebelum entry! Jangan pernah risk lebih dari 2% per trade.</p>
+            <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg">
+              <p className="text-sm text-red-800"><strong>⚠️ Penting:</strong> Selalu hitung position size sebelum entry! Jangan pernah risk lebih dari 2% per trade. Gunakan Stop Loss selalu!</p>
+            </div>
           </TutorialBox>
           
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
@@ -372,35 +465,48 @@ const Tools: React.FC = () => {
           </div>
         </section>
 
-        {/* Professional Analysis Section */}
+        {/* ═══════════════════════════════════════════════════════════ */}
+        {/* ANALYSIS TOOLS SECTION - SMC/ICT, COT, Trading Analysis */}
+        {/* ═══════════════════════════════════════════════════════════ */}
         <section className="mb-8 sm:mb-12">
-          <div className="flex items-center gap-2 mb-4">
-            <Brain className="w-6 h-6 text-emerald-600" />
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
-              🧠 Analisis Profesional (SMC/ICT)
-            </h2>
+          <div className="flex items-center gap-3 mb-4">
+            <div className="p-2.5 bg-gradient-to-br from-rose-500 to-pink-600 rounded-xl shadow-lg">
+              <Brain className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
+                🧠 Analisis Profesional (SMC/ICT)
+              </h2>
+              <p className="text-sm text-gray-500">COT Report • Order Block • Liquidity • Market Structure</p>
+            </div>
           </div>
           
-          <TutorialBox title="📖 Konsep SMC/ICT untuk Pemula">
+          <TutorialBox 
+            title="📖 Konsep SMC/ICT untuk Pemula" 
+            icon={<Brain className="w-4 h-4 text-emerald-600" />}
+          >
             <div className="grid md:grid-cols-2 gap-4">
               <div>
-                <h4 className="font-semibold text-emerald-700 mb-2">Konsep Dasar:</h4>
-                <ul className="list-disc pl-4 space-y-1 text-sm">
-                  <li><strong>Order Block:</strong> Zona di mana institusi besar melakukan buy/sell.</li>
-                  <li><strong>Liquidity Zone:</strong> Area stop loss trader retail (target institusi).</li>
-                  <li><strong>FVG (Fair Value Gap):</strong> Celah harga yang akan ditutupi.</li>
-                  <li><strong>MSS (Market Structure Shift):</strong> Perubahan tren yang dikonfirmasi.</li>
+                <h4 className="font-semibold text-emerald-700 mb-2">🧠 Konsep Dasar SMC/ICT:</h4>
+                <ul className="list-disc pl-4 space-y-1.5 text-sm">
+                  <li><strong>Order Block (OB):</strong> Zona di mana institusi besar melakukan buy/sell. Cari candle besar sebelum retracement.</li>
+                  <li><strong>Liquidity Zone:</strong> Area stop loss trader retail (target institusi). Biasanya di atas high atau di bawah low.</li>
+                  <li><strong>FVG (Fair Value Gap):</strong> Celah harga yang akan ditutupi. Eintrag ke FVG = entry dengan BBF (Break of Fair Value Gap).</li>
+                  <li><strong>MSS (Market Structure Shift):</strong> Perubahan tren yang dikonfirmasi saat harga break high/low sebelumnya.</li>
                 </ul>
               </div>
               <div>
-                <h4 className="font-semibold text-emerald-700 mb-2">COT Report:</h4>
-                <ul className="list-disc pl-4 space-y-1 text-sm">
-                  <li><strong>Commercials:</strong> Bank & institusi - biasanya benar.</li>
-                  <li><strong>Non-Commercials:</strong> Speculator besar.</li>
-                  <li><strong>Retail:</strong> Trader kecil - biasanya salah.</li>
-                  <li><strong>Tip:</strong> Ikuti Commercials, bukan retail!</li>
+                <h4 className="font-semibold text-emerald-700 mb-2">📊 COT Report (Commitment of Traders):</h4>
+                <ul className="list-disc pl-4 space-y-1.5 text-sm">
+                  <li><strong>Commercials:</strong> Bank & institusi besar - biasanya benar arahnya.</li>
+                  <li><strong>Non-Commercials:</strong> Speculator besar (hedge funds).</li>
+                  <li><strong>Retail:</strong> Trader kecil - biasanya salah (contrarian indicator).</li>
+                  <li><strong>Tip:</strong> Ikuti Commercials, bukan retail! Saat retail SIM, Commercials biasanya LUB.</li>
                 </ul>
               </div>
+            </div>
+            <div className="mt-4 p-3 bg-purple-50 border border-purple-200 rounded-lg">
+              <p className="text-sm text-purple-800"><strong>💡 Cara Pakai COT:</strong> Lihat posisi Commercials di extremes (sangat long/short). Ketika Commercials mulai menutup posisi, bersiap untuk arah berlawanan!</p>
             </div>
           </TutorialBox>
           
@@ -412,22 +518,49 @@ const Tools: React.FC = () => {
           </div>
         </section>
 
-        {/* Currency & Sentiment Section */}
+        {/* ═══════════════════════════════════════════════════════════ */}
+        {/* CURRENCY STRENGTH & SENTIMENT SECTION */}
+        {/* ═══════════════════════════════════════════════════════════ */}
         <section className="mb-8 sm:mb-12">
-          <div className="flex items-center gap-2 mb-4">
-            <Activity className="w-6 h-6 text-emerald-600" />
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
-              💱 Kekuatan Mata Uang & Sentimen
-            </h2>
+          <div className="flex items-center gap-3 mb-4">
+            <div className="p-2.5 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl shadow-lg">
+              <Gauge className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
+                💱 Kekuatan Mata Uang & Sentimen
+              </h2>
+              <p className="text-sm text-gray-500">Currency Strength • Correlation • Market Sentiment</p>
+            </div>
           </div>
           
-          <TutorialBox title="📖 Cara Membaca Kekuatan Mata Uang">
-            <ul className="list-disc pl-4 space-y-2">
-              <li><strong>Currency Strength Meter:</strong> Menunjukkan mata uang terkuat dan terlemah. Semakin panjang bar, semakin kuat.</li>
-              <li><strong>Correlation Matrix:</strong> Hubungan antar pair. +1 = bergerak sama, -1 = bergerak berlawanan.</li>
-              <li><strong>Market Sentiment:</strong> Majority buy = overbought (可能反转), Majority sell = oversold (bisa rebound).</li>
-              <li><strong>Tip:</strong> Trading searah mata uang kuat vs mata uang lemah!</li>
-            </ul>
+          <TutorialBox 
+            title="📖 Cara Membaca Kekuatan Mata Uang" 
+            icon={<Gauge className="w-4 h-4 text-emerald-600" />}
+          >
+            <div className="grid md:grid-cols-2 gap-4">
+              <div>
+                <h4 className="font-semibold text-emerald-700 mb-2">📊 Indikator Utama:</h4>
+                <ul className="list-disc pl-4 space-y-1.5 text-sm">
+                  <li><strong>Currency Strength Meter:</strong> Menunjukkan mata uang terkuat dan terlemah. Semakin panjang bar, semakin kuat.</li>
+                  <li><strong>Correlation Matrix:</strong> Hubungan antar pair. +1 = bergerak sama, -1 = bergerak berlawanan.</li>
+                  <li><strong>Market Sentiment:</strong> Majority buy = overbought (bisa反转), Majority sell = oversold (bisa rebound).</li>
+                  <li><strong>Market Screener:</strong> Filter pair berdasarkan kondisi (Trending, Range, Volatile).</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold text-emerald-700 mb-2">💡 Strategi Trading:</h4>
+                <ul className="list-disc pl-4 space-y-1.5 text-sm">
+                  <li>Trading searah mata uang kuat vs mata uang lemah</li>
+                  <li>Contoh: EUR kuat + USD lemah = BUY EUR/USD</li>
+                  <li>Hindari pair dengan korelasi negatif di timeframe sama</li>
+                  <li>Gunakan sentiment sebagai contrarian indicator</li>
+                </ul>
+              </div>
+            </div>
+            <div className="mt-4 p-3 bg-cyan-50 border border-cyan-200 rounded-lg">
+              <p className="text-sm text-cyan-800"><strong>💡 Tip:</strong> Fokus pada 2-3 mata uang terkuat vs 2-3 terlemah. Misal: EUR & GBP kuat, JPY & AUD lemah = cari peluang BUY EUR/JPY atau SELL GBP/JPY.</p>
+            </div>
           </TutorialBox>
           
           <div className="grid lg:grid-cols-2 gap-4 sm:gap-6 mb-6">
@@ -440,24 +573,47 @@ const Tools: React.FC = () => {
           </div>
         </section>
 
-        {/* Major Pairs Section */}
+        {/* ═══════════════════════════════════════════════════════════ */}
+        {/* MAJOR PAIRS CHARTS SECTION */}
+        {/* ═══════════════════════════════════════════════════════════ */}
         <section className="mb-8 sm:mb-12">
-          <div className="flex items-center gap-2 mb-4">
-            <TrendingUp className="w-6 h-6 text-emerald-600" />
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
-              💱 Chart Major Pairs
-            </h2>
+          <div className="flex items-center gap-3 mb-4">
+            <div className="p-2.5 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl shadow-lg">
+              <LineChart className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
+                💱 Chart Major Pairs
+              </h2>
+              <p className="text-sm text-gray-500">EUR/USD • GBP/USD • USD/JPY • AUD/USD • USD/CAD</p>
+            </div>
           </div>
           
-          <TutorialBox title="📖 Cara Membaca Major Pairs">
-            <ul className="list-disc pl-4 space-y-2">
-              <li><strong>EUR/USD:</strong> "The Euro" - pair paling volatil, paling banyak ditradingkan.</li>
-              <li><strong>GBP/USD:</strong> "The Cable" - pair paling volatil karena ekonomi UK.</li>
-              <li><strong>USD/JPY:</strong> "The Yen" - pair paling stabil, sering safe haven.</li>
-              <li><strong>AUD/USD:</strong> "The Aussie" - sensitif terhadapcommodity prices.</li>
-              <li><strong>USD/CAD:</strong> "The Loonie" - sensitif terhadap oil prices.</li>
-              <li><strong>Tip:</strong> Perhatikan korelasi antar pairs untuk konfirmasi sinyal!</li>
-            </ul>
+          <TutorialBox 
+            title="📖 Cara Membaca Major Pairs" 
+            icon={<LineChart className="w-4 h-4 text-emerald-600" />}
+          >
+            <div className="grid md:grid-cols-2 gap-4">
+              <div>
+                <h4 className="font-semibold text-emerald-700 mb-2">💱 Karakter Major Pairs:</h4>
+                <ul className="list-disc pl-4 space-y-1.5 text-sm">
+                  <li><strong>EUR/USD:</strong> "The Euro" - pair paling liquid, spread rendah. Harga bergerak 30-80 pips/hari.</li>
+                  <li><strong>GBP/USD:</strong> "The Cable" - pair paling volatil. Harga bergerak 40-100 pips/hari.</li>
+                  <li><strong>USD/JPY:</strong> "The Yen" - pair paling stabil, safe haven. Pergerakan 20-50 pips/hari.</li>
+                  <li><strong>AUD/USD:</strong> "The Aussie" - sensitif terhadap commodity prices.</li>
+                  <li><strong>USD/CAD:</strong> "The Loonie" - sensitif terhadap oil prices.</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold text-emerald-700 mb-2">💡 Tips Trading:</h4>
+                <ul className="list-disc pl-4 space-y-1.5 text-sm">
+                  <li>Perhatikan korelasi antar pairs untuk konfirmasi sinyal</li>
+                  <li>EUR/USD dan GBP/USD biasanya bergerak searah</li>
+                  <li>USD/JPY sering bergerak berlawanan dengan EUR/USD</li>
+                  <li>Gunakan spread sebagai indikator liquiditas</li>
+                </ul>
+              </div>
+            </div>
           </TutorialBox>
           
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 mb-8">
@@ -494,28 +650,57 @@ const Tools: React.FC = () => {
           </div>
         </section>
 
-        {/* TradingView Widgets Section */}
+        {/* ═══════════════════════════════════════════════════════════ */}
+        {/* TRADINGVIEW CHARTS & TOOLS SECTION */}
+        {/* ═══════════════════════════════════════════════════════════ */}
         <section className="mb-8 sm:mb-12">
-          <div className="flex items-center gap-2 mb-4">
-            <BarChart3 className="w-6 h-6 text-emerald-600" />
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
-              📊 Chart & Kalender (TradingView)
-            </h2>
+          <div className="flex items-center gap-3 mb-4">
+            <div className="p-2.5 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl shadow-lg">
+              <BarChart3 className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
+                📊 Chart & Kalender (TradingView)
+              </h2>
+              <p className="text-sm text-gray-500">Gold • DXY • Heat Map • Correlation • Economic Calendar</p>
+            </div>
           </div>
           
-          <TutorialBox title="📖 Cara Menggunakan TradingView">
-            <ul className="list-disc pl-4 space-y-2">
-              <li><strong>Chart:</strong> Gunakan untuk analisis teknikal. Pinch zoom pada mobile, scroll pada desktop.</li>
-              <li><strong>Economic Calendar:</strong>cek news HIGH IMPACT sebelum trading! Jangan trading 30 menit sebelum/sesudah news.</li>
-              <li><strong>Gold & DXY:</strong> Perhatikan korelasi - biasanya berlawanan.</li>
-              <li><strong>Tip:</strong> Gunakan keyboard shortcut di desktop: Space = indikator, F = fullscreen.</li>
-            </ul>
+          <TutorialBox 
+            title="📖 Cara Menggunakan TradingView" 
+            icon={<BarChart3 className="w-4 h-4 text-emerald-600" />}
+          >
+            <div className="grid md:grid-cols-2 gap-4">
+              <div>
+                <h4 className="font-semibold text-emerald-700 mb-2">📊 Fitur Utama:</h4>
+                <ul className="list-disc pl-4 space-y-1.5 text-sm">
+                  <li><strong>Chart:</strong> Gunakan untuk analisis teknikal. Pinch zoom pada mobile, scroll pada desktop. Klik symbol untuk ganti pair.</li>
+                  <li><strong>Economic Calendar:</strong> Cek news HIGH IMPACT sebelum trading! Jangan trading 30 menit sebelum/sesudah news.</li>
+                  <li><strong>Gold & DXY:</strong> Perhatikan korelasi - biasanya berlawanan. Jika Gold naik, DXY biasanya turun.</li>
+                  <li><strong>Heat Map:</strong> Lihat kekuatan semua mata uang sekaligus. Merah = naik, Hijau = turun.</li>
+                  <li><strong>Correlation:</strong> Matrix korelasi untuk diversifikasi trades.</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold text-emerald-700 mb-2">⌨️ Shortcut Keyboard:</h4>
+                <ul className="list-disc pl-4 space-y-1.5 text-sm">
+                  <li><strong>Space:</strong> Toggle indikator</li>
+                  <li><strong>F:</strong> Fullscreen chart</li>
+                  <li><strong>D:</strong> Timeframe Daily</li>
+                  <li><strong>H:</strong> Hourly</li>
+                  <li><strong>/</strong> Quick indicators</li>
+                </ul>
+              </div>
+            </div>
+            <div className="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-lg">
+              <p className="text-sm text-amber-800"><strong>⚠️ News Trading:</strong> Jangan trading saat ada news HIGH impact! Tunggu 30 menit sebelum dan setelah news untuk volatilitas normal.</p>
+            </div>
           </TutorialBox>
           
           <div className="grid lg:grid-cols-2 gap-4 sm:gap-6 mb-6">
             <div className="bg-white p-4 sm:p-6 rounded-xl border border-gray-200 shadow-sm">
               <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <Calendar className="w-5 h-5 text-emerald-600" /> Kalender Ekonomi
+                <Calendar className="w-5 h-5 text-indigo-600" /> Kalender Ekonomi
               </h3>
               <div className="tradingview-widget-container" ref={calendarContainerRef}>
                 <div className="tradingview-widget-container__widget"></div>
@@ -524,7 +709,7 @@ const Tools: React.FC = () => {
             
             <div className="bg-white p-4 sm:p-6 rounded-xl border border-gray-200 shadow-sm">
               <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <TrendingUp className="w-5 h-5 text-yellow-500" /> Harga Emas (XAUUSD)
+                <TrendingUp className="w-5 h-5 text-amber-500" /> Harga Emas (XAUUSD)
               </h3>
               <div className="tradingview-widget-container" ref={goldContainerRef}>
                 <div className="tradingview-widget-container__widget"></div>
@@ -533,7 +718,7 @@ const Tools: React.FC = () => {
             
             <div className="bg-white p-4 sm:p-6 rounded-xl border border-gray-200 shadow-sm">
               <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <DollarSign className="w-5 h-5 text-green-600" /> Indeks DXY
+                <DollarSign className="w-5 h-5 text-blue-600" /> Indeks DXY
               </h3>
               <div className="tradingview-widget-container" ref={dxyContainerRef}>
                 <div className="tradingview-widget-container__widget"></div>
@@ -554,7 +739,7 @@ const Tools: React.FC = () => {
             <CorrelationMatrix />
             <div className="bg-white p-4 sm:p-6 rounded-xl border border-gray-200 shadow-sm">
               <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <Activity className="w-5 h-5 text-emerald-600" /> Forex Heat Map
+                <Activity className="w-5 h-5 text-rose-600" /> Forex Heat Map
               </h3>
               <div className="tradingview-widget-container" ref={heatmapContainerRef}>
                 <div className="tradingview-widget-container__widget"></div>
@@ -567,22 +752,49 @@ const Tools: React.FC = () => {
           </div>
         </section>
 
-        {/* Crypto Section */}
+        {/* ═══════════════════════════════════════════════════════════ */}
+        {/* CRYPTO MARKET SECTION */}
+        {/* ═══════════════════════════════════════════════════════════ */}
         <section className="mb-8 sm:mb-12">
-          <div className="flex items-center gap-2 mb-4">
-            <DollarSign className="w-6 h-6 text-orange-500" />
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
-              ₿ Crypto Market
-            </h2>
+          <div className="flex items-center gap-3 mb-4">
+            <div className="p-2.5 bg-gradient-to-br from-amber-500 to-yellow-600 rounded-xl shadow-lg">
+              <Binary className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
+                ₿ Crypto Market
+              </h2>
+              <p className="text-sm text-gray-500">Bitcoin • Ethereum • Solana • Ripple</p>
+            </div>
           </div>
           
-          <TutorialBox title="📖 Cara Membaca Crypto">
-            <ul className="list-disc pl-4 space-y-2">
-              <li><strong>Bitcoin (BTC):</strong> Crypto terbesar, sering jadi indikator risk-on/risk-off.</li>
-              <li><strong>Ethereum (ETH):</strong> Smart contracts, sensitif terhadap DeFi news.</li>
-              <li><strong>Solana (SOL):</strong> Fast & cheap transactions, volatil.</li>
-              <li><strong>Tip:</strong> Crypto lebih volatil dari forex - gunakan risk management ketat!</li>
-            </ul>
+          <TutorialBox 
+            title="📖 Cara Membaca Crypto Market" 
+            icon={<Binary className="w-4 h-4 text-emerald-600" />}
+          >
+            <div className="grid md:grid-cols-2 gap-4">
+              <div>
+                <h4 className="font-semibold text-emerald-700 mb-2">₿ Karakter Crypto:</h4>
+                <ul className="list-disc pl-4 space-y-1.5 text-sm">
+                  <li><strong>Bitcoin (BTC):</strong> Crypto terbesar, sering jadi indikator risk-on/risk-off. "King of Crypto".</li>
+                  <li><strong>Ethereum (ETH):</strong> Smart contracts, sensitif terhadap DeFi news. Nomor 2 terbesar.</li>
+                  <li><strong>Solana (SOL):</strong> Fast & cheap transactions, volatil. Rising star.</li>
+                  <li><strong>Ripple (XRP):</strong> Remittance, ada kasus hukum dengan SEC.</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold text-emerald-700 mb-2">⚠️ Peringatan:</h4>
+                <ul className="list-disc pl-4 space-y-1.5 text-sm">
+                  <li>Crypto 10x lebih volatil dari forex!</li>
+                  <li>Gunakan risk management ketat (max 1-2% per trade)</li>
+                  <li>Perhatikan korelasi dengan S&P 500 dan DXY</li>
+                  <li>Weekend = volatilitas tinggi + gap bisa besar</li>
+                </ul>
+              </div>
+            </div>
+            <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg">
+              <p className="text-sm text-red-800"><strong>⚠️ Disclaimer:</strong> Trading crypto memiliki risiko EXTREMELY TINGGI. Jangan pernah invest lebih dari yang mampu kehilangan. Crypto tidak cocok untuk pemula!</p>
+            </div>
           </TutorialBox>
           
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -649,13 +861,20 @@ const Tools: React.FC = () => {
           </div>
         </section>
 
-        {/* Indices Section */}
+        {/* ═══════════════════════════════════════════════════════════ */}
+        {/* US INDICES SECTION */}
+        {/* ═══════════════════════════════════════════════════════════ */}
         <section className="mb-8 sm:mb-12">
-          <div className="flex items-center gap-2 mb-4">
-            <BarChart3 className="w-6 h-6 text-blue-500" />
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
-              📈 US Indices
-            </h2>
+          <div className="flex items-center gap-3 mb-4">
+            <div className="p-2.5 bg-gradient-to-br from-slate-500 to-slate-600 rounded-xl shadow-lg">
+              <Layers className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
+                📈 US Indices
+              </h2>
+              <p className="text-sm text-gray-500">S&P 500 • Nasdaq 100 • Dow Jones</p>
+            </div>
           </div>
           
           <TutorialBox title="📖 Cara Membaca Indices">

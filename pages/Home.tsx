@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { FEATURES, SOCIAL_LINKS } from '../constants';
+import { FEATURES, SOCIAL_LINKS, COMMUNITY_MEMBERS } from '../constants';
 import DisclaimerBanner from '../components/DisclaimerBanner';
 import { AlertTriangle, BookOpen, Zap, Send, MessageCircle, TrendingUp, Users, BarChart3, ArrowRight, Sparkles, Activity, Clock, Newspaper, TrendingDown } from 'lucide-react';
 import { getSignals } from '../utils/signals';
@@ -32,7 +32,7 @@ const Home: React.FC = () => {
   const signals = React.useMemo(() => getSignals(), []);
   const recentSignals = React.useMemo(() => signals.slice(0, 3), [signals]);
 
-  // Calculate stats
+  // Calculate stats - honest numbers based on actual verified community members
   const stats = React.useMemo(() => {
     const totalSignals = signals.length;
     const wins = signals.filter(s => s.status === 'HIT_TP').length;
@@ -42,7 +42,7 @@ const Home: React.FC = () => {
     const active = signals.filter(s => s.status === 'ACTIVE').length;
 
     return {
-      members: 1250,
+      members: COMMUNITY_MEMBERS.length, // Only actual verified members (3)
       signals: totalSignals,
       winRate: winRate,
       active: active
@@ -97,7 +97,7 @@ const Home: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-900 to-slate-950">
+    <div className="min-h-screen" style={{ background: 'linear-gradient(135deg, var(--bg-gradient-start, #d6d7e0) 0%, var(--bg-gradient-end, #c4c5cf) 100%)' }}>
       <DisclaimerBanner />
 
       {/* Live Price Ticker */}
@@ -157,8 +157,8 @@ const Home: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 py-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div className="text-center">
-              <div className="text-3xl font-bold text-emerald-400">{stats.members.toLocaleString()}+</div>
-              <div className="text-slate-400">Anggota Aktif</div>
+              <div className="text-3xl font-bold text-emerald-400">{stats.members}</div>
+              <div className="text-slate-400">Tim Inti</div>
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold text-emerald-400">{stats.signals}</div>

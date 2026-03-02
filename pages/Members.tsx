@@ -41,14 +41,14 @@ const Members: React.FC = () => {
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Anggota <span className="text-emerald-600">Komunitas</span>
+            Tim Inti <span className="text-emerald-600">Pasè FX</span>
           </h1>
           <p className="text-gray-500 max-w-2xl mx-auto mb-4">
-            Trader dengan berbagai spesialisasi dan metode trading.
+            Tim pendiri dan analis profesional yang telah terverifikasi.
           </p>
           <div className="inline-flex items-center gap-2 text-xs text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
             <span>✅</span>
-            <span>Daftar anggota terverifikasi secara manual</span>
+            <span>Anggota terverifikasi - Bergabung langsung via Telegram/WhatsApp</span>
           </div>
         </div>
 
@@ -56,11 +56,11 @@ const Members: React.FC = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           <div className="glass-card bg-white/70 p-4 text-center">
             <div className="text-3xl font-bold text-emerald-500">{memberCount}</div>
-            <div className="text-sm text-gray-500">Anggota Terdaftar</div>
+            <div className="text-sm text-gray-500">Tim Inti Terverifikasi</div>
           </div>
           <div className="glass-card bg-white/70 p-4 text-center">
             <div className="text-3xl font-bold text-emerald-500">{COMMUNITY_MEMBERS.filter(m => m.status === 'online').length}</div>
-            <div className="text-sm text-gray-500">Status Online*</div>
+            <div className="text-sm text-gray-500">Online Saat Ini</div>
           </div>
           <div className="glass-card bg-white/70 p-4 text-center">
             <div className="text-3xl font-bold text-purple-500">{TRADING_METHODS.length}</div>
@@ -162,7 +162,7 @@ const Members: React.FC = () => {
         <div>
           <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
             <Users className="text-emerald-500" />
-            Anggota Aktif
+            Semua Anggota
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {filteredMembers.filter(m => !m.role.includes('Founder') && !m.role.includes('Co-Founder')).map((member) => (

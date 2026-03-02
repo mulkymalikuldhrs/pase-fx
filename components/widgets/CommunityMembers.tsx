@@ -33,9 +33,12 @@ const COMMUNITY_DATA: Member[] = [
   { id: 10, name: 'Eko Prasetyo', username: '@eko_pr', role: 'member', avatar: 'EP', status: 'offline', expertise: ['Scalping'], joinDate: '2023-09-12', platform: 'telegram' },
 ];
 
+// Honest stats - only showing verified members in the community
+const ACTUAL_MEMBER_COUNT = COMMUNITY_DATA.length;
+
 const INITIAL_STATS = {
-  total: 1250, // Estimasi total anggota komunitas
-  online: COMMUNITY_DATA.filter(m => m.status === 'online').length + 42, // Estimasi online
+  total: ACTUAL_MEMBER_COUNT, // Only showing verified members
+  online: COMMUNITY_DATA.filter(m => m.status === 'online').length,
   analysts: COMMUNITY_DATA.filter(m => m.role === 'analyst' || m.role === 'admin').length
 };
 
@@ -68,8 +71,8 @@ const CommunityMembers: React.FC = () => {
             <Users className="w-6 h-6 text-emerald-600" />
           </div>
           <div>
-            <h3 className="text-lg font-bold text-gray-900">Community Members</h3>
-            <p className="text-sm text-gray-500">Tim inti Pasè FX - Data terverifikasi manual</p>
+            <h3 className="text-lg font-bold text-gray-900">Verified Members</h3>
+            <p className="text-sm text-gray-500">Tim inti Pasè FX yang telah terverifikasi</p>
           </div>
         </div>
       </div>
@@ -77,8 +80,8 @@ const CommunityMembers: React.FC = () => {
       {/* Stats */}
       <div className="grid grid-cols-3 gap-4 mb-6">
         <div className="text-center p-3 bg-gray-50 rounded-lg">
-          <div className="text-2xl font-bold text-gray-900">{stats.total}+</div>
-          <div className="text-xs text-gray-500">Total Members</div>
+          <div className="text-2xl font-bold text-gray-900">{stats.total}</div>
+          <div className="text-xs text-gray-500">Verified Members</div>
         </div>
         <div className="text-center p-3 bg-emerald-50 rounded-lg">
           <div className="text-2xl font-bold text-emerald-600">{stats.online}</div>
