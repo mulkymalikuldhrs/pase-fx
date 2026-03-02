@@ -31,8 +31,8 @@
   --bg-primary: #d6d7e0;
   --bg-secondary: #c4c5cf;
   --bg-accent: #d6d7e0;
-  --bg-gradient-start: #d6d7e0;
-  --bg-gradient-end: #c4c5cf;
+  --bg-gradient-start: #ffffff;
+  --bg-gradient-end: #f8fafc;
   
   /* Text Colors - FOR #d6d7e0 BACKGROUND (Day Mode) */
   --text-primary: #1f2937;
