@@ -252,3 +252,9 @@ User Request → Puter.js SDK → AI Model → Response → UI Display
 - Client-side only (no backend required)
 - User authentication via Puter.js
 - Encrypted communication
+
+---
+
+> **Contact:** Mulky Malikul Dhaher — [mulkymalikuldhaher@email.com](mailto:mulkymalikuldhaher@email.com)
+>
+> **Disclaimer:** This project is for Education Purpose only. Risiko apapun tidak kita tanggung. (We are not responsible for any risks or damages.)

@@ -91,3 +91,9 @@ Current: 7 calculators → Target: 15+
 ---
 
 *This document tracks the upgrade to 100/100*
+
+---
+
+> **Contact:** Mulky Malikul Dhaher — [mulkymalikuldhaher@email.com](mailto:mulkymalikuldhaher@email.com)
+>
+> **Disclaimer:** This project is for Education Purpose only. Risiko apapun tidak kita tanggung. (We are not responsible for any risks or damages.)

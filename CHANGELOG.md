@@ -498,3 +498,8 @@ Brokers:                  8
 ---
 
 ## [0.1.3-alpha] - 2026-02-15 - DESIGN REFRESH & AUDIT
+---
+
+> **Contact:** Mulky Malikul Dhaher — [mulkymalikuldhaher@email.com](mailto:mulkymalikuldhaher@email.com)
+>
+> **Disclaimer:** This project is for Education Purpose only. Risiko apapun tidak kita tanggung. (We are not responsible for any risks or damages.)

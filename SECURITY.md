@@ -67,3 +67,9 @@ Kami akan mengakui laporan Anda dalam 48 jam dan memberikan respons terperinci d
 - 建议的修复方案（如有）
 
 我们将在 48 小时内确认您的报告，并在 7 天内提供详细回复。
+
+---
+
+> **Contact:** Mulky Malikul Dhaher — [mulkymalikuldhaher@email.com](mailto:mulkymalikuldhaher@email.com)
+>
+> **Disclaimer:** This project is for Education Purpose only. Risiko apapun tidak kita tanggung. (We are not responsible for any risks or damages.)
