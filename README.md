@@ -1,102 +1,88 @@
-# Pasè FX Trader Hub
-
 <div align="center">
 
-[![Status](https://img.shields.io/badge/status-PRODUCTION-green?style=for-the-badge)]()
-[![Version](https://img.shields.io/badge/version-2.0.0-blue?style=for-the-badge)]()
-[![License](https://img.shields.io/badge/license-Proprietary-red?style=for-the-badge)]()
+<a href="https://pase-fx.vercel.app">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=40&pause=1000&color=2E9F58&center=true&vCenter=true&multiline=true&repeat=true&width=600&height=100&lines=Pase+FX+Trader+Hub" alt="Typing SVG" />
+</a>
 
-**Komunitas Trading Forex Profesional dari Aceh**
+### 📈 Professional Forex Trading Community Platform
 
-🌐 **Live URL**: [https://pase-fx.vercel.app](https://pase-fx.vercel.app)
+[![Version](https://img.shields.io/badge/version-2.0.0-blue?style=for-the-badge)](https://github.com/mulkymalikuldhrs/pase-fx)
+[![Language](https://img.shields.io/badge/TypeScript-5.8-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+[![Framework](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react)](https://react.dev/)
+[![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)](./LICENSE)
+[![Stars](https://img.shields.io/github/stars/mulkymalikuldhrs/pase-fx?style=for-the-badge&logo=github)](https://github.com/mulkymalikuldhrs/pase-fx/stargazers)
 
-📱 **Telegram**: [@pasefx](https://t.me/pasefx) | **WhatsApp**: [Join Group](https://chat.whatsapp.com/EqEhHNB1tuaCyQy0bVyOnZ)
+📱 **Telegram**: [@pasefx](https://t.me/pasefx) | 💬 **WhatsApp**: [Join Group](https://chat.whatsapp.com/EqEhHNB1tuaCyQy0bVyOnZ)
 
 </div>
 
 ---
 
-## 🎯 Tentang Pasè FX
+## 🌐 Language / Bahasa / 语言
 
-Pasè FX adalah platform trading komunitas yang menyediakan tools profesional, edukasi berkualitas, dan analisis market untuk trader Indonesia. Didirikan oleh trader berpengalaman dari Aceh dengan misi menciptakan ekosistem trading yang sehat dan berkelanjutan.
+- 🇬🇧 [English](#-english) | 🇮🇩 [Bahasa Indonesia](#-bahasa-indonesia) | 🇨🇳 [中文](#-中文)
+
+---
+
+## 🇬🇧 English
+
+### 🎯 About Pasè FX
+
+Pasè FX Trader Hub is a professional forex trading community platform from Aceh, Indonesia. It provides professional trading tools, quality education, and market analysis for Indonesian traders. Founded by experienced traders with a mission to create a healthy and sustainable trading ecosystem.
 
 > "Ta doeng saban-saban sabe keudroe-droe, beu koeng lage meupula"  
-> *Disiplin bertahap, sabar, jangan rakus*
+> *Discipline step by step, be patient, don't be greedy*
 
----
+### ✨ Key Features
 
-## ✅ Fitur Utama
+- 🤖 **AI Trading Assistant** — Powered by Puter.js for intelligent market analysis
+- 📊 **Real-time Market Data** — Live forex rates and charts via Recharts
+- 📚 **Education Hub** — Quality trading education articles and resources
+- 🛡️ **Secure Backend** — Express.js with JWT auth, rate limiting, and Helmet security
+- 📱 **Responsive Design** — Mobile-first UI with Lucide icons
+- ⚡ **Fast Performance** — Vite build system with optimized bundling
 
-### 🤖 AI Trading Assistant (Powered by Puter.js)
-- **AI Market Analysis** - Analisis teknikal otomatis dengan rekomendasi BUY/SELL/NEUTRAL
-- **Pattern Recognition** - Deteksi pola chart otomatis (Head & Shoulders, Double Top/Bottom, dll)
-- **Daily Briefing** - Ringkasan market harian dengan sentimen dan peluang
-- **Trade Ideas** - Rekomendasi trading otomatis dari AI
-- **Trade Review** - Review performa trade dengan scoring 0-100
-- **Smart Calculator** - Kalkulasi position size dengan AI
-- **100% GRATIS** - Tanpa API key, powered by Puter.js
+### 🏗️ Architecture
 
-### 📊 Live Market Data
-- **Real-time Exchange Rates** - Update otomatis setiap 30 detik
-- **Major Forex Pairs** - EUR/USD, GBP/USD, USD/JPY, AUD/USD, USD/CAD, XAU/USD
-- **Market Session Timer** - London, New York, Tokyo, Sydney sessions
-- **Economic Calendar** - Jadwal berita ekonomi dari TradingView
+```
+┌──────────────────────────────────────────────────────────────┐
+│                    PASÈ FX TRADER HUB                       │
+├──────────────────────────────────────────────────────────────┤
+│                                                              │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐   │
+│  │  React   │  │  Vite    │  │ Recharts │  │  Lucide  │   │
+│  │  Frontend│  │  Build   │  │  Charts  │  │  Icons   │   │
+│  └────┬─────┘  └──────────┘  └──────────┘  └──────────┘   │
+│       │                                                      │
+│  ┌────▼─────────────────────────────────────────────────┐   │
+│  │              Express.js Backend                      │   │
+│  │  ┌──────┐ ┌────────┐ ┌───────┐ ┌──────────────┐    │   │
+│  │  │ JWT  │ │  Rate  │ │Helmet │ │ Compression  │    │   │
+│  │  │ Auth │ │ Limiter│ │Security│ │ Middleware   │    │   │
+│  │  └──────┘ └────────┘ └───────┘ └──────────────┘    │   │
+│  └──────────────────────────────────────────────────────┘   │
+│                                                              │
+│  ┌──────────────────────────────────────────────────────┐   │
+│  │              Puter.js AI Engine                      │   │
+│  │  ┌──────────┐  ┌────────────┐  ┌──────────────┐    │   │
+│  │  │ Market   │  │  Trading   │  │   Education  │    │   │
+│  │  │ Analysis │  │  Signals   │  │   Assistant  │    │   │
+│  │  └──────────┘  └────────────┘  └──────────────┘    │   │
+│  └──────────────────────────────────────────────────────┘   │
+│                                                              │
+└──────────────────────────────────────────────────────────────┘
+```
 
-### 🧮 Trading Calculators
-1. **Pip Calculator** - Hitung nilai pip untuk semua pair
-2. **Position Size Calculator** - Kalkulasi lot size berdasarkan risk management
-3. **Risk/Reward Calculator** - Analisis ratio dan proyeksi profit/loss
-4. **Fibonacci Calculator** - Hitung retracement & extension levels
-
-### 📈 Trading Signals
-- Sinyal trading lengkap dengan entry, SL, TP
-- Filter berdasarkan status (Active, Hit TP, Hit SL)
-- Statistik performa (win rate, total pips)
-- Analisis teknikal dari tim analyst
-
-### 📚 Education Center
-- **5 Artikel Trading Lengkap**:
-  - Manajemen Risiko: Kunci Bertahan di Dunia Trading
-  - Support & Resistance: Panduan Lengkap
-  - Psikologi Trading: Mengendalikan Emosi
-  - Candlestick Patterns: Membaca Bahasa Pasar
-  - Smart Money Concepts: Memahami Institusi
-
-- **Library 12 Metode Trading**:
-  - SNR, SMC, ICT, Supply & Demand
-  - Price Action, Breakout, Trendline
-  - Chart Pattern, Fundamental, Fibonacci
-
-### 🏦 Broker Partners
-8 broker rekomendasi dengan link afiliasi:
-- MRG Mega Berjangka (via Traders Family)
-- Exness, Valetax, FundingPips
-- The 5%ers, Didimax, HFM, FBS
-
-### 💼 Trade Journal
-- Catatan trading pribadi
-- Track metode, hasil, dan evaluasi
-- Export/Import CSV
-- Statistik performa trading
-
-### 👥 Community
-- **Telegram**: 1250+ anggota aktif
-- **WhatsApp Group**: Diskusi real-time
-- **Instagram**: @pase_fx
-
----
-
-## 🚀 Quick Start
+### 🚀 Quick Start
 
 ```bash
-# Clone repository
-git clone https://github.com/yourusername/pase-fx.git
-cd pase-fx
+# Clone the repository
+git clone https://github.com/mulkymalikuldhrs/pase-fx.git
 
 # Install dependencies
 npm install
 
-# Run development server
+# Start development server
 npm run dev
 
 # Build for production
@@ -105,57 +91,90 @@ npm run build
 
 ---
 
-## 🛠️ Tech Stack
+## 🇮🇩 Bahasa Indonesia
 
-- **Frontend**: React 19 + TypeScript + Vite
-- **Styling**: Tailwind CSS
-- **Charts**: TradingView Widgets, Recharts
-- **Market Data**: ExchangeRate-API + Fallback APIs
-- **AI Integration**: Puter.js (400+ Models, GPT-4, Claude, Gemini)
-- **Deployment**: Vercel
+### 🎯 Tentang Pasè FX
 
----
+Pasè FX Trader Hub adalah platform komunitas trading forex profesional dari Aceh, Indonesia. Menyediakan tools trading profesional, edukasi berkualitas, dan analisis market untuk trader Indonesia. Didirikan oleh trader berpengalaman dengan misi menciptakan ekosistem trading yang sehat dan berkelanjutan.
 
-## 📝 API Endpoints
+> "Ta doeng saban-saban sabe keudroe-droe, beu koeng lage meupula"  
+> *Disiplin bertahap, sabar, jangan rakus*
 
-### Market Data
-- `GET /api/rates` - Live exchange rates
-- Auto-refresh: 30 seconds
-- Fallback: Multiple API sources
+### ✨ Fitur Utama
 
-### Trading Signals
-- `GET /api/signals` - List all signals
-- `POST /api/signals` - Create new signal (admin only)
-- `PUT /api/signals/:id` - Update signal
-- `DELETE /api/signals/:id` - Delete signal
+- 🤖 **AI Trading Assistant** — Didukung Puter.js untuk analisis pasar cerdas
+- 📊 **Data Market Real-time** — Kurs forex dan grafik langsung via Recharts
+- 📚 **Hub Edukasi** — Artikel edukasi trading dan sumber belajar berkualitas
+- 🛡️ **Backend Aman** — Express.js dengan JWT auth, rate limiting, dan Helmet security
+- 📱 **Desain Responsif** — UI mobile-first dengan ikon Lucide
+- ⚡ **Performa Cepat** — Sistem build Vite dengan bundling optimal
 
----
+### 🚀 Mulai Cepat
 
-## ⚠️ Disclaimer
-
-Trading forex melibatkan risiko tinggi dan mungkin tidak sesuai untuk semua investor. 
-Selalu gunakan manajemen risiko yang ketat (max 2% risk per trade) dan jangan pernah 
-trading dengan uang yang Anda tidak mampu kehilangkan.
-
-Tools dan sinyal disediakan untuk edukasi dan referensi analisis, bukan sebagai 
-rekomendasi trading. Keputusan trading sepenuhnya tanggung jawab masing-masing trader.
+```bash
+git clone https://github.com/mulkymalikuldhrs/pase-fx.git
+npm install
+npm run dev
+```
 
 ---
 
-## 👨‍💻 Founders
+## 🇨🇳 中文
 
-- **Mulky Malikul Dhaher** - Founder & Lead Developer
-- **Azil Jabet** - Co-Founder & Head Analyst
-- **Hadi Saputra** - Senior Analyst
+### 🎯 关于 Pasè FX
+
+Pasè FX Trader Hub 是来自印度尼西亚亚齐的专业外汇交易社区平台。为印尼交易者提供专业交易工具、优质教育和市场分析。由经验丰富的交易者创立，致力于创建健康、可持续的交易生态系统。
+
+### ✨ 主要功能
+
+- 🤖 **AI 交易助手** — 由 Puter.js 驱动的智能市场分析
+- 📊 **实时市场数据** — 通过 Recharts 提供实时外汇汇率和图表
+- 📚 **教育中心** — 优质交易教育文章和资源
+- 🛡️ **安全后端** — Express.js 搭配 JWT 认证、速率限制和 Helmet 安全
+- 📱 **响应式设计** — 移动优先的 UI 设计
+- ⚡ **快速性能** — Vite 构建系统，优化打包
+
+### 🚀 快速开始
+
+```bash
+git clone https://github.com/mulkymalikuldhrs/pase-fx.git
+npm install
+npm run dev
+```
 
 ---
+
+## 📦 Tech Stack
+
+| Technology | Purpose | Version |
+|-----------|---------|---------|
+| React | Frontend UI | 19.x |
+| TypeScript | Type Safety | 5.8 |
+| Vite | Build Tool | 6.x |
+| Express | Backend Server | 5.x |
+| Recharts | Data Visualization | 3.x |
+| Lucide React | Icons | 0.564+ |
+| Puter.js | AI Engine | 1.x |
+| JWT | Authentication | 9.x |
+| Helmet | Security Headers | 8.x |
+| Vitest | Testing | 4.x |
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions! Please read our [Contributing Guide](./CONTRIBUTING.md) for details.
 
 ## 📄 License
 
-Proprietary - All Rights Reserved
+This project is licensed under the MIT License — see the [LICENSE](./LICENSE) file for details.
 
 ---
 
-<p align="center">
-  <strong>Pasè FX Trader Hub</strong> - Trading Waras, Sistematis, Profesional
-</p>
+<div align="center">
+
+**Made with ❤️ by [Mulky Malikul Dhaher](https://github.com/mulkymalikuldhrs)**
+
+⭐ If you find this project helpful, please give it a star!
+
+</div>

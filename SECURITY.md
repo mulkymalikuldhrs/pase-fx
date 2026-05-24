@@ -1,0 +1,69 @@
+# 🔒 Security Policy
+
+## 🇬🇧 English | 🇮🇩 Bahasa Indonesia | 🇨🇳 中文
+
+---
+
+## 🇬🇧 English
+
+### Supported Versions
+
+| Version | Supported          |
+| ------- | ------------------ |
+| 2.0.x   | ✅ Yes             |
+| < 2.0   | ❌ No              |
+
+### Reporting a Vulnerability
+
+If you discover a security vulnerability, please **DO NOT** open a public issue. Instead, email us at **mulkymalikuldhaher@email.com** with:
+
+- Description of the vulnerability
+- Steps to reproduce
+- Potential impact
+- Suggested fix (if any)
+
+We will acknowledge your report within 48 hours and provide a detailed response within 7 days.
+
+---
+
+## 🇮🇩 Bahasa Indonesia
+
+### Versi yang Didukung
+
+| Versi | Didukung            |
+| ----- | ------------------- |
+| 2.0.x | ✅ Ya               |
+| < 2.0 | ❌ Tidak            |
+
+### Melaporkan Kerentanan
+
+Jika Anda menemukan kerentanan keamanan, **JANGAN** membuka issue publik. Sebagai gantinya, email kami di **mulkymalikuldhaher@email.com** dengan:
+
+- Deskripsi kerentanan
+- Langkah-langkah untuk mereproduksi
+- Dampak potensial
+- Perbaikan yang disarankan (jika ada)
+
+Kami akan mengakui laporan Anda dalam 48 jam dan memberikan respons terperinci dalam 7 hari.
+
+---
+
+## 🇨🇳 中文
+
+### 支持的版本
+
+| 版本 | 支持              |
+| ---- | ----------------- |
+| 2.0.x | ✅ 是            |
+| < 2.0 | ❌ 否            |
+
+### 报告漏洞
+
+如果您发现安全漏洞，请**不要**公开创建 issue。请通过 **mulkymalikuldhaher@email.com** 联系我们，并提供：
+
+- 漏洞描述
+- 复现步骤
+- 潜在影响
+- 建议的修复方案（如有）
+
+我们将在 48 小时内确认您的报告，并在 7 天内提供详细回复。

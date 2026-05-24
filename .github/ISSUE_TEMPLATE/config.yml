@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📧 Contact Maintainer
+    url: mailto:mulkymalikuldhaher@email.com
+    about: Contact the project maintainer directly for sensitive issues.
+  - name: 💬 Community Discussion
+    url: https://github.com/mulkymalikuldhrs/pase-fx/discussions
+    about: Ask questions and discuss with the community.
