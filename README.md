@@ -159,6 +159,34 @@ npm run dev
 | Helmet | Security Headers | 8.x |
 | Vitest | Testing | 4.x |
 
+---
+
+## ⚠️ Disclaimer
+
+### 🇬🇧 English
+
+> **⚠️ For Education Purpose Only**
+> This project is provided strictly for educational and research purposes. The authors and contributors assume **no responsibility or liability** for any damages, losses, or risks arising from the use of this software. **We do not bear any responsibility or risk** for how this software is used.
+> **Contact:** Mulky Malikul Dhaher | mulkymalikuldhaher@email.com
+
+### 🇮🇩 Bahasa Indonesia
+
+> **⚠️ Hanya untuk Tujuan Edukasi**
+> Proyek ini disediakan secara ketat untuk tujuan edukasi dan penelitian. Penulis dan kontributor **tidak bertanggung jawab atau berkewajiban** atas kerusakan, kerugian, atau risiko yang timbul dari penggunaan perangkat lunak ini. **Kami tidak menanggung tanggung jawab atau risiko** apapun atas penggunaan perangkat lunak ini.
+> **Kontak:** Mulky Malikul Dhaher | mulkymalikuldhaher@email.com
+
+### 🇨🇳 中文
+
+> **⚠️ 仅供教育目的**
+> 本项目严格仅用于教育和研究目的。作者和贡献者对因使用本软件而产生的任何损害、损失或风险**不承担任何责任或义务**。**我们对本软件的使用方式不承担任何责任或风险**。
+> **联系方式:** Mulky Malikul Dhaher | mulkymalikuldhaher@email.com
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions! Please read our [Contributing Guide](./CONTRIBUTING.md) for details.
+
 ## 📄 License
 
 This project is licensed under the MIT License — see the [LICENSE](./LICENSE) file for details.
@@ -172,45 +200,3 @@ This project is licensed under the MIT License — see the [LICENSE](./LICENSE) 
 ⭐ If you find this project helpful, please give it a star!
 
 </div>
----
-
-## 🤝 Contributing
-
-Contributions are welcome! We encourage the community to help improve this project.
-
-1. **Fork** the repository
-2. Create a **feature branch** (`git checkout -b feature/amazing-feature`)
-3. **Commit** your changes (`git commit -m 'Add amazing feature'`)
-4. **Push** to the branch (`git push origin feature/amazing-feature`)
-5. Open a **Pull Request**
-
-Please make sure to update tests as appropriate and follow the existing code style.
-
----
-
-## 📬 Contact
-
-**Mulky Malikul Dhaher** — [mulkymalikuldhaher@email.com](mailto:mulkymalikuldhaher@email.com)
-
-GitHub: [https://github.com/mulkymalikuldhrs](https://github.com/mulkymalikuldhrs)
-
----
-
-## ⚠️ Disclaimer
-
-**This project is for Education Purpose only.**
-
-All content, code, and documentation provided in this repository are intended solely for educational and research purposes. Nothing in this repository constitutes financial, investment, legal, or professional advice.
-
-**Risiko apapun tidak kita tanggung.** (We are not responsible for any risks or damages.)
-
-Use at your own risk. The authors and contributors assume no liability for any losses, damages, or consequences arising from the use of this software or information provided herein.
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
-
-Copyright © Mulky Malikul Dhaher. All rights reserved.
-
