@@ -174,8 +174,8 @@ const generateEconomicEvents = (): EconomicEvent[] => {
       country: e.country,
       event: e.event,
       impact: e.impact,
-      forecast: Math.random() > 0.5 ? '+0.2%' : '-0.1%',
-      previous: (Math.random() * 2).toFixed(1) + '%'
+      forecast: undefined,
+      previous: undefined
     });
   });
   

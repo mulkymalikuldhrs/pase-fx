@@ -1,5 +1,7 @@
 // Enhanced Multi-Asset Market Data Service for Pasè FX
 // Supports: Forex, Crypto, Commodities, Indices
+// NOTE: When real API data is unavailable, this service provides estimated
+// baseline prices for educational purposes. Prices are NOT live market data.
 
 export interface AssetData {
   symbol: string;
@@ -19,7 +21,7 @@ export interface MarketDataState {
   lastUpdated: Date | null;
   isLoading: boolean;
   error: string | null;
-  source: 'live' | 'cache' | 'simulated' | 'error';
+  source: 'live' | 'cache' | 'estimated' | 'error';
 }
 
 // Cache configuration for future use
@@ -72,30 +74,17 @@ class MultiAssetMarketService {
   }
 
   private startAutoUpdate() {
-    // Update every 30 seconds to simulate live data
+    // Baseline prices are static; real-time updates require API integration.
+    // Refresh subscribers periodically to update timestamp only.
     this.updateInterval = setInterval(() => {
       this.simulateMarketMovement();
-    }, 30000);
+    }, 60000);
   }
 
   private simulateMarketMovement() {
-    Object.keys(this.cache).forEach(symbol => {
-      const asset = this.cache[symbol];
-      const volatility = this.getVolatility(asset.category);
-      const change = (Math.random() - 0.5) * volatility;
-      
-      const newPrice = asset.price * (1 + change / 100);
-      
-      this.cache[symbol] = {
-        ...asset,
-        price: parseFloat(newPrice.toFixed(this.getDecimalPlaces(asset.symbol))),
-        change1h: parseFloat((change).toFixed(2)),
-        high24h: Math.max(asset.high24h, newPrice),
-        low24h: Math.min(asset.low24h, newPrice),
-        timestamp: Date.now()
-      };
-    });
-
+    // Do not simulate random price movement — keep baseline prices static.
+    // Real-time updates should come from actual API sources.
+    // This method is kept as a no-op to avoid misleading random data.
     this.notifySubscribers();
   }
 
@@ -126,7 +115,7 @@ class MultiAssetMarketService {
       lastUpdated: new Date(),
       isLoading: false,
       error: null,
-      source: 'simulated'
+      source: 'estimated'
     };
   }
 

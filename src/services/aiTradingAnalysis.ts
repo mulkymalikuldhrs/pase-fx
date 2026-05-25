@@ -1,5 +1,11 @@
 // Enhanced AI Trading Analysis - Standalone Version
 // Uses pure technical analysis without external API dependencies
+//
+// ⚠️ EDUCATIONAL DISCLAIMER: This service generates synthetic price history
+// for demonstration of technical indicator calculations (EMA, RSI, etc.).
+// The analysis produced is NOT based on real market data and should NOT be
+// used as actual trading advice. For real analysis, integrate with a market
+// data API (e.g., Alpha Vantage, Twelve Data, etc.).
 
 export interface AIAnalysis {
   recommendation: 'BUY' | 'SELL' | 'NEUTRAL'

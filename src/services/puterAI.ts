@@ -92,71 +92,53 @@ const isPuterAvailable = (): boolean => {
   return typeof window !== 'undefined' && 'puter' in window
 }
 
-// Fallback AI analysis using simple technical rules
+// Fallback AI analysis — EDUCATIONAL PLACEHOLDER ONLY
+// When Puter.js AI is unavailable, we return a neutral placeholder
+// that clearly indicates the data is not real analysis.
 const fallbackAIAnalysis = (instrument: string, currentPrice: number): AIAnalysis => {
-  // Simple technical analysis based on price
-  const isBullish = Math.random() > 0.5
-  const direction = isBullish ? 1 : -1
-  const atr = currentPrice * 0.005 // 0.5% ATR approximation
-  
+  const atr = currentPrice * 0.005
   return {
-    recommendation: isBullish ? 'BUY' : 'SELL',
-    confidence: Math.floor(Math.random() * 40) + 60, // 60-100%
-    entryPrice: currentPrice.toFixed(isBullish ? 5 : (instrument.includes('JPY') ? 3 : 5)),
-    stopLoss: (currentPrice - (atr * 1.5 * direction)).toFixed(isBullish ? 5 : (instrument.includes('JPY') ? 3 : 5)),
-    takeProfit: (currentPrice + (atr * 2 * direction)).toFixed(isBullish ? 5 : (instrument.includes('JPY') ? 3 : 5)),
-    takeProfit2: (currentPrice + (atr * 3 * direction)).toFixed(isBullish ? 5 : (instrument.includes('JPY') ? 3 : 5)),
-    riskReward: '1:2',
-    analysis: `Technical analysis for ${instrument}. Price is ${isBullish ? 'breaking above' : 'breaking below'} key levels with ${isBullish ? 'bullish' : 'bearish'} momentum.`,
+    recommendation: 'NEUTRAL',
+    confidence: 0,
+    entryPrice: currentPrice.toFixed(instrument.includes('JPY') ? 3 : 5),
+    stopLoss: (currentPrice - atr * 1.5).toFixed(instrument.includes('JPY') ? 3 : 5),
+    takeProfit: (currentPrice + atr * 2).toFixed(instrument.includes('JPY') ? 3 : 5),
+    takeProfit2: (currentPrice + atr * 3).toFixed(instrument.includes('JPY') ? 3 : 5),
+    riskReward: 'N/A',
+    analysis: `[Educational Placeholder] AI analysis is currently unavailable for ${instrument}. Please enable Puter.js or use your own analysis.`,
     reasoning: [
-      `${isBullish ? 'Support' : 'Resistance'} level holding strong`,
-      `Volume ${isBullish ? 'increasing' : 'decreasing'} confirming trend`,
-      `Risk/Reward ratio favorable at 1:2`
+      'AI service unavailable — no real analysis generated',
+      'Consult a qualified financial advisor before trading',
+      'This is NOT a trading recommendation'
     ]
   }
 }
 
-// Fallback pattern recognition
+// Fallback pattern recognition — EDUCATIONAL PLACEHOLDER ONLY
 const fallbackPatternRecognition = (symbol: string): PatternRecognition => {
-  const patterns = ['Head and Shoulders', 'Double Top', 'Double Bottom', 'Triangle', 'Flag', 'Pennant']
-  const selectedPattern = patterns[Math.floor(Math.random() * patterns.length)]
-  const isBullish = Math.random() > 0.5
-  
   return {
-    pattern: selectedPattern,
+    pattern: 'No Pattern Detected',
     symbol,
-    timeframe: 'H4',
-    confidence: Math.floor(Math.random() * 40) + 50, // 50-90%
-    direction: isBullish ? 'BULLISH' : 'BEARISH',
-    description: `${selectedPattern} pattern detected with ${isBullish ? 'bullish' : 'bearish'} implications`,
-    targetPrice: isBullish ? '1.0950' : '1.0750',
-    invalidationLevel: isBullish ? '1.0800' : '1.0900'
+    timeframe: 'N/A',
+    confidence: 0,
+    direction: 'NEUTRAL',
+    description: `[Educational Placeholder] Pattern recognition is currently unavailable for ${symbol}. Enable Puter.js AI for real analysis.`,
+    targetPrice: 'N/A',
+    invalidationLevel: 'N/A'
   }
 }
 
-// Fallback daily briefing
+// Fallback daily briefing — EDUCATIONAL PLACEHOLDER ONLY
 const fallbackDailyBriefing = (): DailyBriefing => {
-  const sentiments: ('BULLISH' | 'BEARISH' | 'NEUTRAL')[] = ['BULLISH', 'BEARISH', 'NEUTRAL']
-  const selectedSentiment = sentiments[Math.floor(Math.random() * sentiments.length)]
-  
   return {
-    marketSentiment: selectedSentiment,
-    keyEvents: [
-      'US Non-Farm Payrolls release',
-      'ECB Interest Rate Decision',
-      'China PMI Manufacturing Data'
-    ],
-    opportunities: [
-      'EUR/USD breakout potential above 1.0900',
-      'Gold support at $2000 level',
-      'Bitcoin consolidation near $50,000'
-    ],
+    marketSentiment: 'NEUTRAL',
+    keyEvents: [],
+    opportunities: [],
     risks: [
-      'Volatility spike ahead of NFP',
-      'Central bank intervention risk',
-      'Geopolitical tensions in Middle East'
+      'AI briefing unavailable — always manage risk independently',
+      'Consult multiple sources before making trading decisions'
     ],
-    summary: `Market ${selectedSentiment.toLowerCase()} with key economic events on the horizon. Monitor USD pairs for breakout opportunities.`
+    summary: '[Educational Placeholder] Daily briefing is currently unavailable. Enable Puter.js AI for real market analysis.'
   }
 }
 
@@ -229,91 +211,35 @@ export const generateDailyBriefing = async (): Promise<DailyBriefing> => {
   }
 }
 
-// Fallback trade idea generator
+// Fallback trade idea — EDUCATIONAL PLACEHOLDER ONLY
 const fallbackTradeIdea = (): TradeIdea => {
-  const instruments = ['EUR/USD', 'GBP/USD', 'USD/JPY', 'AUD/USD', 'XAU/USD', 'BTC/USD']
-  const timeframes = ['M15', 'H1', 'H4', 'D1']
-  const setups = [
-    'Breakout dari level resistance dengan volume tinggi',
-    'Bounce dari support kunci dengan konfirmasi bullish',
-    'Retest level breakout sebelumnya',
-    'Formasi candlestick reversal di area supply',
-    'Trend continuation setup dengan momentum kuat',
-    'Divergensi RSI dengan harga'
-  ]
-  
-  const symbol = instruments[Math.floor(Math.random() * instruments.length)]
-  const direction = Math.random() > 0.5 ? 'BUY' : 'SELL'
-  const timeframe = timeframes[Math.floor(Math.random() * timeframes.length)]
-  const setup = setups[Math.floor(Math.random() * setups.length)]
-  const confidence = Math.floor(Math.random() * 30) + 65 // 65-95%
-  
-  // Generate realistic price levels
-  let entryPrice, stopLoss, takeProfit
-  const isJPY = symbol.includes('JPY')
-  const decimals = isJPY ? 3 : (symbol.includes('BTC') ? 2 : 5)
-  
-  if (symbol === 'EUR/USD') {
-    entryPrice = direction === 'BUY' ? '1.0850' : '1.0950'
-    stopLoss = direction === 'BUY' ? '1.0800' : '1.1000'
-    takeProfit = direction === 'BUY' ? '1.0950' : '1.0850'
-  } else if (symbol === 'GBP/USD') {
-    entryPrice = direction === 'BUY' ? '1.2650' : '1.2750'
-    stopLoss = direction === 'BUY' ? '1.2600' : '1.2800'
-    takeProfit = direction === 'BUY' ? '1.2750' : '1.2650'
-  } else if (symbol === 'USD/JPY') {
-    entryPrice = direction === 'BUY' ? '149.50' : '150.50'
-    stopLoss = direction === 'BUY' ? '149.00' : '151.00'
-    takeProfit = direction === 'BUY' ? '150.50' : '149.50'
-  } else if (symbol === 'XAU/USD') {
-    entryPrice = direction === 'BUY' ? '2020.00' : '2040.00'
-    stopLoss = direction === 'BUY' ? '2010.00' : '2050.00'
-    takeProfit = direction === 'BUY' ? '2040.00' : '2020.00'
-  } else {
-    entryPrice = (1.0 + Math.random() * 0.1).toFixed(decimals)
-    const entry = parseFloat(entryPrice)
-    const slDistance = entry * 0.005
-    const tpDistance = entry * 0.01
-    stopLoss = direction === 'BUY' 
-      ? (entry - slDistance).toFixed(decimals) 
-      : (entry + slDistance).toFixed(decimals)
-    takeProfit = direction === 'BUY'
-      ? (entry + tpDistance).toFixed(decimals)
-      : (entry - tpDistance).toFixed(decimals)
-  }
-  
   return {
-    symbol,
-    direction,
-    timeframe,
-    setup,
-    confidence,
-    entryPrice,
-    stopLoss,
-    takeProfit,
-    riskReward: '1:2'
+    symbol: 'N/A',
+    direction: 'BUY',
+    timeframe: 'N/A',
+    setup: '[Educational Placeholder] Trade idea generation is currently unavailable. Enable Puter.js AI for real trade ideas.',
+    confidence: 0,
+    entryPrice: undefined,
+    stopLoss: undefined,
+    takeProfit: undefined,
+    riskReward: 'N/A'
   }
 }
 
-// Fallback trade review
+// Fallback trade review — EDUCATIONAL PLACEHOLDER ONLY
 const fallbackTradeReview = (): TradeReview => {
   return {
-    entryQuality: Math.floor(Math.random() * 30) + 65,
-    exitQuality: Math.floor(Math.random() * 30) + 65,
-    riskManagement: Math.floor(Math.random() * 30) + 65,
+    entryQuality: 0,
+    exitQuality: 0,
+    riskManagement: 0,
     lessons: [
-      'Entry timing sesuai dengan setup yang direncanakan',
-      'Risk management terjaga dengan baik',
-      'Disiplin mengikuti trading plan',
-      'Penggunaan position sizing yang tepat'
+      '[Educational Placeholder] Trade review is currently unavailable.',
+      'Enable Puter.js AI for real trade analysis.'
     ],
     improvements: [
-      'Pertimbangkan untuk menunggu konfirmasi candlestick lebih kuat',
-      'Evaluasi exit strategy untuk maximize profit',
-      'Perhatikan korelasi antar pasangan mata uang',
-      'Tingkatkan analisis fundamental untuk timing yang lebih baik'
+      '[Educational Placeholder] No improvements suggested — AI review unavailable.'
     ],
-    overallScore: Math.floor(Math.random() * 20) + 75
+    overallScore: 0
   }
 }
 
