@@ -28,6 +28,8 @@ const STORAGE_KEY = 'pasefx_real_news';
 const CALENDAR_KEY = 'pasefx_economic_calendar';
 
 // Fetch real forex news from free API
+const FINNHUB_TOKEN = import.meta.env.VITE_FINNHUB_TOKEN || 'demo';
+
 export const fetchRealNews = async (): Promise<NewsArticle[]> => {
   const articles: NewsArticle[] = [];
   const now = new Date().toISOString();
@@ -35,8 +37,8 @@ export const fetchRealNews = async (): Promise<NewsArticle[]> => {
   try {
     // Try fetching from multiple free sources
     const [forexNews, cryptoNews] = await Promise.allSettled([
-      fetch('https://finnhub.io/api/v1/news?category=forex&token=demo').then(r => r.json()),
-      fetch('https://finnhub.io/api/v1/news?category=cryptocurrency&token=demo').then(r => r.json())
+      fetch(`https://finnhub.io/api/v1/news?category=forex&token=${FINNHUB_TOKEN}`).then(r => r.json()),
+      fetch(`https://finnhub.io/api/v1/news?category=cryptocurrency&token=${FINNHUB_TOKEN}`).then(r => r.json())
     ]);
     
     if (forexNews.status === 'fulfilled' && Array.isArray(forexNews.value)) {

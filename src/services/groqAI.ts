@@ -2,7 +2,7 @@
 // Free, fast, no login required
 // Uses Groq API - get free key at https://console.groq.com/
 
-const GROQ_API_KEY = 'gsk_RwD2oDns9c2iLkCwykQjWGdyb3FYZqjPkG5x8xYz6HkN8pMnR8P'; // Free tier key
+const GROQ_API_KEY = import.meta.env.VITE_GROQ_API_KEY || '';
 const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
 
 // Trading-focused system prompt
@@ -18,6 +18,9 @@ Guidelines:
 
 // Chat with AI Trader
 export const chatWithAI = async (message: string): Promise<string> => {
+  if (!GROQ_API_KEY) {
+    return 'AI unavailable: VITE_GROQ_API_KEY not configured. Set it in your .env file. Get a free key at https://console.groq.com/';
+  }
   try {
     const response = await fetch(GROQ_API_URL, {
       method: 'POST',
