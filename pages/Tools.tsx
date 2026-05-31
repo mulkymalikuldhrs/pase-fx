@@ -341,7 +341,6 @@ const Tools: React.FC = () => {
               { "s": "FX:USDCAD", "d": "USD/CAD" },
               { "s": "FX:EURJPY", "d": "EUR/JPY" }
             ],
-            "title": "Forex"
           },
           {
             "title": "Commodities",
@@ -351,7 +350,6 @@ const Tools: React.FC = () => {
               { "s": "TVC:USOIL", "d": "Crude Oil" },
               { "s": "OANDA:NATGAS", "d": "Natural Gas" }
             ],
-            "title": "Commodities"
           },
           {
             "title": "Indices",
@@ -361,7 +359,6 @@ const Tools: React.FC = () => {
               { "s": "FOREXCOM:US30", "d": "Dow Jones" },
               { "s": "TVC:DE40", "d": "DAX 40" }
             ],
-            "title": "Indices"
           },
           {
             "title": "Crypto",
@@ -371,7 +368,6 @@ const Tools: React.FC = () => {
               { "s": "BITSTAMP:SOLUSD", "d": "Solana" },
               { "s": "BITSTAMP:XRPUSD", "d": "Ripple" }
             ],
-            "title": "Crypto"
           }
         ]
       });
