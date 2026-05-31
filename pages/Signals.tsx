@@ -23,7 +23,9 @@ import {
   Edit3,
   History,
   Shield,
-  Table
+  Table,
+  Loader2,
+  AlertTriangle
 } from 'lucide-react';
 import useSEO from '../hooks/useSEO';
 
@@ -38,6 +40,15 @@ interface SignalFormData {
   analyst: string;
   timeframe: string;
   analysis: string;
+}
+
+interface FormErrors {
+  pair?: string;
+  entry?: string;
+  sl?: string;
+  tp1?: string;
+  analyst?: string;
+  general?: string;
 }
 
 // Calculate Risk/Reward and Risk %
@@ -81,6 +92,86 @@ const Signals: React.FC = () => {
     analysis: '',
   });
 
+  // Form errors and loading state
+  const [formErrors, setFormErrors] = useState<FormErrors>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+
+  // Validate form
+  const validateForm = (): boolean => {
+    const errors: FormErrors = {};
+
+    // Pair validation
+    if (!formData.pair.trim()) {
+      errors.pair = 'Pair wajib diisi';
+    } else if (!/^[A-Z]{3}[A-Z0-9]{0,7}$/.test(formData.pair.trim().toUpperCase())) {
+      errors.pair = 'Format pair tidak valid (contoh: EURUSD, XAUUSD)';
+    }
+
+    // Entry validation
+    if (!formData.entry.trim()) {
+      errors.entry = 'Entry wajib diisi';
+    } else {
+      const entry = parseFloat(formData.entry);
+      if (isNaN(entry) || entry <= 0) {
+        errors.entry = 'Entry harus angka positif';
+      }
+    }
+
+    // Stop Loss validation
+    if (!formData.sl.trim()) {
+      errors.sl = 'Stop Loss wajib diisi';
+    } else {
+      const sl = parseFloat(formData.sl);
+      if (isNaN(sl) || sl <= 0) {
+        errors.sl = 'Stop Loss harus angka positif';
+      }
+    }
+
+    // Take Profit validation
+    if (!formData.tp1.trim()) {
+      errors.tp1 = 'Take Profit wajib diisi';
+    } else {
+      const tp1 = parseFloat(formData.tp1);
+      if (isNaN(tp1) || tp1 <= 0) {
+        errors.tp1 = 'Take Profit harus angka positif';
+      }
+    }
+
+    // Analyst validation
+    if (!formData.analyst.trim()) {
+      errors.analyst = 'Analyst wajib diisi';
+    } else if (formData.analyst.trim().length < 2) {
+      errors.analyst = 'Nama analyst minimal 2 karakter';
+    }
+
+    // Logic validation: Check if TP is on correct side of entry
+    if (!errors.entry && !errors.sl && !errors.tp1) {
+      const entry = parseFloat(formData.entry);
+      const sl = parseFloat(formData.sl);
+      const tp1 = parseFloat(formData.tp1);
+
+      if (formData.direction === 'BUY') {
+        if (sl >= entry) {
+          errors.sl = 'Stop Loss harus di bawah Entry untuk BUY';
+        }
+        if (tp1 <= entry) {
+          errors.tp1 = 'Take Profit harus di atas Entry untuk BUY';
+        }
+      } else {
+        if (sl <= entry) {
+          errors.sl = 'Stop Loss harus di atas Entry untuk SELL';
+        }
+        if (tp1 >= entry) {
+          errors.tp1 = 'Take Profit harus di bawah Entry untuk SELL';
+        }
+      }
+    }
+
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
   // Filter signals
   const filteredSignals = signals.filter(signal => {
     const matchesStatus = filterStatus === 'ALL' || signal.status === filterStatus;
@@ -93,52 +184,89 @@ const Signals: React.FC = () => {
   const stats = calculateSignalStats(signals);
 
   // Handle add signal
-  const handleAddSignal = (e: React.FormEvent) => {
+  const handleAddSignal = async (e: React.FormEvent) => {
     e.preventDefault();
-    addSignal({
-      pair: formData.pair.toUpperCase(),
-      direction: formData.direction,
-      entry: parseFloat(formData.entry),
-      sl: parseFloat(formData.sl),
-      tp1: parseFloat(formData.tp1),
-      tp2: parseFloat(formData.tp2) || parseFloat(formData.tp1),
-      tp3: parseFloat(formData.tp3) || parseFloat(formData.tp1),
-      status: 'ACTIVE',
-      analyst: formData.analyst,
-      timeframe: formData.timeframe,
-      analysis: formData.analysis,
-    });
-    setSignals(getSignals());
-    setShowAddForm(false);
-    resetForm();
-  };
-
-  // Handle update signal
-  const handleUpdateSignal = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!editingSignal) return;
     
-    const signalsList = getSignals();
-    const index = signalsList.findIndex(s => s.id === editingSignal.id);
-    if (index !== -1) {
-      signalsList[index] = {
-        ...signalsList[index],
-        pair: formData.pair.toUpperCase(),
+    if (!validateForm()) {
+      return;
+    }
+    
+    setIsSubmitting(true);
+    setSubmitSuccess(false);
+    
+    // Simulate a small delay for better UX feedback
+    await new Promise(resolve => setTimeout(resolve, 300));
+    
+    try {
+      addSignal({
+        pair: formData.pair.toUpperCase().trim(),
         direction: formData.direction,
         entry: parseFloat(formData.entry),
         sl: parseFloat(formData.sl),
         tp1: parseFloat(formData.tp1),
-        tp2: parseFloat(formData.tp2) || parseFloat(formData.tp1),
-        tp3: parseFloat(formData.tp3) || parseFloat(formData.tp1),
-        analyst: formData.analyst,
+        tp2: formData.tp2 ? parseFloat(formData.tp2) : parseFloat(formData.tp1),
+        tp3: formData.tp3 ? parseFloat(formData.tp3) : parseFloat(formData.tp1),
+        status: 'ACTIVE',
+        analyst: formData.analyst.trim(),
         timeframe: formData.timeframe,
         analysis: formData.analysis,
-      };
-      localStorage.setItem('pasefx_signals', JSON.stringify(signalsList));
+      });
       setSignals(getSignals());
+      setShowAddForm(false);
+      resetForm();
+      setSubmitSuccess(true);
+    } catch (error) {
+      setFormErrors({ general: 'Gagal menyimpan sinyal. Silakan coba lagi.' });
+    } finally {
+      setIsSubmitting(false);
     }
-    setEditingSignal(null);
-    resetForm();
+  };
+
+  // Handle update signal
+  const handleUpdateSignal = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!validateForm()) {
+      return;
+    }
+    
+    if (!editingSignal) return;
+    
+    setIsSubmitting(true);
+    setSubmitSuccess(false);
+    
+    // Simulate a small delay for better UX feedback
+    await new Promise(resolve => setTimeout(resolve, 300));
+    
+    try {
+      const signalsList = getSignals();
+      const index = signalsList.findIndex(s => s.id === editingSignal.id);
+      if (index !== -1) {
+        signalsList[index] = {
+          ...signalsList[index],
+          pair: formData.pair.toUpperCase().trim(),
+          direction: formData.direction,
+          entry: parseFloat(formData.entry),
+          sl: parseFloat(formData.sl),
+          tp1: parseFloat(formData.tp1),
+          tp2: formData.tp2 ? parseFloat(formData.tp2) : parseFloat(formData.tp1),
+          tp3: formData.tp3 ? parseFloat(formData.tp3) : parseFloat(formData.tp1),
+          analyst: formData.analyst.trim(),
+          timeframe: formData.timeframe,
+          analysis: formData.analysis,
+        };
+        localStorage.setItem('pasefx_signals', JSON.stringify(signalsList));
+        setSignals(getSignals());
+      }
+      setEditingSignal(null);
+      setShowAddForm(false);
+      resetForm();
+      setSubmitSuccess(true);
+    } catch (error) {
+      setFormErrors({ general: 'Gagal memperbarui sinyal. Silakan coba lagi.' });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Handle update status
@@ -187,6 +315,8 @@ const Signals: React.FC = () => {
       timeframe: 'H1',
       analysis: '',
     });
+    setFormErrors({});
+    setSubmitSuccess(false);
   };
 
   // Handle reset to initial data
@@ -372,6 +502,21 @@ const Signals: React.FC = () => {
                 </button>
               </div>
               <form onSubmit={editingSignal ? handleUpdateSignal : handleAddSignal} className="p-6 space-y-5">
+                {/* General Error Message */}
+                {formErrors.general && (
+                  <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+                    <AlertTriangle size={18} />
+                    {formErrors.general}
+                  </div>
+                )}
+
+                {/* Success Message */}
+                {submitSuccess && (
+                  <div className="flex items-center gap-2 p-3 bg-emerald-50 border border-emerald-200 rounded-lg text-emerald-700 text-sm">
+                    <CheckCircle2 size={18} />
+                    Sinyal berhasil disimpan!
+                  </div>
+                )}
                 <div className="grid grid-cols-2 gap-5">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1.5">Pair</label>
@@ -381,8 +526,18 @@ const Signals: React.FC = () => {
                       placeholder="EURUSD"
                       value={formData.pair}
                       onChange={(e) => setFormData({ ...formData, pair: e.target.value })}
-                      className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 transition"
+                      className={`w-full px-4 py-2.5 border rounded-lg focus:outline-none focus:ring-2 transition ${
+                        formErrors.pair 
+                          ? 'border-red-300 focus:ring-red-500 bg-red-50' 
+                          : 'border-gray-300 focus:ring-emerald-500'
+                      }`}
                     />
+                    {formErrors.pair && (
+                      <p className="mt-1 text-xs text-red-600 flex items-center gap-1">
+                        <AlertCircle size={12} />
+                        {formErrors.pair}
+                      </p>
+                    )}
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1.5">Direction</label>

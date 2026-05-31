@@ -1,103 +1,154 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
   <!-- Homepage -->
   <url>
     <loc>https://pasefx.vercel.app/</loc>
-    <lastmod>2026-02-14</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="id" href="https://pasefx.vercel.app/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pasefx.vercel.app/"/>
   </url>
   
   <!-- Main Pages -->
   <url>
     <loc>https://pasefx.vercel.app/#/sinyal</loc>
-    <lastmod>2026-02-14</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="id" href="https://pasefx.vercel.app/#/sinyal"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pasefx.vercel.app/#/sinyal"/>
   </url>
   
   <url>
     <loc>https://pasefx.vercel.app/#/tools</loc>
-    <lastmod>2026-02-14</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="id" href="https://pasefx.vercel.app/#/tools"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pasefx.vercel.app/#/tools"/>
   </url>
   
   <url>
     <loc>https://pasefx.vercel.app/#/broker</loc>
-    <lastmod>2026-02-14</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="id" href="https://pasefx.vercel.app/#/broker"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pasefx.vercel.app/#/broker"/>
   </url>
   
   <url>
     <loc>https://pasefx.vercel.app/#/metode</loc>
-    <lastmod>2026-02-14</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="id" href="https://pasefx.vercel.app/#/metode"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pasefx.vercel.app/#/metode"/>
   </url>
   
   <url>
     <loc>https://pasefx.vercel.app/#/edukasi</loc>
-    <lastmod>2026-02-14</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="id" href="https://pasefx.vercel.app/#/edukasi"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pasefx.vercel.app/#/edukasi"/>
+  </url>
+  
+  <url>
+    <loc>https://pasefx.vercel.app/#/berita</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="id" href="https://pasefx.vercel.app/#/berita"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pasefx.vercel.app/#/berita"/>
   </url>
   
   <url>
     <loc>https://pasefx.vercel.app/#/members</loc>
-    <lastmod>2026-02-14</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="id" href="https://pasefx.vercel.app/#/members"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pasefx.vercel.app/#/members"/>
   </url>
   
   <url>
     <loc>https://pasefx.vercel.app/#/jurnal</loc>
-    <lastmod>2026-02-14</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="id" href="https://pasefx.vercel.app/#/jurnal"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pasefx.vercel.app/#/jurnal"/>
   </url>
   
   <url>
     <loc>https://pasefx.vercel.app/#/ebook</loc>
-    <lastmod>2026-02-14</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="id" href="https://pasefx.vercel.app/#/ebook"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pasefx.vercel.app/#/ebook"/>
   </url>
   
   <url>
     <loc>https://pasefx.vercel.app/#/founders</loc>
-    <lastmod>2026-02-14</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="id" href="https://pasefx.vercel.app/#/founders"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pasefx.vercel.app/#/founders"/>
   </url>
   
   <url>
     <loc>https://pasefx.vercel.app/#/komunitas</loc>
-    <lastmod>2026-02-14</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="id" href="https://pasefx.vercel.app/#/komunitas"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pasefx.vercel.app/#/komunitas"/>
   </url>
   
   <url>
     <loc>https://pasefx.vercel.app/#/disclaimer</loc>
-    <lastmod>2026-02-14</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
+    <xhtml:link rel="alternate" hreflang="id" href="https://pasefx.vercel.app/#/disclaimer"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pasefx.vercel.app/#/disclaimer"/>
   </url>
   
   <!-- Legal Pages -->
   <url>
     <loc>https://pasefx.vercel.app/terms-of-service.html</loc>
-    <lastmod>2026-02-14</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="id" href="https://pasefx.vercel.app/terms-of-service.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pasefx.vercel.app/terms-of-service.html"/>
   </url>
   
   <url>
     <loc>https://pasefx.vercel.app/privacy-policy.html</loc>
-    <lastmod>2026-02-14</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="id" href="https://pasefx.vercel.app/privacy-policy.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pasefx.vercel.app/privacy-policy.html"/>
   </url>
+  
+  <!-- Premium Redirect -->
+  <url>
+    <loc>https://pasefx.vercel.app/#/premium</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+    <xhtml:link rel="alternate" hreflang="id" href="https://pasefx.vercel.app/#/premium"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pasefx.vercel.app/#/premium"/>
+  </url>
+  
 </urlset>

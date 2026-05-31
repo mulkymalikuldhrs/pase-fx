@@ -9,12 +9,28 @@ Sitemap: https://pasefx.vercel.app/sitemap.xml
 
 # Disallow sensitive or development paths
 Disallow: /api/
-Disallow: /*?*
+Disallow: /.git/
+Disallow: /node_modules/
+Disallow: /backend/
 
-# Allow specific assets
-Allow: /logo.png
-Allow: /index.css
-Allow: /assets/
+# Crawl delay (be respectful)
+Crawl-delay: 5
 
-# Crawl rate
-Crawl-delay: 10
+# Host directive (for Yandex)
+Host: https://pasefx.vercel.app
+
+# Clean param guidelines
+# Allow clean URLs, disallow URLs with tracking/analytics params
+Clean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term
+
+# Sitemap index (if you add more sitemaps in future)
+# Sitemap: https://pasefx.vercel.app/sitemap-index.xml
+
+# User-agent specific rules
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 2
+
+User-agent: Yandex
+Allow: /
+Crawl-delay: 5

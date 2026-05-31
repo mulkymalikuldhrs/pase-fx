@@ -9,6 +9,7 @@ import AIDailyBriefing from '../src/components/widgets/AIDailyBriefing';
 import AITradeIdeas from '../src/components/widgets/AITradeIdeas';
 import useSEO from '../hooks/useSEO';
 import { realMarketDataService, RealAssetData } from '../services/realMarketData';
+import { LoadingSpinner, StatsCardSkeleton, SignalCardSkeleton, FeatureCardSkeleton } from '../components/ui/LoadingSkeleton';
 
 const Home: React.FC = () => {
   useSEO({
@@ -19,11 +20,13 @@ const Home: React.FC = () => {
 
   const tickerContainerRef = useRef<HTMLDivElement>(null);
   const [marketData, setMarketData] = useState<RealAssetData[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Subscribe to real market data
   useEffect(() => {
     const unsubscribe = realMarketDataService.subscribe((data) => {
       setMarketData(data);
+      setIsLoading(false);
     });
     return () => unsubscribe();
   }, []);
@@ -152,27 +155,35 @@ const Home: React.FC = () => {
         </div>
       </div>
 
-      {/* Stats Section */}
+      {/* Stats Section - Loading State */}
       <div className="bg-slate-900/50 border-y border-slate-800">
         <div className="max-w-7xl mx-auto px-4 py-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-emerald-400">{stats.members}</div>
-              <div className="text-slate-400">Tim Inti</div>
+          {isLoading ? (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {[1, 2, 3, 4].map((i) => (
+                <StatsCardSkeleton key={i} />
+              ))}
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-emerald-400">{stats.signals}</div>
-              <div className="text-slate-400">Sinyal Trading</div>
+          ) : (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-emerald-400">{stats.members}</div>
+                <div className="text-slate-400">Tim Inti</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-emerald-400">{stats.signals}</div>
+                <div className="text-slate-400">Sinyal Trading</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-emerald-400">{stats.winRate}%</div>
+                <div className="text-slate-400">Win Rate</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-emerald-400">{stats.active}</div>
+                <div className="text-slate-400">Sinyal Aktif</div>
+              </div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-emerald-400">{stats.winRate}%</div>
-              <div className="text-slate-400">Win Rate</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-emerald-400">{stats.active}</div>
-              <div className="text-slate-400">Sinyal Aktif</div>
-            </div>
-          </div>
+          )}
         </div>
       </div>
 
@@ -301,7 +312,7 @@ const Home: React.FC = () => {
         </div>
       </div>
 
-      {/* Recent Signals */}
+      {/* Recent Signals - Loading State */}
       <div className="bg-slate-900/50 border-y border-slate-800">
         <div className="max-w-7xl mx-auto px-4 py-12">
           <div className="flex items-center justify-between mb-6">
@@ -315,33 +326,49 @@ const Home: React.FC = () => {
           </div>
           
           <div className="grid md:grid-cols-3 gap-4">
-            {recentSignals.map((signal) => (
-              <SignalCard key={signal.id} signal={signal} />
-            ))}
+            {isLoading ? (
+              <>
+                <SignalCardSkeleton />
+                <SignalCardSkeleton />
+                <SignalCardSkeleton />
+              </>
+            ) : (
+              recentSignals.map((signal) => (
+                <SignalCard key={signal.id} signal={signal} />
+              ))
+            )}
           </div>
         </div>
       </div>
 
-      {/* Features Grid */}
+      {/* Features Grid - Loading State */}
       <div className="max-w-7xl mx-auto px-4 py-12">
         <h2 className="text-2xl font-bold text-white mb-8 text-center">
           Fitur Platform Trading
         </h2>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {FEATURES.map((feature, index) => (
-            <div 
-              key={index} 
-              className="bg-slate-900/50 p-6 rounded-xl border border-slate-800 hover:border-emerald-500/50 transition-all group"
-            >
-              <div className="w-12 h-12 rounded-lg bg-emerald-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <feature.icon className="w-6 h-6 text-emerald-400" />
+        {isLoading ? (
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[1, 2, 3, 4].map((i) => (
+              <FeatureCardSkeleton key={i} />
+            ))}
+          </div>
+        ) : (
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {FEATURES.map((feature, index) => (
+              <div 
+                key={index} 
+                className="bg-slate-900/50 p-6 rounded-xl border border-slate-800 hover:border-emerald-500/50 transition-all group"
+              >
+                <div className="w-12 h-12 rounded-lg bg-emerald-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <feature.icon className="w-6 h-6 text-emerald-400" />
+                </div>
+                <h3 className="text-lg font-semibold text-white mb-2">{feature.title}</h3>
+                <p className="text-slate-400 text-sm">{feature.desc}</p>
               </div>
-              <h3 className="text-lg font-semibold text-white mb-2">{feature.title}</h3>
-              <p className="text-slate-400 text-sm">{feature.desc}</p>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* CTA Section */}

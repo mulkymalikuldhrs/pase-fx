@@ -59,6 +59,9 @@ const Navbar: React.FC = () => {
     { name: 'Members', path: '/members' },
   ];
 
+  // Mobile menu max-height to accommodate all nav items
+  const MOBILE_MENU_MAX_HEIGHT = 'max-h-[70vh]';
+  
   const checkActive = (path: string) => {
     const normalizedHash = currentHash.replace('#', '') || '/';
     return normalizedHash === path;
@@ -68,6 +71,17 @@ const Navbar: React.FC = () => {
     setIsOpen(false);
   };
 
+  // Close mobile menu on resize to desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024 && isOpen) {
+        setIsOpen(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [isOpen]);
+
   return (
     <nav 
       className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-500 ease-out ${
@@ -75,8 +89,7 @@ const Navbar: React.FC = () => {
           ? 'w-[95%] max-w-6xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-white/40 dark:border-slate-700/40 shadow-lg shadow-emerald-900/5 dark:shadow-emerald-900/20 rounded-2xl' 
           : 'w-[90%] max-w-5xl bg-white/60 dark:bg-slate-900/60 backdrop-blur-lg border border-white/30 dark:border-slate-700/30 shadow-md shadow-emerald-900/5 dark:shadow-emerald-900/10 rounded-full'
       }`}
-      role="navigation"
-      aria-label="Main navigation"
+      role="banner"
     >
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-14">
@@ -107,19 +120,27 @@ const Navbar: React.FC = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center">
-            <div className="flex items-baseline space-x-1">
+            <div className="flex items-baseline space-x-0.5">
               {navItems.map((item) => (
                 <a
                   key={item.name}
                   href={`#${item.path}`}
-                  className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-300 ${
+                  className={`relative px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-300 group ${
                     checkActive(item.path)
-                      ? 'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-800 shadow-sm'
-                      : 'text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-800 hover:text-emerald-600 dark:hover:text-emerald-400'
+                      ? 'text-emerald-600 dark:text-emerald-400'
+                      : 'text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400'
                   }`}
                   aria-current={checkActive(item.path) ? 'page' : undefined}
                 >
-                  <span>{item.name}</span>
+                  <span className="relative z-10">{item.name}</span>
+                  {/* Active underline indicator */}
+                  <span className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-emerald-500 dark:bg-emerald-400 transition-all duration-300 rounded-full ${
+                    checkActive(item.path) ? 'w-3/4' : 'w-0 group-hover:w-1/2'
+                  }`} />
+                  {/* Active background */}
+                  {checkActive(item.path) && (
+                    <span className="absolute inset-0 bg-emerald-50 dark:bg-emerald-900/30 rounded-full border border-emerald-100 dark:border-emerald-800 shadow-sm" />
+                  )}
                 </a>
               ))}
             </div>
@@ -161,29 +182,34 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Menu - Dynamic Island Expansion */}
+      {/* Mobile Menu - Dynamic Island Expansion with Scroll */}
       <div 
         id="mobile-menu"
-        className={`lg:hidden overflow-hidden transition-all duration-500 ease-out ${
-          isOpen ? 'max-h-96 opacity-100 border-t border-gray-100 dark:border-slate-700' : 'max-h-0 opacity-0'
-        }`}
+        className={`lg:hidden overflow-y-auto ${isOpen ? 'max-h-[70vh] opacity-100' : 'max-h-0 opacity-0'} transition-all duration-300 ease-out`}
+        style={{
+          scrollbarWidth: 'thin',
+          scrollbarColor: darkMode ? '#334155 #1e293b' : '#cbd5e1 #f1f5f9',
+        }}
         aria-hidden={!isOpen}
       >
-        <div className="px-4 pb-4 pt-2 space-y-1 bg-white/50 dark:bg-slate-900/50 backdrop-blur-xl rounded-b-2xl">
+        <div className="px-4 pb-4 pt-2 space-y-1.5 bg-white/90 dark:bg-slate-900/90 backdrop-blur-2xl border-t border-gray-100 dark:border-slate-700/50 rounded-b-2xl shadow-lg">
           {navItems.map((item) => (
             <a
               key={item.name}
               href={`#${item.path}`}
               onClick={handleNavClick}
-              className={`block px-4 py-2.5 rounded-xl text-sm font-medium transition-all ${
+              className={`flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${
                 checkActive(item.path)
-                  ? 'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-800'
-                  : 'text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-800 hover:text-emerald-600 dark:hover:text-emerald-400'
+                  ? 'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 border-l-4 border-emerald-500 dark:border-emerald-400 shadow-sm'
+                  : 'text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-800 hover:text-emerald-600 dark:hover:text-emerald-400 border-l-4 border-transparent'
               }`}
               aria-current={checkActive(item.path) ? 'page' : undefined}
               role="menuitem"
             >
               <span>{item.name}</span>
+              {checkActive(item.path) && (
+                <span className="w-2 h-2 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse" />
+              )}
             </a>
           ))}
         </div>

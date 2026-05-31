@@ -75,6 +75,27 @@ const Tools: React.FC = () => {
   const sentimentContainerRef = useRef<HTMLDivElement>(null);
   const goldContainerRef = useRef<HTMLDivElement>(null);
   const dxyContainerRef = useRef<HTMLDivElement>(null);
+  
+  // Candlestick chart refs for major pairs
+  const eurusdCandleRef = useRef<HTMLDivElement>(null);
+  const gbpusdCandleRef = useRef<HTMLDivElement>(null);
+  const usdjpyCandleRef = useRef<HTMLDivElement>(null);
+  const audusdCandleRef = useRef<HTMLDivElement>(null);
+  const usdcadCandleRef = useRef<HTMLDivElement>(null);
+  const eurjpyCandleRef = useRef<HTMLDivElement>(null);
+  
+  // Technical indicators refs
+  const eurusdTechRef = useRef<HTMLDivElement>(null);
+  const gbpusdTechRef = useRef<HTMLDivElement>(null);
+  const usdjpyTechRef = useRef<HTMLDivElement>(null);
+  
+  // Additional TradingView widgets refs
+  const marketOverviewRef = useRef<HTMLDivElement>(null);
+  const tickerTapeRef = useRef<HTMLDivElement>(null);
+  const cryptoOverviewRef = useRef<HTMLDivElement>(null);
+  const forexCrossRatesRef = useRef<HTMLDivElement>(null);
+  const sp500TechRef = useRef<HTMLDivElement>(null);
+  const goldTechRef = useRef<HTMLDivElement>(null);
 
   // Responsive check
   const [isMobile, setIsMobile] = useState(false);
@@ -222,6 +243,233 @@ const Tools: React.FC = () => {
         ref.current.appendChild(script);
       }
     });
+
+    // Full Candlestick Charts for Major Pairs
+    const candleCharts = [
+      { ref: eurusdCandleRef, symbol: 'FX:EURUSD', name: 'EUR/USD', interval: 'D' },
+      { ref: gbpusdCandleRef, symbol: 'FX:GBPUSD', name: 'GBP/USD', interval: 'D' },
+      { ref: usdjpyCandleRef, symbol: 'FX:USDJPY', name: 'USD/JPY', interval: 'D' },
+      { ref: audusdCandleRef, symbol: 'FX:AUDUSD', name: 'AUD/USD', interval: 'D' },
+      { ref: usdcadCandleRef, symbol: 'FX:USDCAD', name: 'USD/CAD', interval: 'D' },
+      { ref: eurjpyCandleRef, symbol: 'FX:EURJPY', name: 'EUR/JPY', interval: 'D' },
+    ];
+
+    candleCharts.forEach(({ ref, symbol, interval }) => {
+      if (ref.current) {
+        ref.current.innerHTML = '';
+        const script = document.createElement('script');
+        script.src = "https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js";
+        script.async = true;
+        script.innerHTML = JSON.stringify({
+          "autosize": true,
+          "symbol": symbol,
+          "interval": interval,
+          "timezone": "Asia/Jakarta",
+          "theme": "light",
+          "style": "1",
+          "locale": "id",
+          "enable_publishing": false,
+          "allow_symbol_change": true,
+          "calendar": false,
+          "support_host": "https://www.tradingview.com"
+        });
+        ref.current.appendChild(script);
+      }
+    });
+
+    // Technical Analysis Widgets for Major Pairs
+    const techAnalysisWidgets = [
+      { ref: eurusdTechRef, symbol: 'FX:EURUSD' },
+      { ref: gbpusdTechRef, symbol: 'FX:GBPUSD' },
+      { ref: usdjpyTechRef, symbol: 'FX:USDJPY' },
+      { ref: sp500TechRef, symbol: 'FOREXCOM:SPX500' },
+      { ref: goldTechRef, symbol: 'OANDA:XAUUSD' },
+    ];
+
+    techAnalysisWidgets.forEach(({ ref, symbol }) => {
+      if (ref.current) {
+        ref.current.innerHTML = '';
+        const script = document.createElement('script');
+        script.src = "https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js";
+        script.async = true;
+        script.innerHTML = JSON.stringify({
+          "interval": "1h",
+          "width": "100%",
+          "isTransparent": false,
+          "height": 300,
+          "symbol": symbol,
+          "showIntervalTabs": true,
+          "displayMode": "single",
+          "locale": "id",
+          "colorTheme": "light"
+        });
+        ref.current.appendChild(script);
+      }
+    });
+
+    // Additional TradingView Widgets
+    
+    // Market Overview Widget
+    if (marketOverviewRef.current) {
+      marketOverviewRef.current.innerHTML = '';
+      const script = document.createElement('script');
+      script.src = "https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js";
+      script.async = true;
+      script.innerHTML = JSON.stringify({
+        "colorTheme": "light",
+        "dateRange": "12m",
+        "showChart": true,
+        "locale": "id",
+        "width": "100%",
+        "height": 400,
+        "symbol": [
+          "FX:EURUSD",
+          "FX:GBPUSD",
+          "FX:USDJPY",
+          "FX:AUDUSD",
+          "OANDA:XAUUSD",
+          "TVC:DXY"
+        ],
+        "tabs": [
+          {
+            "title": "Forex",
+            "symbols": [
+              { "s": "FX:EURUSD", "d": "EUR/USD" },
+              { "s": "FX:GBPUSD", "d": "GBP/USD" },
+              { "s": "FX:USDJPY", "d": "USD/JPY" },
+              { "s": "FX:AUDUSD", "d": "AUD/USD" },
+              { "s": "FX:USDCAD", "d": "USD/CAD" },
+              { "s": "FX:EURJPY", "d": "EUR/JPY" }
+            ],
+            "title": "Forex"
+          },
+          {
+            "title": "Commodities",
+            "symbols": [
+              { "s": "OANDA:XAUUSD", "d": "Gold" },
+              { "s": "OANDA:XAGUSD", "d": "Silver" },
+              { "s": "TVC:USOIL", "d": "Crude Oil" },
+              { "s": "OANDA:NATGAS", "d": "Natural Gas" }
+            ],
+            "title": "Commodities"
+          },
+          {
+            "title": "Indices",
+            "symbols": [
+              { "s": "FOREXCOM:SPX500", "d": "S&P 500" },
+              { "s": "FOREXCOM:NSXUSD", "d": "Nasdaq 100" },
+              { "s": "FOREXCOM:US30", "d": "Dow Jones" },
+              { "s": "TVC:DE40", "d": "DAX 40" }
+            ],
+            "title": "Indices"
+          },
+          {
+            "title": "Crypto",
+            "symbols": [
+              { "s": "BITSTAMP:BTCUSD", "d": "Bitcoin" },
+              { "s": "BITSTAMP:ETHUSD", "d": "Ethereum" },
+              { "s": "BITSTAMP:SOLUSD", "d": "Solana" },
+              { "s": "BITSTAMP:XRPUSD", "d": "Ripple" }
+            ],
+            "title": "Crypto"
+          }
+        ]
+      });
+      marketOverviewRef.current.appendChild(script);
+    }
+
+    // Ticker Tape Widget
+    if (tickerTapeRef.current) {
+      tickerTapeRef.current.innerHTML = '';
+      const script = document.createElement('script');
+      script.src = "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js";
+      script.async = true;
+      script.innerHTML = JSON.stringify({
+        "symbols": [
+          { "proName": "FX:EURUSD", "title": "EUR/USD" },
+          { "proName": "FX:GBPUSD", "title": "GBP/USD" },
+          { "proName": "FX:USDJPY", "title": "USD/JPY" },
+          { "proName": "OANDA:XAUUSD", "title": "Gold" },
+          { "proName": "TVC:DXY", "title": "DXY" },
+          { "proName": "BITSTAMP:BTCUSD", "title": "BTC/USD" },
+          { "proName": "BITSTAMP:ETHUSD", "title": "ETH/USD" },
+          { "proName": "FOREXCOM:SPX500", "title": "S&P 500" }
+        ],
+        "colorTheme": "light",
+        "isTransparent": false,
+        "displayMode": "adaptive",
+        "locale": "id"
+      });
+      tickerTapeRef.current.appendChild(script);
+    }
+
+    // Crypto Overview Widget
+    if (cryptoOverviewRef.current) {
+      cryptoOverviewRef.current.innerHTML = '';
+      const script = document.createElement('script');
+      script.src = "https://s3.tradingview.com/external-embedding/embed-widget-crypto-overview.js";
+      script.async = true;
+      script.innerHTML = JSON.stringify({
+        "colorTheme": "light",
+        "isTransparent": false,
+        "locale": "id",
+        "width": "100%",
+        "height": 450,
+        "symbols": [
+          { "proName": "BITSTAMP:BTCUSD", "title": "Bitcoin" },
+          { "proName": "BITSTAMP:ETHUSD", "title": "Ethereum" },
+          { "proName": "BITSTAMP:SOLUSD", "title": "Solana" },
+          { "proName": "BITSTAMP:XRPUSD", "title": "Ripple" },
+          { "proName": "BITSTAMP:ADAUSD", "title": "Cardano" },
+          { "proName": "BITSTAMP:DOGEUSD", "title": "Dogecoin" }
+        ],
+        "tabs": [
+          {
+            "title": "Top Coins",
+            "symbols": [
+              { "s": "BITSTAMP:BTCUSD", "d": "Bitcoin" },
+              { "s": "BITSTAMP:ETHUSD", "d": "Ethereum" },
+              { "s": "BITSTAMP:SOLUSD", "d": "Solana" }
+            ]
+          },
+          {
+            "title": "Altcoins",
+            "symbols": [
+              { "s": "BITSTAMP:XRPUSD", "d": "Ripple" },
+              { "s": "BITSTAMP:ADAUSD", "d": "Cardano" },
+              { "s": "BITSTAMP:DOGEUSD", "d": "Dogecoin" }
+            ]
+          }
+        ]
+      });
+      cryptoOverviewRef.current.appendChild(script);
+    }
+
+    // Forex Cross Rates Widget
+    if (forexCrossRatesRef.current) {
+      forexCrossRatesRef.current.innerHTML = '';
+      const script = document.createElement('script');
+      script.src = "https://s3.tradingview.com/external-embedding/embed-widget-forex-cross-rates.js";
+      script.async = true;
+      script.innerHTML = JSON.stringify({
+        "width": "100%",
+        "height": 400,
+        "colorTheme": "light",
+        "locale": "id",
+        "currencies": [
+          "EUR",
+          "USD",
+          "JPY",
+          "GBP",
+          "CHF",
+          "AUD",
+          "CAD",
+          "NZD"
+        ],
+        "isTransparent": false
+      });
+      forexCrossRatesRef.current.appendChild(script);
+    }
   }, []);
 
   return (

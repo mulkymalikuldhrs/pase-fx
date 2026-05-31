@@ -112,12 +112,15 @@ const PremiumRedirect = () => {
 
 const App: React.FC = () => {
   const [currentPath, setCurrentPath] = useState(typeof window !== 'undefined' ? (window.location.hash.substring(1) || '/') : '/');
+  const [announcement, setAnnouncement] = useState('');
 
   useEffect(() => {
     const handleHashChange = () => {
       const path = window.location.hash.substring(1) || '/';
       setCurrentPath(path);
       window.scrollTo(0, 0);
+      // Announce page change to screen readers
+      setAnnouncement(`Navigated to ${path === '/' ? 'Home' : path.replace('/', '')} page`);
     };
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
@@ -148,8 +151,23 @@ const App: React.FC = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-slate-900 font-sans text-gray-900 dark:text-slate-100">
+      {/* Skip Link for keyboard navigation */}
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
+      
+      {/* Live region for screen reader announcements */}
+      <div 
+        role="status" 
+        aria-live="polite" 
+        aria-atomic="true" 
+        className="sr-only"
+      >
+        {announcement}
+      </div>
+      
       <Navbar />
-      <main className="flex-grow pt-16">
+      <main id="main-content" className="flex-grow pt-16" tabIndex={-1}>
         {renderPage()}
       </main>
       <Footer />

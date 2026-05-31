@@ -1,18 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BROKERS_DATA, AFFILIATE_LINKS, MRG_LOGO_URL } from '../constants';
 import BrokerCard from '../components/BrokerCard';
 import { AlertTriangle, ExternalLink, Star, Check, X, ChevronDown, ChevronUp } from 'lucide-react';
 import useSEO from '../hooks/useSEO';
+import { BrokerCardSkeleton, LoadingSpinner } from '../components/ui/LoadingSkeleton';
 
 const Brokers: React.FC = () => {
   const [showComparison, setShowComparison] = useState(false);
   const [sortBy, setSortBy] = useState<'rating' | 'name'>('rating');
+  const [isLoading, setIsLoading] = useState(true);
 
   useSEO({
     title: 'Broker Rekomendasi',
     description: 'Daftar broker dan prop firm rekomendasi Pasè FX. Aman, teregulasi, dan kondisi trading terbaik.',
     keywords: 'broker forex, prop firm, traders family, mrg, broker terpercaya'
   });
+
+  // Simulate initial loading
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 500);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Sort brokers by selected criteria
   const sortedBrokers = [...BROKERS_DATA].sort((a, b) => {

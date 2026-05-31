@@ -68,6 +68,43 @@
   --radius-lg: 1rem;
   --radius-xl: 1.5rem;
   --radius-full: 9999px;
+
+  /* ===== TYPOGRAPHY SCALE ===== */
+  /* Font Family */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', Monaco, monospace;
+  
+  /* Font Sizes - Better readability scale */
+  --text-xs: 0.75rem;      /* 12px */
+  --text-sm: 0.875rem;     /* 14px */
+  --text-base: 1rem;       /* 16px */
+  --text-lg: 1.125rem;    /* 18px */
+  --text-xl: 1.25rem;      /* 20px */
+  --text-2xl: 1.5rem;      /* 24px */
+  --text-3xl: 1.875rem;    /* 30px */
+  --text-4xl: 2.25rem;     /* 36px */
+  --text-5xl: 3rem;        /* 48px */
+  --text-6xl: 3.75rem;     /* 60px */
+  
+  /* Line Heights - Improved for readability */
+  --leading-none: 1;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --leading-loose: 2;
+  
+  /* Font Weights */
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  --font-extrabold: 800;
+  
+  /* Letter Spacing */
+  --tracking-tight: -0.025em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.025em;
 }
 
 /* Dark Mode Variables */
@@ -107,14 +144,16 @@ html {
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: var(--font-sans);
   background: var(--bg-primary);
   background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
   color: var(--text-primary);
-  line-height: 1.6;
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
+  letter-spacing: var(--tracking-normal);
 }
 
 /* Custom Scrollbar - Light Theme */
@@ -300,6 +339,125 @@ body {
 }
 
 /* ===== UTILITY CLASSES ===== */
+
+/* ===== TYPOGRAPHY UTILITIES ===== */
+/* Using CSS Variables for consistent typography */
+
+/* Font Families */
+.font-sans { font-family: var(--font-sans); }
+.font-mono { font-family: var(--font-mono); }
+
+/* Font Sizes */
+.text-xs, .type-xs { font-size: var(--text-xs); }
+.text-sm, .type-sm { font-size: var(--text-sm); }
+.text-base, .type-base { font-size: var(--text-base); }
+.text-lg, .type-lg { font-size: var(--text-lg); }
+.text-xl, .type-xl { font-size: var(--text-xl); }
+.text-2xl, .type-2xl { font-size: var(--text-2xl); }
+.text-3xl, .type-3xl { font-size: var(--text-3xl); }
+.text-4xl, .type-4xl { font-size: var(--text-4xl); }
+.text-5xl, .type-5xl { font-size: var(--text-5xl); }
+.text-6xl, .type-6xl { font-size: var(--text-6xl); }
+
+/* Line Heights - Improved readability */
+.leading-none { line-height: var(--leading-none); }
+.leading-tight { line-height: var(--leading-tight); }
+.leading-snug { line-height: var(--leading-snug); }
+.leading-normal { line-height: var(--leading-normal); }
+.leading-relaxed { line-height: var(--leading-relaxed); }
+.leading-loose { line-height: var(--leading-loose); }
+
+/* Font Weights */
+.font-normal { font-weight: var(--font-normal); }
+.font-medium { font-weight: var(--font-medium); }
+.font-semibold { font-weight: var(--font-semibold); }
+.font-bold { font-weight: var(--font-bold); }
+.font-extrabold { font-weight: var(--font-extrabold); }
+
+/* Letter Spacing */
+.tracking-tight { letter-spacing: var(--tracking-tight); }
+.tracking-normal { letter-spacing: var(--tracking-normal); }
+.tracking-wide { letter-spacing: var(--tracking-wide); }
+
+/* Heading Styles - Consistent across pages */
+h1, .h1, .heading-1 {
+  font-size: var(--text-4xl);
+  font-weight: var(--font-bold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-primary);
+}
+
+h2, .h2, .heading-2 {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-bold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-primary);
+}
+
+h3, .h3, .heading-3 {
+  font-size: var(--text-xl);
+  font-weight: var(--font-semibold);
+  line-height: var(--leading-snug);
+  color: var(--text-primary);
+}
+
+h4, .h4, .heading-4 {
+  font-size: var(--text-lg);
+  font-weight: var(--font-semibold);
+  line-height: var(--leading-snug);
+  color: var(--text-primary);
+}
+
+h5, .h5, .heading-5 {
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  line-height: var(--leading-normal);
+  color: var(--text-primary);
+}
+
+h6, .h6, .heading-6 {
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  line-height: var(--leading-normal);
+  color: var(--text-primary);
+}
+
+/* Body Text - Optimized for readability */
+.body-text, p {
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--text-secondary);
+}
+
+/* Small text */
+.small-text, small {
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  color: var(--text-muted);
+}
+
+/* Caption text */
+.caption {
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Link styles */
+a, .link {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: var(--transition-smooth);
+}
+
+a:hover, .link:hover {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}
 
 /* Text Gradients - Dark for White Theme */
 .text-gradient {
@@ -604,6 +762,139 @@ body {
   .no-print {
     display: none !important;
   }
+}
+
+/* ===== ACCESSIBILITY IMPROVEMENTS ===== */
+
+/* Skip Link - Hidden until focused */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  padding: 12px 24px;
+  background: var(--color-primary);
+  color: white;
+  font-weight: 600;
+  border-radius: 0 0 8px 8px;
+  text-decoration: none;
+  transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 3px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 2px;
+}
+
+/* Focus Styles - Enhanced visibility */
+*:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Remove default focus for mouse users */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Button focus styles */
+button:focus-visible,
+[role="button"]:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px rgba(16, 185, 129, 0.3);
+}
+
+/* Link focus styles */
+a:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Input focus styles */
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+  border-color: var(--color-primary);
+}
+
+/* High contrast focus for dark mode */
+[data-theme="dark"] *:focus-visible {
+  outline-color: var(--color-primary-light);
+}
+
+[data-theme="dark"] button:focus-visible,
+[data-theme="dark"] [role="button"]:focus-visible {
+  box-shadow: 0 0 0 6px rgba(52, 211, 153, 0.3);
+}
+
+/* Reduced motion - respect user preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Screen reader only class */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Make sr-only content visible on focus (for skip links etc) */
+.sr-only-focusable:focus,
+.sr-only-focusable:focus-within {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: inherit;
+  margin: inherit;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Live region for dynamic content */
+[aria-live] {
+  /* Ensure live regions are present but visually hidden */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Visible live region for announcements */
+[aria-live="polite"].visible {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: inherit;
+  margin: inherit;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
 }
 
 /* ===== SPECIAL COMPONENTS ===== */
