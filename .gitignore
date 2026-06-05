@@ -24,6 +24,7 @@ build
 .env.development.local
 .env.test.local
 .env.production.local
+.env.production
 
 # Editor directories and files
 .vscode/*
@@ -38,6 +39,12 @@ build
 
 # Deployment
 .vercel
+
+# Next.js (if ever used)
+.next
+
+# Node
+node_modules
 
 # Database
 *.db

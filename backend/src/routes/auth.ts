@@ -9,7 +9,7 @@ import { asyncHandler, AppError } from '../middleware/errorHandler'
 const router = Router()
 
 // Validation middleware
-const validate = (req: any, res: any, next: any) => {
+const validate = (req: Request, _res: Response, next: NextFunction) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() })
@@ -26,7 +26,7 @@ router.post(
     body('name').trim().isLength({ min: 2 }),
     validate
   ],
-  asyncHandler(async (req: any, res: any) => {
+  asyncHandler(async (req: Request, res: Response) => {
     const { email, password, name } = req.body
 
     const existingUser = await prisma.user.findUnique({
@@ -88,7 +88,7 @@ router.post(
     body('password').notEmpty(),
     validate
   ],
-  asyncHandler(async (req: any, res: any) => {
+  asyncHandler(async (req: Request, res: Response) => {
     const { email, password } = req.body
 
     const user = await prisma.user.findUnique({
@@ -137,7 +137,7 @@ router.post(
 router.get(
   '/me',
   authenticate,
-  asyncHandler(async (req: any, res: any) => {
+  asyncHandler(async (req: Request, res: Response) => {
     const user = await prisma.user.findUnique({
       where: { id: req.user!.userId },
       select: {
@@ -161,7 +161,7 @@ router.get(
 )
 
 // Logout
-router.post('/logout', authenticate, asyncHandler(async (req: any, res: any) => {
+router.post('/logout', authenticate, asyncHandler(async (_req: Request, res: Response) => {
   clearAuthCookies(res)
   res.json({ message: 'Logged out successfully' })
 }))

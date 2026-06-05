@@ -15,9 +15,9 @@ import TradeJournal from './pages/TradeJournal';
 import Members from './pages/Members';
 import Methods from './pages/Methods';
 import News from './pages/News';
-// import ErrorBoundary from './components/ui/ErrorBoundary';
 import { AFFILIATE_LINKS } from './constants';
 import { ShieldAlert } from 'lucide-react';
+import { ErrorBoundary } from './components/ui/ErrorBoundary';
 
 // Current Year for Copyright
 const CURRENT_YEAR = new Date().getFullYear();
@@ -98,12 +98,14 @@ const Disclaimer = () => (
 // Redirect component for premium
 const PremiumRedirect = () => {
   React.useEffect(() => {
-    window.location.href = AFFILIATE_LINKS.traderFamilyPremium;
+    window.open(AFFILIATE_LINKS.traderFamilyPremium, '_blank', 'noopener,noreferrer');
+    // Go back to home after redirect
+    window.location.hash = '#/';
   }, []);
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center">
+    <div className="min-h-screen bg-white flex items-center justify-center" role="status">
       <div className="text-center">
-        <div className="animate-spin w-12 h-12 border-4 border-emerald-500 border-t-transparent rounded-full mx-auto mb-4"></div>
+        <div className="animate-spin w-12 h-12 border-4 border-emerald-500 border-t-transparent rounded-full mx-auto mb-4" aria-hidden="true"></div>
         <p className="text-gray-900 font-medium">Redirecting to Trader Family Premium...</p>
       </div>
     </div>
@@ -167,8 +169,10 @@ const App: React.FC = () => {
       </div>
       
       <Navbar />
-      <main id="main-content" className="flex-grow pt-16" tabIndex={-1}>
-        {renderPage()}
+      <main id="main-content" className="flex-grow pt-16" tabIndex={-1} role="main">
+        <ErrorBoundary>
+          {renderPage()}
+        </ErrorBoundary>
       </main>
       <Footer />
       <FloatingButtons />

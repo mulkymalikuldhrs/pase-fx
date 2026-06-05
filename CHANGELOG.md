@@ -6,6 +6,51 @@ Format berdasarkan [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [3.0.0] - 2026-03-05 - SECURITY & TYPE SAFETY OVERHAUL 🔒
+
+### 🔒 Security Fixes
+
+| Issue | Fix |
+|-------|-----|
+| Fallback JWT secrets hardcoded in `jwt.ts` | Removed `'fallback-secret'` and `'fallback-refresh-secret'` — app now throws at startup if `JWT_SECRET` or `JWT_REFRESH_SECRET` env vars are missing |
+| `.env.example` contained `ADMIN_PASSWORD=admin123` | Changed to `ADMIN_PASSWORD=change-me-in-production` with warning comment |
+| `GEMINI_API_KEY` exposed in Vite client bundle via `define` | Removed `process.env.API_KEY` and `process.env.GEMINI_API_KEY` from `vite.config.ts` — API keys must never be bundled into client-side code |
+| `.env.production` missing from `.gitignore` | Added `.env.production` and `.next` and explicit `node_modules` entries to `.gitignore` |
+| `PremiumRedirect` used `window.location.href` (potential reverse tabnabbing) | Changed to `window.open()` with `noopener,noreferrer` |
+
+### 🔧 Type Safety
+
+| Issue | Fix |
+|-------|-----|
+| `req: any, res: any, next: any` in auth route `validate` middleware | Typed as `Request, Response, NextFunction` |
+| `req: any, res: any` in all auth route handlers | Typed as `Request, Response` with proper Express imports |
+| `_req: any, res: any` in logout handler | Typed as `_req: Request, res: Response` |
+
+### 🛡️ Error Handling & Resilience
+
+| Issue | Fix |
+|-------|-----|
+| ErrorBoundary was commented out (`// import ErrorBoundary`) | Created new `ErrorBoundary` component and wrapped the main content in `<ErrorBoundary>` |
+| No `role="main"` on main content area | Added `role="main"` to `<main>` element |
+| Missing `aria-hidden` on decorative spinner in PremiumRedirect | Added `aria-hidden="true"` |
+| Missing `role="status"` on loading state | Added `role="status"` to PremiumRedirect |
+
+### 🧹 Cleanup
+
+| Issue | Fix |
+|-------|-----|
+| Dead file `ErrorBoundary.tsx.bak` | Deleted |
+| Version badge in README says 2.0.0 but package.json says 2.2.0 | README version badge updated to 3.0.0 |
+
+### 📦 Version & Documentation
+
+| Change | Details |
+|--------|---------|
+| Version bump | `2.2.0` → `3.0.0` in `package.json` |
+| CHANGELOG.md | Full v3.0.0 changelog entry |
+
+---
+
 ## [2.2.0] - 2025-05-25 - DATA INTEGRITY FIX 🔒
 
 ### 🔧 Critical Fixes

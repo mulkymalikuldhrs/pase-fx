@@ -1,9 +1,15 @@
 import jwt from 'jsonwebtoken'
 import { Response } from 'express'
 
-const JWT_SECRET = process.env.JWT_SECRET || 'fallback-secret'
+const JWT_SECRET = process.env.JWT_SECRET
+if (!JWT_SECRET) {
+  throw new Error('JWT_SECRET environment variable is required. Set it in .env')
+}
 const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || '7d'
-const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET || 'fallback-refresh-secret'
+const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET
+if (!JWT_REFRESH_SECRET) {
+  throw new Error('JWT_REFRESH_SECRET environment variable is required. Set it in .env')
+}
 const JWT_REFRESH_EXPIRES_IN = process.env.JWT_REFRESH_EXPIRES_IN || '30d'
 
 export interface TokenPayload {
