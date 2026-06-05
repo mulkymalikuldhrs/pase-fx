@@ -20,19 +20,26 @@ export interface RealAssetData {
 }
 
 const CRYPTO_API = 'https://api.coingecko.com/api/v3/simple/price';
-const CRYPTO_IDS = 'bitcoin,ethereum,solana,ripple,solana';
+const CRYPTO_IDS = 'bitcoin,ethereum,solana,ripple';
 
 class RealMarketDataService {
   private cache: RealAssetData[] = [];
   private lastFetch: number = 0;
   private subscribers: Set<(data: RealAssetData[]) => void> = new Set();
   private updateInterval: NodeJS.Timeout | null = null;
+  private started: boolean = false;
 
   constructor() {
-    this.startRealTimeUpdates();
+    // Don't auto-start polling on import - call start() explicitly
   }
 
-  private startRealTimeUpdates() {
+  /**
+   * Start real-time market data updates.
+   * Must be called explicitly to avoid auto-polling on import.
+   */
+  start() {
+    if (this.started) return
+    this.started = true
     // Update every 60 seconds
     this.updateInterval = setInterval(() => {
       this.fetchRealData();
@@ -129,6 +136,10 @@ class RealMarketDataService {
 
   subscribe(callback: (data: RealAssetData[]) => void): () => void {
     this.subscribers.add(callback);
+    // Auto-start when first subscriber attaches
+    if (!this.started) {
+      this.start()
+    }
     // Immediately send current data
     if (this.cache.length > 0) {
       callback(this.cache);
@@ -136,6 +147,10 @@ class RealMarketDataService {
     // Return unsubscribe function
     return () => {
       this.subscribers.delete(callback);
+      // Auto-stop when no subscribers remain
+      if (this.subscribers.size === 0) {
+        this.destroy()
+      }
     };
   }
 
@@ -146,7 +161,9 @@ class RealMarketDataService {
   destroy() {
     if (this.updateInterval) {
       clearInterval(this.updateInterval);
+      this.updateInterval = null;
     }
+    this.started = false
   }
 }
 

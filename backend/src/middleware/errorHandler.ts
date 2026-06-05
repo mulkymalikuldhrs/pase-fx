@@ -33,12 +33,21 @@ export const errorHandler = (
     message = 'Unauthorized'
   }
 
-  console.error(`[Error] ${req.method} ${req.path}:`, err)
+  // Log full error details server-side only
+  if (statusCode >= 500) {
+    console.error(`[Error] ${req.method} ${req.path}:`, err)
+  } else {
+    console.warn(`[Warn] ${req.method} ${req.path}: ${statusCode} - ${message}`)
+  }
 
+  // Never expose internal error details to clients, even in development
+  // Use server logs for debugging instead
+  const isClientError = statusCode < 500
   res.status(statusCode).json({
-    error: statusCode >= 500 ? 'Internal Server Error' : message,
-    message: process.env.NODE_ENV === 'development' ? message : undefined,
-    stack: process.env.NODE_ENV === 'development' ? err.stack : undefined
+    error: isClientError ? message : 'Internal Server Error',
+    ...(process.env.NODE_ENV === 'development' && isClientError && {
+      details: err instanceof AppError ? err.message : undefined
+    })
   })
 }
 

@@ -155,12 +155,31 @@ export const analyzeMarket = async (
 
   try {
     // Try to use Puter.js AI
-    const prompt = `Analyze ${instrument} on ${timeframe} timeframe. Current price: ${currentPrice}. Provide technical analysis with BUY/SELL recommendation, confidence level, entry price, stop loss, take profit levels, risk:reward ratio, and key reasoning points.`
-    
-      await window.puter.ai.chat(prompt, { model: 'gpt-4.1-nano' })
-    
-    // Parse response (this is simplified - real implementation would be more robust)
-    return fallbackAIAnalysis(instrument, currentPrice) // For now, still return fallback
+    const prompt = `Analyze ${instrument} on ${timeframe} timeframe. Current price: ${currentPrice}. Provide technical analysis with BUY/SELL recommendation, confidence level, entry price, stop loss, take profit levels, risk:reward ratio, and key reasoning points.
+
+Respond in JSON format only:
+{"recommendation": "BUY", "confidence": 75, "entryPrice": "1.0850", "stopLoss": "1.0800", "takeProfit": "1.0950", "takeProfit2": "1.1000", "riskReward": "1:2", "analysis": "Brief analysis", "reasoning": ["Reason 1", "Reason 2"]}`
+
+    const response = await window.puter.ai.chat(prompt, { model: 'gpt-4.1-nano' })
+
+    try {
+      const cleaned = typeof response === 'string' ? response.replace(/```json\n?|```\n?/g, '').trim() : String(response)
+      const parsed = JSON.parse(cleaned)
+      return {
+        recommendation: ['BUY', 'SELL', 'NEUTRAL'].includes(parsed.recommendation) ? parsed.recommendation : 'NEUTRAL',
+        confidence: Math.min(100, Math.max(0, Number(parsed.confidence) || 0)),
+        entryPrice: String(parsed.entryPrice || currentPrice.toFixed(instrument.includes('JPY') ? 3 : 5)),
+        stopLoss: String(parsed.stopLoss || ''),
+        takeProfit: String(parsed.takeProfit || ''),
+        takeProfit2: parsed.takeProfit2 ? String(parsed.takeProfit2) : undefined,
+        riskReward: String(parsed.riskReward || 'N/A'),
+        analysis: String(parsed.analysis || ''),
+        reasoning: Array.isArray(parsed.reasoning) ? parsed.reasoning.map(String) : []
+      }
+    } catch {
+      // If JSON parse fails, return fallback
+      return fallbackAIAnalysis(instrument, currentPrice)
+    }
   } catch (error) {
     console.warn('AI analysis failed, using fallback:', error)
     return fallbackAIAnalysis(instrument, currentPrice)
@@ -178,12 +197,29 @@ export const recognizePattern = async (
 
   try {
     // Try to use Puter.js AI
-    const prompt = `Analyze ${symbol} for chart patterns. Identify any technical patterns like Head and Shoulders, Double Top/Bottom, Triangles, Flags, etc.`
-    
-      await window.puter.ai.chat(prompt, { model: 'gpt-4.1-nano' })
-    
-    // Parse response (this is simplified - real implementation would be more robust)
-    return fallbackPatternRecognition(symbol) // For now, still return fallback
+    const prompt = `Analyze ${symbol} for chart patterns. Identify any technical patterns like Head and Shoulders, Double Top/Bottom, Triangles, Flags, etc.
+
+Respond in JSON format only:
+{"pattern": "Double Bottom", "symbol": "${symbol}", "timeframe": "H4", "confidence": 75, "direction": "BULLISH", "description": "Description", "targetPrice": "2950", "invalidationLevel": "2900"}`
+
+    const response = await window.puter.ai.chat(prompt, { model: 'gpt-4.1-nano' })
+
+    try {
+      const cleaned = typeof response === 'string' ? response.replace(/```json\n?|```\n?/g, '').trim() : String(response)
+      const parsed = JSON.parse(cleaned)
+      return {
+        pattern: String(parsed.pattern || 'Unknown'),
+        symbol: String(parsed.symbol || symbol),
+        timeframe: String(parsed.timeframe || 'H1'),
+        confidence: Math.min(100, Math.max(0, Number(parsed.confidence) || 0)),
+        direction: ['BULLISH', 'BEARISH', 'NEUTRAL'].includes(parsed.direction) ? parsed.direction : 'NEUTRAL',
+        description: String(parsed.description || ''),
+        targetPrice: String(parsed.targetPrice || 'N/A'),
+        invalidationLevel: String(parsed.invalidationLevel || 'N/A')
+      }
+    } catch {
+      return fallbackPatternRecognition(symbol)
+    }
   } catch (error) {
     console.warn('Pattern recognition failed, using fallback:', error)
     return fallbackPatternRecognition(symbol)
@@ -199,12 +235,26 @@ export const generateDailyBriefing = async (): Promise<DailyBriefing> => {
 
   try {
     // Try to use Puter.js AI
-    const prompt = `Generate a daily market briefing covering market sentiment, key events, trading opportunities, and risk factors.`
-    
-      await window.puter.ai.chat(prompt, { model: 'gpt-4.1-nano' })
-    
-    // Parse response (this is simplified - real implementation would be more robust)
-    return fallbackDailyBriefing() // For now, still return fallback
+    const prompt = `Generate a daily market briefing covering market sentiment, key events, trading opportunities, and risk factors.
+
+Respond in JSON format only:
+{"marketSentiment": "BULLISH", "keyEvents": ["Event 1", "Event 2", "Event 3"], "opportunities": ["Opp 1", "Opp 2", "Opp 3"], "risks": ["Risk 1", "Risk 2", "Risk 3"], "summary": "Summary paragraph"}`
+
+    const response = await window.puter.ai.chat(prompt, { model: 'gpt-4.1-nano' })
+
+    try {
+      const cleaned = typeof response === 'string' ? response.replace(/```json\n?|```\n?/g, '').trim() : String(response)
+      const parsed = JSON.parse(cleaned)
+      return {
+        marketSentiment: ['BULLISH', 'BEARISH', 'NEUTRAL'].includes(parsed.marketSentiment) ? parsed.marketSentiment : 'NEUTRAL',
+        keyEvents: Array.isArray(parsed.keyEvents) ? parsed.keyEvents.map(String) : [],
+        opportunities: Array.isArray(parsed.opportunities) ? parsed.opportunities.map(String) : [],
+        risks: Array.isArray(parsed.risks) ? parsed.risks.map(String) : [],
+        summary: String(parsed.summary || '')
+      }
+    } catch {
+      return fallbackDailyBriefing()
+    }
   } catch (error) {
     console.warn('Daily briefing failed, using fallback:', error)
     return fallbackDailyBriefing()
@@ -251,12 +301,30 @@ export const generateTradeIdea = async (): Promise<TradeIdea> => {
   }
 
   try {
-    const prompt = `Generate a trade idea for forex or crypto trading. Include symbol (e.g., EUR/USD, XAU/USD, BTC/USD), direction (BUY/SELL), timeframe (M15, H1, H4, D1), setup description, confidence level (65-95%), and key price levels.`
-    
-    await window.puter.ai.chat(prompt, { model: 'gpt-4.1-nano' })
-    
-    // Return fallback for now (API response parsing not implemented)
-    return fallbackTradeIdea()
+    const prompt = `Generate a trade idea for forex or crypto trading. Include symbol (e.g., EUR/USD, XAU/USD, BTC/USD), direction (BUY/SELL), timeframe (M15, H1, H4, D1), setup description, confidence level (65-95%), and key price levels.
+
+Respond in JSON format only:
+{"symbol": "EUR/USD", "direction": "BUY", "timeframe": "H1", "setup": "Bullish Order Block", "confidence": 75, "entryPrice": "1.0850", "stopLoss": "1.0800", "takeProfit": "1.0950", "riskReward": "1:2"}`
+
+    const response = await window.puter.ai.chat(prompt, { model: 'gpt-4.1-nano' })
+
+    try {
+      const cleaned = typeof response === 'string' ? response.replace(/```json\n?|```\n?/g, '').trim() : String(response)
+      const parsed = JSON.parse(cleaned)
+      return {
+        symbol: String(parsed.symbol || 'N/A'),
+        direction: ['BUY', 'SELL'].includes(parsed.direction) ? parsed.direction : 'BUY',
+        timeframe: String(parsed.timeframe || 'N/A'),
+        setup: String(parsed.setup || ''),
+        confidence: Math.min(95, Math.max(65, Number(parsed.confidence) || 70)),
+        entryPrice: parsed.entryPrice ? String(parsed.entryPrice) : undefined,
+        stopLoss: parsed.stopLoss ? String(parsed.stopLoss) : undefined,
+        takeProfit: parsed.takeProfit ? String(parsed.takeProfit) : undefined,
+        riskReward: String(parsed.riskReward || 'N/A')
+      }
+    } catch {
+      return fallbackTradeIdea()
+    }
   } catch (error) {
     console.warn('Trade idea generation failed, using fallback:', error)
     return fallbackTradeIdea()
@@ -271,12 +339,27 @@ export const reviewTrade = async (): Promise<TradeReview> => {
   }
 
   try {
-    const prompt = `Review a forex/crypto trade and provide feedback on entry quality (0-100), exit quality (0-100), risk management (0-100), lessons learned, areas for improvement, and overall score (0-100).`
-    
-    await window.puter.ai.chat(prompt, { model: 'gpt-4.1-nano' })
-    
-    // Return fallback for now (API response parsing not implemented)
-    return fallbackTradeReview()
+    const prompt = `Review a forex/crypto trade and provide feedback on entry quality (0-100), exit quality (0-100), risk management (0-100), lessons learned, areas for improvement, and overall score (0-100).
+
+Respond in JSON format only:
+{"entryQuality": 75, "exitQuality": 80, "riskManagement": 70, "lessons": ["Lesson 1", "Lesson 2"], "improvements": ["Improvement 1"], "overallScore": 75}`
+
+    const response = await window.puter.ai.chat(prompt, { model: 'gpt-4.1-nano' })
+
+    try {
+      const cleaned = typeof response === 'string' ? response.replace(/```json\n?|```\n?/g, '').trim() : String(response)
+      const parsed = JSON.parse(cleaned)
+      return {
+        entryQuality: Math.min(100, Math.max(0, Number(parsed.entryQuality) || 0)),
+        exitQuality: Math.min(100, Math.max(0, Number(parsed.exitQuality) || 0)),
+        riskManagement: Math.min(100, Math.max(0, Number(parsed.riskManagement) || 0)),
+        lessons: Array.isArray(parsed.lessons) ? parsed.lessons.map(String) : [],
+        improvements: Array.isArray(parsed.improvements) ? parsed.improvements.map(String) : [],
+        overallScore: Math.min(100, Math.max(0, Number(parsed.overallScore) || 0))
+      }
+    } catch {
+      return fallbackTradeReview()
+    }
   } catch (error) {
     console.warn('Trade review failed, using fallback:', error)
     return fallbackTradeReview()

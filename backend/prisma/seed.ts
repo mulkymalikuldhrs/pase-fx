@@ -1,11 +1,20 @@
 import { prisma } from '../src/utils/prisma'
 import { hashPassword } from '../src/utils/password'
 
+// ⚠️ SECURITY WARNING: These are DEMO-ONLY credentials for development/seeding.
+// NEVER use these in production! Always use strong, unique passwords
+// and set them via environment variables (ADMIN_PASSWORD, etc.).
+const DEMO_PASSWORDS = {
+  admin: 'admin123',
+  analyst: 'analyst123',
+  user: 'user123'
+} as const
+
 async function main() {
   console.log('🌱 Starting database seed...')
 
   // Create admin user
-  const adminPassword = await hashPassword('admin123')
+  const adminPassword = await hashPassword(DEMO_PASSWORDS.admin)
   const admin = await prisma.user.upsert({
     where: { email: 'admin@pasefx.com' },
     update: {},
@@ -20,7 +29,7 @@ async function main() {
   console.log('✅ Admin user created:', admin.email)
 
   // Create analyst user
-  const analystPassword = await hashPassword('analyst123')
+  const analystPassword = await hashPassword(DEMO_PASSWORDS.analyst)
   const analyst = await prisma.user.upsert({
     where: { email: 'analyst@pasefx.com' },
     update: {},
@@ -35,7 +44,7 @@ async function main() {
   console.log('✅ Analyst user created:', analyst.email)
 
   // Create regular user
-  const userPassword = await hashPassword('user123')
+  const userPassword = await hashPassword(DEMO_PASSWORDS.user)
   const user = await prisma.user.upsert({
     where: { email: 'user@pasefx.com' },
     update: {},

@@ -216,7 +216,7 @@ export const BROKERS_DATA: Broker[] = [
     name: "Exness",
     type: "International",
     link: AFFILIATE_LINKS.exness,
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/2560px-Flag_of_the_United_States.svg.png",
+    logo: "/logo-64.png",
     rating: 4.6,
     regulation: "FSA/CySEC",
     features: ["Instant WD", "Spread Tipis", "Unlimited Leverage", "Zero Spread Account"]
@@ -226,7 +226,7 @@ export const BROKERS_DATA: Broker[] = [
     name: "FundingPips",
     type: "Prop Firm",
     link: AFFILIATE_LINKS.fundingPips,
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/2560px-Flag_of_the_United_States.svg.png",
+    logo: "/logo-64.png",
     rating: 4.7,
     regulation: "Prop Firm",
     features: ["Challenge $5k - $100k", "Payout Cepat", "Rules Fair", "No Time Limit"],
@@ -237,7 +237,7 @@ export const BROKERS_DATA: Broker[] = [
     name: "Valetax",
     type: "International",
     link: AFFILIATE_LINKS.valetax,
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/2560px-Flag_of_the_United_States.svg.png",
+    logo: "/logo-64.png",
     rating: 4.5,
     regulation: "FSA",
     features: ["Low Spread", "Fast Execution", "MT5 Support", "Micro Account"]
@@ -247,7 +247,7 @@ export const BROKERS_DATA: Broker[] = [
     name: "The 5%ers",
     type: "Prop Firm",
     link: AFFILIATE_LINKS.the5ers,
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/2560px-Flag_of_the_United_States.svg.png",
+    logo: "/logo-64.png",
     rating: 4.7,
     regulation: "Prop Firm",
     features: ["Instant Funding", "No Challenge", "Growth Plan", "Real Account"]
@@ -257,7 +257,7 @@ export const BROKERS_DATA: Broker[] = [
     name: "Didimax",
     type: "Local",
     link: AFFILIATE_LINKS.didimax,
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Flag_of_Indonesia.svg/2560px-Flag_of_Indonesia.svg.png",
+    logo: "/logo-64.png",
     rating: 4.4,
     regulation: "BAPPEBTI",
     features: ["Deposit Bank Lokal", "MT4/MT5", "Edukasi Gratis", "Komunitas Aktif"]
@@ -267,7 +267,7 @@ export const BROKERS_DATA: Broker[] = [
     name: "HFM (HotForex)",
     type: "International",
     link: AFFILIATE_LINKS.hfm,
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/2560px-Flag_of_the_United_States.svg.png",
+    logo: "/logo-64.png",
     rating: 4.5,
     regulation: "FCA/CySEC",
     features: ["Multi-Asset", "Copy Trading", "Bonus Programs", "Research Tools"]
@@ -277,7 +277,7 @@ export const BROKERS_DATA: Broker[] = [
     name: "FBS",
     type: "International",
     link: AFFILIATE_LINKS.fbs,
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/2560px-Flag_of_the_United_States.svg.png",
+    logo: "/logo-64.png",
     rating: 4.3,
     regulation: "CySEC/IFSC",
     features: ["Cent Account", "Bonus 100%", "Loyalty Program", "24/7 Support"]
@@ -287,7 +287,7 @@ export const BROKERS_DATA: Broker[] = [
     name: "Audacity Capital",
     type: "Prop Firm",
     link: AFFILIATE_LINKS.audacity,
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/2560px-Flag_of_the_United_States.svg.png",
+    logo: "/logo-64.png",
     rating: 4.6,
     regulation: "Prop Firm",
     features: ["Challenge Prop Firm", "Payout Mingguan", "Rules Flexible", "Up to $200k Funding"],
@@ -348,9 +348,9 @@ export const ANALYTICS_CONFIG = {
 // PESAN STATUS WEBSITE
 // =============================================================================
 export const WEBSITE_STATUS = {
-  version: "2.0.0",
+  version: "3.0.0",
   status: "PRODUCTION",
-  lastUpdated: "2026-02-16",
+  lastUpdated: "2026-03-04",
   message: "Pasè FX Trader Hub - Platform trading komunitas dengan live market data, trading tools, AI assistant, dan edukasi profesional.",
   whatsappFounder: WHATSAPP_CONTACTS.mulky.phone,
   telegramGroup: SOCIAL_LINKS.telegram

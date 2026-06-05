@@ -46,8 +46,8 @@
     "vite": "^6.2.0",
     "vitest": "^4.0.18"
   },
-  "description": "<div align=\"center\">",
-  "main": "eslint.config.js",
+  "description": "Professional Forex Trading Community Platform - Live market data, trading signals, AI assistant, and education for Indonesian traders",
+  "main": "index.tsx",
   "directories": {
     "doc": "docs"
   },
@@ -56,8 +56,8 @@
     "url": "git+https://github.com/mulkymalikuldhrs/pase-fx.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Mulky Malikul Dhaher",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/mulkymalikuldhrs/pase-fx/issues"
   },

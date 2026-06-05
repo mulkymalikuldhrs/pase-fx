@@ -164,14 +164,44 @@ router.patch(
 router.patch(
   '/:id',
   authenticate,
-  [param('id').isUUID(), validate],
+  [
+    param('id').isUUID(),
+    body('symbol').optional().trim().notEmpty(),
+    body('type').optional().trim().notEmpty(),
+    body('entryPrice').optional().isDecimal(),
+    body('exitPrice').optional().isDecimal(),
+    body('lotSize').optional().isDecimal(),
+    body('stopLoss').optional().isDecimal(),
+    body('takeProfit').optional().isDecimal(),
+    body('strategy').optional().trim(),
+    body('notes').optional().trim(),
+    body('emotions').optional().trim(),
+    body('lessons').optional().trim(),
+    validate
+  ],
   asyncHandler(async (req: Request, res: Response) => {
+    const { symbol, type, entryPrice, exitPrice, lotSize, stopLoss, takeProfit, strategy, notes, emotions, lessons } = req.body
+    
+    // Only allow updating specific fields (prevent mass assignment)
+    const updateData: Record<string, unknown> = {}
+    if (symbol !== undefined) updateData.symbol = symbol
+    if (type !== undefined) updateData.type = type
+    if (entryPrice !== undefined) updateData.entryPrice = entryPrice
+    if (exitPrice !== undefined) updateData.exitPrice = exitPrice
+    if (lotSize !== undefined) updateData.lotSize = lotSize
+    if (stopLoss !== undefined) updateData.stopLoss = stopLoss
+    if (takeProfit !== undefined) updateData.takeProfit = takeProfit
+    if (strategy !== undefined) updateData.strategy = strategy
+    if (notes !== undefined) updateData.notes = notes
+    if (emotions !== undefined) updateData.emotions = emotions
+    if (lessons !== undefined) updateData.lessons = lessons
+
     const entry = await prisma.tradeJournal.updateMany({
       where: {
         id: req.params.id,
         userId: req.user!.userId
       },
-      data: req.body
+      data: updateData
     })
 
     if (entry.count === 0) {
