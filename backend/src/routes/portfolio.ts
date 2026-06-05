@@ -1,12 +1,12 @@
-import { Router } from 'express'
-import { body, param, validationResult } from 'express-validator'
+import { Router, Request, Response, NextFunction } from 'express'
+import { body, validationResult } from 'express-validator'
 import { prisma } from '../utils/prisma'
 import { authenticate } from '../middleware/auth'
 import { asyncHandler, AppError } from '../middleware/errorHandler'
 
 const router = Router()
 
-const validate = (req: any, res: any, next: any) => {
+const validate = (req: Request, res: Response, next: NextFunction) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() })
@@ -18,7 +18,7 @@ const validate = (req: any, res: any, next: any) => {
 router.get(
   '/',
   authenticate,
-  asyncHandler(async (req: any, res: any) => {
+  asyncHandler(async (req: Request, res: Response) => {
     const portfolio = await prisma.portfolio.findUnique({
       where: { userId: req.user!.userId }
     })
@@ -39,7 +39,7 @@ router.patch(
     body('balance').isDecimal(),
     validate
   ],
-  asyncHandler(async (req: any, res: any) => {
+  asyncHandler(async (req: Request, res: Response) => {
     const { balance } = req.body
 
     const portfolio = await prisma.portfolio.update({
@@ -66,7 +66,7 @@ router.post(
     body('pips').isDecimal(),
     validate
   ],
-  asyncHandler(async (req: any, res: any) => {
+  asyncHandler(async (req: Request, res: Response) => {
     const { profitLoss, pips } = req.body
     const profitLossDecimal = parseFloat(profitLoss)
 
@@ -113,7 +113,7 @@ router.post(
 router.get(
   '/stats',
   authenticate,
-  asyncHandler(async (req: any, res: any) => {
+  asyncHandler(async (req: Request, res: Response) => {
     const portfolio = await prisma.portfolio.findUnique({
       where: { userId: req.user!.userId }
     })

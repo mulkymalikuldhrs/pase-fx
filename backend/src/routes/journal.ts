@@ -1,12 +1,13 @@
-import { Router } from 'express'
+import { Router, Request, Response, NextFunction } from 'express'
 import { body, param, query, validationResult } from 'express-validator'
 import { prisma } from '../utils/prisma'
 import { authenticate } from '../middleware/auth'
 import { asyncHandler, AppError } from '../middleware/errorHandler'
+import { Prisma } from '@prisma/client'
 
 const router = Router()
 
-const validate = (req: any, res: any, next: any) => {
+const validate = (req: Request, res: Response, next: NextFunction) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() })
@@ -26,10 +27,11 @@ router.get(
     query('limit').optional().isInt({ min: 1, max: 100 }),
     validate
   ],
-  asyncHandler(async (req: any, res: any) => {
-    const { status, symbol, strategy, page = 1, limit = 20 } = req.query
+  asyncHandler(async (req: Request, res: Response) => {
+    const { status, symbol, strategy, page = '1', limit = '20' } = req.query as Record<string, string>
+    const userId = req.user!.userId
 
-    const where: any = { userId: req.user!.userId }
+    const where: Prisma.TradeJournalWhereInput = { userId }
     if (status) where.status = status
     if (symbol) where.symbol = { contains: symbol, mode: 'insensitive' }
     if (strategy) where.strategy = { contains: strategy, mode: 'insensitive' }
@@ -61,7 +63,7 @@ router.get(
   '/:id',
   authenticate,
   [param('id').isUUID(), validate],
-  asyncHandler(async (req: any, res: any) => {
+  asyncHandler(async (req: Request, res: Response) => {
     const entry = await prisma.tradeJournal.findFirst({
       where: {
         id: req.params.id,
@@ -95,7 +97,7 @@ router.post(
     body('screenshots').optional().isArray(),
     validate
   ],
-  asyncHandler(async (req: any, res: any) => {
+  asyncHandler(async (req: Request, res: Response) => {
     const entry = await prisma.tradeJournal.create({
       data: {
         ...req.body,
@@ -124,7 +126,7 @@ router.patch(
     body('lessons').optional().trim(),
     validate
   ],
-  asyncHandler(async (req: any, res: any) => {
+  asyncHandler(async (req: Request, res: Response) => {
     const { exitDate, exitPrice, profitLoss, pips, lessons } = req.body
 
     const entry = await prisma.tradeJournal.updateMany({
@@ -163,7 +165,7 @@ router.patch(
   '/:id',
   authenticate,
   [param('id').isUUID(), validate],
-  asyncHandler(async (req: any, res: any) => {
+  asyncHandler(async (req: Request, res: Response) => {
     const entry = await prisma.tradeJournal.updateMany({
       where: {
         id: req.params.id,
@@ -192,7 +194,7 @@ router.delete(
   '/:id',
   authenticate,
   [param('id').isUUID(), validate],
-  asyncHandler(async (req: any, res: any) => {
+  asyncHandler(async (req: Request, res: Response) => {
     const entry = await prisma.tradeJournal.deleteMany({
       where: {
         id: req.params.id,
@@ -212,7 +214,7 @@ router.delete(
 router.get(
   '/stats/overview',
   authenticate,
-  asyncHandler(async (req: any, res: any) => {
+  asyncHandler(async (req: Request, res: Response) => {
     const entries = await prisma.tradeJournal.findMany({
       where: { userId: req.user!.userId }
     })

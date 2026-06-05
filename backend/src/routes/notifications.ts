@@ -1,12 +1,13 @@
-import { Router } from 'express'
+import { Router, Request, Response, NextFunction } from 'express'
 import { body, param, query, validationResult } from 'express-validator'
 import { prisma } from '../utils/prisma'
 import { authenticate } from '../middleware/auth'
 import { asyncHandler, AppError } from '../middleware/errorHandler'
+import { Prisma } from '@prisma/client'
 
 const router = Router()
 
-const validate = (req: any, res: any, next: any) => {
+const validate = (req: Request, res: Response, next: NextFunction) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() })
@@ -24,10 +25,11 @@ router.get(
     query('limit').optional().isInt({ min: 1, max: 50 }),
     validate
   ],
-  asyncHandler(async (req: any, res: any) => {
-    const { unread, page = 1, limit = 20 } = req.query
+  asyncHandler(async (req: Request, res: Response) => {
+    const { unread, page = '1', limit = '20' } = req.query as Record<string, string>
+    const userId = req.user!.userId
 
-    const where: any = { userId: req.user!.userId }
+    const where: Prisma.NotificationWhereInput = { userId }
     if (unread === 'true') where.read = false
 
     const [notifications, total, unreadCount] = await Promise.all([
@@ -39,7 +41,7 @@ router.get(
       }),
       prisma.notification.count({ where }),
       prisma.notification.count({
-        where: { userId: req.user!.userId, read: false }
+        where: { userId, read: false }
       })
     ])
 
@@ -61,7 +63,7 @@ router.patch(
   '/:id/read',
   authenticate,
   [param('id').isUUID(), validate],
-  asyncHandler(async (req: any, res: any) => {
+  asyncHandler(async (req: Request, res: Response) => {
     const notification = await prisma.notification.updateMany({
       where: {
         id: req.params.id,
@@ -82,7 +84,7 @@ router.patch(
 router.post(
   '/read-all',
   authenticate,
-  asyncHandler(async (req: any, res: any) => {
+  asyncHandler(async (req: Request, res: Response) => {
     await prisma.notification.updateMany({
       where: {
         userId: req.user!.userId,
@@ -100,7 +102,7 @@ router.delete(
   '/:id',
   authenticate,
   [param('id').isUUID(), validate],
-  asyncHandler(async (req: any, res: any) => {
+  asyncHandler(async (req: Request, res: Response) => {
     const notification = await prisma.notification.deleteMany({
       where: {
         id: req.params.id,
@@ -117,13 +119,15 @@ router.delete(
 )
 
 // Create notification (internal use)
-export const createNotification = async (data: {
+export interface NotificationData {
   userId: string
   type: string
   title: string
   message: string
-  data?: any
-}) => {
+  data?: Record<string, unknown>
+}
+
+export const createNotification = async (data: NotificationData) => {
   return prisma.notification.create({ data })
 }
 

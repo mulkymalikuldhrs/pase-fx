@@ -1,13 +1,13 @@
-import { Router } from 'express'
-import { body, query, param, validationResult } from 'express-validator'
+import { Router, Request, Response, NextFunction } from 'express'
+import { body, param, query, validationResult } from 'express-validator'
 import { prisma } from '../utils/prisma'
 import { authenticate, requireRole } from '../middleware/auth'
 import { asyncHandler, AppError } from '../middleware/errorHandler'
-import { SignalType, SignalStatus, SignalResult } from '@prisma/client'
+import { Prisma } from '@prisma/client'
 
 const router = Router()
 
-const validate = (req: any, res: any, next: any) => {
+const validate = (req: Request, res: Response, next: NextFunction) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() })
@@ -26,11 +26,11 @@ router.get(
     query('limit').optional().isInt({ min: 1, max: 100 }),
     validate
   ],
-  asyncHandler(async (req: any, res: any) => {
-    const { status, type, symbol, page = 1, limit = 20 } = req.query
+  asyncHandler(async (req: Request, res: Response) => {
+    const { status, type, symbol, page = '1', limit = '20' } = req.query as Record<string, string>
 
-    const where: any = {}
-    if (status) where.status = status
+    const where: Prisma.SignalWhereInput = {}
+    if (status) where.status = status as Prisma.EnumSignalStatusFilter['equals']
     if (type) where.type = type
     if (symbol) where.symbol = { contains: symbol, mode: 'insensitive' }
 
@@ -74,7 +74,7 @@ router.get(
 router.get(
   '/:id',
   [param('id').isUUID(), validate],
-  asyncHandler(async (req: any, res: any) => {
+  asyncHandler(async (req: Request, res: Response) => {
     const signal = await prisma.signal.findUnique({
       where: { id: req.params.id },
       include: {
@@ -124,7 +124,7 @@ router.post(
     body('analysis').trim().notEmpty(),
     validate
   ],
-  asyncHandler(async (req: any, res: any) => {
+  asyncHandler(async (req: Request, res: Response) => {
     const signal = await prisma.signal.create({
       data: {
         ...req.body,
@@ -161,14 +161,14 @@ router.patch(
     body('profitPips').optional().isDecimal(),
     validate
   ],
-  asyncHandler(async (req: any, res: any) => {
+  asyncHandler(async (req: Request, res: Response) => {
     const { result, closedPrice, profitPips } = req.body
 
     const signal = await prisma.signal.update({
       where: { id: req.params.id },
       data: {
         status: 'CLOSED',
-        result: result as SignalResult,
+        result,
         closedPrice,
         profitPips
       },
@@ -195,7 +195,7 @@ router.post(
   '/:id/like',
   authenticate,
   [param('id').isUUID(), validate],
-  asyncHandler(async (req: any, res: any) => {
+  asyncHandler(async (req: Request, res: Response) => {
     const existingLike = await prisma.signalLike.findUnique({
       where: {
         signalId_userId: {

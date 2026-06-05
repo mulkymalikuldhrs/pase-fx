@@ -53,3 +53,11 @@ node_modules
 # Cache
 .cache
 .tsbuildinfo
+
+# Python
+__pycache__/
+venv/
+*.pyc
+
+# Environment example (safe to keep)
+!.env.example

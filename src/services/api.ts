@@ -166,10 +166,10 @@ export const marketApi = {
     apiRequest<{ crypto: CryptoData[] }>(`/market/crypto${ids ? `?ids=${ids}` : ''}`),
   
   getCryptoById: (id: string) =>
-    apiRequest<{ id: string; symbol: string; name: string; description: string; image: string; marketData: any; lastUpdated: string }>(`/market/crypto/${id}`),
+    apiRequest<{ id: string; symbol: string; name: string; description: string; image: string; marketData: Record<string, unknown>; lastUpdated: string }>(`/market/crypto/${id}`),
   
   getOverview: () =>
-    apiRequest<{ global: any; trending: any[] }>('/market/overview')
+    apiRequest<{ global: Record<string, unknown>; trending: Array<{ id: string; name: string; symbol: string; thumb: string; marketCapRank: number }> }>('/market/overview')
 }
 
 // Notifications API
@@ -366,7 +366,7 @@ export interface Notification {
   type: string
   title: string
   message: string
-  data?: any
+  data?: Record<string, unknown>
   read: boolean
   createdAt: string
 }

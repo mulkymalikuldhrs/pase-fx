@@ -1,11 +1,11 @@
-import { Router } from 'express'
+import { Router, Request, Response, NextFunction } from 'express'
 import { query, validationResult } from 'express-validator'
 import axios from 'axios'
 import { asyncHandler, AppError } from '../middleware/errorHandler'
 
 const router = Router()
 
-const validate = (req: any, res: any, next: any) => {
+const validate = (req: Request, res: Response, next: NextFunction) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() })
@@ -13,10 +13,33 @@ const validate = (req: any, res: any, next: any) => {
   next()
 }
 
+interface CoinGeckoMarket {
+  id: string
+  symbol: string
+  name: string
+  current_price: number
+  price_change_percentage_24h: number
+  market_cap: number
+  total_volume: number
+  high_24h: number
+  low_24h: number
+  last_updated: string
+}
+
+interface TrendingCoin {
+  item: {
+    id: string
+    name: string
+    symbol: string
+    thumb: string
+    market_cap_rank: number
+  }
+}
+
 // Forex rates from ExchangeRate-API
 router.get(
   '/forex',
-  asyncHandler(async (req: any, res: any) => {
+  asyncHandler(async (_req: Request, res: Response) => {
     const API_KEY = process.env.EXCHANGERATE_API_KEY
     
     if (!API_KEY) {
@@ -58,19 +81,20 @@ router.get(
     query('vs_currency').optional().trim().default('usd'),
     validate
   ],
-  asyncHandler(async (req: any, res: any) => {
-    const { ids, vs_currency = 'usd' } = req.query
+  asyncHandler(async (req: Request, res: Response) => {
+    const query = req.query as Record<string, string>
+    const { ids, vs_currency = 'usd' } = query
     const API_KEY = process.env.COINGECKO_API_KEY
     
     const defaultIds = 'bitcoin,ethereum,solana,ripple,cardano,polkadot,chainlink,polygon'
     const coinIds = ids || defaultIds
 
-    const headers: any = {}
+    const headers: Record<string, string> = {}
     if (API_KEY) {
       headers['x-cg-api-key'] = API_KEY
     }
 
-    const response = await axios.get(
+    const response = await axios.get<CoinGeckoMarket[]>(
       'https://api.coingecko.com/api/v3/coins/markets',
       {
         params: {
@@ -85,7 +109,7 @@ router.get(
       }
     )
 
-    const crypto = response.data.map((coin: any) => ({
+    const crypto = response.data.map((coin) => ({
       id: coin.id,
       symbol: coin.symbol.toUpperCase(),
       name: coin.name,
@@ -105,11 +129,11 @@ router.get(
 // Get specific coin data
 router.get(
   '/crypto/:id',
-  asyncHandler(async (req: any, res: any) => {
+  asyncHandler(async (req: Request, res: Response) => {
     const { id } = req.params
     const API_KEY = process.env.COINGECKO_API_KEY
     
-    const headers: any = {}
+    const headers: Record<string, string> = {}
     if (API_KEY) {
       headers['x-cg-api-key'] = API_KEY
     }
@@ -156,21 +180,21 @@ router.get(
 // Market overview
 router.get(
   '/overview',
-  asyncHandler(async (req: any, res: any) => {
+  asyncHandler(async (_req: Request, res: Response) => {
     const API_KEY = process.env.COINGECKO_API_KEY
     
-    const headers: any = {}
+    const headers: Record<string, string> = {}
     if (API_KEY) {
       headers['x-cg-api-key'] = API_KEY
     }
 
     const [globalResponse, trendingResponse] = await Promise.all([
       axios.get('https://api.coingecko.com/api/v3/global', { headers, timeout: 10000 }),
-      axios.get('https://api.coingecko.com/api/v3/search/trending', { headers, timeout: 10000 })
+      axios.get<{ coins: TrendingCoin[] }>('https://api.coingecko.com/api/v3/search/trending', { headers, timeout: 10000 })
     ])
 
     const globalData = globalResponse.data.data
-    const trending = trendingResponse.data.coins.map((item: any) => ({
+    const trending = trendingResponse.data.coins.map((item) => ({
       id: item.item.id,
       name: item.item.name,
       symbol: item.item.symbol,

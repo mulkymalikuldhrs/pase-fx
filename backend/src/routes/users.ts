@@ -1,4 +1,4 @@
-import { Router } from 'express'
+import { Router, Request, Response, NextFunction } from 'express'
 import { body, param, validationResult } from 'express-validator'
 import { prisma } from '../utils/prisma'
 import { authenticate, requireRole } from '../middleware/auth'
@@ -6,7 +6,7 @@ import { asyncHandler, AppError } from '../middleware/errorHandler'
 
 const router = Router()
 
-const validate = (req: any, res: any, next: any) => {
+const validate = (req: Request, res: Response, next: NextFunction) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() })
@@ -19,7 +19,7 @@ router.get(
   '/',
   authenticate,
   requireRole('ADMIN', 'MODERATOR'),
-  asyncHandler(async (req: any, res: any) => {
+  asyncHandler(async (_req: Request, res: Response) => {
     const users = await prisma.user.findMany({
       select: {
         id: true,
@@ -48,7 +48,7 @@ router.get(
   '/:id',
   authenticate,
   [param('id').isUUID(), validate],
-  asyncHandler(async (req: any, res: any) => {
+  asyncHandler(async (req: Request, res: Response) => {
     const user = await prisma.user.findUnique({
       where: { id: req.params.id },
       select: {
@@ -82,7 +82,7 @@ router.patch(
   '/:id',
   authenticate,
   [param('id').isUUID(), validate],
-  asyncHandler(async (req: any, res: any) => {
+  asyncHandler(async (req: Request, res: Response) => {
     // Only allow users to update their own profile (unless admin)
     if (req.user!.userId !== req.params.id && req.user!.role !== 'ADMIN') {
       throw new AppError('Unauthorized to update this profile', 403)
@@ -124,7 +124,7 @@ router.patch(
     body('role').isIn(['USER', 'ADMIN', 'MODERATOR', 'ANALYST']),
     validate
   ],
-  asyncHandler(async (req: any, res: any) => {
+  asyncHandler(async (req: Request, res: Response) => {
     const user = await prisma.user.update({
       where: { id: req.params.id },
       data: { role: req.body.role },
@@ -153,7 +153,7 @@ router.patch(
     body('status').isIn(['ACTIVE', 'INACTIVE', 'SUSPENDED']),
     validate
   ],
-  asyncHandler(async (req: any, res: any) => {
+  asyncHandler(async (req: Request, res: Response) => {
     const user = await prisma.user.update({
       where: { id: req.params.id },
       data: { status: req.body.status },
