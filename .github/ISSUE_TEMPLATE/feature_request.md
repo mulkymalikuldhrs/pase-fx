@@ -1,41 +1,22 @@
 ---
 name: Feature Request
-about: Suggest a feature for this project
-title: '[FEATURE] '
+about: Suggest a feature or enhancement
+title: 'feat: '
 labels: enhancement
 assignees: ''
 ---
 
-## 💡 Feature Description
+## Problem Statement
+What problem does this feature solve? What are you trying to accomplish?
 
-A clear and concise description of the feature you'd like to see.
+## Proposed Solution
+How would you like this feature to work?
 
-## 🎯 Problem Statement
+## Alternatives Considered
+What other approaches have you considered?
 
-Is your feature request related to a problem? Please describe.
-Example: I'm always frustrated when [...]
+## Additional Context
+Any screenshots, examples from other projects, or links that help explain your idea.
 
-## 💭 Proposed Solution
-
-A clear and concise description of what you want to happen.
-
-## 🔄 Alternatives Considered
-
-A clear and concise description of any alternative solutions or features you've considered.
-
-## 📊 Use Cases
-
-Describe specific use cases for this feature:
-
-1. Use case 1: ...
-2. Use case 2: ...
-
-## 📝 Additional Context
-
-Add any other context, screenshots, or mockups about the feature request here.
-
----
-
-> **Contact:** Mulky Malikul Dhaher — [mulkymalikuldhaher@email.com](mailto:mulkymalikuldhaher@email.com)
->
-> **Disclaimer:** This project is for Education Purpose only. Risiko apapun tidak kita tanggung. (We are not responsible for any risks or damages.)
+## Would you be willing to implement this?
+[ ] Yes, I'd like to submit a PR for this feature
