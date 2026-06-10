@@ -1,47 +1,34 @@
 ---
 name: Bug Report
 about: Report a bug to help us improve
-title: '[BUG] '
+title: 'bug: '
 labels: bug
 assignees: ''
 ---
 
-## 🐛 Bug Description
+## Bug Description
+A clear description of what the bug is.
 
-A clear and concise description of what the bug is.
-
-## 📋 Steps to Reproduce
-
+## Steps to Reproduce
 1. Go to '...'
 2. Click on '...'
 3. Scroll down to '...'
 4. See error
 
-## ✅ Expected Behavior
+## Expected Behavior
+What you expected to happen.
 
-A clear and concise description of what you expected to happen.
+## Actual Behavior
+What actually happened.
 
-## ❌ Actual Behavior
+## Environment
+- OS: [e.g., macOS 14, Ubuntu 22.04, Windows 11]
+- Node.js/Python version: [e.g., 20.11.0 / 3.12]
+- Browser: [e.g., Chrome 121]
+- Project version: [e.g., v3.0.0]
 
-A clear and concise description of what actually happened.
+## Screenshots / Logs
+If applicable, add screenshots or error logs.
 
-## 📸 Screenshots
-
-If applicable, add screenshots to help explain your problem.
-
-## 💻 Environment
-
-- OS: [e.g. Windows 11, macOS Sonoma]
-- Browser: [e.g. Chrome 120, Firefox 121]
-- Node.js Version: [e.g. 20.x]
-- Project Version: [e.g. 2.0.0]
-
-## 📝 Additional Context
-
-Add any other context about the problem here.
-
----
-
-> **Contact:** Mulky Malikul Dhaher — [mulkymalikuldhaher@email.com](mailto:mulkymalikuldhaher@email.com)
->
-> **Disclaimer:** This project is for Education Purpose only. Risiko apapun tidak kita tanggung. (We are not responsible for any risks or damages.)
+## Additional Context
+Any other context about the problem.
