@@ -1,208 +1,144 @@
+<!-- BANNER -->
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:0a1f0a,50:0d3a0d,100:145214&fontColor=22c55e&descColor=fbbf24&height=220&section=header&text=Pase-FX&fontSize=70&desc=Forex%20Trading%20Community&animation=fadeIn" />
+
+<!-- TYPING SVG -->
+<div align="center">
+  <a href="https://git.io/typing-svg">
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=22C55E&center=true&vCenter=true&width=600&lines=Forex+Community+%26+Education;AI-Enhanced+Market+Insights;Next.js+%2B+TypeScript;Insights+Not+Guaranteed+Signals" alt="Typing SVG" />
+  </a>
+</div>
+
+<br/>
+
+<!-- BADGES -->
 <div align="center">
 
-<a href="https://pase-fx.vercel.app">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=40&pause=1000&color=2E9F58&center=true&vCenter=true&multiline=true&repeat=true&width=600&height=100&lines=Pase+FX+Trader+Hub" alt="Typing SVG" />
-</a>
-
-### 📈 Professional Forex Trading Community Platform
-
-[![Version](https://img.shields.io/badge/version-3.0.0-blue?style=for-the-badge)](https://github.com/mulkymalikuldhrs/pase-fx)
-[![Language](https://img.shields.io/badge/TypeScript-5.8-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
-[![Framework](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react)](https://react.dev/)
-[![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)](./LICENSE)
-[![Stars](https://img.shields.io/github/stars/mulkymalikuldhrs/pase-fx?style=for-the-badge&logo=github)](https://github.com/mulkymalikuldhrs/pase-fx/stargazers)
-
-📱 **Telegram**: [@pasefx](https://t.me/pasefx) | 💬 **WhatsApp**: [Join Group](https://chat.whatsapp.com/EqEhHNB1tuaCyQy0bVyOnZ)
+[![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](./LICENSE)
 
 </div>
 
 ---
 
-## 🌐 Language / Bahasa / 语言
+## Overview
 
-- 🇬🇧 [English](#-english) | 🇮🇩 [Bahasa Indonesia](#-bahasa-indonesia) | 🇨🇳 [中文](#-中文)
+**Pase-FX** is a forex trading community platform that combines educational resources, community discussion, and AI-enhanced market analysis. Built with Next.js and TypeScript, it provides traders of all levels a space to learn, share insights, and access AI-generated market commentary — while maintaining a clear distinction between educational content and trading signals.
 
----
+## Features
 
-## 🇬🇧 English
+### Community & Education
+- Forex trading discussion forums
+- Educational content library (beginner to advanced)
+- Strategy sharing and backtesting discussions
+- Mentorship matching system
 
-### 🎯 About Pasè FX
+### AI Market Insights
+- AI-generated daily market commentary
+- Currency pair analysis and outlook
+- Economic calendar integration with AI impact assessment
+- Trend analysis across major and exotic pairs
 
-Pasè FX Trader Hub is a professional forex trading community platform from Aceh, Indonesia. It provides professional trading tools, quality education, and market analysis for Indonesian traders. Founded by experienced traders with a mission to create a healthy and sustainable trading ecosystem.
+### Trading Tools
+- Live forex rate dashboard
+- Pip calculator and position sizing tools
+- Risk management calculators
+- Trading journal with performance tracking
 
-> "Ta doeng saban-saban sabe keudroe-droe, beu koeng lage meupula"  
-> *Discipline step by step, be patient, don't be greedy*
+### Community Features
+- Real-time chat and discussion rooms
+- Trade idea sharing with reasoning
+- Leaderboard for community contributors
+- Weekly market recap webinars
 
-### ✨ Key Features
+## Honest Notes
 
-- 🤖 **AI Trading Assistant** — Powered by Puter.js for intelligent market analysis
-- 📊 **Real-time Market Data** — Live forex rates and charts via Recharts
-- 📚 **Education Hub** — Quality trading education articles and resources
-- 🛡️ **Secure Backend** — Express.js with JWT auth, rate limiting, and Helmet security
-- 📱 **Responsive Design** — Mobile-first UI with Lucide icons
-- ⚡ **Fast Performance** — Vite build system with optimized bundling
+> **Know before you trade:**
 
-### 🏗️ Architecture
+- **Educational/Community Platform** — Pase-FX is primarily an educational and community resource. It is not a signal service or managed trading account.
+- **AI Analysis Provides Insights, Not Guaranteed Signals** — AI-generated market commentary offers perspectives to consider, not guaranteed profitable trade signals. Always do your own analysis.
+- **Forex Risk** — Forex trading involves substantial risk of loss and is not suitable for all investors. Leverage can amplify both gains and losses.
+- **Community Content** — User-generated content represents individual opinions, not professional advice.
 
-```
-┌──────────────────────────────────────────────────────────────┐
-│                    PASÈ FX TRADER HUB                       │
-├──────────────────────────────────────────────────────────────┤
-│                                                              │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐   │
-│  │  React   │  │  Vite    │  │ Recharts │  │  Lucide  │   │
-│  │  Frontend│  │  Build   │  │  Charts  │  │  Icons   │   │
-│  └────┬─────┘  └──────────┘  └──────────┘  └──────────┘   │
-│       │                                                      │
-│  ┌────▼─────────────────────────────────────────────────┐   │
-│  │              Express.js Backend                      │   │
-│  │  ┌──────┐ ┌────────┐ ┌───────┐ ┌──────────────┐    │   │
-│  │  │ JWT  │ │  Rate  │ │Helmet │ │ Compression  │    │   │
-│  │  │ Auth │ │ Limiter│ │Security│ │ Middleware   │    │   │
-│  │  └──────┘ └────────┘ └───────┘ └──────────────┘    │   │
-│  └──────────────────────────────────────────────────────┘   │
-│                                                              │
-│  ┌──────────────────────────────────────────────────────┐   │
-│  │              Puter.js AI Engine                      │   │
-│  │  ┌──────────┐  ┌────────────┐  ┌──────────────┐    │   │
-│  │  │ Market   │  │  Trading   │  │   Education  │    │   │
-│  │  │ Analysis │  │  Signals   │  │   Assistant  │    │   │
-│  │  └──────────┘  └────────────┘  └──────────────┘    │   │
-│  └──────────────────────────────────────────────────────┘   │
-│                                                              │
-└──────────────────────────────────────────────────────────────┘
-```
+## Quick Start
 
-### 🚀 Quick Start
+### Prerequisites
+- Node.js 18+
+- LLM API key for AI analysis features
 
-```bash
-# Clone the repository
-git clone https://github.com/mulkymalikuldhrs/pase-fx.git
-
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-
-# Build for production
-npm run build
-```
-
----
-
-## 🇮🇩 Bahasa Indonesia
-
-### 🎯 Tentang Pasè FX
-
-Pasè FX Trader Hub adalah platform komunitas trading forex profesional dari Aceh, Indonesia. Menyediakan tools trading profesional, edukasi berkualitas, dan analisis market untuk trader Indonesia. Didirikan oleh trader berpengalaman dengan misi menciptakan ekosistem trading yang sehat dan berkelanjutan.
-
-> "Ta doeng saban-saban sabe keudroe-droe, beu koeng lage meupula"  
-> *Disiplin bertahap, sabar, jangan rakus*
-
-### ✨ Fitur Utama
-
-- 🤖 **AI Trading Assistant** — Didukung Puter.js untuk analisis pasar cerdas
-- 📊 **Data Market Real-time** — Kurs forex dan grafik langsung via Recharts
-- 📚 **Hub Edukasi** — Artikel edukasi trading dan sumber belajar berkualitas
-- 🛡️ **Backend Aman** — Express.js dengan JWT auth, rate limiting, dan Helmet security
-- 📱 **Desain Responsif** — UI mobile-first dengan ikon Lucide
-- ⚡ **Performa Cepat** — Sistem build Vite dengan bundling optimal
-
-### 🚀 Mulai Cepat
+### Installation
 
 ```bash
 git clone https://github.com/mulkymalikuldhrs/pase-fx.git
+cd pase-fx
 npm install
-npm run dev
+cp .env.example .env
 ```
 
----
+### Configuration
 
-## 🇨🇳 中文
+```env
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+OPENAI_API_KEY=your_key
+FOREX_API_KEY=your_key
+DATABASE_URL=your_database_url
+```
 
-### 🎯 关于 Pasè FX
-
-Pasè FX Trader Hub 是来自印度尼西亚亚齐的专业外汇交易社区平台。为印尼交易者提供专业交易工具、优质教育和市场分析。由经验丰富的交易者创立，致力于创建健康、可持续的交易生态系统。
-
-### ✨ 主要功能
-
-- 🤖 **AI 交易助手** — 由 Puter.js 驱动的智能市场分析
-- 📊 **实时市场数据** — 通过 Recharts 提供实时外汇汇率和图表
-- 📚 **教育中心** — 优质交易教育文章和资源
-- 🛡️ **安全后端** — Express.js 搭配 JWT 认证、速率限制和 Helmet 安全
-- 📱 **响应式设计** — 移动优先的 UI 设计
-- ⚡ **快速性能** — Vite 构建系统，优化打包
-
-### 🚀 快速开始
+### Running
 
 ```bash
-git clone https://github.com/mulkymalikuldhrs/pase-fx.git
-npm install
 npm run dev
 ```
 
----
+Visit `http://localhost:3000` to access the platform.
 
-## 📦 Tech Stack
+## Project Structure
 
-| Technology | Purpose | Version |
-|-----------|---------|---------|
-| React | Frontend UI | 19.x |
-| TypeScript | Type Safety | 5.8 |
-| Vite | Build Tool | 6.x |
-| Express | Backend Server | 5.x |
-| Recharts | Data Visualization | 3.x |
-| Lucide React | Icons | 0.564+ |
-| Puter.js | AI Engine | 1.x |
-| JWT | Authentication | 9.x |
-| Helmet | Security Headers | 8.x |
-| Vitest | Testing | 4.x |
+```
+pase-fx/
+├── src/
+│   ├── app/            # Next.js app router
+│   ├── components/
+│   │   ├── community/  # Forum & chat components
+│   │   ├── analysis/   # AI analysis views
+│   │   └── tools/      # Trading calculators
+│   ├── lib/
+│   │   ├── ai/         # AI analysis engine
+│   │   ├── forex/      # Market data integration
+│   │   └── community/  # Forum & chat logic
+│   └── types/          # TypeScript definitions
+└── public/             # Static assets
+```
 
----
+## Contributing
 
-## ⚠️ Disclaimer
+1. Fork the repository
+2. Create a feature branch
+3. Add tests for new functionality
+4. Submit a pull request
 
-### 🇬🇧 English
+Especially welcome: new trading tools, better AI analysis prompts, localization, and community features.
 
-> **⚠️ For Education Purpose Only**
-> This project is provided strictly for educational and research purposes. The authors and contributors assume **no responsibility or liability** for any damages, losses, or risks arising from the use of this software. **We do not bear any responsibility or risk** for how this software is used.
-> **Contact:** Mulky Malikul Dhaher | mulkymalikudhr@mail.com
+## Disclaimer
 
-### 🇮🇩 Bahasa Indonesia
+Forex trading carries a high level of risk. This platform provides educational content and AI-generated insights, not trading signals or financial advice. Past performance does not guarantee future results. The authors assume no liability for trading losses.
 
-> **⚠️ Hanya untuk Tujuan Edukasi**
-> Proyek ini disediakan secara ketat untuk tujuan edukasi dan penelitian. Penulis dan kontributor **tidak bertanggung jawab atau berkewajiban** atas kerusakan, kerugian, atau risiko yang timbul dari penggunaan perangkat lunak ini. **Kami tidak menanggung tanggung jawab atau risiko** apapun atas penggunaan perangkat lunak ini.
-> **Kontak:** Mulky Malikul Dhaher | mulkymalikuldhaher@email.com
+## License
 
-### 🇨🇳 中文
-
-> **⚠️ 仅供教育目的**
-> 本项目严格仅用于教育和研究目的。作者和贡献者对因使用本软件而产生的任何损害、损失或风险**不承担任何责任或义务**。**我们对本软件的使用方式不承担任何责任或风险**。
-> **联系方式:** Mulky Malikul Dhaher | mulkymalikuldhaher@email.com
-
----
-
-## 🤝 Contributing
-
-We welcome contributions! Please read our [Contributing Guide](./CONTRIBUTING.md) for details.
-
-## 📄 License
-
-This project is licensed under the MIT License — see the [LICENSE](./LICENSE) file for details.
-
----
-
-<div align="center">
-
-**Made with ❤️ by [Mulky Malikul Dhaher](https://github.com/mulkymalikuldhrs)**
-
-⭐ If you find this project helpful, please give it a star!
+**MIT License** — see [LICENSE](./LICENSE) for details.
 
 ## Author
 
+<div align="center">
+
 **Mulky Malikul Dhaher**
-Email: mulkymalikudhr@mail.com
-GitHub: [@mulkymalikuldhrs](https://github.com/mulkymalikuldhrs)
+
+[![GitHub](https://img.shields.io/badge/GitHub-mulkymalikuldhrs-181717?style=flat-square&logo=github)](https://github.com/mulkymalikuldhrs)
+[![Email](https://img.shields.io/badge/Email-mulkymalikudhr@mail.com-EA4335?style=flat-square&logo=gmail&logoColor=white)](mailto:mulkymalikudhr@mail.com)
 
 </div>
+
+---
+
+<!-- FOOTER BANNER -->
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:0a1f0a,50:0d3a0d,100:145214&fontColor=22c55e&descColor=fbbf24&height=120&section=footer&text=&fontSize=0" />
