@@ -1,194 +1,133 @@
-# 🤝 Contributing to Pasè FX Trader Hub
+# Contributing to Our Projects
 
-Thank you for your interest in contributing to Pasè FX! This document provides guidelines for contributions.
+First off, **thank you** for considering contributing! Every contribution matters — whether it's fixing a typo, adding a feature, improving docs, or just reporting a bug.
 
----
+## Quick Start for New Contributors
 
-## ⚠️ Disclaimer
+### 🟢 Easy Ways to Contribute (No Experience Required)
 
-> **For Education Purpose Only**
-> This project is provided strictly for educational and research purposes. The authors and contributors assume **no responsibility or liability** for any damages, losses, or risks arising from the use of this software. **We do not bear any responsibility or risk** for how this software is used.
->
-> **Risk Disclaimer:** Trading in financial markets involves substantial risk of loss and is not suitable for every investor. Past performance is not indicative of future results.
->
-> **Contact:** Mulky Malikul Dhaher | mulkymalikuldhaher@email.com
+| Area | How | Time |
+|------|-----|------|
+| **Fix a typo** | Find and fix typos in README, docs, or comments | 5 min |
+| **Improve documentation** | Add missing docs, clarify confusing sections | 15 min |
+| **Report a bug** | Found something broken? Open an issue! | 10 min |
+| **Suggest a feature** | Have an idea? We want to hear it | 10 min |
+| **Add tests** | Write tests for uncovered code | 30 min |
+| **Translate** | Help translate docs to your language | 30 min |
+| **Add code comments** | Make code easier to understand | 15 min |
+| **Fix a good-first-issue** | Look for issues tagged `good first issue` | 1 hour |
 
----
+### How to Submit Your First Contribution
 
-## 🇬🇧 English
+1. **Fork** the repository
+2. **Clone** your fork locally
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/REPO_NAME.git
+   cd REPO_NAME
+   ```
+3. **Create a branch** for your changes
+   ```bash
+   git checkout -b fix/my-first-contribution
+   ```
+4. **Make your changes** and test them
+5. **Commit** with a clear message
+   ```bash
+   git commit -m "fix: correct typo in README"
+   ```
+6. **Push** to your fork
+   ```bash
+   git push origin fix/my-first-contribution
+   ```
+7. **Open a Pull Request** — describe what you changed and why
 
-### 🚀 Getting Started
+That's it! We'll review your PR and help you get it merged.
 
-1. Fork the repository
-2. Clone your fork (`git clone https://github.com/YOUR-USERNAME/pase-fx.git`)
-3. Create a feature branch (`git checkout -b feature/amazing-feature`)
-4. Make your changes
-5. Commit using conventional commits (`git commit -m "feat: add amazing feature"`)
-6. Push to your fork (`git push origin feature/amazing-feature`)
-7. Open a Pull Request
+## Development Setup
 
-### 📝 Commit Message Format
-
-We use [Conventional Commits](https://www.conventionalcommits.org/):
-
-- `feat:` - New feature
-- `fix:` - Bug fix
-- `docs:` - Documentation changes
-- `style:` - Code style changes (formatting)
-- `refactor:` - Code refactoring
-- `test:` - Adding or updating tests
-- `chore:` - Maintenance tasks
-
-### 🧪 Testing
-
-Before submitting a PR:
-
+### For TypeScript/Next.js Projects
 ```bash
-npm run build    # Ensure build passes
-npm run lint     # Ensure linting passes
-npm run test     # Run unit tests
+npm install
+cp .env.example .env
+npm run dev
 ```
 
-### 🐛 Reporting Issues
-
-When reporting an issue, please include:
-
-- Clear description of the problem
-- Steps to reproduce
-- Expected vs actual behavior
-- Browser and device used
-- Screenshots if possible
-
-### 📋 Code Review Process
-
-1. All PRs require review before merging
-2. Build and lint must pass
-3. Documentation must be updated if needed
-4. Tests must be added for new features
-
-### 🎯 Contribution Areas
-
-We welcome contributions in:
-
-- **New Features**: New trading widgets, calculators, or integrations
-- **Bug Fixes**: Fixing bugs reported in Issues
-- **Documentation**: Improving user guides and API docs
-- **Translations**: Translations to additional languages
-- **UI/UX**: Interface and user experience improvements
-- **AI Integration**: Improving AI trading assistant features
-
----
-
-## 🇮🇩 Bahasa Indonesia
-
-### 🚀 Memulai
-
-1. Fork repositori
-2. Clone fork Anda (`git clone https://github.com/YOUR-USERNAME/pase-fx.git`)
-3. Buat branch fitur (`git checkout -b feature/amazing-feature`)
-4. Buat perubahan Anda
-5. Commit menggunakan conventional commits (`git commit -m "feat: add amazing feature"`)
-6. Push ke fork Anda (`git push origin feature/amazing-feature`)
-7. Buka Pull Request
-
-### 📝 Format Pesan Commit
-
-Kami menggunakan [Conventional Commits](https://www.conventionalcommits.org/):
-
-- `feat:` - Fitur baru
-- `fix:` - Perbaikan bug
-- `docs:` - Perubahan dokumentasi
-- `style:` - Perubahan gaya kode (formatting)
-- `refactor:` - Refactoring kode
-- `test:` - Menambah atau memperbarui test
-- `chore:` - Tugas pemeliharaan
-
-### 🧪 Testing
-
-Sebelum mengirim PR:
-
+### For Python Projects
 ```bash
-npm run build    # Pastikan build berhasil
-npm run lint     # Pastikan linting lulus
-npm run test     # Jalankan unit test
+pip install -r requirements.txt
+cp .env.example .env
+python app.py
 ```
 
-### 🐛 Melaporkan Masalah
-
-Saat melaporkan masalah, harap sertakan:
-
-- Deskripsi yang jelas tentang masalah
-- Langkah-langkah untuk mereproduksi
-- Perilaku yang diharapkan vs aktual
-- Browser dan perangkat yang digunakan
-- Screenshot jika memungkinkan
-
-### 📋 Proses Code Review
-
-1. Semua PR memerlukan review sebelum digabungkan
-2. Build dan lint harus lulus
-3. Dokumentasi harus diperbarui jika diperlukan
-4. Test harus ditambahkan untuk fitur baru
-
-### 🎯 Area Kontribusi
-
-Kami menyambut kontribusi dalam area berikut:
-
-- **Fitur Baru**: Widget trading baru, kalkulator, atau integrasi
-- **Bug Fix**: Perbaikan bug yang dilaporkan dalam Issues
-- **Dokumentasi**: Peningkatan panduan pengguna dan API docs
-- **Terjemahan**: Terjemahan ke bahasa tambahan
-- **UI/UX**: Peningkatan antarmuka dan pengalaman pengguna
-- **AI Integration**: Peningkatan fitur AI trading assistant
-
----
-
-## 🇨🇳 中文
-
-### 🚀 快速开始
-
-1. Fork 本仓库
-2. Clone 您的 fork (`git clone https://github.com/YOUR-USERNAME/pase-fx.git`)
-3. 创建功能分支 (`git checkout -b feature/amazing-feature`)
-4. 进行更改
-5. 使用约定式提交 (`git commit -m "feat: add amazing feature"`)
-6. 推送到您的 fork (`git push origin feature/amazing-feature`)
-7. 创建 Pull Request
-
-### 📝 提交信息格式
-
-我们使用 [约定式提交](https://www.conventionalcommits.org/):
-
-- `feat:` - 新功能
-- `fix:` - Bug 修复
-- `docs:` - 文档更改
-- `style:` - 代码样式更改
-- `refactor:` - 代码重构
-- `test:` - 添加或更新测试
-- `chore:` - 维护任务
-
-### 🧪 测试
-
-提交 PR 之前：
-
+### For Kotlin/Android Projects
 ```bash
-npm run build    # 确保构建通过
-npm run lint     # 确保代码检查通过
-npm run test     # 运行单元测试
+# Open in Android Studio
+./gradlew assembleDebug
 ```
 
+## Code Style Guidelines
+
+- **TypeScript**: Follow the existing ESLint configuration
+- **Python**: Follow PEP 8, use type hints where possible
+- **Kotlin**: Follow Kotlin coding conventions
+- **Commits**: Use [Conventional Commits](https://www.conventionalcommits.org/)
+  - `feat:` new feature
+  - `fix:` bug fix
+  - `docs:` documentation only
+  - `style:` formatting, no code change
+  - `refactor:` code restructuring
+  - `test:` adding tests
+  - `chore:` maintenance
+
+## Pull Request Process
+
+1. Update documentation if your change affects behavior
+2. Add tests for new functionality
+3. Ensure all existing tests pass
+4. Keep PRs focused — one feature/fix per PR
+5. Be patient — we'll review as soon as possible
+
+## Reporting Bugs
+
+When filing a bug report, please include:
+
+1. **What happened** — describe the unexpected behavior
+2. **What you expected** — what should have happened
+3. **Steps to reproduce** — how can we see the bug?
+4. **Environment** — OS, Node.js/Python version, browser
+5. **Screenshots/logs** — if applicable
+
+## Suggesting Features
+
+We love feature suggestions! Please include:
+
+1. **The problem** — what are you trying to solve?
+2. **The solution** — how would you like it to work?
+3. **Alternatives** — other approaches you've considered
+4. **Additional context** — screenshots, examples, links
+
+## Community Guidelines
+
+- Be respectful and constructive
+- Help others learn and grow
+- Celebrate all contributions, no matter how small
+- Ask questions — there are no dumb questions
+- Follow our [Code of Conduct](CODE_OF_CONDUCT.md)
+
+## Recognition
+
+All contributors are valued! We recognize contributions through:
+
+- Listing in the repository's contributor list
+- Shoutouts in release notes
+- The satisfaction of building something together
+
+## Questions?
+
+Feel free to:
+- Open a [GitHub Issue](../../issues)
+- Start a [GitHub Discussion](../../discussions)
+- Email: mulkymalikudhr@mail.com
+
 ---
 
-## 🔒 Security
-
-Please report security vulnerabilities privately to [mulkymalikuldhaher@email.com](mailto:mulkymalikuldhaher@email.com). Do not open public issues for security vulnerabilities.
-
----
-
-## 🙏 Thank You!
-
-Every contribution helps make Pasè FX better!
-
----
-
-**Contact:** [mulkymalikuldhaher@email.com](mailto:mulkymalikuldhaher@email.com)
+**Remember: Every expert was once a beginner. Your first contribution is always the hardest — we're here to help!**
