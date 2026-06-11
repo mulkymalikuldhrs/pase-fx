@@ -115,6 +115,181 @@ pase-fx/
 └── public/             # Static assets
 ```
 
+## Visual Architecture
+
+### Community Platform Architecture
+
+```mermaid
+graph TB
+    subgraph "Frontend - Vite React SPA"
+        UI["React 19 + TypeScript"]
+        Charts["Recharts - Market Charts"]
+        Lucide["Lucide Icons"]
+        Router["Client-Side Routing"]
+    end
+
+    subgraph "Backend - Express 5"
+        API["REST API"]
+        Auth["JWT Authentication"]
+        RateLimit["Rate Limiting"]
+        Security["Helmet + CORS"]
+    end
+
+    subgraph "AI Layer - Puter"
+        PuterSDK["Puter SDK"]
+        LLM["LLM Market Analysis"]
+        Insights["AI-Generated Insights"]
+    end
+
+    subgraph "Data & External"
+        ForexAPI["Forex Market Data API"]
+        DB["Data Storage"]
+    end
+
+    UI --> Charts
+    UI --> Lucide
+    UI --> Router
+    UI --> API
+    API --> Auth
+    API --> RateLimit
+    API --> Security
+    API --> PuterSDK
+    PuterSDK --> LLM
+    LLM --> Insights
+    API --> ForexAPI
+    API --> DB
+
+    style UI fill:#61DAFB,color:#000
+    style API fill:#000,color:#fff
+    style PuterSDK fill:#7c3aed,color:#fff
+    style LLM fill:#9333ea,color:#fff
+    style ForexAPI fill:#22c55e,color:#fff
+```
+
+### AI Market Analysis Flow
+
+```mermaid
+flowchart TB
+    subgraph "Data Collection"
+        Forex["Forex Market Data API"] --> Pairs["Currency Pair Prices"]
+        Forex --> History["Historical Data"]
+        Forex --> Calendar["Economic Calendar"]
+    end
+
+    subgraph "Puter LLM Processing"
+        Pairs --> Prompt["Construct Analysis Prompt"]
+        History --> Prompt
+        Calendar --> Prompt
+        Prompt --> Puter["Puter LLM Engine"]
+        Puter --> Raw["Raw AI Response"]
+    end
+
+    subgraph "Insight Generation"
+        Raw --> Commentary["Daily Market Commentary"]
+        Raw --> PairAnalysis["Pair-Specific Analysis"]
+        Raw --> Impact["Economic Impact Assessment"]
+        Raw --> TrendOutlook["Trend Outlook"]
+    end
+
+    subgraph "User Presentation"
+        Commentary --> Display["Render in Dashboard"]
+        PairAnalysis --> Display
+        Impact --> Display
+        TrendOutlook --> Display
+    end
+
+    style Forex fill:#0d3a0d,color:#22c55e
+    style Puter fill:#7c3aed,color:#fff
+    style Display fill:#145214,color:#fbbf24
+
+    Warning["AI insights are perspectives to consider, not guaranteed profitable signals. Always do your own analysis."]
+    Display -.-> Warning
+    style Warning fill:#f59e0b,color:#000
+```
+
+### Trading Tools Suite
+
+```mermaid
+graph TB
+    subgraph "Calculation Tools"
+        PipCalc["Pip Calculator"]
+        PosSize["Position Sizing"]
+        RiskCalc["Risk Management Calculator"]
+        MarginCalc["Margin Calculator"]
+    end
+
+    subgraph "Analysis Tools"
+        Signals["Trade Signal Display"]
+        PerfTrack["Trading Journal"]
+        PairWatch["Currency Pair Watchlist"]
+    end
+
+    subgraph "Educational"
+        Learn["Educational Content Library"]
+        Strategy["Strategy Discussions"]
+        Backtest["Backtesting Concepts"]
+    end
+
+    subgraph "Output"
+        Results["Calculated Results"]
+        Reports["Performance Reports"]
+        Education["Learning Path"]
+    end
+
+    PipCalc --> Results
+    PosSize --> Results
+    RiskCalc --> Results
+    MarginCalc --> Results
+    Signals --> Reports
+    PerfTrack --> Reports
+    PairWatch --> Reports
+    Learn --> Education
+    Strategy --> Education
+    Backtest --> Education
+
+    style PipCalc fill:#0d3a0d,color:#22c55e
+    style RiskCalc fill:#145214,color:#fbbf24
+    style Learn fill:#0a1f0a,color:#4ade80
+```
+
+### Community Flow
+
+```mermaid
+flowchart LR
+    subgraph "Engage"
+        A["Join Community"] --> B["Browse Forums"]
+        B --> C["Read Discussions"]
+        C --> D["Post Question / Insight"]
+    end
+
+    subgraph "Collaborate"
+        D --> E["Real-Time Chat"]
+        E --> F["Share Trade Ideas"]
+        F --> G["Strategy Discussion"]
+    end
+
+    subgraph "Learn & Grow"
+        G --> H["Educational Library"]
+        H --> I["Mentorship Matching"]
+        I --> J["Weekly Recaps"]
+    end
+
+    subgraph "Contribute"
+        J --> K["Share Analysis"]
+        K --> L["Leaderboard Rank"]
+        L --> M["Community Recognition"]
+    end
+
+    style A fill:#0a1f0a,color:#22c55e
+    style E fill:#0d3a0d,color:#fbbf24
+    style H fill:#145214,color:#4ade80
+    style M fill:#22c55e,color:#fff
+```
+
+> **Important**: Pase-FX is an educational and community platform. AI-generated insights via Puter LLM provide perspectives — not guaranteed trading signals. Forex trading involves substantial risk of loss.
+
+---
+
 ## Contributing
 
 1. Fork the repository
