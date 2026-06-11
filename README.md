@@ -24,6 +24,11 @@
 
 ---
 
+
+<!-- AUTO-PACKAGE-BADGES:START -->
+
+<!-- AUTO-PACKAGE-BADGES:END -->
+
 ## Overview
 
 **Pase-FX** is a forex trading community platform that combines educational resources, community discussion, and AI-enhanced market analysis. Built with Next.js and TypeScript, it provides traders of all levels a space to learn, share insights, and access AI-generated market commentary — while maintaining a clear distinction between educational content and trading signals.
