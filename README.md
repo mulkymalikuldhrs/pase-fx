@@ -1,4 +1,3 @@
-<img src="docs/banner.png" width="100%">
 
 <!-- CAPSULE-RENDER HEADER -->
 <img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:0a1f0a,50:0d3a0d,100:145214&fontColor=22c55e&descColor=fbbf24&height=220&section=header&text=Pase-FX&fontSize=70&desc=Forex%20Trading%20Community&animation=fadeIn" />
