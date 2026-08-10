@@ -43,7 +43,7 @@
     "typescript": "~5.8.2",
     "typescript-eslint": "^8.55.0",
     "vercel": "^50.17.1",
-    "vite": "^6.2.0",
+    "vite": "^8.0.16",
     "vitest": "^4.0.18"
   },
   "description": "Professional Forex Trading Community Platform - Live market data, trading signals, AI assistant, and education for Indonesian traders",
