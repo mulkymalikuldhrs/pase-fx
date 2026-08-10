@@ -120,6 +120,7 @@ const ProfitCalculator: React.FC = () => {
           <div className="grid grid-cols-2 gap-2">
             <button
               onClick={() => setDirection('BUY')}
+              aria-label="Set trade direction to BUY"
               className={`py-2 px-4 rounded-lg font-medium transition-colors ${
                 direction === 'BUY' 
                   ? 'bg-green-500 text-white' 
@@ -130,6 +131,7 @@ const ProfitCalculator: React.FC = () => {
             </button>
             <button
               onClick={() => setDirection('SELL')}
+              aria-label="Set trade direction to SELL"
               className={`py-2 px-4 rounded-lg font-medium transition-colors ${
                 direction === 'SELL' 
                   ? 'bg-red-500 text-white' 

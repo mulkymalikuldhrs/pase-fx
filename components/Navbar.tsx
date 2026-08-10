@@ -2,6 +2,18 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import { APP_NAME } from '../constants';
 
+const NAV_ITEMS = [
+  { name: 'Home', path: '/' },
+  { name: 'Signals', path: '/signals' },
+  { name: 'Methods', path: '/methods' },
+  { name: 'Tools', path: '/tools' },
+  { name: 'Education', path: '/education' },
+  { name: 'Ebook', path: '/ebook' },
+  { name: 'Brokers', path: '/brokers' },
+  { name: 'Community', path: '/community' },
+  { name: 'Members', path: '/members' },
+];
+
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -47,17 +59,6 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navItems = [
-    { name: 'Home', path: '/' },
-    { name: 'Signals', path: '/signals' },
-    { name: 'Methods', path: '/methods' },
-    { name: 'Tools', path: '/tools' },
-    { name: 'Education', path: '/education' },
-    { name: 'Ebook', path: '/ebook' },
-    { name: 'Brokers', path: '/brokers' },
-    { name: 'Community', path: '/community' },
-    { name: 'Members', path: '/members' },
-  ];
 
   // Mobile menu max-height to accommodate all nav items
   const MOBILE_MENU_MAX_HEIGHT = 'max-h-[70vh]';
@@ -121,7 +122,7 @@ const Navbar: React.FC = () => {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center">
             <div className="flex items-baseline space-x-0.5">
-              {navItems.map((item) => (
+              {NAV_ITEMS.map((item) => (
                 <a
                   key={item.name}
                   href={`#${item.path}`}
@@ -193,7 +194,7 @@ const Navbar: React.FC = () => {
         aria-hidden={!isOpen}
       >
         <div className="px-4 pb-4 pt-2 space-y-1.5 bg-white/90 dark:bg-slate-900/90 backdrop-blur-2xl border-t border-gray-100 dark:border-slate-700/50 rounded-b-2xl shadow-lg">
-          {navItems.map((item) => (
+          {NAV_ITEMS.map((item) => (
             <a
               key={item.name}
               href={`#${item.path}`}
